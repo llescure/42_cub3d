@@ -2,57 +2,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int		print_image(void *mlx, void *mlx_win, int color)
-{
-	int x;
-	int y;
+typedef struct  s_all {
+    void        *mlx;
+    void        *win;
+}               t_all;
 
-	x = 0;
-	y = 0;
-	while (x < 2000)
-	{
-		while (y < 2000)
-		{
-			mlx_pixel_put(mlx, mlx_win, x, y, color);
-			y++;
-		}
-		x++;
-	}
-	return (0);
-}
+typedef struct  s_image {
+    void        *img;
+    char        *addr;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+}               t_image;
 
-int		press_key(int key, void *param, void *mlx, void *mlx_win)
+int		press_key(int key, void *param, void *mlx)
 {
+    t_all   all;
+
 	printf("%d\n", key);
 	if (key == 53) // touche esc permet de quitter
 		exit (0);
-	if (key == 0)
-		initialisation_window(mlx, mlx_win, 0xFF0000);
+    if (key == 0)
+    {
+        mlx_clear_window(all.mlx, all.win);
+    }
 	return (0);
 }
 
-int		initialisation_image(void *mlx, void *mlx_win, int color)
+void    my_mlx_pixel_put(t_image *data, int x, int y, int color) //mettre un pixel de couleur sur l'image
 {
-	mlx_clear_window(mlx, mlx_win);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 800, 800, "Hello world!");
-	mlx_key_hook(mlx_win, press_key, (void *) 0);
-	char *string = "BIENVENUE";
-	mlx_string_put(mlx, mlx_win, 400, 0, color, string);
-	mlx_loop(mlx);
+    char    *dst;
+
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
 }
 
 int     main(void)
 {
-	void *mlx;
-	void *mlx_win;
-	int color;
+    t_all   all;
+	t_image img;
 
-	color = 0xFFFFFF;
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 800, 800, "Hello world!");
-	mlx_key_hook(mlx_win, press_key, (void *) 0);
-	char *string = "BIENVENUE";
-	mlx_string_put(mlx, mlx_win, 400, 0, color, string);
-	mlx_loop(mlx);
+	all.mlx = mlx_init();
+	all.win = mlx_new_window(all.mlx, 1920, 1080, "HELLO");
+	img.img = mlx_new_image(all.mlx, 100, 100);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+								 &img.endian);
+	my_mlx_pixel_put(&img, 50, 50, 0x00FF0000);
+    mlx_key_hook(all.win, press_key, &all);
+ 	mlx_put_image_to_window(all.mlx, all.win, img.img, 500, 500);
+	mlx_loop(all.mlx);
 }
