@@ -6,86 +6,73 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:07:11 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/03 08:43:06 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/03 16:43:13 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int     calculate_nb_chains(char *str)
-{
-    int i;
-    int n;
+#include "cub3d.h"
 
-    i = 0;
-    n = 1;
-    while (str[i] != '\0')
-    {
-        if str[i] == '\n')
-            n++;
-        i++;
-    }
-    return (n);
+size_t	ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
 
-int     ft_biggestlinelen(char *str)
+char		*ft_strjoin(char *s1, char *s2)
 {
-    int i;
-    int j;
-    int result;
+	size_t		i;
+	size_t		j;
+	char		*dest;
 
-    i = 0;
-    j = 0;
-    result = j;
-    while (str[i] != '\0')
-    {
-        while (str[j] != '\n')
-            j++;
-        if (j > result)
-            result = j;
-        j = 0;
-    }
-    return (result);
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (dest == NULL)
+		return (NULL);
+	dest[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	i = -1;
+	while (s1[++i] != '\0')
+		dest[i] = s1[i];
+	j = 0;
+	while (s2[j] != '\0')
+		dest[i++] = s2[j++];
+	dest[i] = '\0';
+	return (dest);
 }
 
-int     parsing(char *str)
+int     main(int argc, char **argv)
 {
-    char    **liste;
-    int     i;
+    char *str;
+    char *map;
+    int r;
+    int tmp;
+    int fd;
 
-    i = 0;
-    liste = malloc(sizeof(char*) * calculate_nb_chains(str));
-    liste[i] = malloc(sizeof(char) * ft_biggestlinelen(str));
-}
+    r = 1;
+    tmp = 0;
+    map = "";
+    if (!(str = malloc(sizeof(char) * 11)))
+        return (-1);
+    fd = open(argv[1], O_RDONLY);
 
-int     verif_wall(char *str)
-{
-    int result;
-    int i;
-
-    result = 0;
-    i = 0;
-    if (str[0] != 1 || str[ft_strlen(str) - 1] != 1)
+    if (argc != 2 && argc != 3)
     {
-        perror("ERROR : wrong format of the map");
+        perror("ERROR : wrong number of arguments");
         return (-1);
     }
-    while (str[i] != '\0')
+    while ((r = read(fd, str, 10)) > 0)
     {
-        if (str[i] != '1' || str[i] != '0'|| str[i] != '2' || str[i] != 'E')
-        {
-            perror("ERROR : wrong symbol in the map");
-            return (-1);
-        }
-        i++;
+        str[r] = '\0';
+        tmp = r + tmp;
+        map = ft_strjoin(map, str);
     }
+    printf("map : %s\n", map);
+    parsing(map);
+    free(map);
+    free(str);
     return (0);
-}
-
-int verif_typo(char *str)
-{
-
-}
-
-int     verif_map(char *str)
-{
-
 }
