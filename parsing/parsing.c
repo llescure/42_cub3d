@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:07:11 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/04 15:42:46 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/05 15:57:06 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int     main(int argc, char **argv)
         tmp = r + tmp;
         map = ft_strjoin(map, str);
     }
-    creation_tableau_map(map);
+    parsing_map(map);
     free(map);
     free(str);
     return (0);

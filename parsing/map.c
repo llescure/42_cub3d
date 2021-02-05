@@ -1,48 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   verification_map.c                                 :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 14:29:35 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/04 16:00:24 by slescure         ###   ########.fr       */
+/*   Created: 2021/02/05 15:11:39 by slescure          #+#    #+#             */
+/*   Updated: 2021/02/05 16:06:20 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int     verif_walls_and_symbols(char *str, int longueur) // verifie si entoure de murs et contient les bons symboles
-{
-    int result;
-    int i;
-
-    result = 0;
-    i = 0;
-    if (str[0] != 1)
-    {
-        perror("ERROR : wrong format of the map");
-        return (-1);
-    }
-    while (str[longueur] == 5)
-            longueur--;
-    if (str[longueur] != 1 || str[longueur] != 5)
-    {
-        perror("ERROR : wrong format of the map");
-        return (-1);
-    }
-//    while (str[i] != '\0')
-//    {
-//        if (str[i] != '0' || str[i] != '1'|| str[i] != '2' || str[i] != 'E'
-//            || str[i] != 'S' || str[i] != 'W' || str[i] != 'N')
-//        {
-//            perror("ERROR : wrong symbol in the map");
-//            return (-1);
-//        }
-//        i++;
-//    }
-    return (0);
-}
 
 int     calculate_nb_chains(char *str) //good
 {
@@ -113,26 +81,13 @@ char     *only_map(char *str) //good
     return (map);
 }
 
-int     creation_tableau_map(char *str) //good
+char    **creation_tableau_map(char *str, char **liste, int max_length)
 {
-    int     largeur;
-    int     longueur;
-    int     i;
-    int     max_length;
-    char    **liste;
+    int largeur;
+    int longueur;
+    int i;
 
-    i = 0;
-    str = only_map(str);
-    largeur = calculate_nb_chains(str);
-    max_length = ft_biggest_line_len(str);
-    if (!(liste = malloc(sizeof(char*) * largeur)))
-        return (-1);
-    while (i < largeur)
-    {
-        if (!(liste[i] = malloc(sizeof(char**) * max_length)))
-            return (-1);
-        i++;
-    }
+
     largeur = 0;
     longueur = 0;
     i = 0;
@@ -140,6 +95,12 @@ int     creation_tableau_map(char *str) //good
     {
         while (str[i] != '\n')
         {
+            while (str[i] == ' ')
+            {
+                liste[largeur][longueur] = '5';
+                i++;
+                longueur++;
+            }
             liste[largeur][longueur] = str[i];
             longueur++;
             i++;
@@ -156,14 +117,29 @@ int     creation_tableau_map(char *str) //good
         largeur++;
         longueur = 0;
     }
-    largeur = 0;
-//    while (largeur < 13)
-//    {
-    printf("liste[0] = %s\n", liste[0]);
-        if (verif_walls_and_symbols(liste[0], max_length) == -1)
+    return (liste);
+}
+
+int     parsing_map(char *str) //good
+{
+    int     largeur;
+    int     i;
+    int     max_length;
+    char    **liste;
+
+    i = 0;
+    str = only_map(str);
+    largeur = calculate_nb_chains(str);
+    max_length = ft_biggest_line_len(str);
+    if (!(liste = malloc(sizeof(char*) * largeur)))
+        return (-1);
+    while (i < largeur)
+    {
+        if (!(liste[i] = malloc(sizeof(char**) * max_length)))
             return (-1);
-//        largeur++;
-//    }
-    printf("liste[0] = %s\n", liste[0]);
+        i++;
+    }
+    liste = creation_tableau_map(str, liste, max_length);
+    verification_map(liste, largeur, max_length);
     return (0);
 }

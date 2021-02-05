@@ -11,10 +11,13 @@
 size_t	ft_strlen(char *str);
 int     calculate_nb_chains(char *str);
 int     ft_biggest_line_len(char *str);
-int     parsing(char *str);
 char     *only_map(char *str);
-int     creation_tableau_map(char *str);
 char     **recup_map(char **str, int largeur, int longueur);
-int     verif_walls_and_symbols(char *str, int longueur);
+char    **creation_tableau_map(char *map, char **liste, int max_length);
+int     verif_walls_extremite_and_symbols(char *str, int longueur);
+int     verif_holes_walls(char **map, int largeur, int longueur);
+int     verif_first_last_string_map(char *str);
+int     verification_map(char **liste, int largeur, int max_length);
+int     parsing_map(char *str);
 
 #endif
