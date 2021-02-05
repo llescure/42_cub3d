@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:29:35 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/05 15:45:53 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/05 16:16:10 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int     verification_map(char **liste, int largeur, int max_length)
     i = -1;
     while (++i < largeur)
         liste[i] = verif_espace_map(liste[i]);
-    printf("MAP WALLS : [OK]\n");
+    printf("MAP : [OK]\n");
     return (0);
 }
