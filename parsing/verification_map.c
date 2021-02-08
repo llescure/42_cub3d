@@ -6,13 +6,13 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:29:35 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/05 16:16:10 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:06:01 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int     verif_walls_extremite_and_symbols(char *str, int longueur) // good
+int     verif_walls_extremite(char *str, int longueur) // good
 {
     int result;
     int i;
@@ -31,14 +31,24 @@ int     verif_walls_extremite_and_symbols(char *str, int longueur) // good
         longueur--;
     if (str[longueur] != '1')
     {
-        perror("ERROR : wrong format of the map : pas de 1 en extremite");
+        perror("ERROR : wrong format of the map : pas de murs en extremite");
         exit(0);
     }
-    while (i < longueur + 1)
+	return (0);
+}
+
+int		verif_symbols(char *str)
+{
+	int i;
+
+	i = 0;
+    while (str[i] != '\0')
     {
-        if (str[i] != '0' && str[i] != '1'&& str[i] != '2' && str[i] != 'E'
-            && str[i] != 'S' && str[i] != 'W' && str[i] != 'N' && str[i] != '5')
+        if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'E'
+            && str[i] != 'S' && str[i] != 'W' && str[i] != 'N' && str[i] != '5'
+			&& str[i] != ' ')
         {
+			printf("str[%i] = %c\n", i, str[i]);
             perror("ERROR : wrong symbol in the map");
             exit (0);
         }
@@ -112,13 +122,23 @@ int     verification_map(char **liste, int largeur, int max_length)
 
     i = -1;
     while (++i < largeur)
-        verif_walls_extremite_and_symbols(liste[i], max_length);
+	{
+//		printf("liste[%i] = %s\n", i, liste[i]);
+        verif_walls_extremite(liste[i], max_length);
+		verif_symbols(liste[i]);
+	}
     verif_first_last_string_map(liste[0]);
     verif_first_last_string_map(liste[largeur - 1]);
     verif_holes_walls(liste, largeur, max_length);
     i = -1;
     while (++i < largeur)
         liste[i] = verif_espace_map(liste[i]);
+//	i = 0;
+//	while (i < largeur)
+//	{
+//		printf("liste[%i] = %s\n", i, liste[i]);
+//		i++;
+//	}
     printf("MAP : [OK]\n");
     return (0);
 }

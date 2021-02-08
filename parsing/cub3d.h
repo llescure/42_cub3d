@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/05 16:34:48 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/08 17:10:52 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,23 @@
 
 size_t		ft_strlen(char *str);
 char		*ft_strjoin(char *s1, char *s2);
+int			ft_is_string(char *s1, char *s2);
+int			file_is_cub(char *str);
 int			calculate_nb_chains(char *str);
 int			ft_biggest_line_len(char *str);
+int			read_map(int fd, char *str, char *map);
 char		*only_map(char *str);
 char		**recup_map(char **str, int largeur, int longueur);
 char		**creation_tableau_map(char *map, char **liste, int max_length);
-int			verif_walls_extremite_and_symbols(char *str, int longueur);
+char		**creation_tableau_param(char *str, char **liste);
+int			verif_walls_extremite(char *str, int longueur);
+int			verif_symbols(char *str);
 int			verif_holes_walls(char **map, int largeur, int longueur);
 int			verif_first_last_string_map(char *str);
+char		*only_parameters(char *str);
+int			parametres_map(char *str);
 int			verification_map(char **liste, int largeur, int max_length);
 int			parsing_map(char *str);
+
 
 #endif
