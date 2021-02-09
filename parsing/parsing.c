@@ -6,21 +6,11 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:07:11 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/08 17:08:36 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/09 15:50:42 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-size_t	ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
 
 int		gestion_erreur(int argc, char **argv)
 {
@@ -78,28 +68,6 @@ int			ft_is_string(char *s1, char *s2)
 	if (n == ft_strlen(s1))
 		return (1);
 	return (0);
-}
-
-char		*ft_strjoin(char *s1, char *s2)
-{
-	size_t		i;
-	size_t		j;
-	char		*dest;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (dest == NULL)
-		return (NULL);
-	dest[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	i = -1;
-	while (s1[++i] != '\0')
-		dest[i] = s1[i];
-	j = 0;
-	while (s2[j] != '\0')
-		dest[i++] = s2[j++];
-	dest[i] = '\0';
-	return (dest);
 }
 
 int		read_map(int fd, char *str, char *map)

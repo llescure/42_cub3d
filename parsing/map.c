@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:11:39 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/08 17:25:08 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/09 13:55:23 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ int		calculate_nb_chains(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n')
-			result++;
+		{
+			if (str[i + 1] != '\n' && str[i + 1] != '\0')
+				result++;
+		}
 		i++;
 	}
 	return (result);
@@ -118,9 +121,9 @@ int		parsing_map(char *str)
 
 	i = 0;
 	str = only_map(str);
-	largeur = calculate_nb_chains(str);
+	largeur = calculate_nb_chains(str) + 1;
 	max_length = ft_biggest_line_len(str);
-	if (!(liste = malloc(sizeof(char*) * largeur)))
+	if (!(liste = malloc(sizeof(char*) * largeur + 1)))
 		return (-1);
 	while (i < largeur)
 	{
@@ -129,6 +132,12 @@ int		parsing_map(char *str)
 		i++;
 	}
 	liste = creation_tableau_map(str, liste, max_length);
+	i = 0;
+	while (i < largeur)
+	{
+		printf("liste[%i] = %s\n", i, liste[i]);
+		i++;
+	}
 	verification_map(liste, largeur, max_length);
 	return (0);
 }
