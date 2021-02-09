@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 15:21:58 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 17:20:38 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/09 19:32:22 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	**creation_tableau_param(char *str, char **liste) // good
 int		gerer_param(char *str)
 {
 	int i;
+	t_param param;
 
 	i = 0;
 	if (str[0] == 'C')
@@ -75,17 +76,17 @@ int		gerer_param(char *str)
 	if (str[0] == 'R')
 		resolution_param(str);
 	if (str[0] == 'S' && str[1] == ' ')
-		recuperation_adresse_param(str);
+		param.sprite = recuperation_adresse_param(str);
 	if (str[0] == 'F')
 		colour_params(str);
 	if (str[0] == 'N' && str[1] == 'O')
-		printf("north_texture_param\n");
+		param.north_texture = recuperation_adresse_param(str);
 	if (str[0] == 'S' && str[1] == 'O')
-		printf("south_texture_param\n");
+		param.south_texture = recuperation_adresse_param(str);
 	if (str[0] == 'E' && str[1] == 'A')
-		printf("east_texture_param\n");
+		param.east_texture = recuperation_adresse_param(str);
 	if (str[0] == 'W' && str[1] == 'E')
-		printf("west_texture_param\n");
+		param.west_texture = recuperation_adresse_param(str);
 	return (0);
 }
 

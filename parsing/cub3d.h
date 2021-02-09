@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 17:20:06 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/09 19:34:21 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ typedef struct	s_resolution {
 }	t_resolution ;
 
 typedef struct	s_param {
-	char	*colour;
+	int		colour;
 	int		resolution;
-	int		sprite;
-	int		ground_colour;
-	int		north_texture;
-	int		south_texture;
-	int		west_texture;
-	int		east_texture;
+	char	*sprite;
+	char	*ground_colour;
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
 }	t_param ;
 
 size_t		ft_strlen(char *str);
@@ -64,7 +64,7 @@ int			parametres_map(char *str);
 int			verification_map(char **liste, int largeur, int max_length);
 char		*recuperer_param_numbers(char *str, char *res, int i);
 int			resolution_param(char *str);
-int			recuperation_adresse_param(char *str);
+char		*recuperation_adresse_param(char *str);
 int			colour_params(char *str);
 int			parsing_map(char *str);
 

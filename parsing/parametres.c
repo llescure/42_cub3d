@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:37:45 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 17:21:03 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/09 19:34:32 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		resolution_param(char *str) //good
 	return (0);
 }
 
-int		recuperation_adresse_param(char *str)
+char	*recuperation_adresse_param(char *str)
 {
 	int i;
 	int j;
@@ -74,8 +74,8 @@ int		recuperation_adresse_param(char *str)
 	i = 2;
 	j = 0;
 	if (!(address = malloc(sizeof(char) * ft_strlen(str))))
-		return (-1);
-	while (str[i] != ' ')
+		return (NULL);
+	while (str[i] == ' ')
 		i++;
 	while (str[i] != '\0')
 	{
@@ -84,6 +84,6 @@ int		recuperation_adresse_param(char *str)
 		j++;
 	}
 	address[i] = '\0';
-	printf("address = %s\n", address);
-	return (0);
+	printf("%s\n", address);
+	return (address);
 }
