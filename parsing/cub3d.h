@@ -32,14 +32,14 @@ typedef struct	s_resolution {
 }	t_resolution ;
 
 typedef struct	s_param {
-	int		colour;
-	int		resolution;
-	char	*sprite;
-	char	*ground_colour;
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
+	t_colour		colour;
+	t_resolution	resolution;
+	char			*sprite;
+	t_colour		ground_colour;
+	char			*north_texture;
+	char			*south_texture;
+	char			*west_texture;
+	char			*east_texture;
 }	t_param ;
 
 size_t		ft_strlen(char *str);
@@ -50,7 +50,7 @@ int			ft_is_string(char *s1, char *s2);
 int			file_is_cub(char *str);
 int			calculate_nb_chains(char *str);
 int			ft_biggest_line_len(char *str);
-int			read_map(int fd, char *str, char *map);
+int			read_map(int fd, char *str, char *map, t_param *param);
 char		*only_map(char *str);
 char		**recup_map(char **str, int largeur, int longueur);
 char		**creation_tableau_map(char *map, char **liste, int max_length);
@@ -60,12 +60,14 @@ int			verif_symbols(char *str);
 int			verif_holes_walls(char **map, int largeur, int longueur);
 int			verif_first_last_string_map(char *str);
 char		*only_parameters_in_map(char *str);
-int			parametres_map(char *str);
+int			parametres_map(char *str, t_param *param);
 int			verification_map(char **liste, int largeur, int max_length);
 char		*recuperer_param_numbers(char *str, char *res, int i);
-int			resolution_param(char *str);
+int			resolution_param(char *str, t_param *param);
+void 		impression_params(t_param *param);
 char		*recuperation_adresse_param(char *str);
-int			colour_params(char *str);
+int			colour_params_colour(char *str, t_param *param);
+int			colour_params_ground(char *str, t_param *param);
 int			parsing_map(char *str);
 
 
