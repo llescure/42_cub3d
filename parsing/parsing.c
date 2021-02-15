@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int		gestion_erreur(int argc, char **argv)
+int		manage_errors(int argc, char **argv)
 {
 	int 	i;
 	char 	*s1;
@@ -41,8 +41,8 @@ int			file_is_cub(char *str)
 	while (str[i] != '.') //verification fichier format .cub
 		i++;
 	i++;
-	if (str[i] == 'c' && str[i+1] == 'u' && str[i+2] == 'b'
-		&& str[i+3] == '\0')
+	if (str[i] == 'c' && str[i + 1] == 'u' && str[i + 2] == 'b'
+		&& str[i + 3] == '\0')
 		return (1);
 	else
 	{
@@ -72,19 +72,40 @@ int			ft_is_string(char *s1, char *s2)
 
 int		read_map(int fd, char *str, char *map, t_param *param)
 {
-	int r;
+	int		reader;
 
-	r = 1;
-	while ((r = read(fd, str, 1)) > 0)
+	reader = 1;
+	while ((reader = read(fd, str, 1)) > 0)
     {
-        str[r] = '\0';
+        str[reader] = '\0';
         map = ft_strjoin(map, str);
     }
-	parametres_map(map, param);
-	parsing_map(map);
+	parameters_map(map, param);
+	parsing_map(map, param);
 	free(map);
 	free(str);
 	return (0);
+}
+
+t_param	initialize_structure(t_param *param)
+{
+	param->colour.red = -10;
+	param->colour.blue = -10;
+	param->colour.green = -10;
+	param->ground_colour.red = -10;
+	param->ground_colour.blue = -10;
+	param->ground_colour.green = -10;
+	param->resolution.axe_x = -10;
+	param->resolution.axe_y = -10;
+	param->sprite = NULL;
+	param->north_texture = NULL;
+	param->south_texture = NULL;
+	param->west_texture = NULL;
+	param->east_texture = NULL;
+	param->perso.orientation = 0;
+	param->perso.position_x = -10;
+	param->perso.position_y = -10;
+	return (*param);
 }
 
 int     main(int argc, char **argv)
@@ -97,8 +118,9 @@ int     main(int argc, char **argv)
     map = "";
     if (!(str = malloc(sizeof(char) * 2)))
         return (-1);
-    fd = open(argv[1], O_RDONLY);
-	gestion_erreur(argc, argv);
+	initialize_structure(&param);
+	fd = open(argv[1], O_RDONLY);
+	manage_errors(argc, argv);
     read_map(fd, str, map, &param);
     return (0);
 }

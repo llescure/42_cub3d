@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void 	impression_params(t_param *param)
+void 	print_params(t_param *param)
 {
 	printf("color_red : %i\n", param->colour.red);
 	printf("color_green : %i\n", param->colour.green);
@@ -27,6 +27,9 @@ void 	impression_params(t_param *param)
 	printf("addrese south : %s\n", param->south_texture);
 	printf("addrese east : %s\n", param->east_texture);
 	printf("addrese west : %s\n", param->west_texture);
+	printf("position perso x = %i\n", param->perso.position_x);
+	printf("position perso y = %i\n", param->perso.position_y);
+	printf("orientation perso = %c\n", param->perso.orientation);
 }
 
 char	*only_parameters_in_map(char *str) // good
@@ -51,36 +54,35 @@ char	*only_parameters_in_map(char *str) // good
 	return (map);
 }
 
-char	**creation_tableau_param(char *str, char **liste) // good
+char	**creation_table_param(char *str, char **map) // good
 {
 	int i;
-	int largeur;
-	int longueur;
+	int nb_lines;
+	int length;
 
 	i = 0;
-	largeur = 0;
-	longueur = 0;
-	while (str[i] != '\0' && largeur < 8)
+	nb_lines = 0;
+	length = 0;
+	while (str[i] != '\0' && nb_lines < 8)
 	{
-		longueur = 0;
+		length = 0;
 		while (str[i] == '\n' && str[i] != '\0')
 			i++;
 		while (str[i] != '\n' && str[i] != '\0')
 		{
-			liste[largeur][longueur] = str[i];
+			map[nb_lines][length] = str[i];
 			i++;
-			longueur++;
+			length++;
 		}
-			printf("||||||  %d %s||||||\n",largeur, liste[largeur]);
-		liste[largeur][longueur] = '\0';
+		map[nb_lines][length] = '\0';
 		if (str[i] != 0)
 			i++;
-		largeur++;
+		nb_lines++;
 	}
-	return (liste);
+	return (map);
 }
 
-int		gerer_param(char *str, t_param *param)
+int		manage_param(char *str, t_param *param)
 {
 	int i;
 
@@ -90,82 +92,98 @@ int		gerer_param(char *str, t_param *param)
 	if (str[0] == 'R')
 		resolution_param(str, param);
 	if (str[0] == 'S' && str[1] == ' ')
-		param->sprite = recuperation_adresse_param(str);
+		param->sprite = save_address_param(str);
 	if (str[0] == 'F')
 		colour_params_ground(str, param);
 	if (str[0] == 'N' && str[1] == 'O')
 	{
 		if (!(param->north_texture = malloc(sizeof(char) * ft_strlen(str))))
 			return (-1);
-		param->north_texture = recuperation_adresse_param(str);
+		param->north_texture = save_address_param(str);
 	}
 	if (str[0] == 'S' && str[1] == 'O')
 	{
 		if (!(param->south_texture = malloc(sizeof(char) * ft_strlen(str))))
 			return (-1);
-		param->south_texture = recuperation_adresse_param(str);
+		param->south_texture = save_address_param(str);
 	}
 	if (str[0] == 'E' && str[1] == 'A')
 	{
 		if (!(param->east_texture = malloc(sizeof(char) * ft_strlen(str))))
 			return (-1);
-		param->east_texture = recuperation_adresse_param(str);
+		param->east_texture = save_address_param(str);
 	}
 	if (str[0] == 'W' && str[1] == 'E')
 	{
 		if (!(param->west_texture = malloc(sizeof(char) * ft_strlen(str))))
 			return (-1);
-		param->west_texture = recuperation_adresse_param(str);
+		param->west_texture = save_address_param(str);
 	}
 	return (0);
 }
 
-int		verification_all_para(char **tab, int largeur, t_param *param)
+int		check_all_para(char **tab, int nb_lines, t_param *param)
 {
 	int i;
 
-	i = 0;
-	while (i < largeur)
+	i = -1;
+	while (++i < nb_lines)
+		manage_param(tab[i], param);
+	if (param->colour.red == -10 || param->colour.green == -10 ||
+		param->colour.blue == -10 || param->ground_colour.red == -10 ||
+		param->ground_colour.green == -10 || param->ground_colour.blue == -10)
 	{
-		gerer_param(tab[i], param);
-		i++;
+		perror ("ERROR : missing colour");
+		exit (0);
 	}
-	impression_params(param);
+	if (param->resolution.axe_x == -10 || param->resolution.axe_y == -10)
+	{
+		perror("ERROR : missing resolution");
+		exit (0);
+	}
+	if (param->sprite == NULL || param->north_texture == NULL ||
+		param->south_texture == NULL || param->east_texture == NULL ||
+		param->west_texture == NULL)
+	{
+		perror("ERROR : missing texture or sprite");
+		exit (0);
+	}
 	return (0);
 }
 
-int		parametres_map(char *str, t_param *param) // good
+int		parameters_map(char *str, t_param *param) // good
 {
 	char *map;
 	char **tab_param;
-	int largeur;
+	int nb_lines;
 	int max_length;
 	int i;
 
 	i = 0;
 	map = only_parameters_in_map(str);
-	largeur = calculate_nb_chains(map);
+	nb_lines = calculate_nb_chains(map);
 	max_length = ft_biggest_line_len(map);
-	if (largeur != 8)
+	if (nb_lines != 8)
 	{
 		perror("ERROR : wrong number of parameters"); // permet de savoir s'il y en a 8
 		exit(0);
 	}
-	if (!(tab_param = malloc(sizeof(char*) * (largeur + 1))))
+	if (!(tab_param = malloc(sizeof(char*) * (nb_lines + 1))))
 		return (-1);
-	while (i < largeur)
+	while (i < nb_lines)
 	{
 		if (!(tab_param[i] = malloc(sizeof(char) * (max_length + 1))))
 			return (-1);
 		i++;
 	}
-	tab_param = creation_tableau_param(map, tab_param);
+	tab_param = creation_table_param(map, tab_param);
 	i = 0;
-	while (i < largeur)
-	{
-		//printf("tab_param[%i] = %s\n", i, tab_param[i]);
-		i++;
-	}
-	verification_all_para(tab_param, largeur, param);
+//	while (i < nb_lines)
+//	{
+//		printf("tab_param[%i] = %s\n", i, tab_param[i]);
+//		i++;
+//	}
+	check_all_para(tab_param, nb_lines, param);
+	printf("%sPARAMETERS : [OK]\n", KGRN);
 	return (0);
 }

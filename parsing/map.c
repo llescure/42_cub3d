@@ -19,13 +19,12 @@ int		calculate_nb_chains(char *str)
 
 	i = 0;
 	result = 0;
+	while (str[i] == '\n')
+		i++;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\n')
-		{
-			if (str[i + 1] != '\n' && str[i + 1] != '\0')
-				result++;
-		}
+		if (str[i] == '\n' && str[i + 1] != '\n')
+			result++;
 		i++;
 	}
 	return (result);
@@ -81,63 +80,63 @@ char	*only_map(char *str)
 	return (map);
 }
 
-char	**creation_tableau_map(char *str, char **liste, int max_length)
+char	**creation_table_map(char *str, char **map, int max_length)
 {
-	int largeur;
-	int longueur;
+	int nb_lines;
+	int length;
 	int i;
 
-	largeur = 0;
+	nb_lines = 0;
 	i = -1;
 	while (str[++i] != '\0')
 	{
-		longueur = 0;
+		length = 0;
 		while (str[i] != '\n')
 		{
 			while (str[i] == ' ')
 			{
-				liste[largeur][longueur++] = '5';
+				map[nb_lines][length++] = '5';
 				i++;
 			}
-			liste[largeur][longueur++] = str[i];
+			map[nb_lines][length++] = str[i];
 			i++;
-			if ((str[i] == '\n') && (longueur < max_length - 1))
+			if ((str[i] == '\n') && (length < max_length - 1))
 			{
-				while (longueur < max_length - 1)
-					liste[largeur][longueur++] = '5';
+				while (length < max_length - 1)
+					map[nb_lines][length++] = '5';
 			}
 		}
-		largeur++;
+		nb_lines++;
 	}
-	return (liste);
+	return (map);
 }
 
-int		parsing_map(char *str)
+int		parsing_map(char *str, t_param *param)
 {
-	int		largeur;
+	int		nb_lines;
 	int		i;
 	int		max_length;
-	char	**liste;
+	char	**map;
 
 	i = 0;
 	str = only_map(str);
-	largeur = calculate_nb_chains(str) + 1;
+	nb_lines = calculate_nb_chains(str);
 	max_length = ft_biggest_line_len(str);
-	if (!(liste = malloc(sizeof(char*) * largeur + 1)))
+	if (!(map = malloc(sizeof(char*) * nb_lines + 1)))
 		return (-1);
-	while (i < largeur)
+	while (i < nb_lines)
 	{
-		if (!(liste[i] = malloc(sizeof(char**) * max_length)))
+		if (!(map[i] = malloc(sizeof(char**) * max_length)))
 			return (-1);
 		i++;
 	}
-	liste = creation_tableau_map(str, liste, max_length);
+	map = creation_table_map(str, map, max_length);
 	i = 0;
-	while (i < largeur)
-	{
-		printf("liste[%i] = %s\n", i, liste[i]);
-		i++;
-	}
-	verification_map(liste, largeur, max_length);
+//	while (i < nb_lines)
+//	{
+//		printf("map[%i] = %s\n", i, map[i]);
+//		i++;
+//	}
+	check_map(map, nb_lines, max_length, param);
 	return (0);
 }
