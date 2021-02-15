@@ -73,12 +73,15 @@ int			ft_is_string(char *s1, char *s2)
 int		read_map(int fd, char *str, char *map, t_param *param)
 {
 	int		reader;
+	char	*tmp;
 
 	reader = 1;
 	while ((reader = read(fd, str, 1)) > 0)
     {
         str[reader] = '\0';
-        map = ft_strjoin(map, str);
+		tmp = map;
+        map = ft_strjoin(tmp, str);
+		free(tmp);
     }
 	parameters_map(map, param);
 	parsing_map(map, param);
@@ -115,12 +118,16 @@ int     main(int argc, char **argv)
     int fd;
 	t_param param;
 
-    map = "";
+	if (!(map = malloc(sizeof(char) * 2)))
+		return (-1);
+	map[0] = 0;
     if (!(str = malloc(sizeof(char) * 2)))
         return (-1);
 	initialize_structure(&param);
 	fd = open(argv[1], O_RDONLY);
 	manage_errors(argc, argv);
     read_map(fd, str, map, &param);
+	while (1)
+	    ;
     return (0);
 }
