@@ -1,42 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parametres.c                                       :+:      :+:    :+:   */
+/*   save_params.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 14:37:45 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 19:34:32 by slescure         ###   ########.fr       */
+/*   Created: 2021/02/16 23:13:56 by slescure          #+#    #+#             */
+/*   Updated: 2021/02/16 23:19:08 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_atoi_cub3d(char *str, int i)
-{
-	int				sign;
-	unsigned int	result;
-
-	sign = 1;
-	result = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\f'
-			|| str[i] == '\r' || str[i] == ' ' || str[i] == '\v')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
-		if (str[i] == '+' || str[i] == '-')
-			return (0);
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
-	}
-	return (result * sign);
-}
 int		colour_params_colour(char *str, t_param *param) // good mais faut structure de structure pour differencier C et F
 {
 	char **par;
@@ -135,4 +110,37 @@ char	*save_address_param(char *str)
 	}
 	address[j] = '\0';
 	return (address);
+}
+
+int     perso_orientation_position(char *str, t_param *param)
+{
+    char    result;
+    int     nb_result;
+    int     position;
+    int		i;
+
+    nb_result = 0;
+	position = 0;
+	i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
+        {
+            result = str[i];
+            position = i;
+            nb_result++;
+        }
+        i++;
+    }
+    if (nb_result > 1)
+    {
+        perror("ERROR : too many characters in the map");
+        exit (0);
+    }
+	if (position != 0)
+	{
+		param->perso.position_x = position;
+		param->perso.orientation = result;
+	}
+    return (nb_result);
 }

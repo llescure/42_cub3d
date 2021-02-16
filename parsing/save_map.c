@@ -1,59 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   save_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 15:11:39 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 13:55:23 by slescure         ###   ########.fr       */
+/*   Created: 2021/02/16 23:25:30 by slescure          #+#    #+#             */
+/*   Updated: 2021/02/17 00:01:51 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int		calculate_nb_chains(char *str)
-{
-	int result;
-	int i;
-
-	i = 0;
-	result = 0;
-	while (str[i] == '\n')
-		i++;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n' && str[i + 1] != '\n')
-			result++;
-		i++;
-	}
-	return (result);
-}
-
-int		ft_biggest_line_len(char *str)
-{
-	int i;
-	int j;
-	int result;
-
-	j = 0;
-	i = 0;
-	result = 1;
-	while (str[i] != '\0')
-	{
-		while (str[i] != '\n')
-		{
-			i++;
-			j++;
-		}
-		if (j > result)
-			result = j;
-		j = 0;
-		i++;
-	}
-	result++;
-	return (result);
-}
 
 char	*only_map(char *str)
 {
@@ -80,44 +37,41 @@ char	*only_map(char *str)
 	return (map);
 }
 
-char	**creation_table_map(char *str, char **map, int max_length)
-{
-	int nb_lines;
-	int length;
-	int i;
-
-	nb_lines = 0;
-	i = -1;
-	while (str[++i] != '\0')
-	{
-		length = 0;
-		while (str[i] != '\n')
-		{
-			while (str[i] == ' ')
-			{
-				map[nb_lines][length++] = '5';
-				i++;
-			}
-			map[nb_lines][length++] = str[i];
-			i++;
-			if ((str[i] == '\n') && (length < max_length - 1))
-			{
-				while (length < max_length - 1)
-					map[nb_lines][length++] = '5';
-			}
-		}
-		printf("map[%i] = %s\n", nb_lines, map[nb_lines]);
-		nb_lines++;
-	}
-	return (map);
-}
-
-int		tri_map(char *map_map, t_param *param)
+char	**creation_table_map(char **str, t_param *param)
 {
 	int i;
 	int j;
-//	int nb_lines;
-//	int max_length;
+	char **map;
+
+    map = NULL;
+    map = malloc_tab(param, map);
+	j = 0;
+	while (j < param->map.nb_lines)
+	{
+		i = 0;
+		while (str[j][i] == ' ')
+			map[j][i++] = '5';
+		while (str[j][i] != '\0')
+		{
+			map[j][i] = str[j][i];
+			i++;
+		}
+		while (i < param->map.max_length - 1)
+			map[j][i++] = '5';
+		map[j++][i] = '\0';
+//		printf("nv_map[%i] = %s\n", j, map[j]);
+	}
+	i = -1;
+	while (++i < param->map.nb_lines)
+		free(str[i]);
+	free (str);
+	return (map);
+}
+
+int		sorting_map(char *map_map, t_param *param)
+{
+	int i;
+	int j;
 	int fd;
 	int ret;
 	char **tab_param;
@@ -127,7 +81,6 @@ int		tri_map(char *map_map, t_param *param)
 	i = 0;
 	j = 0;
 	ret =  1;
-	line = NULL;
 	fd = open(param->file, O_RDONLY);
 	if (!(tab_param = malloc(sizeof(char*) * 8)))
 		return (-1);
@@ -148,31 +101,21 @@ int		tri_map(char *map_map, t_param *param)
 		}
 	}
 	i = 0;
-	while (i < j)
-	{
-		tab_map = creation_table_map(tab_map[i], param->map.max_length); // remplacer par des '5' dans espace
-		i++;
-	}
-//	i = 0;
-//	j = 0;
-//	while (j < calculate_nb_chains(map_map))
+	param->map.nb_lines = j;
+//	while (j < param->map.nb_lines)
 //	{
 //		printf("map[%i] = %s\n", j, tab_map[j]);
 //		j++;
 //	}
+	tab_map = creation_table_map(tab_map, param); // remplacer par des '5' dans espace
+	param->map.map = tab_map;
+//	i = 0;
+//	j = 0;
 //	while (i < 8)
 //	{
 //		printf("tab_param[%i] = %s\n", i, tab_param[i]);
 //		i++;
 //	}
-	param->map.map = tab_map;
-	param->map.nb_lines = j;
-//	i = 0;
-//	while (i < 8)
-//	{
-//		manage_param(tab_param[i], param);
-//		i++;
-//	}
-print_params(param);
+	check_all_para(param, tab_param);
 	return (0);
 }

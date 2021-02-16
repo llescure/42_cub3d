@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/16 14:06:43 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/17 00:02:33 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
-int		tri_map(char *map_map, t_param *param);
+int			sorting_map(char *map_map, t_param *param);
 
 size_t		ft_strlen(char *str);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_atoi_cub3d(char *str, int i);
+char    	**malloc_tab(t_param *param, char **tab);
 
 int			ft_is_string(char *s1, char *s2);
 int			manage_errors(int argc, char **argv);
@@ -80,17 +81,16 @@ int			read_map(int fd, char *str, char *map, t_param *param);
 int			check_map(char **map, int nb_lines, int max_length, t_param *param);
 char		*only_map(char *str);
 char		**save_map(char **str, int nb_lines, int length);
-char		**creation_table_map(char *map, char **list, int max_length);
+char		**creation_table_map(char **str, t_param *param);
 int			check_end_walls(char *str, int length);
 char     	*check_space_in_map(char *str);
 int			check_symbols(char *str);
 int			check_holes_walls(char **map, int nb_lines, int length);
 int			check_first_last_string_map(char *str);
 
-int			check_all_para(char **tab, int nb_lines, t_param *param);
+int			check_all_para(t_param *param, char **tab_param);
 int			perso_orientation_position(char *map, t_param *param);
-char		**creation_table_param(char *str, char **map);
-char		*only_parameters_in_map(char *str);
+int     	manage_perso(char **map, t_param *param);
 int			manage_param(char *str, t_param *param);
 int			parameters_map(char *str, t_param *param);
 
