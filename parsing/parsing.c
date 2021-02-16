@@ -83,15 +83,22 @@ int		read_map(int fd, char *str, char *map, t_param *param)
         map = ft_strjoin(tmp, str);
 		free(tmp);
     }
-	parameters_map(map, param);
-	parsing_map(map, param);
-	free(map);
-	free(str);
+	close(fd);
+	str = only_map(map);
+	param->map.max_length = ft_biggest_line_len(str);
+	printf("max_length = %i\n", param->map.max_length);
+//	parameters_map(map, param);
+	tri_map(map, param);
+	check_map(param->map.map, param->map.nb_lines, param->map.max_length, param);
+
+//	free(map);
+//	free(str);
 	return (0);
 }
 
-t_param	initialize_structure(t_param *param)
+t_param	initialize_structure(t_param *param, char *argv)
 {
+	param->file = argv;
 	param->colour.red = -10;
 	param->colour.blue = -10;
 	param->colour.green = -10;
@@ -123,11 +130,10 @@ int     main(int argc, char **argv)
 	map[0] = 0;
     if (!(str = malloc(sizeof(char) * 2)))
         return (-1);
-	initialize_structure(&param);
+	initialize_structure(&param, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	manage_errors(argc, argv);
     read_map(fd, str, map, &param);
-	while (1)
-	    ;
+//	free_address_params(&param);
     return (0);
 }

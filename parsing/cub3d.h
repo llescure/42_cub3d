@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 19:34:21 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:06:43 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include "get_next_line/get_next_line.h"
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
@@ -40,7 +41,15 @@ typedef struct	s_resolution {
 	int axe_y;
 }	t_resolution ;
 
+typedef struct	s_map {
+	char **map;
+	int	nb_lines;
+	int	max_length;
+}	t_map ;
+
 typedef struct	s_param {
+	char			*file;
+	t_map			map;
 	t_colour		colour;
 	t_resolution	resolution;
 	char			*sprite;
@@ -52,6 +61,8 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
+int		tri_map(char *map_map, t_param *param);
+
 size_t		ft_strlen(char *str);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
@@ -60,7 +71,7 @@ int			ft_atoi_cub3d(char *str, int i);
 int			ft_is_string(char *s1, char *s2);
 int			manage_errors(int argc, char **argv);
 int			file_is_cub(char *str);
-t_param		initialize_structure(t_param *param);
+t_param		initialize_structure(t_param *param, char *argv);
 int			parsing_map(char *str, t_param *param);
 
 int			calculate_nb_chains(char *str);
@@ -89,5 +100,7 @@ void 		print_params(t_param *param);
 char		*save_address_param(char *str);
 int			colour_params_colour(char *str, t_param *param);
 int			colour_params_ground(char *str, t_param *param);
+void		free_address_params(t_param *params);
+
 
 #endif

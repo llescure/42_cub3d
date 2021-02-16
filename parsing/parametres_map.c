@@ -12,8 +12,20 @@
 
 #include "cub3d.h"
 
+void 	free_address_params(t_param *param)
+{
+	free(param->sprite);
+	free(param->north_texture);
+	free(param->south_texture);
+	free(param->east_texture);
+	free(param->west_texture);
+}
+
 void 	print_params(t_param *param)
 {
+	printf("fichier = %s\n", param->file);
+	printf("map = %s\n", param->map.map[0]);
+	printf("nb_lines = %i\n", param->map.nb_lines);
 	printf("color_red : %i\n", param->colour.red);
 	printf("color_green : %i\n", param->colour.green);
 	printf("color_blue : %i\n", param->colour.blue);
@@ -96,29 +108,13 @@ int		manage_param(char *str, t_param *param)
 	if (str[0] == 'F')
 		colour_params_ground(str, param);
 	if (str[0] == 'N' && str[1] == 'O')
-	{
-		if (!(param->north_texture = malloc(sizeof(char) * ft_strlen(str))))
-			return (-1);
 		param->north_texture = save_address_param(str);
-	}
 	if (str[0] == 'S' && str[1] == 'O')
-	{
-		if (!(param->south_texture = malloc(sizeof(char) * ft_strlen(str))))
-			return (-1);
 		param->south_texture = save_address_param(str);
-	}
 	if (str[0] == 'E' && str[1] == 'A')
-	{
-		if (!(param->east_texture = malloc(sizeof(char) * ft_strlen(str))))
-			return (-1);
 		param->east_texture = save_address_param(str);
-	}
 	if (str[0] == 'W' && str[1] == 'E')
-	{
-		if (!(param->west_texture = malloc(sizeof(char) * ft_strlen(str))))
-			return (-1);
 		param->west_texture = save_address_param(str);
-	}
 	return (0);
 }
 
@@ -184,6 +180,15 @@ int		parameters_map(char *str, t_param *param) // good
 //		i++;
 //	}
 	check_all_para(tab_param, nb_lines, param);
-	printf("%sPARAMETERS : [OK]\n", KGRN);
+	printf("PARAMETERS : [OK]\n");
+	print_params(param);
+	i = 0;
+	while (i < nb_lines)
+	{
+		free(tab_param[i]);
+		i++;
+	}
+	free(tab_param);
+	free(map);
 	return (0);
 }

@@ -40,7 +40,9 @@ int	ft_atoi_cub3d(char *str, int i)
 int		colour_params_colour(char *str, t_param *param) // good mais faut structure de structure pour differencier C et F
 {
 	char **par;
+	int i;
 
+	i = 0;
 	par = ft_split(str, ',');
 	param->colour.red = ft_atoi_cub3d(par[0], 1);
 	param->colour.green = ft_atoi_cub3d(par[1], 0);
@@ -55,14 +57,21 @@ int		colour_params_colour(char *str, t_param *param) // good mais faut structure
 //	printf("red = %i\n", param->colour.red);
 //	printf("green = %i\n", param->colour.green);
 //	printf("blue = %i\n", param->colour.blue);
+	while (i < 3)
+	{
+		free(par[i]);
+		i++;
+	}
 	free(par);
 	return (0);
 }
 
 int		colour_params_ground(char *str, t_param *param) // good mais faut structure de structure pour differencier C et F
 {
+	int i;
 	char **par;
 
+	i = 0;
 	par = ft_split(str, ',');
 	param->ground_colour.red = ft_atoi_cub3d(par[0], 1);
 	param->ground_colour.green = ft_atoi_cub3d(par[1], 0);
@@ -77,42 +86,53 @@ int		colour_params_ground(char *str, t_param *param) // good mais faut structure
 //	printf("red = %i\n", param->ground_colour.red);
 //	printf("green = %i\n", param->ground_colour.green);
 //	printf("blue = %i\n", param->ground_colour.blue);
+	while (i < 3)
+	{
+		free(par[i]);
+		i++;
+	}
 	free(par);
 	return (0);
 }
 
 int		resolution_param(char *str, t_param *param) //good
 {
+	int i;
 	char **par;
 
+	i = 0;
 	par = ft_split(str, ' ');
 	param->resolution.axe_x = ft_atoi_cub3d(par[1], 0);
 	param->resolution.axe_y = ft_atoi_cub3d(par[2], 0);
 //	printf("x = %i\n", param->resolution.axe_x);
 //	printf("y = %i\n", param->resolution.axe_y);
+	while (i < 3)
+	{
+		free(par[i]);
+		i++;
+	}
 	free(par);
 	return (0);
 }
 
 char	*save_address_param(char *str)
 {
-	int i;
-	int j;
-	char *address;
+	size_t 	i;
+	int 	j;
+	char 	*address;
 
-	i = 2;
+	i = 0;
 	j = 0;
-	if (!(address = malloc(sizeof(char) * ft_strlen(str) + 1)))
-		return (NULL);
-	while (str[i] == ' ')
+	while (str[i] != '.')
 		i++;
+	if (!(address = malloc(sizeof(char) * (ft_strlen(str) - i))))
+		return (NULL);
 	while (str[i] != '\0')
 	{
 		address[j] = str[i];
 		i++;
 		j++;
 	}
-	address[i] = '\0';
-//	printf("%s\n", address);
+	address[j] = '\0';
 	return (address);
 }

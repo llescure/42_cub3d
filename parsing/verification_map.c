@@ -75,6 +75,7 @@ int		check_symbols(char *str)
 	int i;
 
 	i = 0;
+//	printf("str = %s\n", str);
     while (str[i] != '\0')
     {
         if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'E'
@@ -154,8 +155,15 @@ int     check_map(char **map, int nb_lines, int max_length, t_param *param)
     int i;
 	int result;
 
-    i = -1;
+    i = 0;
 	result = 0;
+//	printf("map[0] = %s\n", map[0]);
+	while (i < nb_lines)
+	{
+		printf("map[%i] = %s\n", i, map[i]);
+		i++;
+	}
+	i = -1;
     while (++i < nb_lines)
 	{
 //		printf("liste[%i] = %s\n", i, liste[i]);
