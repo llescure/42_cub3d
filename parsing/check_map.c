@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:29:35 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/16 23:19:15 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/17 14:02:42 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,23 @@ int     check_first_last_string_map(char *str)
             perror("ERROR : wrong format of the map : espace vide en extremite");
             exit (0);
         }
+    }
+    return (0);
+}
+
+int     check_void_line_map(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i] != '\0')
+    {
+        if (str[i] == '\n' && str[i + 1] == '\n')
+        {
+            perror("ERROR : void line in the map");
+            exit (0);
+        }
+        i++;
     }
     return (0);
 }

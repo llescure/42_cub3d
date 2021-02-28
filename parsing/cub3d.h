@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/17 00:02:33 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:26:05 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char		**creation_table_map(char **str, t_param *param);
 int			check_end_walls(char *str, int length);
 char     	*check_space_in_map(char *str);
 int			check_symbols(char *str);
+int     	check_void_line_map(char *str);
 int			check_holes_walls(char **map, int nb_lines, int length);
 int			check_first_last_string_map(char *str);
 
@@ -93,6 +94,7 @@ int			perso_orientation_position(char *map, t_param *param);
 int     	manage_perso(char **map, t_param *param);
 int			manage_param(char *str, t_param *param);
 int			parameters_map(char *str, t_param *param);
+int     	only_params(char *str);
 
 char		*save_param_numbers(char *str, char *res, int i);
 int			resolution_param(char *str, t_param *param);

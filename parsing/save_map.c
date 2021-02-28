@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:25:30 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/17 00:01:51 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/17 17:41:06 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@ char	*only_map(char *str)
 	j = 0;
 	while ((str[i] != '\n' || str[i + 1] != '1')
 		&& (str[i] != '\n' || str[i + 1] != ' '))
-		i++;
+    {
+        i++;
+        if (str[i] == '\0')
+        {
+            perror("ERROR : no map");
+            exit (0);
+        }
+    }
 	while (str[i] == '\n')
 		i++;
 	j = calculate_nb_chains(str);
@@ -32,7 +39,14 @@ char	*only_map(char *str)
 		return (NULL);
 	j = 0;
 	while (str[i] != '\0')
+    {
+        if (str[i] == '\n' && str[i + 1] != '1')
+        {
+            perror("ERROR : error in the map");
+            exit (0);
+        }
 		map[j++] = str[i++];
+    }
 	map[j] = '\0';
 	return (map);
 }

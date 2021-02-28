@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:07:11 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/17 00:02:46 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:25:39 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ int		read_map(int fd, char *str, char *map, t_param *param)
 		free(tmp);
     }
 	close(fd);
+	only_params(map);
 	str = only_map(map);
+	check_void_line_map(str);
 	param->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, param);
 	check_map(param->map.map, param->map.nb_lines, param->map.max_length, param);

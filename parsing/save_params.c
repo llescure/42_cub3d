@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:13:56 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/16 23:19:08 by slescure         ###   ########.fr       */
+/*   Updated: 2021/02/22 12:06:11 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,4 +143,40 @@ int     perso_orientation_position(char *str, t_param *param)
 		param->perso.orientation = result;
 	}
     return (nb_result);
+}
+
+int     only_params(char *str)
+{
+    int i;
+    char *map_params;
+
+    i = 0;
+    if (!(map_params = malloc(sizeof(char) * ft_strlen(str))))
+        return (-1);
+    while (str[i] != '\0')
+    {
+        if (str[i] == '\n' && str[i + 1] == '1')
+        {
+            printf("i = %i\n ici ?\n", i);
+            break ;
+        }
+        else
+            map_params[i] = str[i];
+        i++;
+    }
+    if (map_params == NULL)
+    {
+        perror("ERROR : no parameters");
+        exit (0);
+    }
+    i = calculate_nb_chains(map_params);
+    if (i != 8)
+    {
+        printf("map_params = %s\n", map_params);
+        printf("i = %i\n", i);
+        perror("ERROR : wrong number of arguments");
+        exit (0);
+    }
+    free (map_params);
+    return (0);
 }
