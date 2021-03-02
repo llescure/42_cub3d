@@ -155,25 +155,18 @@ int     only_params(char *str)
         return (-1);
     while (str[i] != '\0')
     {
-        if (str[i] == '\n' && str[i + 1] == '1')
+        if (str[i] == '\n' && (str[i + 1] == '1' || str[i + 1] == ' '))
         {
-            printf("i = %i\n ici ?\n", i);
+			map_params[i] = '\0';
             break ;
         }
         else
             map_params[i] = str[i];
         i++;
     }
-    if (map_params == NULL)
-    {
-        perror("ERROR : no parameters");
-        exit (0);
-    }
     i = calculate_nb_chains(map_params);
     if (i != 8)
     {
-        printf("map_params = %s\n", map_params);
-        printf("i = %i\n", i);
         perror("ERROR : wrong number of arguments");
         exit (0);
     }
