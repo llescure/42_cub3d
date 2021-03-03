@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:25:30 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/02 16:57:26 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:13:42 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int		sorting_map(char *map_map, t_param *param)
 	tab_map = creation_table_map(tab_map, param);
 	param->map.map = tab_map;
 	check_all_para(param, tab_param);
+	printf("PARAMETERS = [OK]\n");
 	return (0);
 }

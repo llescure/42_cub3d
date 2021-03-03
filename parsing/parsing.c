@@ -6,13 +6,13 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:07:11 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/18 11:25:39 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:07:55 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void 	free_address_params(t_param *param)
+void		free_address_params(t_param *param)
 {
 	free(param->sprite);
 	free(param->north_texture);
@@ -21,7 +21,7 @@ void 	free_address_params(t_param *param)
 	free(param->west_texture);
 }
 
-t_param	initialize_structure(t_param *param, char *argv)
+t_param		initialize_structure(t_param *param, char *argv)
 {
 	param->file = argv;
 	param->colour.red = -10;
@@ -43,49 +43,50 @@ t_param	initialize_structure(t_param *param, char *argv)
 	return (*param);
 }
 
-int		read_map(int fd, char *str, char *map, t_param *param)
+int			read_map(int fd, char *str, char *map, t_param *para)
 {
 	int		reader;
 	char	*tmp;
 
 	reader = 1;
 	while ((reader = read(fd, str, 1)) > 0)
-    {
-        str[reader] = '\0';
+	{
+		str[reader] = '\0';
 		tmp = map;
-        map = ft_strjoin(tmp, str);
+		map = ft_strjoin(tmp, str);
 		free(tmp);
-    }
+	}
 	close(fd);
 	only_params(map);
 	printf("map = %s\n", map);
-	str = only_map(map, param);
+	str = only_map(map, para);
 	check_void_line_map(str);
-	param->map.max_length = ft_biggest_line_len(str);
-	sorting_map(map, param);
-	check_map(param->map.map, param->map.nb_lines, param->map.max_length, param);
-//	free(map);
-//	free(str);
+	para->map.max_length = ft_biggest_line_len(str);
+	sorting_map(map, para);
+	check_map(para->map.map, para->map.nb_lines, para->map.max_length, para);
+	free(map);
+	free(str);
 	return (0);
 }
 
-int     main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-    char *str;
-    char *map;
-    int fd;
-	t_param param;
+	char	*str;
+	char	*map;
+	int		fd;
+	t_param	param;
 
 	if (!(map = malloc(sizeof(char) * 2)))
 		return (-1);
 	map[0] = 0;
-    if (!(str = malloc(sizeof(char) * 2)))
-        return (-1);
+	if (!(str = malloc(sizeof(char) * 2)))
+		return (-1);
 	initialize_structure(&param, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	manage_errors(argc, argv);
-    read_map(fd, str, map, &param);
+	read_map(fd, str, map, &param);
 	print_params(&param);
 	free_address_params(&param);
-    return (0);
+	while(1);
+	return (0);
 }

@@ -6,31 +6,31 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:11:39 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/16 23:55:08 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:24:26 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char    **malloc_tab(t_param *param, char **tab)
+char	**malloc_tab(t_param *param, char **tab)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    if (!(tab = malloc(sizeof(char*) * param->map.nb_lines)))
-        return (NULL);
-    while (++i < param->map.nb_lines)
-    {
-        if (!(tab[i] = malloc(sizeof(char) * param->map.max_length)))
-            return (NULL);
-    }
-    return (tab);
+	i = -1;
+	if (!(tab = malloc(sizeof(char*) * param->map.nb_lines)))
+		return (NULL);
+	while (++i < param->map.nb_lines)
+	{
+		if (!(tab[i] = malloc(sizeof(char) * param->map.max_length)))
+			return (NULL);
+	}
+	return (tab);
 }
 
 int		calculate_nb_chains(char *str)
 {
-	int result;
-	int i;
+	int	result;
+	int	i;
 
 	i = 0;
 	result = 0;
@@ -70,7 +70,7 @@ int		ft_biggest_line_len(char *str)
 	return (result);
 }
 
-int	ft_atoi_cub3d(char *str, int i)
+int		ft_atoi_cub3d(char *str, int i)
 {
 	int				sign;
 	unsigned int	result;
@@ -96,10 +96,10 @@ int	ft_atoi_cub3d(char *str, int i)
 	return (result * sign);
 }
 
-int			ft_is_string(char *s1, char *s2)
+int		ft_is_string(char *s1, char *s2)
 {
-	int i;
-	size_t n;
+	int		i;
+	size_t	n;
 
 	i = 0;
 	n = 0;
@@ -114,7 +114,7 @@ int			ft_is_string(char *s1, char *s2)
 	return (0);
 }
 
-void 	print_params(t_param *param)
+void	print_params(t_param *param)
 {
 	printf("fichier = %s\n", param->file);
 	printf("map = %s\n", param->map.map[8]);

@@ -91,7 +91,7 @@ int			check_holes_walls(char **map, int nb_lines, int length);
 int			check_first_last_string_map(char *str);
 
 int			check_all_para(t_param *param, char **tab_param);
-int			perso_orientation_position(char *map, t_param *param);
+int			perso_orientation_position(char *map, t_param *param, int position);
 int     	manage_perso(char **map, t_param *param);
 int			manage_param(char *str, t_param *param);
 int			parameters_map(char *str, t_param *param);
