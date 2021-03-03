@@ -58,7 +58,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	}
 	close(fd);
 	only_params(map);
-	printf("map = %s\n", map);
+//	printf("map = %s\n", map);
 	str = only_map(map, para);
 	check_void_line_map(str);
 	para->map.max_length = ft_biggest_line_len(str);

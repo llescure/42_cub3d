@@ -62,9 +62,12 @@ char	**creation_table_map(char **str, t_param *param)
 			map[j][i++] = '5';
 		map[j++][i] = '\0';
 	}
-	i = -1;
-	while (++i < param->map.nb_lines)
+	i = 0;
+	while (i < param->map.nb_lines)
+	{
 		free(str[i]);
+		i++;
+	}
 	free(str);
 	return (map);
 }
@@ -108,6 +111,13 @@ int		sorting_map(char *map_map, t_param *param)
 	tab_map = creation_table_map(tab_map, param);
 	param->map.map = tab_map;
 	check_all_para(param, tab_param);
+	ret = 0;
+	while (ret < 8)
+	{
+		free(tab_param[ret]);
+		ret++;
+	}
+	free(tab_param);
 	printf("PARAMETERS = [OK]\n");
 	return (0);
 }

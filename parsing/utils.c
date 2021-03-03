@@ -116,6 +116,8 @@ int		ft_is_string(char *s1, char *s2)
 
 void	print_params(t_param *param)
 {
+	int i;
+
 	printf("fichier = %s\n", param->file);
 	printf("map = %s\n", param->map.map[8]);
 	printf("nb_lines = %i\n", param->map.nb_lines);
@@ -135,4 +137,10 @@ void	print_params(t_param *param)
 	printf("position perso x = %i\n", param->perso.position_x);
 	printf("position perso y = %i\n", param->perso.position_y);
 	printf("orientation perso = %c\n", param->perso.orientation);
+	i = 0;
+	while (i < param->map.nb_lines)
+	{
+		free(param->map.map[i]);
+		i++;
+	}
 }
