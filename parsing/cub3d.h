@@ -67,7 +67,7 @@ size_t		ft_strlen(char *str);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_atoi_cub3d(char *str, int i);
-char    	**malloc_tab(t_param *param, char **tab);
+char    	**malloc_tab(t_param *param);
 
 int			ft_is_string(char *s1, char *s2);
 int			manage_errors(int argc, char **argv);

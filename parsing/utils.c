@@ -12,17 +12,19 @@
 
 #include "cub3d.h"
 
-char	**malloc_tab(t_param *param, char **tab)
+char	**malloc_tab(t_param *param)
 {
 	int	i;
+	char	**tab;
 
-	i = -1;
+	i = 0;
 	if (!(tab = malloc(sizeof(char*) * param->map.nb_lines)))
 		return (NULL);
-	while (++i < param->map.nb_lines)
+	while (i < param->map.nb_lines)
 	{
-		if (!(tab[i] = malloc(sizeof(char) * param->map.max_length)))
+		if (!(tab[i] = malloc(sizeof(char) * param->map.max_length + 1)))
 			return (NULL);
+		i++;
 	}
 	return (tab);
 }
@@ -143,4 +145,5 @@ void	print_params(t_param *param)
 		free(param->map.map[i]);
 		i++;
 	}
+	free(param->map.map);
 }

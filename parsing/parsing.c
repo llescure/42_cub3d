@@ -87,6 +87,5 @@ int			main(int argc, char **argv)
 	read_map(fd, str, map, &param);
 	print_params(&param);
 	free_address_params(&param);
-	while(1);
 	return (0);
 }

@@ -47,8 +47,7 @@ char	**creation_table_map(char **str, t_param *param)
 	int		j;
 	char	**map;
 
-	map = NULL;
-	map = malloc_tab(param, map);
+	map = malloc_tab(param);
 	j = 0;
 	while (j < param->map.nb_lines)
 	{
@@ -58,10 +57,17 @@ char	**creation_table_map(char **str, t_param *param)
 		i--;
 		while (++i > -1 && str[j][i] != '\0')
 			map[j][i] = str[j][i];
-		while (i < param->map.max_length - 1)
+		while (i < param->map.max_length)
 			map[j][i++] = '5';
 		map[j++][i] = '\0';
 	}
+	i = 0;
+/*	while (i < param->map.nb_lines)
+	{
+		printf("map[%i] = %s\n", i, map[i]);
+		printf("map[%i] = %p\n", i, map[i]);
+		i++;
+	}*/
 	i = 0;
 	while (i < param->map.nb_lines)
 	{
@@ -89,7 +95,9 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
 			tab_param[i++] = *line;
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
 			tab_map[j++] = *line;
+		printf("addresse = %p\n", *line);
 	}
+	free(*line);
 	return (ret);
 }
 
