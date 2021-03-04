@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:25:30 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/03 11:13:42 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/04 11:59:57 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,11 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
 		if ((*line)[0] == 'C' || (*line)[0] == 'R' || (*line)[0] == 'S'
 				|| (*line)[0] == 'F'
 				|| (*line)[0] == 'E' || (*line)[0] == 'W' || (*line)[0] == 'N')
-			tab_param[i++] = *line;
+			tab_param[i++] = strdup(*line);
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
-			tab_map[j++] = *line;
+			tab_map[j++] = strdup(*line);
 		printf("addresse = %p\n", *line);
+		free(*line);
 	}
 	free(*line);
 	return (ret);
