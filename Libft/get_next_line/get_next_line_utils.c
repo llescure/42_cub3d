@@ -6,25 +6,11 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 15:49:38 by slescure          #+#    #+#             */
-/*   Updated: 2021/01/08 16:30:16 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:04:39 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t		ft_strlen(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (s == NULL)
-		return (0);
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
 
 char		*ft_strchr(char *str, int c)
 {
@@ -66,28 +52,6 @@ char		*get_rest(char *str)
 	}
 	rest[j] = '\0';
 	return (rest);
-}
-
-char		*ft_strjoin(char *s1, char *s2)
-{
-	size_t		i;
-	size_t		j;
-	char		*dest;
-
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (dest == NULL)
-		return (NULL);
-	dest[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	i = -1;
-	while (s1[++i] != '\0')
-		dest[i] = s1[i];
-	j = 0;
-	while (s2[j] != '\0')
-		dest[i++] = s2[j++];
-	dest[i] = '\0';
-	return (dest);
 }
 
 char		*get_line(char *str)

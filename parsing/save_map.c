@@ -95,7 +95,6 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
 			tab_param[i++] = strdup(*line);
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
 			tab_map[j++] = strdup(*line);
-		printf("addresse = %p\n", *line);
 		free(*line);
 	}
 	free(*line);

@@ -79,6 +79,11 @@ char			**ft_split(char const *s, char c)
 	char	**ptr;
 
 	t = nb_of_parts(s, c);
+	if (t > 3)
+	{
+		perror("ERROR : wrong writing of colour");
+		exit(0);
+	}
 	if (!(ptr = (char **)malloc((t + 1) * sizeof(char *))))
 		return (NULL);
 	t = fill_tab(s, c, ptr);

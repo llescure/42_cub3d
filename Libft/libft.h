@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 11:03:55 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/04 12:24:32 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:09:43 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int c, int fd);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_split(const char *s, char c);
-char			*ft_strchr(const char *chaine, int car);
 char			*ft_strdup(const char *s1);
-char			*ft_strjoin(const char *s1, const char *s2);
+char			*ft_strjoin(char *s1, char *s2);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
 size_t			ft_strlcpy(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *str);
