@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   minilibx.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 12:16:45 by slescure          #+#    #+#             */
-/*   Updated: 2021/02/09 15:58:53 by slescure         ###   ########.fr       */
+/*   Created: 2021/02/15 14:20:36 by llescure          #+#    #+#             */
+/*   Updated: 2021/02/15 14:45:52 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef MINILIBX_H
+# define MINILIBX_H
 
-size_t	ft_strlen(char *str)
+#include "mlx.h"
+
+typedef struct s_img
 {
-	int i;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}			t_img;
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
+typedef struct s_data
+{
+	void	*mlx;
+	void	*mlx_win;
+}			t_data;
+
+#endif
