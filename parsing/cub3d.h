@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/04 12:00:19 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/04 12:36:51 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "get_next_line/get_next_line.h"
+# include "../Libft/get_next_line/get_next_line.h"
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
