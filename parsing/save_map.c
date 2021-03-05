@@ -20,8 +20,13 @@ char	*only_map(char *str, t_param *param)
 
 	i = 0;
 	j = 0;
-	while (str[i] != '\n' || (str[i + 1] != '1' && str[i + 1] != ' '))
+	while (str[i] != '\n' || (str[i + 1] != '1' && str[i + 1] != ' ' && str[i + 1] != '\0'))
 		i++;
+	if (str[i + 1] == '\0')
+	{
+		perror("ERROR\nno map");
+		exit(0);
+	}
 	while (str[i++] == '\n')
 		if (!(map = malloc(sizeof(char) * calculate_nb_chains(str)
 						* ft_biggest_line_len(str))))
@@ -62,13 +67,6 @@ char	**creation_table_map(char **str, t_param *param)
 		map[j++][i] = '\0';
 	}
 	i = 0;
-/*	while (i < param->map.nb_lines)
-	{
-		printf("map[%i] = %s\n", i, map[i]);
-		printf("map[%i] = %p\n", i, map[i]);
-		i++;
-	}*/
-	i = 0;
 	while (i < param->map.nb_lines)
 	{
 		free(str[i]);
@@ -96,6 +94,11 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
 			tab_map[j++] = strdup(*line);
 		free(*line);
+	}
+	if (i < 8)
+	{
+		perror("ERROR : wrong number of parameters");
+		exit(0);
 	}
 	free(*line);
 	return (ret);

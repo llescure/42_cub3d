@@ -95,9 +95,9 @@ int		ft_atoi_cub3d(char *str, int i)
 		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
-	if (str == NULL || (str[i] < '0' && str[i] > '9'))
+	if (str == NULL || ft_isalpha(str[i]) == 1)
 	{
-		perror("ERROR : wrong writing of colour");
+		perror("ERROR\nwrong writing of colour");
 		exit(0);
 	}
 	return (result * sign);

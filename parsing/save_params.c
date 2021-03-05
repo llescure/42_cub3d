@@ -71,13 +71,16 @@ int		resolution_param(char *str, t_param *param)
 
 	i = 0;
 	par = ft_split(str, ' ');
+	printf("cooucou\n");
 	param->resolution.axe_x = ft_atoi_cub3d(par[1], 0);
 	param->resolution.axe_y = ft_atoi_cub3d(par[2], 0);
+	printf("la\n");
 	while (i < 3)
 	{
 		free(par[i]);
 		i++;
 	}
+	printf("ici?\n");
 	free(par);
 	return (0);
 }

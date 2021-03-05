@@ -67,6 +67,7 @@ int			sorting_map(char *map_map, t_param *param);
 size_t		ft_strlen(char *str);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
+int			ft_isalpha(int a);
 int			ft_atoi_cub3d(char *str, int i);
 char    	**malloc_tab(t_param *param);
 

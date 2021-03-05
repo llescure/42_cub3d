@@ -101,7 +101,7 @@ int		check_first_last_string_map(char *str)
 	i = -1;
 	while (str[++i] != '\0')
 	{
-		if (str[i] != '1' && str[i] != '5')
+		if (str[i] != '1' && str[i] != '5' && str[1] == '\0' && str[2] == '\0')
 		{
 			perror("ERROR : wrong format of the map : void");
 			exit(0);
