@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:12:23 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/03 10:56:05 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:14:47 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		manage_perso(char **map, t_param *param)
 	result = 0;
 	while (i < param->map.nb_lines)
 	{
-		if (perso_orientation_position(map[i], param, 0) == 1)
+		if (p_orientation_position(map[i], param, 0, -1) == 1)
 		{
 			param->perso.position_y = i;
 			result++;
@@ -30,7 +30,7 @@ int		manage_perso(char **map, t_param *param)
 	}
 	if (result != 1)
 	{
-		perror("ERROR : wrong number of characters on the map");
+		perror("ERROR\nwrong number of characters on the map");
 		exit(0);
 	}
 	printf("CHARACTER : [OK]\n");
@@ -69,19 +69,19 @@ int		check_all_para(t_param *param, char **tab_param)
 			param->colour.blue == -10 || param->ground_colour.green == -10 ||
 			param->ground_colour.blue == -10 || param->ground_colour.red == -10)
 	{
-		perror("ERROR : missing colour");
+		perror("ERROR\nMissing colour");
 		exit(0);
 	}
 	if (param->resolution.axe_x == -10 || param->resolution.axe_y == -10)
 	{
-		perror("ERROR : missing resolution");
+		perror("ERROR\nMissing resolution");
 		exit(0);
 	}
 	if (param->sprite == NULL || param->north_texture == NULL ||
 			param->south_texture == NULL || param->east_texture == NULL ||
 			param->west_texture == NULL)
 	{
-		perror("ERROR : missing texture or sprite");
+		perror("ERROR\nMissing texture or sprite");
 		exit(0);
 	}
 	return (0);
@@ -99,7 +99,7 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param)
 	}
 	if (param->map.max_length == 2 || param->map.max_length == 3)
 	{
-		perror("ERROR\nwrong format of map");
+		perror("ERROR\nWrong format of map");
 		exit(0);
 	}
 	check_first_last_string_map(map[0]);

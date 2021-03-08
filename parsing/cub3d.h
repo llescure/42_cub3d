@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/04 12:36:51 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:37:28 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,18 @@ size_t		ft_strlen(char *str);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 int			ft_isalpha(int a);
+int			ft_isdigit(int a);
 int			ft_atoi_cub3d(char *str, int i);
 char    	**malloc_tab(t_param *param);
+int			find_str_beginning(char *s1, char *s2);
+int			find_str_end(char *s1, char *s2);
 
 int			ft_is_string(char *s1, char *s2);
 int			manage_errors(int argc, char **argv);
 int			file_is_cub(char *str);
 t_param		initialize_structure(t_param *param, char *argv);
 int			parsing_map(char *str, t_param *param);
+int			move_to_map(char *str);
 
 int			calculate_nb_chains(char *str);
 int			ft_biggest_line_len(char *str);
@@ -93,11 +97,12 @@ int			check_holes_walls(char **map, int nb_lines, int length);
 int			check_first_last_string_map(char *str);
 
 int			check_all_para(t_param *param, char **tab_param);
-int			perso_orientation_position(char *map, t_param *param, int position);
+int			p_orientation_position(char *map, t_param *param, int position, int i);
 int     	manage_perso(char **map, t_param *param);
 int			manage_param(char *str, t_param *param);
 int			parameters_map(char *str, t_param *param);
 int     	only_params(char *str);
+int			check_address_parameters(char *str);
 
 char		*save_param_numbers(char *str, char *res, int i);
 int			resolution_param(char *str, t_param *param);

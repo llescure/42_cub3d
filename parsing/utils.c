@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 15:11:39 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/03 11:24:26 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/08 12:35:03 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	**malloc_tab(t_param *param)
 {
-	int	i;
+	int		i;
 	char	**tab;
 
 	i = 0;
@@ -29,49 +29,6 @@ char	**malloc_tab(t_param *param)
 	return (tab);
 }
 
-int		calculate_nb_chains(char *str)
-{
-	int	result;
-	int	i;
-
-	i = 0;
-	result = 0;
-	while (str[i] == '\n')
-		i++;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n' && str[i + 1] != '\n')
-			result++;
-		i++;
-	}
-	return (result);
-}
-
-int		ft_biggest_line_len(char *str)
-{
-	int i;
-	int j;
-	int result;
-
-	j = 0;
-	i = 0;
-	result = 1;
-	while (str[i] != '\0')
-	{
-		while (str[i] != '\n')
-		{
-			i++;
-			j++;
-		}
-		if (j > result)
-			result = j;
-		j = 0;
-		i++;
-	}
-	result++;
-	return (result);
-}
-
 int		ft_atoi_cub3d(char *str, int i)
 {
 	int				sign;
@@ -84,11 +41,8 @@ int		ft_atoi_cub3d(char *str, int i)
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
-		if (str[i] == '+' || str[i] == '-')
-			return (0);
+		perror("ERROR\nwrong writing of parameters");
+		exit(0);
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
@@ -97,7 +51,7 @@ int		ft_atoi_cub3d(char *str, int i)
 	}
 	if (str == NULL || ft_isalpha(str[i]) == 1)
 	{
-		perror("ERROR\nwrong writing of colour");
+		perror("ERROR\nwrong writing of parameters");
 		exit(0);
 	}
 	return (result * sign);

@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:35:25 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/03 11:01:27 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:21:05 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int		manage_errors(int argc, char **argv)
 	i = 0;
 	if (argc != 2 && argc != 3)
 	{
-		perror("ERROR : wrong number of arguments");
+		perror("ERROR\nWrong number of arguments");
 		exit(0);
 	}
 	if (argc == 3 && (ft_is_string(argv[2], s1) == 0))
 	{
-		perror("ERROR : wrong 3rd arguemnt");
+		perror("ERROR\nWrong third argument");
 		exit(0);
 	}
 	file_is_cub(argv[1]);
@@ -46,7 +46,7 @@ int		file_is_cub(char *str)
 		return (1);
 	else
 	{
-		perror("ERROR : wrong format of file");
+		perror("ERROR\nWrong format of file");
 		exit(0);
 	}
 	return (0);

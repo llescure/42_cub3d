@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 23:13:56 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/03 11:14:10 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:27:31 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		colour_params_colour(char *str, t_param *param)
 			(param->colour.green < 0 || param->colour.green > 255) ||
 			(param->colour.blue < 0 || param->colour.blue > 255))
 	{
-		perror("ERROR : wrong format of colour in the map");
+		perror("ERROR\nWrong format of colour in the map");
 		exit(0);
 	}
 	while (i < 3)
@@ -52,7 +52,7 @@ int		colour_params_ground(char *str, t_param *param)
 			(param->ground_colour.red < 0 || param->ground_colour.red > 255) ||
 			(param->ground_colour.blue < 0 || param->ground_colour.blue > 255))
 	{
-		perror("ERROR : wrong format of ground colour in the map");
+		perror("ERROR\nWrong format of ground colour in the map");
 		exit(0);
 	}
 	while (i < 3)
@@ -71,16 +71,21 @@ int		resolution_param(char *str, t_param *param)
 
 	i = 0;
 	par = ft_split(str, ' ');
-	printf("cooucou\n");
+	while (ft_isdigit(str[i]) == 0)
+		i++;
+	while (ft_isdigit(str[i]) == 1)
+		i++;
+	if (!(ft_isdigit(str[i - 1]) == 1 && str[i] == ' '
+		&& ft_isdigit(str[i + 1]) == 1 && par[3] == NULL))
+	{
+		perror("ERROR\nWrong writing of resolution");
+		exit(0);
+	}
 	param->resolution.axe_x = ft_atoi_cub3d(par[1], 0);
 	param->resolution.axe_y = ft_atoi_cub3d(par[2], 0);
-	printf("la\n");
-	while (i < 3)
-	{
+	i = -1;
+	while (++i < 3)
 		free(par[i]);
-		i++;
-	}
-	printf("ici?\n");
 	free(par);
 	return (0);
 }
@@ -104,17 +109,16 @@ char	*save_address_param(char *str)
 		j++;
 	}
 	address[j] = '\0';
+	check_address_parameters(address);
 	return (address);
 }
 
-int		perso_orientation_position(char *str, t_param *param, int position)
+int		p_orientation_position(char *str, t_param *param, int position, int i)
 {
 	char	result;
 	int		nb_result;
-	int		i;
 
 	nb_result = 0;
-	i = -1;
 	while (str[++i] != '\0')
 	{
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')
@@ -126,7 +130,7 @@ int		perso_orientation_position(char *str, t_param *param, int position)
 	}
 	if (nb_result > 1)
 	{
-		perror("ERROR : too many characters in the map");
+		perror("ERROR\nToo many characters in the map");
 		exit(0);
 	}
 	if (position != 0)
@@ -135,33 +139,4 @@ int		perso_orientation_position(char *str, t_param *param, int position)
 		param->perso.orientation = result;
 	}
 	return (nb_result);
-}
-
-int		only_params(char *str)
-{
-	int		i;
-	char	*map_params;
-
-	i = 0;
-	if (!(map_params = malloc(sizeof(char) * ft_strlen(str))))
-		return (-1);
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\n' && (str[i + 1] == '1' || str[i + 1] == ' '))
-		{
-			map_params[i] = '\0';
-			break ;
-		}
-		else
-			map_params[i] = str[i];
-		i++;
-	}
-	i = calculate_nb_chains(map_params);
-	if (i != 8)
-	{
-		perror("ERROR : wrong number of arguments");
-		exit(0);
-	}
-	free(map_params);
-	return (0);
 }
