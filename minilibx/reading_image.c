@@ -12,9 +12,9 @@ int	press_exit(int key, t_data *data)
 	return (0);
 }
 
-int	click_close(int button, t_data *data)
+int	click_close(int button, int x, int y, t_data *data)
 {
-	if (button == XK_Escape)
+	if (x == 1920 && y == 0 )
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
