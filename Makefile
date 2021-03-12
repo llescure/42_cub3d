@@ -19,6 +19,7 @@ SRCS =  parsing/check_map.c \
 		parsing/save_map.c \
 		parsing/save_params.c \
 		parsing/utils.c \
+		minilibx/reading_image.c \
 
 SUBDIR = libft
 

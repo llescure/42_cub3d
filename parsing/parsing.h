@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/05 16:18:00 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/08 16:37:28 by slescure         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef PARSING_H
+# define PARSING_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -21,6 +9,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../Libft/get_next_line/get_next_line.h"
+# include "../Libft/libft.h"
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
@@ -64,11 +53,6 @@ typedef struct	s_param {
 
 int			sorting_map(char *map_map, t_param *param);
 
-size_t		ft_strlen(char *str);
-char		**ft_split(char const *s, char c);
-char		*ft_strjoin(char *s1, char *s2);
-int			ft_isalpha(int a);
-int			ft_isdigit(int a);
 int			ft_atoi_cub3d(char *str, int i);
 char    	**malloc_tab(t_param *param);
 int			find_str_beginning(char *s1, char *s2);

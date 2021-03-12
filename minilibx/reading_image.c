@@ -7,40 +7,37 @@ int	press_key(int key, t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	else if (key == ROTATE_LEFT)
-	{
-		//To do
+	/*	else if (key == ROTATE_LEFT)
+		{
+	//To do
 	}
 	else if (key == ROTATE_RIHT)
 	{
-		//To do
+	//To do
 	}
 	else if (key == FORWARD_W_Z)
 	{
-		//To do
+	//To do
 	}
 	else if (key == BACK_S_S)
 	{
-		//To do
+	//To do
 	}
 	else if (key == RIGHT_D_D)
 	{
-		//To do
+	//To do
 	}
 	else if (key == LEFT_A_Q)
 	{
-		//To do
-	}
+	//To do
+	}*/
 	return (0);
 }
 
-int	click_close(int button, int x, int y, t_data *data)
+int	click_close(t_data *data)
 {
-	if (x == 1920 && y == 0 )
-	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-	}
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	data->win_ptr = NULL;
 	return (0);
 }
 
@@ -93,19 +90,23 @@ int     main(void)
 
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
-		return (1);
+	{
+		perror("ERROR\nCouldn't start mlx_init");
+		return (-1);
+	}
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, "my window");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		return (1);
+		perror("ERROR\nCouldn't open a window");
+		return (-1);
 	}
 	data.img.img = mlx_new_image(data.mlx_ptr, 1920, 1080);
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel,
 			&data.img.line_lenght, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &draw, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_kry, &data);
-	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &click_close, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_key, &data);
+	mlx_hook(data.win_ptr, 33, (1L << 17), &click_close, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.img);
 	mlx_destroy_display(data.mlx_ptr);
