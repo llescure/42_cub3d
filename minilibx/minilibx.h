@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 14:20:36 by llescure          #+#    #+#             */
-/*   Updated: 2021/02/15 14:45:52 by llescure         ###   ########.fr       */
+/*   Updated: 2021/03/12 14:53:11 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define RED_PIXEL 0xFF0000
+#define GREEN_PIXEL 0x00FF00
+#define BLUE_PIXEL 0x0000FF
+
+#define ROTATE_LEFT 65361
+#define ROTATE_RIGHT 65363
+#define FORWARD_W_Z 119
+#define BACK_S_S 115
+#define RIGHT_D_D 100
+#define LEFT_A_Q 97
 
 typedef struct s_img
 {

@@ -1,13 +1,35 @@
 #include "minilibx.h"
 
-#define BLUE_PIXEL 0x0000FF
-
-int	press_exit(int key, t_data *data)
+int	press_key(int key, t_data *data)
 {
 	if (key == XK_Escape)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
+	}
+	else if (key == ROTATE_LEFT)
+	{
+		//To do
+	}
+	else if (key == ROTATE_RIHT)
+	{
+		//To do
+	}
+	else if (key == FORWARD_W_Z)
+	{
+		//To do
+	}
+	else if (key == BACK_S_S)
+	{
+		//To do
+	}
+	else if (key == RIGHT_D_D)
+	{
+		//To do
+	}
+	else if (key == LEFT_A_Q)
+	{
+		//To do
 	}
 	return (0);
 }
@@ -79,9 +101,10 @@ int     main(void)
 		return (1);
 	}
 	data.img.img = mlx_new_image(data.mlx_ptr, 1920, 1080);
-	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel, &data.img.line_lenght, &data.img.endian);
+	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel,
+			&data.img.line_lenght, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &draw, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_exit, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_kry, &data);
 	mlx_hook(data.win_ptr, ButtonPress, ButtonPressMask, &click_close, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.img);
