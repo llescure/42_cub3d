@@ -2,6 +2,7 @@
 # define MINILIBX_H
 
 #include "minilibx-linux/mlx.h"
+#include "../parsing/parsing.h"
 #include <X11/keysym.h>
 #include <X11/X.h>
 #include <stdlib.h>
@@ -32,6 +33,7 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+	t_param	param;
 }			t_data;
 
 typedef struct s_rect
