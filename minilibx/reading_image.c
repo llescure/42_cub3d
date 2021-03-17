@@ -1,4 +1,4 @@
-#include ".../parsing/parsing.h"
+#include "../parsing/parsing.h"
 #include "minilibx.h"
 
 int	press_key(int key, t_data *data)
@@ -8,7 +8,7 @@ int	press_key(int key, t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	else if (key == ROTATE_LEFT)
+/*	else if (key == ROTATE_LEFT)
 	{
 	}
 	else if (key == ROTATE_RIHT)
@@ -21,11 +21,11 @@ int	press_key(int key, t_data *data)
 	else if (key == RIGHT_D_D)
 		data->param.perso.axe_x + 1
 	else if (key == LEFT_A_Q)
-		data->param.perso.axe_x - 1
+		data->param.perso.axe_x - 1*/
 	return (0);
 }
 
-int	release_key(int key, t_data *data)
+/*int	release_key(int key, t_data *data)
 {
 		else if (key == ROTATE_LEFT)
 		{
@@ -46,7 +46,7 @@ int	release_key(int key, t_data *data)
 	{
 	}
 	return (0);
-}
+}*/
 
 int	click_close(t_data *data)
 {
@@ -120,7 +120,7 @@ int     main(void)
 			&data.img.line_lenght, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &draw, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_key, &data);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &release_key, &data);
+//	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &release_key, &data);
 	mlx_hook(data.win_ptr, 33, (1L << 17), &click_close, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.img);
