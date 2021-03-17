@@ -1,4 +1,5 @@
-#include "parsing.h"
+#include "../src/cub3D.h"
+#include "../src/struct_cub3D.h"
 
 char	**malloc_tab(t_param *param)
 {

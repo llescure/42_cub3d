@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 15:23:17 by slescure          #+#    #+#             */
-/*   Updated: 2021/01/08 17:15:42 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/17 14:31:23 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 int		get_next_line(int fd, char **line);
 int		initialisation(int fd, char **save, char **line, char **buf);
 int		ret(char **save, char **line, char **tmp, int r);
-size_t	ft_strlen(char *s);
+size_t	ft_len(char *str);
 char	*ft_strchr(char *str, int c);
 char	*get_rest(char *str);
 char	*ft_strjoin(char *s1, char *s2);

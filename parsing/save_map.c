@@ -1,4 +1,5 @@
-#include "parsing.h"
+#include "../src/cub3D.h"
+#include "../src/struct_cub3D.h"
 
 int		move_to_map(char *str)
 {

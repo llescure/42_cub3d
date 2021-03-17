@@ -1,4 +1,5 @@
-#include "parsing.h"
+#include "../src/cub3D.h"
+#include "../src/struct_cub3D.h"
 
 int		check_void_line_map(char *str)
 {

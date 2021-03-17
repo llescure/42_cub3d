@@ -1,4 +1,5 @@
-#include "parsing.h"
+#include "../src/cub3D.h"
+#include "../src/struct_cub3D.h"
 
 void		free_address_params(t_param *param)
 {
@@ -73,6 +74,7 @@ int			main(int argc, char **argv)
 	manage_errors(argc, argv);
 	read_map(fd, str, map, &param);
 	print_params(&param);
+	raycasting(&param);
 	free_address_params(&param);
 	return (0);
 }

@@ -1,4 +1,5 @@
-#include "parsing.h"
+#include "../src/cub3D.h"
+#include "../src/struct_cub3D.h"
 
 int		manage_perso(char **map, t_param *param)
 {

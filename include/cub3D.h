@@ -1,5 +1,5 @@
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <unistd.h>
 # include <stdio.h>
@@ -10,46 +10,7 @@
 # include <fcntl.h>
 # include "../Libft/get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
-
-# define KRED  "\x1B[31m"
-# define KGRN  "\x1B[32m"
-
-typedef struct	s_perso {
-	int		position_x;
-	int		position_y;
-	char	orientation;
-}	t_perso ;
-
-typedef struct	s_colour {
-	int	red;
-	int	green;
-	int	blue;
-}	t_colour ;
-
-typedef struct	s_resolution {
-	int axe_x;
-	int axe_y;
-}	t_resolution ;
-
-typedef struct	s_map {
-	char **map;
-	int	nb_lines;
-	int	max_length;
-}	t_map ;
-
-typedef struct	s_param {
-	char			*file;
-	t_map			map;
-	t_colour		colour;
-	t_resolution	resolution;
-	char			*sprite;
-	t_colour		ground_colour;
-	char			*north_texture;
-	char			*south_texture;
-	char			*west_texture;
-	char			*east_texture;
-	t_perso			perso;
-}	t_param ;
+# include "struct_cub3D.h"
 
 int			sorting_map(char *map_map, t_param *param);
 
@@ -96,5 +57,8 @@ int			colour_params_colour(char *str, t_param *param);
 int			colour_params_ground(char *str, t_param *param);
 void		free_address_params(t_param *params);
 
+int		raycasting(t_param *param);
+int		print_ray(t_ray *ray);
+int		initialisation_orientation(t_param *param, t_ray *ray);
 
 #endif

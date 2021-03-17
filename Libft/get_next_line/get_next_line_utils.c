@@ -6,11 +6,21 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 15:49:38 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/04 16:04:39 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/17 14:32:13 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t			ft_len(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char		*ft_strchr(char *str, int c)
 {
@@ -19,7 +29,7 @@ char		*ft_strchr(char *str, int c)
 	i = 0;
 	if (c == '\0' && str[0] == '\0')
 		return (str);
-	while (i <= ft_strlen(str))
+	while (i <= ft_len(str))
 	{
 		if (c == str[i])
 			return ((char *)&str[i]);
@@ -36,7 +46,7 @@ char		*get_rest(char *str)
 
 	i = 0;
 	j = 0;
-	rest = malloc(sizeof(char) * ft_strlen(str) + 1);
+	rest = malloc(sizeof(char) * ft_len(str) + 1);
 	if (rest == NULL)
 		return (NULL);
 	while (str[i] != '\n' && str[i] != '\0')
