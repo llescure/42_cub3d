@@ -1,15 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include "../Libft/get_next_line/get_next_line.h"
-# include "../Libft/libft.h"
 # include "struct_cub3D.h"
 
 int			sorting_map(char *map_map, t_param *param);
@@ -60,5 +51,6 @@ void		free_address_params(t_param *params);
 int		raycasting(t_param *param);
 int		print_ray(t_ray *ray);
 int		initialisation_orientation(t_param *param, t_ray *ray);
+t_param	initialize(int argc, char **argv);
 
 #endif

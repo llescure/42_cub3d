@@ -4,16 +4,27 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../Libft/get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
-# include "cub3D.h"
+#include <X11/keysym.h>
+#include <X11/X.h>
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
+
+#define RED_PIXEL 0xFF0000
+#define GREEN_PIXEL 0x00FF00
+#define BLUE_PIXEL 0x0000FF
+
+#define ROTATE_LEFT 65361
+#define ROTATE_RIGHT 65363
+#define FORWARD_W_Z 119
+#define BACK_S_S 115
+#define RIGHT_D_D 100
+#define LEFT_A_Q 97
 
 typedef struct	s_perso {
 	int		position_x;
@@ -51,6 +62,32 @@ typedef struct	s_param {
 	char			*east_texture;
 	t_perso			perso;
 }	t_param ;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}			t_img;
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	t_param	param;
+}			t_data;
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}		t_rect;
 
 typedef struct	s_ray
 {

@@ -1,5 +1,6 @@
-#include "../parsing/parsing.h"
-#include "minilibx.h"
+#include "../include/struct_cub3D.h"
+#include "../include/cub3D.h"
+#include "minilibx-linux/mlx.h"
 
 int	press_key(int key, t_data *data)
 {
@@ -98,10 +99,61 @@ int	draw(t_data *data)
 	return (0);
 }
 
-int     main(void)
+int	draw_square(int i, int j, t_map map, t_data *data)
+{
+	t_rect rect;
+	int width;
+	int lenght;
+
+	lenght = (200 - 20) / map.max_length;
+	width = (200 - 20) / map.nb_lines;
+	rect.x = 25 + lenght * j;
+	rect.y = 25 + width * i;
+	rect.width = lenght;
+	rect.height = width;
+	rect.color = BLUE_PIXEL;
+	printf("coucou");
+	if (data->win_ptr == NULL)
+		return (1);
+	draw_rect(&data->img, rect);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	return (0);
+}
+
+int	draw_minimap(t_data *data, t_map map)
+{
+	t_rect	rect;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	rect.x = 15;
+	rect.y = 15;
+	rect.width = 200;
+	rect.height = 200;
+	rect.color = 0x808080;
+	if (data->win_ptr == NULL)
+		return (1);
+	draw_rect(&data->img, rect);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	while (i < map.nb_lines)
+	{
+		while (j < map.max_length)
+		{
+			draw_square(i, j, map, data);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int     main(int argc, char **argv)
 {
 	t_data	data;
 
+	initialize(argc, argv);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 	{
@@ -118,7 +170,7 @@ int     main(void)
 	data.img.img = mlx_new_image(data.mlx_ptr, 1920, 1080);
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel,
 			&data.img.line_lenght, &data.img.endian);
-	mlx_loop_hook(data.mlx_ptr, &draw, &data);
+	mlx_loop_hook(data.mlx_ptr, &draw_minimap, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_key, &data);
 //	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &release_key, &data);
 	mlx_hook(data.win_ptr, 33, (1L << 17), &click_close, &data);
