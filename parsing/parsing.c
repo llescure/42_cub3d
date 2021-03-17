@@ -86,11 +86,9 @@ t_param		initialize(int argc, char **argv)
 	int		fd;
 	t_param	param;
 
-	if (!(map = malloc(sizeof(char) * 2)))
-		return (-1);
+	map = malloc(sizeof(char) * 2);
 	map[0] = 0;
-	if (!(str = malloc(sizeof(char) * 2)))
-		return (-1);
+	str = malloc(sizeof(char) * 2);
 	initialize_structure(&param, argv[1]);
 	fd = open(argv[1], O_RDONLY);
 	manage_errors(argc, argv);
