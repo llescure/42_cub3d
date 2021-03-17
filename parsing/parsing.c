@@ -1,5 +1,5 @@
-#include "../src/cub3D.h"
-#include "../src/struct_cub3D.h"
+#include "../include/cub3D.h"
+#include "../include/struct_cub3D.h"
 
 void		free_address_params(t_param *param)
 {
