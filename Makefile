@@ -6,11 +6,11 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/04 12:34:45 by slescure         ###   ########.fr        #
+#    Updated: 2021/03/18 14:21:20 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3D.a
+NAME = cub3D
 
 SRCS =  parsing/check_map.c \
 		parsing/manage_cub.c \
@@ -31,7 +31,7 @@ OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -Imlx -c
+CFLAGS = -Wall -Wextra -Werror -Imlx_linux -lXext -lX11 -lm -lz -c
 
 RM = /bin/rm -f
 
