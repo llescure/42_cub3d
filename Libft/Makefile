@@ -6,7 +6,7 @@
 #    By: llescure <llescure@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/26 17:55:58 by llescure          #+#    #+#              #
-#    Updated: 2021/03/04 12:34:27 by slescure         ###   ########.fr        #
+#    Updated: 2021/03/18 12:01:18 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ SRCS = ft_memset.c \
 	  	ft_isprint.c \
 		ft_toupper.c \
 	  	ft_tolower.c \
-	  	ft_strchr.c \
 	  	ft_strrchr.c \
 	  	ft_strncmp.c \
 	  	ft_strlcpy.c \

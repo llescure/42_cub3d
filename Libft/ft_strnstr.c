@@ -6,11 +6,11 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 14:44:46 by slescure          #+#    #+#             */
-/*   Updated: 2019/10/28 16:37:43 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:03:20 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libc.h>
+#include "libft.h"
 
 char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {

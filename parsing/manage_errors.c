@@ -3,11 +3,9 @@
 
 int		manage_errors(int argc, char **argv)
 {
-	int		i;
 	char	*s1;
 
 	s1 = "--save";
-	i = 0;
 	if (argc != 2 && argc != 3)
 	{
 		perror("ERROR\nWrong number of arguments");
