@@ -3,10 +3,8 @@
 
 int		check_end_walls(char *str, int length)
 {
-	int result;
 	int i;
 
-	result = 0;
 	i = 0;
 	length = length - 2;
 	while (str[i] == '5')
