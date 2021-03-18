@@ -1,6 +1,5 @@
 #include "../include/struct_cub3D.h"
 #include "../include/cub3D.h"
-#include "minilibx-linux/mlx.h"
 
 int	press_key(int key, t_data *data)
 {
