@@ -114,6 +114,7 @@ int	draw_square(int i, int j, t_data *data, int color)
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
+	printf("coucou\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	return (0);
 }
@@ -131,7 +132,7 @@ int	draw_minimap(t_data *data)
 	rect.width = 200;
 	rect.height = 200;
 	rect.color = 0x808080;
-	printf("nb_lines = %d\n", data->param.map.nb_lines);
+	//printf("nb_lines = %d\n", data->param.map.nb_lines);
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
@@ -140,14 +141,16 @@ int	draw_minimap(t_data *data)
 	{
 		while (j < data->param.map.max_length)
 		{
-			if (data->param.map.map[i][j] == '1')
+			if (data->param.map.map[i][j] == '0')
 				draw_square(i, j, data, BLUE_PIXEL);
 			else if (data->param.map.map[i][j] == '2')
 				draw_square(i, j, data, GREEN_PIXEL);
 			j++;
+			printf("yo\n");
 		}
 		i++;
 	}
+	exit (0);
 	return (0);
 }
 
