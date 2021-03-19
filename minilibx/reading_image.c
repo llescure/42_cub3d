@@ -139,7 +139,6 @@ int	draw_minimap(t_data *data)
 		j = 0;
 		while (j < data->param.map.max_length)
 		{
-			printf("map = i = j = %c\n%d\n%d\n", data->param.map.map[i][j], i, j);
 			if (data->param.map.map[i][j] == '0')
 				draw_square(i, j, data, BLUE_PIXEL);
 			else if (data->param.map.map[i][j] == '2')
