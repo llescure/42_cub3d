@@ -104,10 +104,10 @@ int	draw_square(int i, int j, t_data *data, int color)
 	int width;
 	int lenght;
 
-	lenght = (200 - 20) / data->param.map.max_length;
-	width = (200 - 20) / data->param.map.nb_lines;
-	rect.x = 25 + lenght * j;
-	rect.y = 25 + width * i;
+	lenght = 200 / (data->param.map.max_length - 2);
+	width = 200 / (data->param.map.nb_lines - 2);
+	rect.x = 15 + lenght * j;
+	rect.y = 15 + width * i;
 	rect.width = lenght;
 	rect.height = width;
 	rect.color = color;
