@@ -6,11 +6,11 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 16:18:18 by slescure          #+#    #+#             */
-/*   Updated: 2021/01/08 17:09:00 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:39:33 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../libft.h"
 
 int	initialisation(int fd, char **save, char **line, char **buf)
 {

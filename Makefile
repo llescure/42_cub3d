@@ -6,13 +6,15 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/18 17:37:39 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/19 10:45:03 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 SRCS =  ./parsing/check_map.c \
+	./parsing/check_map2.c \
+	./parsing/check_address.c \
 	./parsing/manage_cub.c \
 	./parsing/manage_errors.c \
 	./parsing/parsing.c \
@@ -20,6 +22,7 @@ SRCS =  ./parsing/check_map.c \
 	./parsing/save_params.c \
 	./parsing/utils.c \
 	./minilibx/reading_image.c \
+	./raycasting/raycasting.c
 
 LIBFT_DIR = Libft
 
