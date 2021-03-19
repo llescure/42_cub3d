@@ -6,56 +6,86 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/19 10:45:03 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/19 14:31:39 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-SRCS =  ./parsing/check_map.c \
-	./parsing/check_map2.c \
-	./parsing/check_address.c \
-	./parsing/manage_cub.c \
-	./parsing/manage_errors.c \
-	./parsing/parsing.c \
-	./parsing/save_map.c \
-	./parsing/save_params.c \
-	./parsing/utils.c \
-	./minilibx/reading_image.c \
-	./raycasting/raycasting.c
+CUB = cub3D.cub
 
-LIBFT_DIR = Libft
+SRCS =  ./parsing/check_map.c			\
+		./parsing/check_map2.c			\
+		./parsing/check_address.c		\
+		./parsing/manage_cub.c			\
+		./parsing/manage_errors.c		\
+		./parsing/parsing.c				\
+		./parsing/save_map.c			\
+		./parsing/save_params.c			\
+		./parsing/utils.c				\
+		./minilibx/reading_image.c		\
+		./raycasting/raycasting.c
 
-MLX_DIR = minilibx-linux
+OBJS = ${SRCS:.c=.o}
 
-OBJS = $(SRCS:.c=.o)
+CC  = gcc
 
-CC = gcc
+FLAGS =   -L includes/minilibx-linux -lXext -lX11 -lm -lbsd
+CFLAGS =  -Wall -Wextra -Werror
+RM  = rm -f
 
-CFLAGS = -Wall -Wextra -Werror -I include -I minilibx-linux -I Libft
+BLACK		:= $(shell tput -Txterm setaf 0)
+RED			:= $(shell tput -Txterm setaf 1)
+GREEN		:= $(shell tput -Txterm setaf 2)
+YELLOW		:= $(shell tput -Txterm setaf 3)
+LIGHTPURPLE	:= $(shell tput -Txterm setaf 4)
+PURPLE		:= $(shell tput -Txterm setaf 5)
+BLUE		:= $(shell tput -Txterm setaf 6)
+WHITE		:= $(shell tput -Txterm setaf 7)
+RESET		:= $(shell tput -Txterm sgr0)
 
-LIBS =  -L $(MLX_DIR) -L $(LIBFT_DIR) -lmlx -lXext -lX11 -lm -lz
+$(NAME):
+	@echo "${YELLOW}Compilation...${RESET}"
+	@(gcc -o ${NAME} -I include -I include/minilibx-linux ${SRCS} libft/libft.a minilibx-linux/libmlx.a ${FLAGS} ${CFLAGS})
+	@echo "${GREEN}Compilation OK${RESET}"
 
-RM = /bin/rm -f
+all:  ${NAME}
 
-all:	$(NAME)
-
-$(NAME) : 	$(OBJS)
-			make -C $(LIBFT_DIR)
-			make -C $(MLX_DIR)
-	$(CC) -o $(NAME) $(CFLAGS) $(LIBS) $(OBJS)
-
-%.o : %.c $(HEADER)
-			$(CC) -c $(CFLAGS) $< -o $@
 clean:
-		make clean -C $(LIBFT_DIR)
-		make clean -C $(MLX_DIR)
-		$(RM) $(OBJS)
+	@echo "${RED}deleting ojbects${RESET}"
+	@(${RM}	${OBJS})
 
-fclean: clean
-		make fclean -C $(LIBFT_DIR)
-		$(RM) $(NAME)
+fclean:  clean
+	@echo "${RED}deleting executable${RESET}"
+	@(${RM} ${NAME})
 
-re: fclean all
+re: fclean all clean
 
-.PHONY: all clean fclean re
+lib:
+	make -C libft
+	make -C minilibx-linux
+
+exe: re
+	@echo "${YELLOW}Execution${RESET}"
+	@(./${NAME} ${CUB})
+	@echo "${GREEN}Programm Closed${RESET}"
+	@(rm ${NAME})
+
+screen: re
+	@echo "${YELLOW}Execution${RESET}"
+	@(./${NAME} ${CUB} --save)
+	@echo "${GREEN}Programm Closed${RESET}"
+	@(rm ${NAME})
+
+bonus: re
+
+help:
+	@echo "${RED}===MAKFILE of Cub3D 42 project===${RESET}\n"
+	@echo "${BLUE}all :${RESET} be the default value. Just compile SRCS in NAME."
+	@echo "${BLUE}clean :${RESET} delete all objects files."
+	@echo "${BLUE}fclean :${RESET} delete the executable NAME. he use clean"
+	@echo "${BLUE}re :${RESET} compile the lasted version of the files OBJS in NAME. He use fclean and all."
+	@echo "${BLUE}exe :${RESET} compile the lastead version of the files OBJS in NAME and execute the programm. He use re"
+
+
+.PHONY: all clean fclean re exe help
