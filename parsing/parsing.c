@@ -3,9 +3,6 @@
 
 void		free_address_params(t_param *param)
 {
-	int	i;
-
-	i = -1;
 	if (param->sprite)
 		free(param->sprite);
 	if (param->north_texture)
@@ -66,7 +63,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	return (0);
 }
 
-int			main(int argc, char **argv)
+/*int			main(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -86,9 +83,9 @@ int			main(int argc, char **argv)
 	raycasting(&param);
 	free_address_params(&param);
 	return (0);
-}
+}*/
 
-/*t_param		initialize(int argc, char **argv)
+t_param		initialize(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -100,9 +97,9 @@ int			main(int argc, char **argv)
 	str = malloc(sizeof(char) * 2);
 	initialize_structure(&param, argv[1]);
 	fd = open(argv[1], O_RDONLY);
-	manage_errors(argc, argv);
+	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	print_params(&param);
 //	raycasting(&param);
 	return (param);
-}*/
+}

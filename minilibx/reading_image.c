@@ -150,7 +150,7 @@ int	draw_minimap(t_data *data)
 		}
 		i++;
 	}
-	exit (0);
+//	exit (0);
 	return (0);
 }
 
