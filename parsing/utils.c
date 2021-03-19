@@ -95,10 +95,10 @@ void	print_params(t_param *param)
 		j = 0;
 	}
 	i = 0;
-	while (i < param->map.nb_lines)
+/*	while (i < param->map.nb_lines)
 	{
 		free(param->map.map[i]);
 		i++;
 	}
-	free(param->map.map); // ICI FREE EN TROP ????
+	free(param->map.map); // ICI FREE EN TROP ????*/
 }
