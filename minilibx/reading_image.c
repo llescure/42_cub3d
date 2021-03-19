@@ -86,8 +86,8 @@ int	draw(t_data *data)
 {
 	t_rect rect;
 
-	rect.x = 0;
-	rect.y = 0;
+	rect.x = 50;
+	rect.y = 50;
 	rect.width = 500;
 	rect.height = 1080;
 	rect.color = BLUE_PIXEL;
@@ -98,20 +98,19 @@ int	draw(t_data *data)
 	return (0);
 }
 
-int	draw_square(int i, int j, t_map map, t_data *data)
+int	draw_square(int i, int j, t_data *data, int color)
 {
 	t_rect rect;
 	int width;
 	int lenght;
 
-	lenght = (200 - 20) / map.max_length;
-	width = (200 - 20) / map.nb_lines;
+	lenght = (200 - 20) / data->param.map.max_length;
+	width = (200 - 20) / data->param.map.nb_lines;
 	rect.x = 25 + lenght * j;
 	rect.y = 25 + width * i;
 	rect.width = lenght;
 	rect.height = width;
-	rect.color = BLUE_PIXEL;
-	printf("coucou");
+	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
@@ -119,7 +118,7 @@ int	draw_square(int i, int j, t_map map, t_data *data)
 	return (0);
 }
 
-int	draw_minimap(t_data *data, t_map map)
+int	draw_minimap(t_data *data)
 {
 	t_rect	rect;
 	int		i;
@@ -132,15 +131,19 @@ int	draw_minimap(t_data *data, t_map map)
 	rect.width = 200;
 	rect.height = 200;
 	rect.color = 0x808080;
+	printf("nb_lines = %d\n", data->param.map.nb_lines);
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
-	while (i < map.nb_lines)
+	while (i < data->param.map.nb_lines)
 	{
-		while (j < map.max_length)
+		while (j < data->param.map.max_length)
 		{
-			draw_square(i, j, map, data);
+			if (data->param.map.map[i][j] == '1')
+				draw_square(i, j, data, BLUE_PIXEL);
+			else if (data->param.map.map[i][j] == '2')
+				draw_square(i, j, data, GREEN_PIXEL);
 			j++;
 		}
 		i++;
@@ -152,18 +155,18 @@ int     main(int argc, char **argv)
 {
 	t_data	data;
 
-	initialize(argc, argv);
+	data.param = initialize(argc, argv);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 	{
-		perror("ERROR\nCouldn't start mlx_init");
+		printf("ERROR\nCouldn't start mlx_init");
 		return (-1);
 	}
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 1920, 1080, "my window");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
-		perror("ERROR\nCouldn't open a window");
+		printf("ERROR\nCouldn't open a window");
 		return (-1);
 	}
 	data.img.img = mlx_new_image(data.mlx_ptr, 1920, 1080);
