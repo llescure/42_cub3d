@@ -6,7 +6,7 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 11:03:55 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/17 14:30:18 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:39:56 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ typedef	struct	s_list
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -66,5 +70,14 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstlast(t_list *lst);
 t_list			*ft_lstnew(void *content);
 int				ft_lstsize(t_list *lst);
+
+int		get_next_line(int fd, char **line);
+int		initialisation(int fd, char **save, char **line, char **buf);
+int		ret(char **save, char **line, char **tmp, int r);
+size_t	ft_len(char *str);
+char	*ft_strchr(char *str, int c);
+char	*get_rest(char *str);
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_line(char *str);
 
 #endif

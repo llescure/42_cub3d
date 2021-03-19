@@ -6,11 +6,11 @@
 /*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 15:49:38 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/17 14:32:13 by slescure         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:39:48 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../libft.h"
 
 size_t			ft_len(char *str)
 {

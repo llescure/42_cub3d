@@ -6,7 +6,7 @@
 #    By: llescure <llescure@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/26 17:55:58 by llescure          #+#    #+#              #
-#    Updated: 2021/03/18 12:01:18 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/19 10:40:10 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ fclean: clean
 
 re: fclean all
 
-bonus : 
+bonus :
 	$(MAKE) WITH_BONUS=1 all
 
 .PHONY: all clean fclean re bonus

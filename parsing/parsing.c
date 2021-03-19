@@ -103,6 +103,6 @@ int			main(int argc, char **argv)
 	manage_errors(argc, argv);
 	read_map(fd, str, map, &param);
 	print_params(&param);
-	raycasting(&param);
+//	raycasting(&param);
 	return (param);
 }*/
