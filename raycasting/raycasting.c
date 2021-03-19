@@ -53,9 +53,9 @@ int raycasting(t_param *param)
 	ray.posy = param->perso.position_y;
 	initialisation_orientation(param, &ray);
 	print_ray(&ray);
-	while (ray.posx < param->map.max_length)
+/*	while (ray.posx < param->map.max_length)
 	{
-		
-	}
+
+	}*/
 	return (0);
 }

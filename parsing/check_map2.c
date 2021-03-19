@@ -1,7 +1,7 @@
 #include "../include/cub3D.h"
 #include "../include/struct_cub3D.h"
 
-int		check_void_line_map(char *str)
+int		check_void_line_map(char *str, t_param *param)
 {
 	int i;
 
@@ -9,10 +9,7 @@ int		check_void_line_map(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\n' && str[i + 1] == '\n')
-		{
-			perror("ERROR\nVoid line in the map");
-			exit(0);
-		}
+			print_error(param, "Void line in the map");
 		i++;
 	}
 	return (0);
@@ -61,7 +58,7 @@ int		ft_biggest_line_len(char *str)
 	return (result);
 }
 
-int		only_params(char *str)
+int		only_params(char *str, t_param *param)
 {
 	int		i;
 	char	*map_params;
@@ -82,10 +79,7 @@ int		only_params(char *str)
 	}
 	i = calculate_nb_chains(map_params);
 	if (i != 8)
-	{
-		perror("ERROR\nWrong number of arguments");
-		exit(0);
-	}
+		print_error(param, "Wrong number of arguments");
 	free(map_params);
 	return (0);
 }

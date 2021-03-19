@@ -18,7 +18,7 @@ char	**malloc_tab(t_param *param)
 	return (tab);
 }
 
-int		ft_atoi_cub3d(char *str, int i)
+int		ft_atoi_cub3d(char *str, int i, t_param *param)
 {
 	int				sign;
 	unsigned int	result;
@@ -29,20 +29,14 @@ int		ft_atoi_cub3d(char *str, int i)
 			|| str[i] == '\r' || str[i] == ' ' || str[i] == '\v')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
-	{
-		perror("ERROR\nwrong writing of parameters");
-		exit(0);
-	}
+		print_error(param, "Wrong writing of parameters");
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
 	if (str == NULL || ft_isalpha(str[i]) == 1)
-	{
-		perror("ERROR\nwrong writing of parameters");
-		exit(0);
-	}
+		print_error(param, "Wrong writing of parameters");
 	return (result * sign);
 }
 
@@ -93,5 +87,5 @@ void	print_params(t_param *param)
 		free(param->map.map[i]);
 		i++;
 	}
-	free(param->map.map);
+	free(param->map.map); // ICI FREE EN TROP ????
 }

@@ -9,8 +9,8 @@
 # include <fcntl.h>
 # include "../Libft/get_next_line/get_next_line.h"
 # include "../Libft/libft.h"
-#include <X11/keysym.h>
-#include <X11/X.h>
+//#include <X11/keysym.h>
+//#include <X11/X.h>
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"

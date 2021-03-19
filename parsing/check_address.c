@@ -32,21 +32,15 @@ int		find_str_end(char *s1, char *s2)
 	return (1);
 }
 
-int		check_address_parameters(char *str)
+int		check_address_parameters(char *str, t_param *param)
 {
 	char	*comp;
 
 	comp = "./textures/";
 	if (find_str_beginning(str, comp) == 0)
-	{
-		perror("ERROR\nWrong address");
-		exit(0);
-	}
+		print_error(param, "Wrong address");
 	comp = ".xpm";
 	if (find_str_end(str, comp) == 0)
-	{
-		perror("ERROR\nWrong address");
-		exit(0);
-	}
+		print_error(param, "Wrong address");
 	return (0);
 }

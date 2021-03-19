@@ -29,10 +29,7 @@ char	*only_map(char *str, t_param *param)
 	{
 		if (str[i] == '\n' && str[i + 1] != '1' && str[i + 1] != ' '
 				&& str[i + 1] != '\0')
-		{
-			perror("ERROR\nerror in the map");
-			exit(0);
-		}
+			print_error(param, "Error in the map");
 		map[j++] = str[i++];
 	}
 	map[j] = '\0';
@@ -67,7 +64,7 @@ char	**creation_table_map(char **str, t_param *param)
 	return (map);
 }
 
-int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
+int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_param *param)
 {
 	int i;
 	int j;
@@ -87,10 +84,7 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd)
 		free(*line);
 	}
 	if (i < 8)
-	{
-		perror("ERROR\nwrong number of parameters");
-		exit(0);
-	}
+		print_error(param, "Wrong number of parameters");
 	free(*line);
 	return (ret);
 }
@@ -109,7 +103,7 @@ int		sorting_map(char *map_map, t_param *param)
 		return (-1);
 	if (!(tab_map = malloc(sizeof(char*) * calculate_nb_chains(map_map))))
 		return (-1);
-	ret = read_next_line(tab_map, tab_param, &line, fd);
+	ret = read_next_line(tab_map, tab_param, &line, fd, param);
 	tab_map = creation_table_map(tab_map, param);
 	param->map.map = tab_map;
 	check_all_para(param, tab_param);

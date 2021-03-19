@@ -3,15 +3,24 @@
 
 void		free_address_params(t_param *param)
 {
-	free(param->sprite);
-	free(param->north_texture);
-	free(param->south_texture);
-	free(param->east_texture);
-	free(param->west_texture);
+	int	i;
+
+	i = -1;
+	if (param->sprite)
+		free(param->sprite);
+	if (param->north_texture)
+		free(param->north_texture);
+	if (param->south_texture)
+		free(param->south_texture);
+	if (param->east_texture)
+		free(param->east_texture);
+	if (param->west_texture)
+		free(param->west_texture);
 }
 
 t_param		initialize_structure(t_param *param, char *argv)
 {
+	param->map.map = NULL;
 	param->file = argv;
 	param->colour.red = -10;
 	param->colour.blue = -10;
@@ -46,9 +55,9 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 		free(tmp);
 	}
 	close(fd);
-	only_params(map);
+	only_params(map, para);
 	str = only_map(map, para);
-	check_void_line_map(str);
+	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, para);
 	check_map(para->map.map, para->map.nb_lines, para->map.max_length, para);
@@ -57,7 +66,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	return (0);
 }
 
-/*int			main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -71,15 +80,15 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 		return (-1);
 	initialize_structure(&param, argv[1]);
 	fd = open(argv[1], O_RDONLY);
-	manage_errors(argc, argv);
+	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	print_params(&param);
 	raycasting(&param);
 	free_address_params(&param);
 	return (0);
-}*/
+}
 
-t_param		initialize(int argc, char **argv)
+/*t_param		initialize(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -96,4 +105,4 @@ t_param		initialize(int argc, char **argv)
 	print_params(&param);
 	raycasting(&param);
 	return (param);
-}
+}*/

@@ -1,7 +1,7 @@
 #include "../include/cub3D.h"
 #include "../include/struct_cub3D.h"
 
-int		check_end_walls(char *str, int length)
+int		check_end_walls(char *str, int length, t_param *param)
 {
 	int i;
 
@@ -10,21 +10,15 @@ int		check_end_walls(char *str, int length)
 	while (str[i] == '5')
 		i++;
 	if (str[i] != '1')
-	{
-		perror("ERROR\nWrong format of the map : no walls at the end");
-		exit(0);
-	}
+		print_error(param, "Wrong format of the map : no walls at the end");
 	while (str[length] == '5')
 		length--;
 	if (str[length] != '1')
-	{
-		perror("ERROR\nWrong format of the map : no walls at the end");
-		exit(0);
-	}
+		print_error(param, "Wrong format of the map : no walls at the end");
 	return (0);
 }
 
-int		check_symbols(char *str)
+int		check_symbols(char *str, t_param *param)
 {
 	int i;
 
@@ -34,10 +28,7 @@ int		check_symbols(char *str)
 		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'E'
 				&& str[i] != 'S' && str[i] != 'W' && str[i] != 'N'
 				&& str[i] != '5' && str[i] != ' ')
-		{
-			perror("ERROR\nWrong symbol in the map");
-			exit(0);
-		}
+			print_error(param, "Wrong symbol in the map");
 		i++;
 	}
 	return (0);
@@ -57,7 +48,7 @@ char	*check_space_in_map(char *str)
 	return (str);
 }
 
-int		check_holes_walls(char **map, int nb_lines, int length)
+int		check_holes_walls(char **map, int nb_lines, int length, t_param *param)
 {
 	int i;
 	int j;
@@ -69,10 +60,7 @@ int		check_holes_walls(char **map, int nb_lines, int length)
 		while (j < length)
 		{
 			if ((map[i][j] == '0') && (map[i + 1][j] == '5'))
-			{
-				perror("ERROR\nWrong format of the map : holes in the map");
-				exit(0);
-			}
+				print_error(param, "Wrong format of the map : holes in map");
 			j++;
 		}
 		j = 0;
@@ -81,7 +69,7 @@ int		check_holes_walls(char **map, int nb_lines, int length)
 	return (0);
 }
 
-int		check_first_last_string_map(char *str)
+int		check_first_last_string_map(char *str, t_param *param)
 {
 	int i;
 
@@ -89,15 +77,9 @@ int		check_first_last_string_map(char *str)
 	while (str[++i] != '\0')
 	{
 		if (str[i] != '1' && str[i] != '5' && str[1] == '\0' && str[2] == '\0')
-		{
-			perror("ERROR\nWrong format of the map : void");
-			exit(0);
-		}
+			print_error(param, "Wrong format of the map : void");
 		if (str[i] == '1' && str[i + 1] == '5' && str[i + 2] == '1')
-		{
-			perror("ERROR\nWrong format of the map : void");
-			exit(0);
-		}
+			print_error(param, "Wrong format of the map : void");
 	}
 	return (0);
 }
