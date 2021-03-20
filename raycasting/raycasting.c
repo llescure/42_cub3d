@@ -45,15 +45,13 @@ int print_ray(t_ray *ray)
 	return (0);
 }
 
-int raycasting(t_param *param)
+int raycasting(t_param *param, t_ray *ray)
 {
-	t_ray ray;
-
-	ray.posx = param->perso.position_x;
-	ray.posy = param->perso.position_y;
-	initialisation_orientation(param, &ray);
-	print_ray(&ray);
-/*	while (ray.posx < param->map.max_length)
+	ray->posx = param->perso.position_x;
+	ray->posy = param->perso.position_y;
+	initialisation_orientation(param, ray);
+	print_ray(ray);
+/*	while (ray->posx < param->map.max_length)
 	{
 
 	}*/

@@ -6,25 +6,26 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/19 22:31:30 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/20 17:39:58 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-CUB = cub3D.cub
-
-SRCS =  ./parsing/check_map.c				\
+SRCS =  ./parsing/check_map.c			\
 		./parsing/check_map2.c			\
 		./parsing/check_address.c		\
 		./parsing/manage_cub.c			\
 		./parsing/manage_errors.c		\
-		./parsing/parsing.c			\
+		./parsing/parsing.c				\
 		./parsing/save_map.c			\
 		./parsing/save_params.c			\
-		./parsing/utils.c			\
-		./minilibx/reading_image.c		\
-		./raycasting/raycasting.c
+		./parsing/utils.c				\
+		./minilibx/minilibx_keys.c		\
+		./minilibx/draw.c				\
+		./raycasting/raycasting.c		\
+		./main.c
+
 
 OBJS = $(SRCS:.c=.o)
 
