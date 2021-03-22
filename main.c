@@ -31,4 +31,5 @@ int     main(int argc, char **argv)
 	mlx_destroy_image(data.mlx_ptr, data.img.img);
 	mlx_destroy_display(data.mlx_ptr);
 	free(data.mlx_ptr);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/20 17:39:58 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/22 15:56:52 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,8 +45,24 @@ BLUE		:= $(shell tput -Txterm setaf 6)
 WHITE		:= $(shell tput -Txterm setaf 7)
 RESET		:= $(shell tput -Txterm sgr0)
 
+ifneq ("$(wildcard $(/libft/libft.a))","")
+LIBFT_EXISTS = 1
+else
+LIBFT_EXISTS = 0
+endif
+
+ifneq ("$(wildcard $(/minilibx-linux/libmlx.a))","")
+MLX_EXISTS = 1
+else
+MLX_EXISTS = 0
+endif
+
 $(NAME): $(OBJS)
 	@echo "$(LIGHTPURPLE)Compilation...$(RESET)"
+	if [ LIBFT_EXISTS=0 ]; then make -C libft; fi;
+	@echo "$(PURPLE)Libft compiled$(RESET)"
+	if [ MLX_EXISTS=0 ]; then make -C minilibx-linux; fi;
+	@echo "$(PURPLE)Minilibx compiled$(RESET)"
 	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS))
 	@echo "$(GREEN)Compilation OK$(RESET)"
 
@@ -63,9 +79,5 @@ fclean:  clean
 	@($(RM) $(NAME))
 
 re: fclean all
-
-lib:
-	make -C libft
-	make -C minilibx-linux
 
 .PHONY: all clean fclean re

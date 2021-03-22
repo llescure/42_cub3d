@@ -68,5 +68,6 @@ void img_pix_put(t_img *img, int x, int y, int color);
 int click_close(t_data *data);
 int press_key(int key, t_data *data, t_ray *ray);
 int release_key(int key, t_ray *ray);
+int	initialize_mlx(t_data *data);
 
 #endif
