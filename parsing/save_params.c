@@ -99,6 +99,7 @@ int		p_orientation_position(char *str, t_param *param, int position, int i)
 	int		nb_result;
 
 	nb_result = 0;
+	result = '0';
 	while (str[++i] != '\0')
 	{
 		if (str[i] == 'N' || str[i] == 'S' || str[i] == 'E' || str[i] == 'W')

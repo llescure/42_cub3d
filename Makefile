@@ -6,7 +6,7 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/03/22 15:56:52 by llescure         ###   ########.fr        #
+#    Updated: 2021/03/23 17:48:55 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ CC  = gcc
 
 FLAGS =   -L includes/minilibx-linux -lXext -lX11 -lm -lbsd
 CFLAGS =  -Wall -Wextra -Werror
+SAN = -g3 -fsanitize=address -O3
 RM  = rm -f
 
 BLACK		:= $(shell tput -Txterm setaf 0)
@@ -63,7 +64,7 @@ $(NAME): $(OBJS)
 	@echo "$(PURPLE)Libft compiled$(RESET)"
 	if [ MLX_EXISTS=0 ]; then make -C minilibx-linux; fi;
 	@echo "$(PURPLE)Minilibx compiled$(RESET)"
-	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS))
+	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS) $(SAN))
 	@echo "$(GREEN)Compilation OK$(RESET)"
 
 all:  $(NAME)
