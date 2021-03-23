@@ -51,96 +51,97 @@ int print_ray(t_ray *ray)
 	return (0);
 }
 
-int raycasting(t_data *data, t_ray *ray)
+int raycasting(t_data *data)
 {
 	int x;
 	int w;
 	int color;
+	t_ray ray;
 //	double time = 0; //time of current frame
 //	double oldTime = 0; //time of previous frame
 
 	x = -1;
 	w = data->param.map.max_length;
-	ray->posx = data->param.perso.position_x;
-	ray->posy = data->param.perso.position_y;
-	initialisation_orientation(&data->param, ray);
-	print_ray(ray);
+	ray.posx = data->param.perso.position_x;
+	ray.posy = data->param.perso.position_y;
+	initialisation_orientation(&data->param, &ray);
+	print_ray(&ray);
 
 	while (++x < w)
 	{
-		ray->camerax = 2 * x / w - 1;
-		ray->raydirx = ray->dirx + ray->planx * ray->camerax;
-		ray->raydiry = ray->diry + ray->plany * ray->camerax;
+		ray.camerax = 2 * x / w - 1;
+		ray.raydirx = ray.dirx + ray.planx * ray.camerax;
+		ray.raydiry = ray.diry + ray.plany * ray.camerax;
 
-		ray->mapx = (int)(ray->posx);
-		ray->mapy = (int)(ray->posy);
-		if ((int)(ray->raydirx) == 0)
-			ray->deltadistx = 0;
+		ray.mapx = (int)(ray.posx);
+		ray.mapy = (int)(ray.posy);
+		if ((int)(ray.raydirx) == 0)
+			ray.deltadistx = 0;
 		else
-			ray->deltadistx = abs(1 / (int)(ray->raydirx));
-		if ((int)(ray->raydiry) == 0)
-			ray->deltadisty = 0;
+			ray.deltadistx = abs(1 / (int)(ray.raydirx));
+		if ((int)(ray.raydiry) == 0)
+			ray.deltadisty = 0;
 		else
-			ray->deltadisty = abs(1 / (int)(ray->raydiry));
-		ray->hit = 0;
-		if (ray->raydirx < 0)
+			ray.deltadisty = abs(1 / (int)(ray.raydiry));
+		ray.hit = 0;
+		if (ray.raydirx < 0)
 		{
-			ray->stepx = -1;
-			ray->sidedistx = (ray->posx - ray->mapx) * ray->deltadistx;
+			ray.stepx = -1;
+			ray.sidedistx = (ray.posx - ray.mapx) * ray.deltadistx;
 		}
 		else
 		{
-			ray->stepx = 1;
-			ray->sidedistx = (ray->mapx + 1.0 - ray->posx) * ray->deltadistx;
+			ray.stepx = 1;
+			ray.sidedistx = (ray.mapx + 1.0 - ray.posx) * ray.deltadistx;
 		}
-		if (ray->raydiry < 0)
+		if (ray.raydiry < 0)
 		{
-			ray->stepy = -1;
-			ray->sidedisty = (ray->posy - ray->mapy) * ray->deltadisty;
+			ray.stepy = -1;
+			ray.sidedisty = (ray.posy - ray.mapy) * ray.deltadisty;
 		}
 		else
 		{
-			ray->stepy = 1;
-			ray->sidedisty = (ray->mapy + 1.0 - ray->posy) * ray->deltadisty;
+			ray.stepy = 1;
+			ray.sidedisty = (ray.mapy + 1.0 - ray.posy) * ray.deltadisty;
 		}
-		while (ray->hit == 0)
+		while (ray.hit == 0)
 		{
 			//jump to next map square, OR in x-direction, OR in y-direction
-			if (ray->sidedistx < ray->sidedisty)
+			if (ray.sidedistx < ray.sidedisty)
 			{
-				ray->sidedistx += ray->deltadistx;
-				ray->mapx += ray->stepx;
-				ray->side = 0;
+				ray.sidedistx += ray.deltadistx;
+				ray.mapx += ray.stepx;
+				ray.side = 0;
 			}
 			else
 			{
-				ray->sidedisty += ray->deltadisty;
-				ray->mapy += ray->stepy;
-				ray->side = 1;
+				ray.sidedisty += ray.deltadisty;
+				ray.mapy += ray.stepy;
+				ray.side = 1;
 			}
-			if (data->param.map.map[ray->mapy][ray->mapx] != '0')
-				ray->hit = 1;
+			if (data->param.map.map[ray.mapy][ray.mapx] != '0')
+				ray.hit = 1;
 		}
-		if (ray->side == 0)
-			ray->perpwalldist = (ray->mapx - ray->posx + (1 - ray->stepx) / 2) / ray->raydirx;
+		if (ray.side == 0)
+			ray.perpwalldist = (ray.mapx - ray.posx + (1 - ray.stepx) / 2) / ray.raydirx;
 		else
-			ray->perpwalldist = (ray->mapy - ray->posy + (1 - ray->stepy) / 2) / ray->raydiry;
+			ray.perpwalldist = (ray.mapy - ray.posy + (1 - ray.stepy) / 2) / ray.raydiry;
 
 		//Calculate height of line to draw on screen
-		ray->lineheight = (int)(data->param.map.max_length / ray->perpwalldist);
+		ray.lineheight = (int)(data->param.map.max_length / ray.perpwalldist);
 
-		ray->drawstart = -ray->lineheight / 2 + data->param.map.max_length / 2;
-		if (ray->drawstart < 0)
-			ray->drawstart = 0;
-		ray->drawend = ray->lineheight / 2 + data->param.map.max_length / 2;
-		if (ray->drawend >= data->param.map.max_length)
-			ray->drawend = data->param.map.max_length - 1;
+		ray.drawstart = -ray.lineheight / 2 + data->param.map.max_length / 2;
+		if (ray.drawstart < 0)
+			ray.drawstart = 0;
+		ray.drawend = ray.lineheight / 2 + data->param.map.max_length / 2;
+		if (ray.drawend >= data->param.map.max_length)
+			ray.drawend = data->param.map.max_length - 1;
 		color = BLUE_PIXEL;
 
 		//give x and y sides different brightness
-		if(ray->side == 1)
+		if(ray.side == 1)
 			color = color / 2;
-		print_ray(ray);
+		print_ray(&ray);
 		//draw the pixels of the stripe as a vertical line
 //		draw_column(ray->drawstart, ray->drawend, data, color); // C'EST ICI QUE T'INTERVIENS LEY
 /*		//timing for input and FPS counter

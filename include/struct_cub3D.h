@@ -64,23 +64,6 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
-}			t_img;
-
-typedef struct s_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	t_param	param;
-}			t_data;
-
 typedef struct s_rect
 {
 	int	x;
@@ -89,6 +72,16 @@ typedef struct s_rect
 	int	height;
 	int	color;
 }		t_rect;
+
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+	t_rect	rect;
+}			t_img;
 
 typedef struct	s_ray
 {
@@ -117,5 +110,14 @@ typedef struct	s_ray
    int			drawend; //position de fin ou il faut dessiner
    int			x; //permet de parcourir tous les rayons
 }	t_ray ;
+
+typedef struct s_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	t_param	param;
+	t_ray	ray;
+}			t_data;
 
 #endif

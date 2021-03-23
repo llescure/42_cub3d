@@ -53,7 +53,7 @@ void free_address_params(t_param *params);
 
 /*Raycasting*/
 
-int raycasting(t_data *data, t_ray *ray);
+int raycasting(t_data *data);
 int print_ray(t_ray *ray);
 int initialisation_orientation(t_param *param, t_ray *ray);
 t_param initialize(int argc, char **argv);
@@ -64,7 +64,7 @@ int draw_minimap(t_data *data);
 int draw_square(int i, int j, t_data *data, int color);
 int draw_column(int i, int j, t_data *data, int color);
 int draw(t_data *data);
-int draw_rect(t_img *img, t_rect rect);
+int draw_rect(t_img *img);
 void img_pix_put(t_img *img, int x, int y, int color);
 int click_close(t_data *data);
 int press_key(int key, t_data *data, t_ray *ray);
