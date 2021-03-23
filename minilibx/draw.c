@@ -48,6 +48,19 @@ int	draw_square(int i, int j, t_data *data, int color)
 	return (0);
 }
 
+/*int	draw_column(int start, int end, t_data *data, int color)
+{
+	int		i;
+
+	i = start;
+	while (i < end)
+	{
+		img_pix_put(img, j, i, rect.color);
+		i++;
+	}
+	return (0);
+}*/
+
 int	draw_minimap(t_data *data)
 {
 	int		i;

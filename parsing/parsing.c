@@ -85,7 +85,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	return (0);
 }*/
 
-t_param		initialize(int argc, char **argv, t_ray *ray)
+t_param		initialize(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -100,6 +100,5 @@ t_param		initialize(int argc, char **argv, t_ray *ray)
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	print_params(&param);
-	raycasting(&param, ray);
 	return (param);
 }

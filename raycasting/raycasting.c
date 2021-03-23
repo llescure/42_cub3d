@@ -51,7 +51,7 @@ int print_ray(t_ray *ray)
 	return (0);
 }
 
-int raycasting(t_param *param, t_ray *ray)
+int raycasting(t_data *data, t_ray *ray)
 {
 	int x;
 	int w;
@@ -60,10 +60,10 @@ int raycasting(t_param *param, t_ray *ray)
 //	double oldTime = 0; //time of previous frame
 
 	x = -1;
-	w = param->map.max_length;
-	ray->posx = param->perso.position_x;
-	ray->posy = param->perso.position_y;
-	initialisation_orientation(param, ray);
+	w = data->param.map.max_length;
+	ray->posx = data->param.perso.position_x;
+	ray->posy = data->param.perso.position_y;
+	initialisation_orientation(&data->param, ray);
 	print_ray(ray);
 
 	while (++x < w)
@@ -118,7 +118,7 @@ int raycasting(t_param *param, t_ray *ray)
 				ray->mapy += ray->stepy;
 				ray->side = 1;
 			}
-			if (param->map.map[ray->mapy][ray->mapx] != '0')
+			if (data->param.map.map[ray->mapy][ray->mapx] != '0')
 				ray->hit = 1;
 		}
 		if (ray->side == 0)
@@ -127,14 +127,14 @@ int raycasting(t_param *param, t_ray *ray)
 			ray->perpwalldist = (ray->mapy - ray->posy + (1 - ray->stepy) / 2) / ray->raydiry;
 
 		//Calculate height of line to draw on screen
-		ray->lineheight = (int)(param->map.max_length / ray->perpwalldist);
+		ray->lineheight = (int)(data->param.map.max_length / ray->perpwalldist);
 
-		ray->drawstart = -ray->lineheight / 2 + param->map.max_length / 2;
+		ray->drawstart = -ray->lineheight / 2 + data->param.map.max_length / 2;
 		if (ray->drawstart < 0)
 			ray->drawstart = 0;
-		ray->drawend = ray->lineheight / 2 + param->map.max_length / 2;
-		if (ray->drawend >= param->map.max_length)
-			ray->drawend = param->map.max_length - 1;
+		ray->drawend = ray->lineheight / 2 + data->param.map.max_length / 2;
+		if (ray->drawend >= data->param.map.max_length)
+			ray->drawend = data->param.map.max_length - 1;
 		color = BLUE_PIXEL;
 
 		//give x and y sides different brightness
@@ -142,8 +142,8 @@ int raycasting(t_param *param, t_ray *ray)
 			color = color / 2;
 		print_ray(ray);
 		//draw the pixels of the stripe as a vertical line
-		draw_square(ray->drawstart, ray->drawend, data, color); // C'EST ICI QUE T'INTERVIENS LEY
-		//timing for input and FPS counter
+//		draw_column(ray->drawstart, ray->drawend, data, color); // C'EST ICI QUE T'INTERVIENS LEY
+/*		//timing for input and FPS counter
 		oldtime = time;
 		time = getTicks(); // ???
 		double frameTime = (time - oldTime) / 1000.0; //frameTime is the time this frame has taken, in seconds

@@ -4,9 +4,9 @@
 int     main(int argc, char **argv)
 {
 	t_data	data;
-	t_ray	ray;
+//	t_ray	ray;
 
-	data.param = initialize(argc, argv, &ray);
+	data.param = initialize(argc, argv);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 	{
@@ -24,9 +24,11 @@ int     main(int argc, char **argv)
 	data.img.addr = mlx_get_data_addr(data.img.img, &data.img.bits_per_pixel,
 			&data.img.line_lenght, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &draw_minimap, &data);
+//	mlx_loop_hook(data.mlx_ptr, &draw_column, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &press_key, &data);
 	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &release_key, &data);
 	mlx_hook(data.win_ptr, 33, (1L << 17), &click_close, &data);
+//	raycasting(&data, &ray);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.img);
 	mlx_destroy_display(data.mlx_ptr);
