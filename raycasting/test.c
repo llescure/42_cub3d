@@ -8,8 +8,11 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 //	double my;
 	int rx;
 	int ry; // coordonnees du rayon
+//	int fov = 60;
 	double distance;
-	double hauteur;
+	double hp;
+	double h_min;
+	double h_max;
 
 	rx = px;
 	ry = py;
@@ -21,10 +24,9 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 		{
 			if (param->map.tab_map[ry][rx] == '1')
 			{
-				distance = (px - py) * (px - py) + (rx - ry) * (rx - ry);
+				distance = (px - rx) * (px - rx) + (py - ry) * (py - ry);
 				printf("distance = %f\n", distance);
-				hauteur = tan(1.5 / distance) * distance;
-				printf("hauteur = %f\n", hauteur);
+				hp = (3 / distance) * 0.2; // 3 = high of the wall, 0.2 = distance from the screen
 			}
 			rx++;
 		}
@@ -35,10 +37,9 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 		{
 			if (param->map.tab_map[ry][rx] == '1')
 			{
-				distance = (px - py) * (px - py) + (rx - ry) * (rx - ry);
+				distance = (px - rx) * (px - rx) + (py - ry) * (py - ry);
 				printf("distance = %f\n", distance);
-				hauteur = tan(1.5 / distance) * distance;
-				printf("hauteur = %f\n", hauteur);
+				hp = (3 / distance) * 0.2; // 3 = high of the wall, 0.2 = distance from the screen
 			}
 			rx--;
 		}
@@ -50,10 +51,9 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 		{
 			if (param->map.tab_map[ry][rx] == '1')
 			{
-				distance = (px - py) * (px - py) + (rx - ry) * (rx - ry);
+				distance = (px - rx) * (px - rx) + (py - ry) * (py - ry);
 				printf("distance = %f\n", distance);
-				hauteur = tan(1.5 / distance) * distance;
-				printf("hauteur = %f\n", hauteur);
+				hp = (3 / distance) * 0.2; // 3 = high of the wall, 0.2 = distance from the screen
 			}
 			ry++;
 		}
@@ -64,14 +64,16 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 		{
 			if (param->map.tab_map[ry][rx] == '1')
 			{
-				distance = (px - py) * (px - py) + (rx - ry) * (rx - ry);
+				distance = (px - rx) * (px - rx) + (py - ry) * (py - ry);
 				printf("distance = %f\n", distance);
-				hauteur = tan(1.5 / distance) * distance;
-				printf("hauteur = %f\n", hauteur);
+				hp = (3 / distance) * 0.2; // 3 = high of the wall, 0.2 = distance from the screen
 			}
 			ry--;
 		}
 	}
+	h_min = 1.8 - hp / 2; // 1.8 = height of the player
+	h_max =  1.8 + hp / 2;
+	printf("h_min = %f h_max = %f\n", h_min, h_max);
 }
 
 
