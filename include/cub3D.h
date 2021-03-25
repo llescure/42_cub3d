@@ -68,14 +68,17 @@ int			fixAngle(int a);
 /*Minilibx*/
 
 int draw_minimap(t_data *data);
-int draw_square(int i, int j, t_data *data, int color);
-int draw_column(int i, int j, t_data *data, int color);
+int draw_square(float i, float j, t_data *data, int color);
+int draw_line(t_data *data, t_rect rect);
 int draw(t_data *data);
-int draw_rect(t_img *img);
+int draw_rect(t_img *img, t_rect rect);
 void img_pix_put(t_img *img, int x, int y, int color);
 int click_close(t_data *data);
-int press_key(int key, t_data *data, t_ray *ray);
-int release_key(int key, t_ray *ray);
+int press_key(int key, t_data *data);
+int release_key(int key, t_data *data);
 int	initialize_mlx(t_data *data);
+int	move_perso(t_data *data);
+int	close_window(int key, t_data *data);
+int	launch_hook(t_data *data);
 
 #endif

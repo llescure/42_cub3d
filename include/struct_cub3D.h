@@ -9,9 +9,10 @@
 # include <fcntl.h>
 # include "../Libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-//# include <X11/keysym.h>
-//# include <X11/X.h>
-//# include <X11/Xlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
+# include <math.h>
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
@@ -28,8 +29,11 @@
 #define LEFT_A_Q 97
 
 typedef struct	s_perso {
-	int		position_x;
-	int		position_y;
+	float		position_x;
+	float		position_y;
+	float		dirx;
+	float		diry;
+	int			angle;
 	char	orientation;
 }	t_perso ;
 
@@ -65,14 +69,6 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
-typedef struct s_rect
-{
-	int	x;
-	int	y;
-	int	width;
-	int	height;
-	int	color;
-}		t_rect;
 
 typedef struct s_img
 {
@@ -81,7 +77,6 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_lenght;
 	int		endian;
-	t_rect	rect;
 }			t_img;
 
 typedef struct	s_ray
@@ -118,7 +113,15 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	t_param	param;
-	t_ray	ray;
 }			t_data;
+
+typedef struct s_rect
+{
+	int	x;
+	int	y;
+	int	width;
+	int	height;
+	int	color;
+}		t_rect;
 
 #endif

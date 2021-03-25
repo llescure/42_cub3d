@@ -119,8 +119,8 @@ int raycasting(t_data *data)
 				ray.mapy += ray.stepy;
 				ray.side = 1;
 			}
-			if (data->param.map.map[ray.mapy][ray.mapx] != '0')
-				ray.hit = 1;
+			//if (data->param.map.map[ray.mapy][ray.mapx] != '0')
+			//	ray.hit = 1;
 		}
 		if (ray.side == 0)
 			ray.perpwalldist = (ray.mapx - ray.posx + (1 - ray.stepx) / 2) / ray.raydirx;

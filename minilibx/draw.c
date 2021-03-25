@@ -9,18 +9,18 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-int	draw_rect(t_img *img)
+int	draw_rect(t_img *img, t_rect rect)
 {
 	int i;
 	int j;
 
-	i = img->rect.y;
-	while (i < img->rect.y + img->rect.height)
+	i = rect.y;
+	while (i < rect.y + rect.height)
 	{
-		j = img->rect.x;
-		while (j < img->rect.x + img->rect.width)
+		j = rect.x;
+		while (j < rect.x + rect.width)
 		{
-			img_pix_put(img, j, i, img->rect.color);
+			img_pix_put(img, j, i, rect.color);
 			j++;
 		}
 		i++;
@@ -28,37 +28,44 @@ int	draw_rect(t_img *img)
 	return (0);
 }
 
-int	draw_square(int i, int j, t_data *data, int color)
+int	draw_square(float i, float j, t_data *data, int color)
 {
-	int width;
-	int lenght;
+	t_rect rect;
+	float width;
+	float lenght;
 
-	lenght = 200 / (data->param.map.max_length - 2);
-	width = 200 / (data->param.map.nb_lines - 2);
-	data->img.rect.x = 15 + lenght * j;
-	data->img.rect.y = 15 + width * i;
-	data->img.rect.width = lenght;
-	data->img.rect.height = width;
-	data->img.rect.color = color;
+	lenght = 200 / 4 ;
+	width = 200 / 4;
+	rect.x = 15 + lenght * j;
+	rect.y = 15 + width * i;
+	rect.width = lenght;
+	rect.height = width;
+	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
-	draw_rect(&data->img);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
+	draw_rect(&data->img, rect);
+	draw_line(data, rect);
 	return (0);
 }
 
-/*int	draw_column(int start, int end, t_data *data, int color)
+int	draw_line(t_data *data, t_rect rect)
 {
-	int		i;
+	float dist;
+	float lenght;
+	int	x;
+	int y;
 
-	i = start;
-	while (i < end)
+	lenght = 100;
+	dist = 0;
+	while (dist < lenght)
 	{
-		img_pix_put(img, j, i, rect.color);
-		i++;
+		x = rect.x + rect.width / 2 + dist * cos(data->param.perso.angle * M_PI / 180);
+		y = rect.y + rect.width / 2 + dist * sin(data->param.perso.angle * M_PI / 180);
+		img_pix_put(&data->img, x, y, RED_PIXEL);
+		dist++;
 	}
 	return (0);
-}*/
+}
 
 int	draw_minimap(t_data *data)
 {
@@ -71,11 +78,11 @@ int	draw_minimap(t_data *data)
 		j = 0;
 		while (j < data->param.map.max_length)
 		{
-			if (data->param.map.map[i][j] == '0')
+			if (data->param.map.tab_map[i][j] == '0')
 				draw_square(i, j, data, BLUE_PIXEL);
-			else if (data->param.map.map[i][j] == '2')
+			else if (data->param.map.tab_map[i][j] == '2')
 				draw_square(i, j, data, GREEN_PIXEL);
-			else if (data->param.map.map[i][j] == 'N')
+			else if (data->param.map.tab_map[i][j] == 'N')
 				draw_square(i, j, data, 0xFD6C9E);
 			j++;
 		}

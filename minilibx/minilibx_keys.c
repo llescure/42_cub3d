@@ -1,7 +1,7 @@
 #include "../include/struct_cub3D.h"
 #include "../include/cub3D.h"
 
-int	press_key(int key, t_data *data, t_ray *ray)
+int	press_key(int key, t_data *data)
 {
 	if (key == XK_Escape)
 	{
@@ -9,34 +9,36 @@ int	press_key(int key, t_data *data, t_ray *ray)
 		data->win_ptr = NULL;
 	}
 	else if (key == ROTATE_LEFT)
-		ray->camerax = -1;
+	{
+		data->param.perso.angle -= 15;
+		if (data->param.perso.angle < 0)
+			data->param.perso.angle += 360;
+	}
 	else if (key == ROTATE_RIGHT)
-		ray->camerax = 1;
+	{
+		data->param.perso.angle += 15;
+		if (data->param.perso.angle >= 360)
+			data->param.perso.angle -= 360;
+	}
 	else if (key == FORWARD_W_Z)
-		ray->diry = -1;
+		data->param.perso.dirx = -1;
 	else if (key == BACK_S_S)
-		ray->diry = 1;
+		data->param.perso.dirx = 1;
 	else if (key == RIGHT_D_D)
-		ray->dirx = 1;
+		data->param.perso.diry = 1;
 	else if (key == LEFT_A_Q)
-		ray->dirx = 1;
+		data->param.perso.diry = -1;
 	return (0);
 }
 
-int	release_key(int key, t_ray *ray)
+int	release_key(int key, t_data *data)
 {
-	if (key == ROTATE_LEFT)
-		ray->camerax = 0;
-	else if (key == ROTATE_RIGHT)
-		ray->camerax = 0;
-	else if (key == FORWARD_W_Z)
-		ray->diry = 0;
-	else if (key == BACK_S_S)
-		ray->diry = 0;
-	else if (key == RIGHT_D_D)
-		ray->dirx = 0;
-	else if (key == LEFT_A_Q)
-		ray->dirx = 0;
+	if (key == ROTATE_LEFT || key == ROTATE_RIGHT)
+		data->param.perso.angle += 0;
+	else if (key == FORWARD_W_Z || key == BACK_S_S)
+		data->param.perso.dirx = 0;
+	else if (key == RIGHT_D_D || key == LEFT_A_Q)
+		data->param.perso.diry = 0;
 	return (0);
 }
 
