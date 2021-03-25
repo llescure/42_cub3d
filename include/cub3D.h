@@ -58,6 +58,13 @@ int print_ray(t_ray *ray);
 int initialisation_orientation(t_param *param, t_ray *ray);
 t_param initialize(int argc, char **argv);
 
+/*DRAW3D*/
+
+void 		init(t_param *param);
+void 		drawrays3D(double pa, double px, double py, t_param *param);
+double		distance(double ax, double ay, double bx, double by, double ra);
+int			fixAngle(int a);
+
 /*Minilibx*/
 
 int draw_minimap(t_data *data);

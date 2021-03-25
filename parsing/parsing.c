@@ -13,10 +13,13 @@ void		free_address_params(t_param *param)
 		free(param->east_texture);
 	if (param->west_texture)
 		free(param->west_texture);
+	if (param->map.map)
+		free(param->map.map);
 }
 
 t_param		initialize_structure(t_param *param, char *argv)
 {
+	param->map.tab_map = NULL;
 	param->map.map = NULL;
 	param->file = argv;
 	param->colour.red = -10;
@@ -57,13 +60,13 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, para);
-	check_map(para->map.map, para->map.nb_lines, para->map.max_length, para);
+	check_map(para->map.tab_map, para->map.nb_lines, para->map.max_length, para);
 	free(map);
-	free(str);
+//	free(str);
 	return (0);
 }
 
-/*int			main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -80,12 +83,12 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	print_params(&param);
-	raycasting(&param);
+	init(&param);
 	free_address_params(&param);
 	return (0);
-}*/
+}
 
-t_param		initialize(int argc, char **argv)
+/*t_param		initialize(int argc, char **argv)
 {
 	char	*str;
 	char	*map;
@@ -101,4 +104,4 @@ t_param		initialize(int argc, char **argv)
 	read_map(fd, str, map, &param);
 	print_params(&param);
 	return (param);
-}
+}*/

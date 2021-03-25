@@ -30,9 +30,15 @@ char	*only_map(char *str, t_param *param)
 		if (str[i] == '\n' && str[i + 1] != '1' && str[i + 1] != ' '
 				&& str[i + 1] != '\0')
 			print_error(param, "Error in the map");
-		map[j++] = str[i++];
+		if (str[i] == ' ')
+			map[j] = '1';
+		else
+			map[j] = str[i];
+		i++;
+		j++;
 	}
 	map[j] = '\0';
+	param->map.map = map;
 	param->map.nb_lines = calculate_nb_chains(map);
 	return (map);
 }
@@ -52,7 +58,12 @@ char	**creation_table_map(char **str, t_param *param)
 			map[j][i++] = '5';
 		i--;
 		while (++i > -1 && str[j][i] != '\0')
-			map[j][i] = str[j][i];
+		{
+			if (str[j][i] == ' ')
+				map[j][i] = '5';
+			else
+				map[j][i] = str[j][i];
+		}
 		while (i < param->map.max_length)
 			map[j][i++] = '5';
 		map[j++][i] = '\0';
@@ -105,7 +116,7 @@ int		sorting_map(char *map_map, t_param *param)
 		return (-1);
 	ret = read_next_line(tab_map, tab_param, &line, fd, param);
 	tab_map = creation_table_map(tab_map, param);
-	param->map.map = tab_map;
+	param->map.tab_map = tab_map;
 	check_all_para(param, tab_param);
 	ret = 0;
 	while (ret < 8)

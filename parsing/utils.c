@@ -64,7 +64,7 @@ void	print_params(t_param *param)
 	int j;
 
 	printf("fichier = %s\n", param->file);
-	printf("map = %s\n", param->map.map[8]);
+	printf("map = %s\n", param->map.map);
 	printf("nb_lines = %i\n", param->map.nb_lines);
 	printf("color_red : %i\n", param->colour.red);
 	printf("color_green : %i\n", param->colour.green);
@@ -86,19 +86,14 @@ void	print_params(t_param *param)
 	j = 0;
 	while (i < param->map.nb_lines)
 	{
-		while (j < param->map.max_length)
-		{
-			printf("map[%i][%i] = %c\n", i, j, param->map.map[i][j]);
-			j++;
-		}
+		printf("map[%i] = %s\n", i, param->map.tab_map[i]);
 		i++;
-		j = 0;
 	}
 	i = 0;
 /*	while (i < param->map.nb_lines)
 	{
-		free(param->map.map[i]);
+		free(param->map.tab_map[i]);
 		i++;
 	}
-	free(param->map.map); // ICI FREE EN TROP ????*/
+	free(param->map.tab_map); // ICI FREE EN TROP ????*/
 }

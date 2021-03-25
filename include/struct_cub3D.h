@@ -9,9 +9,9 @@
 # include <fcntl.h>
 # include "../Libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include <X11/Xlib.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
+//# include <X11/Xlib.h>
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
@@ -45,7 +45,8 @@ typedef struct	s_resolution {
 }	t_resolution ;
 
 typedef struct	s_map {
-	char **map;
+	char **tab_map;
+	char *map;
 	int	nb_lines;
 	int	max_length;
 }	t_map ;
