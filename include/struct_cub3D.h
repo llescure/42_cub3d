@@ -33,7 +33,7 @@ typedef struct	s_perso {
 	float		position_y;
 	float		dirx;
 	float		diry;
-	int			angle;
+	float		angle;
 	char	orientation;
 }	t_perso ;
 
