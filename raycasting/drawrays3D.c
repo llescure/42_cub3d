@@ -55,7 +55,7 @@ void drawrays3D(double pa, double px, double py, t_param *param)
 	int my;
 	int mp;
 	int dof;
-	int size_map = param->map.nb_lines * param->map.max_length;
+	int size_block = 64;
 	double rx;
 	double ry;
 	double ra;
@@ -79,16 +79,16 @@ void drawrays3D(double pa, double px, double py, t_param *param)
 		Tan = tan(ra * PI / 180.0);
 		if (cos(ra * PI / 180.0) > 0.001)
 		{
-			rx = (((int)px / size_map) * size_map) + size_map; // looking up
+			rx = (((int)px / size_block) * size_block) + size_block; // looking up
 			ry = (px - rx) * Tan + py;
-			xo = size_map;
+			xo = size_block;
 			yo = -xo * Tan;
 		}
 		if (cos(ra * PI / 180.0) <- 0.001)
 		{
-			rx = (((int)px / size_map) * size_map) - 0.0001; // looking down
+			rx = (((int)px / size_block) * size_block) - 0.0001; // looking down
 			ry = (px - rx) * Tan + py;
-			xo = -size_map;
+			xo = -size_block;
 			xo = -xo * Tan;
 		}
 		else // looking straight left or right
@@ -101,9 +101,9 @@ void drawrays3D(double pa, double px, double py, t_param *param)
 		while (dof < 8) // check next horizontal
 		{
 			printf("la ?\n");
-			mx = (int)(rx) / size_map;
+			mx = (int)(rx) / size_block;
 			printf("mx = %i\n", mx);
-			my = (int)(ry) / size_map;
+			my = (int)(ry) / size_block;
 			printf("my = %i\n", my);
 			mp = my * param->map.max_length + mx;
 			printf("mp = %i\n", mp);
@@ -128,16 +128,16 @@ void drawrays3D(double pa, double px, double py, t_param *param)
 		Tan = 1.0 / Tan;
 		if (sin(ra * PI / 180.0) > 0.001)
 		{
-			ry = (((int)py / size_map) * size_map) - 0.0001;
+			ry = (((int)py / size_block) * size_block) - 0.0001;
 			rx = (py - ry) * Tan + px;
-			yo = -size_map;
+			yo = -size_block;
 			xo = -yo * Tan;
 		}
 		if (sin(ra * PI / 180.0) < -0.001)
 		{
-			ry = (((int)py / size_map) * size_map) + size_map;
+			ry = (((int)py / size_block) * size_block) + size_block;
 			rx = (py - ry) * Tan + px;
-			yo = size_map;
+			yo = size_block;
 			xo = -yo * Tan;
 		}
 		else // looking straight up or down
@@ -149,8 +149,8 @@ void drawrays3D(double pa, double px, double py, t_param *param)
 		}
 		while (dof < 8)
 		{
-			mx = (int)(rx) / size_map;
-			my = (int)(ry) / size_map;
+			mx = (int)(rx) / size_block;
+			my = (int)(ry) / size_block;
 			mp = my * param->map.max_length + mx;
 			printf("mp = %i\n", mp);
 			if (mp > 0 && mp < param->map.max_length * param->map.nb_lines && param->map.map[mp] == '1')
