@@ -44,7 +44,8 @@ int	draw_square(float i, float j, t_data *data, int color)
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
-	draw_line(data, rect);
+	if (color == 0xFD6C9E)
+		draw_line(data, rect);
 	return (0);
 }
 
@@ -55,7 +56,7 @@ int	draw_line(t_data *data, t_rect rect)
 	int	x;
 	int y;
 
-	lenght = 100;
+	lenght = 80;
 	dist = 0;
 	while (dist < lenght)
 	{
@@ -78,15 +79,16 @@ int	draw_minimap(t_data *data)
 		j = 0;
 		while (j < data->param.map.max_length)
 		{
-			if (data->param.map.tab_map[i][j] == '0')
-				draw_square(i, j, data, BLUE_PIXEL);
-			else if (data->param.map.tab_map[i][j] == '2')
+			if (data->param.map.tab_map[i][j] == '2')
 				draw_square(i, j, data, GREEN_PIXEL);
-			else if (data->param.map.tab_map[i][j] == 'N')
-				draw_square(i, j, data, 0xFD6C9E);
+			else if (data->param.map.tab_map[i][j] != '1')
+				draw_square(i, j, data, BLUE_PIXEL);
 			j++;
 		}
 		i++;
 	}
+	i = data->param.perso.position_y;
+	j = data->param.perso.position_x;
+	draw_square(i, j, data, 0xFD6C9E);
 	return (0);
 }
