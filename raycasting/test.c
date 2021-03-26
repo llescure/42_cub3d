@@ -13,9 +13,11 @@ void test_ligne_direct(double px, double py, double pa, t_param *param)
 	double hp;
 	double h_min;
 	double h_max;
+	int r; // rayon
 
 	rx = px;
 	ry = py;
+	r = 0;
 
 	// HORIZONTAL
 	if (pa == 90)
