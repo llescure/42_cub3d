@@ -21,12 +21,14 @@
 #define GREEN_PIXEL 0x00FF00
 #define BLUE_PIXEL 0x0000FF
 
-#define ROTATE_LEFT 65361
-#define ROTATE_RIGHT 65363
-#define FORWARD_W_Z 119
-#define BACK_S_S 115
-#define RIGHT_D_D 100
-#define LEFT_A_Q 97
+#define ROTATE_LEFT_ARROW 65361
+#define ROTATE_LEFT_Q 101
+#define ROTATE_RIGHT_ARROW 65363
+#define ROTATE_RIGHT_E 113
+#define FORWARD_W 119
+#define BACK_S 115
+#define RIGHT_D 100
+#define LEFT_A 97
 
 typedef struct	s_perso {
 	float		position_x;

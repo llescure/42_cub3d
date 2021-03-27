@@ -8,34 +8,34 @@ int	press_key(int key, t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	else if (key == ROTATE_LEFT)
+	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
 		data->param.perso.angle -= 15;
 		if (data->param.perso.angle < 0)
 			data->param.perso.angle += 360;
 	}
-	else if (key == ROTATE_RIGHT)
+	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
 		data->param.perso.angle += 15;
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;
 	}
-	else if (key == FORWARD_W_Z)
+	else if (key == FORWARD_W)
 	{
 		data->param.perso.dirx = 1 * cos(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = 1 * sin(data->param.perso.angle * M_PI / 180);
 	}
-	else if (key == BACK_S_S)
+	else if (key == BACK_S)
 	{
 		data->param.perso.dirx = -1 * cos(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = -1 * sin(data->param.perso.angle * M_PI / 180);
 	}
-	else if (key == RIGHT_D_D)
+	else if (key == RIGHT_D)
 	{
 		data->param.perso.dirx = 1 * sin(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = 1 * cos(data->param.perso.angle * M_PI / 180);
 	}
-	else if (key == LEFT_A_Q)
+	else if (key == LEFT_A)
 	{
 		data->param.perso.dirx = -1 * sin(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
@@ -45,9 +45,10 @@ int	press_key(int key, t_data *data)
 
 int	release_key(int key, t_data *data)
 {
-	if (key == ROTATE_LEFT || key == ROTATE_RIGHT)
+	if (key == ROTATE_LEFT_ARROW || key == ROTATE_RIGHT_ARROW ||
+			key == ROTATE_LEFT_Q || key == ROTATE_RIGHT_E)
 		data->param.perso.angle += 0;
-	else if (key == FORWARD_W_Z || key == BACK_S_S || RIGHT_D_D || LEFT_A_Q)
+	else if (key == FORWARD_W || key == BACK_S || key == RIGHT_D || key ==LEFT_A)
 	{
 		data->param.perso.dirx = 0;
 		data->param.perso.diry = 0;

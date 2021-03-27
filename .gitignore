@@ -11,6 +11,7 @@
 
 #Executables
 a.out
+*.swp
 
 #Debug
 .dSYM/
