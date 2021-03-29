@@ -31,19 +31,19 @@ int	draw_rect(t_img *img, t_rect rect)
 int	draw_square(float i, float j, t_data *data, int color)
 {
 	t_rect rect;
-	float width;
-	float lenght;
+	int width;
+	int lenght;
 
-	lenght = 200 / 4 ;
-	width = 200 / 4;
-	rect.x = 15 + lenght * j;
-	rect.y = 15 + width * i;
-	rect.width = lenght;
-	rect.height = width;
+	lenght = data->param.resolution.axe_x / 32;
+	width = data->param.resolution.axe_y / 20;
+	rect.x = lenght * j;
+	rect.y = width * i;
+	rect.width = lenght - 1;
+	rect.height = width - 1;
 	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
-	draw_rect(&data->img, rect);
+	draw_rect(&data->img_minimap, rect);
 	if (color == 0xFD6C9E)
 		draw_line(data, rect);
 	return (0);
@@ -51,18 +51,20 @@ int	draw_square(float i, float j, t_data *data, int color)
 
 int	draw_line(t_data *data, t_rect rect)
 {
-	float dist;
-	float lenght;
+	int dist;
+	int lenght;
 	int	x;
 	int y;
 
-	lenght = 80;
+	lenght = data->param.resolution.axe_x / 15;
 	dist = 0;
 	while (dist < lenght)
 	{
-		x = rect.x + rect.width / 2 + dist * cos(data->param.perso.angle * M_PI / 180);
-		y = rect.y + rect.width / 2 + dist * sin(data->param.perso.angle * M_PI / 180);
-		img_pix_put(&data->img, x, y, RED_PIXEL);
+		x = rect.x + rect.width / 2 + dist * cos(data->param.perso.angle *
+				M_PI / 180);
+		y = rect.y + rect.width / 2 + dist * sin(data->param.perso.angle *
+				M_PI / 180);
+		img_pix_put(&data->img_minimap, x, y, RED_PIXEL);
 		dist++;
 	}
 	return (0);
