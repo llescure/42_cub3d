@@ -34,10 +34,10 @@ int	draw_square(float i, float j, t_data *data, int color)
 	int width;
 	int lenght;
 
-	lenght = data->param.resolution.axe_x / 20;
-	width = data->param.resolution.axe_x / 20;
-	rect.x = 15 + lenght * j;
-	rect.y = 15 + width * i;
+	lenght = data->param.resolution.axe_x / 32;
+	width = data->param.resolution.axe_y / 20;
+	rect.x = lenght * j;
+	rect.y = width * i;
 	rect.width = lenght - 1;
 	rect.height = width - 1;
 	rect.color = color;

@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/03/29 15:43:39 by llescure         ###   ########.fr       */
+/*   Updated: 2021/03/29 18:17:42 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	launch_hook(t_data *data)
 		move_perso(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img_minimap.img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+			data->img_minimap.img, data->param.resolution.axe_x / 2, 0);
 	mlx_destroy_image(data->mlx_ptr, data->img_minimap.img);
 	data->img_minimap.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
