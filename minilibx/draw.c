@@ -36,8 +36,8 @@ int	draw_square(float i, float j, t_data *data, int color)
 
 	lenght = 200 / 4 ;
 	width = 200 / 4;
-	rect.x = 5 + lenght * j;
-	rect.y = 5 + width * i;
+	rect.x = 15 + lenght * j;
+	rect.y = 15 + width * i;
 	rect.width = lenght;
 	rect.height = width;
 	rect.color = color;
