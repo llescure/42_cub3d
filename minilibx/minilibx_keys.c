@@ -45,10 +45,7 @@ int	press_key(int key, t_data *data)
 
 int	release_key(int key, t_data *data)
 {
-	if (key == ROTATE_LEFT_ARROW || key == ROTATE_RIGHT_ARROW ||
-			key == ROTATE_LEFT_Q || key == ROTATE_RIGHT_E)
-		data->param.perso.angle += 0;
-	else if (key == FORWARD_W || key == BACK_S || key == RIGHT_D || key ==LEFT_A)
+	if (key == FORWARD_W || key == BACK_S || key == RIGHT_D || key == LEFT_A)
 	{
 		data->param.perso.dirx = 0;
 		data->param.perso.diry = 0;
