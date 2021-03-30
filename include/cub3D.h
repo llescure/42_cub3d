@@ -82,5 +82,6 @@ int	move_perso(t_data *data);
 int	close_window(int key, t_data *data);
 int	launch_hook(t_data *data);
 int	initialize_mlx(t_data *data);
+int	create_window(t_data *data);
 
 #endif

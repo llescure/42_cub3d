@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/03/30 15:27:24 by llescure         ###   ########.fr       */
+/*   Updated: 2021/03/30 17:29:30 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,33 @@ int	launch_hook(t_data *data)
 	data->img.addr = mlx_get_data_addr(data->img.img,
 			&data->img.bits_per_pixel, &data->img.line_lenght,
 			&data->img.endian);
+	return (0);
+}
+
+int	create_window(t_data *data)
+{
+	int lenght;
+	int width;
+
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+	{
+		printf("ERROR\nCouldn't start mlx_init");
+		return (-1);
+	}
+	mlx_get_screen_size(data->mlx_ptr, &lenght, &width);
+	if (lenght < data->param.resolution.axe_x)
+		data->param.resolution.axe_x = lenght;
+	if (width < data->param.resolution.axe_y)
+		data->param.resolution.axe_y = width;
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->param.resolution.axe_x,
+			data->param.resolution.axe_y, "my window");
+	if (data->win_ptr == NULL)
+	{
+		free(data->win_ptr);
+		printf("ERROR\nCouldn't open a window");
+		return (-1);
+	}
 	return (0);
 }
 
