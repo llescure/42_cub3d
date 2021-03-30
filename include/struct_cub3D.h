@@ -113,8 +113,7 @@ typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img	img_minimap;
-	t_img	img_main;
+	t_img	img;
 	t_param	param;
 }			t_data;
 

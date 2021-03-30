@@ -43,7 +43,7 @@ int	draw_square(float i, float j, t_data *data, int color)
 	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
-	draw_rect(&data->img_minimap, rect);
+	draw_rect(&data->img, rect);
 	if (color == 0xFD6C9E)
 		draw_line(data, rect);
 	return (0);
@@ -64,7 +64,7 @@ int	draw_line(t_data *data, t_rect rect)
 				M_PI / 180);
 		y = rect.y + rect.width / 2 + dist * sin(data->param.perso.angle *
 				M_PI / 180);
-		img_pix_put(&data->img_minimap, x, y, RED_PIXEL);
+		img_pix_put(&data->img, x, y, RED_PIXEL);
 		dist++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/03/29 18:17:42 by llescure         ###   ########.fr       */
+/*   Updated: 2021/03/30 13:56:21 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,13 @@ int	launch_hook(t_data *data)
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->img_minimap.img, 0, 0);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->img_minimap.img, data->param.resolution.axe_x / 2, 0);
-	mlx_destroy_image(data->mlx_ptr, data->img_minimap.img);
-	data->img_minimap.img = mlx_new_image(data->mlx_ptr,
+			data->img.img, 0, 0);
+	mlx_destroy_image(data->mlx_ptr, data->img.img);
+	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
-	data->img_minimap.addr = mlx_get_data_addr(data->img_minimap.img,
-			&data->img_minimap.bits_per_pixel, &data->img_minimap.line_lenght,
-			&data->img_minimap.endian);
+	data->img.addr = mlx_get_data_addr(data->img.img,
+			&data->img.bits_per_pixel, &data->img.line_lenght,
+			&data->img.endian);
 	return (0);
 }
