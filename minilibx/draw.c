@@ -49,6 +49,19 @@ int	draw_square(float i, float j, t_data *data, int color)
 	return (0);
 }
 
+int	draw_column(int beginning, int end, int pos_x, t_data *data)
+{
+	int i;
+
+	i = beginning;
+	while (i < end)
+	{
+		img_pix_put(&data->img, pos_x, i, RED_PIXEL);
+		i++;
+	}
+	return (0);
+}
+
 int	draw_line(t_data *data, t_rect rect)
 {
 	int dist;
@@ -56,7 +69,7 @@ int	draw_line(t_data *data, t_rect rect)
 	int	x;
 	int y;
 
-	lenght = data->param.resolution.axe_x / 15;
+	lenght = data->param.resolution.axe_x / 20;
 	dist = 0;
 	while (dist < lenght)
 	{
