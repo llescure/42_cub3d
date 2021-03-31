@@ -1,5 +1,5 @@
 #include <math.h>
-#include "minilibx/mlx.h"
+#include "../parsing/minilibx/mlx.h"
 
 typedef struct	s_mlx
 {
@@ -82,7 +82,7 @@ int main()
 //start the main loop
   while (1)
   {
-    for(int x = 0; x < 1080; x++) // w = resolution maximmal de x
+    for(int x = 0; x < 600; x++) // w = resolution maximmal de x
     {
 
       //calculate ray position and direction
@@ -203,6 +203,7 @@ int main()
 	        case 4:  color = RGB_White;  break; //white
 	        default: color = RGB_Yellow; break; //yellow
 		}*/
+		printf("drawend = %i, drawstart = %i\n", drawEnd, drawStart);
 		display(x, drawEnd, drawStart, color, mlx.img_data, 1080);
 	}
 	mlx_clear_window ( mlx.mlx_ptr, mlx.win_ptr );

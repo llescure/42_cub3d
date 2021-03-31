@@ -8,10 +8,10 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include "../Libft/libft.h"
-# include "../minilibx-linux/mlx.h"
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include <X11/Xlib.h>
+//# include "../minilibx-linux/mlx.h"
+//# include <X11/keysym.h>
+//# include <X11/X.h>
+//# include <X11/Xlib.h>
 # include <math.h>
 
 # define KRED  "\x1B[31m"
@@ -71,6 +71,14 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
+typedef struct	s_mlx
+{
+	int key;
+	void *mlx_ptr;
+	void *win_ptr;
+	void *img_ptr;
+	char *img_data;
+}				t_mlx;
 
 typedef struct s_img
 {
@@ -83,29 +91,29 @@ typedef struct s_img
 
 typedef struct	s_ray
 {
-   double		posx; //position x du joueur
-   double		posy; //position y du joueur
-   double		dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
-   double		diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
-   double		planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
-   double		plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
-   double		raydirx; //calcul de direction x du rayon
-   double		raydiry; //calcul de direction y du rayon
-   double		camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
-   int			mapx; // coordonée x du carré dans lequel est pos
-   int			mapy; // coordonnée y du carré dans lequel est pos
-   double		sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
-   double		sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
-   double		deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
-   double		deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
-   int			stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
-   int			stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
+   double		posX; //position x du joueur
+   double		posY; //position y du joueur
+   double		dirX; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
+   double		dirY; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
+   double		planX; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
+   double		planY; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
+   double		rayDirX; //calcul de direction x du rayon
+   double		rayDirY; //calcul de direction y du rayon
+   double		cameraX; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
+   int			mapX; // coordonée x du carré dans lequel est pos
+   int			mapY; // coordonnée y du carré dans lequel est pos
+   double		sideDistX; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
+   double		sideDistY; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
+   double		deltaDistX; //distance que rayon parcours entre chaque point d'intersection vertical
+   double		deltaDistY; //distance que le rayon parcours entre chaque point d'intersection horizontal
+   int			stepX; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
+   int			stepY; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
    int			hit; // 1 si un mur a ete touche, 0 sinon
    int			side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
-   double		perpwalldist; // distance du joueur au mur
-   int			lineheight; //hauteur de la ligne a dessiner
-   int			drawstart; //position de debut ou il faut dessiner
-   int			drawend; //position de fin ou il faut dessiner
+   double		perpWallDist; // distance du joueur au mur
+   int			lineHeight; //hauteur de la ligne a dessiner
+   int			drawStart; //position de debut ou il faut dessiner
+   int			drawEnd; //position de fin ou il faut dessiner
    int			x; //permet de parcourir tous les rayons
 }	t_ray ;
 

@@ -4,9 +4,11 @@
 int		manage_perso(char **map, t_param *param)
 {
 	int i;
+	int j;
 	int result;
 
 	i = 0;
+	j = 0;
 	result = 0;
 	while (i < param->map.nb_lines)
 	{
@@ -14,11 +16,18 @@ int		manage_perso(char **map, t_param *param)
 		{
 			param->perso.position_y = i;
 			result++;
+			while (map[i][j] != '\0')
+			{
+				if (ft_isalpha(map[i][j]) == 1)
+					param->map.tab_map[i][j] = '0';
+				j++;
+			}
 		}
 		i++;
 	}
 	if (result != 1)
 		print_error(param, "Wrong number of characters in the map");
+	i = 0;
 	printf("CHARACTER : [OK]\n");
 	return (0);
 }

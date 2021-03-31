@@ -29,18 +29,18 @@ char *only_map(char *str, t_param *param);
 char **save_map(char **str, int nb_lines, int length);
 char **creation_table_map(char **str, t_param *param);
 int check_end_walls(char *str, int length, t_param *param);
-char     *check_space_in_map(char *str);
+char	*check_space_in_map(char *str);
 int check_symbols(char *str, t_param *param);
-int     check_void_line_map(char *str, t_param *param);
+int	check_void_line_map(char *str, t_param *param);
 int check_holes_walls(char **map, int nb_lines, int length, t_param *param);
 int check_first_last_string_map(char *str, t_param *param);
 
 int check_all_para(t_param *param, char **tab_param);
 int p_orientation_position(char *map, t_param *param, int position, int i);
-int     manage_perso(char **map, t_param *param);
+int	manage_perso(char **map, t_param *param);
 int manage_param(char *str, t_param *param);
 int parameters_map(char *str, t_param *param);
-int     only_params(char *str, t_param *param);
+int	only_params(char *str, t_param *param);
 int check_address_parameters(char *str, t_param *param);
 
 char *save_param_numbers(char *str, char *res, int i);
@@ -53,17 +53,15 @@ void free_address_params(t_param *params);
 
 /*Raycasting*/
 
-int raycasting(t_data *data);
-int print_ray(t_ray *ray);
-int initialisation_orientation(t_param *param, t_ray *ray);
-t_param initialize(int argc, char **argv);
+int		raycasting(t_param *param, t_ray *ray);
+void 	init(t_param *param);
+int		print_ray(t_ray *ray);
+int		initialisation_orientation(t_param *param, t_ray *ray);
+void    display(int x, double haut, double bas, t_colour color, char *img_data, int res);
+t_param	initialize(int argc, char **argv);
 
 /*DRAW3D*/
 
-void 		init(t_param *param);
-void 		drawrays3D(double pa, double px, double py, t_param *param);
-double		distance(double ax, double ay, double bx, double by, double ra);
-int			fixAngle(int a);
 
 /*Minilibx*/
 
