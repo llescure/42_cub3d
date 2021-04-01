@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/03/30 17:29:30 by llescure         ###   ########.fr       */
+/*   Updated: 2021/04/01 15:28:33 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,25 @@
 
 int	move_perso(t_data *data)
 {
+	float speed;
+
+	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
+		speed = data->param.resolution.axe_x / (15.0 *
+				data->param.resolution.axe_x);
+	else
+		speed = data->param.resolution.axe_y / (15.0 *
+				data->param.resolution.axe_y);
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * 0.1)][(int)
-			(data->param.perso.position_x + data->param.perso.dirx * 0.1)]
+				data->param.perso.diry * speed)][(int)
+			(data->param.perso.position_x + data->param.perso.dirx * speed)]
 			== '0' || data->param.map.tab_map[(int)
-			(data->param.perso.position_y + data->param.perso.diry * 0.1)]
+			(data->param.perso.position_y + data->param.perso.diry * speed)]
 			[(int)(data->param.perso.position_x +
-				data->param.perso.dirx * 0.1)] ==
+				data->param.perso.dirx * speed)] ==
 			data->param.perso.orientation)
 	{
-		data->param.perso.position_x +=	data->param.perso.dirx * 0.1;
-		data->param.perso.position_y +=	data->param.perso.diry * 0.1;
+		data->param.perso.position_x +=	data->param.perso.dirx * speed;
+		data->param.perso.position_y +=	data->param.perso.diry * speed;
 	}
 	return (0);
 }
@@ -35,7 +43,7 @@ int	launch_hook(t_data *data)
 	if (data->win_ptr == NULL)
 		return (-1);
 	draw_minimap(data);
-	draw_column(data->param.resolution.axe_y /2, data->param.resolution.axe_y, data->param.resolution.axe_x / 2, data);
+//	draw_column(data->param.resolution.axe_y /2, data->param.resolution.axe_y, data->param.resolution.axe_x / 2, data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,

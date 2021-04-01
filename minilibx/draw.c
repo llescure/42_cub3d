@@ -31,15 +31,16 @@ int	draw_rect(t_img *img, t_rect rect)
 int	draw_square(float i, float j, t_data *data, int color)
 {
 	t_rect rect;
-	int width;
 	int lenght;
 
-	lenght = data->param.resolution.axe_x / 32;
-	width = data->param.resolution.axe_y / 20;
+	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
+		lenght = data->param.resolution.axe_x / 68;
+	else
+		lenght = data->param.resolution.axe_y / 68;
 	rect.x = lenght * j;
-	rect.y = width * i;
+	rect.y = lenght * i;
 	rect.width = lenght - 1;
-	rect.height = width - 1;
+	rect.height = lenght - 1;
 	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
@@ -69,13 +70,13 @@ int	draw_line(t_data *data, t_rect rect)
 	int	x;
 	int y;
 
-	lenght = data->param.resolution.axe_x / 20;
+	lenght = rect.width;
 	dist = 0;
 	while (dist < lenght)
 	{
 		x = rect.x + rect.width / 2 + dist * cos(data->param.perso.angle *
 				M_PI / 180);
-		y = rect.y + rect.width / 2 + dist * sin(data->param.perso.angle *
+		y = rect.y + rect.height / 2 + dist * sin(data->param.perso.angle *
 				M_PI / 180);
 		img_pix_put(&data->img, x, y, RED_PIXEL);
 		dist++;
