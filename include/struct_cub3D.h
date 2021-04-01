@@ -9,9 +9,9 @@
 # include <fcntl.h>
 # include "../Libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-# include <X11/keysym.h>
-# include <X11/X.h>
-# include <X11/Xlib.h>
+// # include <X11/keysym.h>
+// # include <X11/X.h>
+// # include <X11/Xlib.h>
 # include <math.h>
 
 # define KRED  "\x1B[31m"
