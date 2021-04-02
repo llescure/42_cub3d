@@ -38,6 +38,10 @@ int raycasting(t_data *data, t_ray *ray)
 {
 	int x = 0;
 
+	ray->planY = sin(data->param.perso.angle * M_PI / 180);
+	ray->planX = cos(data->param.perso.angle * M_PI / 180);
+	printf("planx= %f\n", ray->planX);
+	printf("plany= %f\n", ray->planY);
 	while(x < data->param.resolution.axe_x)
 	{
 		// printf("resolution x = %i, resolution y = %i\n", param->resolution.axe_x, param->resolution.axe_y);
@@ -144,48 +148,3 @@ int print_ray(t_ray *ray)
 	printf("drawend = %i\n", ray->drawEnd);
 	return (0);
 }
-
-void		move_map_keys()
-{
-	int moveSpeed = 0.1;
-	int rotSpeed = 0.15;
-	readKeys();
-    //move forward if no wall in front of you
-    if (keyDown(SDLK_UP))
-    {
-      if(data->param.map.tab_map[int(ray->posX + ray->dirX * moveSpeed)][int(ray->posY)] == NULL)
-	  		ray->posX += ray->dirX * moveSpeed;
-      if(data->param.map.tab_map[int(ray->posX)][int(ray->posY + ray->dirY * moveSpeed)] == NULL)
-	  		ray->posY += ray->dirY * moveSpeed;
-    }
-    //move backwards if no wall behind you
-    if (keyDown(SDLK_DOWN))
-    {
-      if(data->param.map.tab_map[int(ray->posX - ray->dirX * moveSpeed)][int(ray->posY)] == NULL)
-	  		ray->posX -= ray->dirX * moveSpeed;
-      if(data->param.map.tab_map[int(ray->posX)][int(ray->posY - ray->dirY * moveSpeed)] == NULL)
-	  		ray->posY -= ray->dirY * moveSpeed;
-    }
-    //rotate to the right
-    if (keyDown(SDLK_RIGHT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = ray->dirX;
-      ray->dirX = ray->dirX * cos(-rotSpeed) - ray->dirY * sin(-rotSpeed);
-      ray->dirY = oldDirX * sin(-rotSpeed) + ray->dirY * cos(-rotSpeed);
-      double oldPlanX = ray->planeX;
-      ray->planX = ray->planX * cos(-rotSpeed) - ray->planY * sin(-rotSpeed);
-      ray->planY = oldPlanX * sin(-rotSpeed) + ray->planY * cos(-rotSpeed);
-    }
-    //rotate to the left
-    if (keyDown(SDLK_LEFT))
-    {
-      //both camera direction and camera plane must be rotated
-      double oldDirX = ray->dirX;
-      ray->dirX = ray->dirX * cos(rotSpeed) - ray->dirY * sin(rotSpeed);
-      ray->dirY = oldDirX * sin(rotSpeed) + ray->dirY * cos(rotSpeed);
-      double oldPlanX = ray->planX;
-      ray->planX = ray->planX * cos(rotSpeed) - ray->planY * sin(rotSpeed);
-      ray->planY = oldPlanX * sin(rotSpeed) + ray->planY * cos(rotSpeed);
-    }
-  }

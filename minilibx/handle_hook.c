@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/04/02 15:40:04 by llescure         ###   ########.fr       */
+/*   Updated: 2021/04/02 17:32:55 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ int	move_perso(t_data *data)
 
 int	launch_hook(t_data *data)
 {
-	data->ray.posX = (double)data->param.perso.position_y - 0.5; // + 0.5 pour corriger position sur le bloc
-	data->ray.posY = (double)data->param.perso.position_x - 0.5;
+	data->ray.posX = (double)data->param.perso.position_y;
+	data->ray.posY = (double)data->param.perso.position_x;
 	if (data->win_ptr == NULL)
 		return (-1);
-	draw_minimap(data);
 	raycasting(data, &data->ray);
+	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
