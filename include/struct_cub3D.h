@@ -9,9 +9,9 @@
 # include <fcntl.h>
 # include "../Libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-// # include <X11/keysym.h>
-// # include <X11/X.h>
-// # include <X11/Xlib.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
 # include <math.h>
 
 # define KRED  "\x1B[31m"
@@ -71,15 +71,6 @@ typedef struct	s_param {
 	t_perso			perso;
 }	t_param ;
 
-typedef struct	s_mlx
-{
-	int key;
-	void *mlx_ptr;
-	void *win_ptr;
-	void *img_ptr;
-	char *img_data;
-}				t_mlx;
-
 typedef struct s_img
 {
 	void	*img;
@@ -123,6 +114,7 @@ typedef struct s_data
 	void	*win_ptr;
 	t_img	img;
 	t_param	param;
+	t_ray	ray;
 }			t_data;
 
 typedef struct s_rect

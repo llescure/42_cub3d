@@ -1,14 +1,5 @@
 #include "../include/struct_cub3D.h"
 #include "../include/cub3D.h"
-#include "../parsing/minilibx/mlx.h"
-#include <math.h>
-
-double	val_abs(double t)
-{
-	if (t < 0)
-		t = -t;
-	return (t);
-}
 
 int		initialisation_orientation(t_param *param, t_ray *ray)
 {
@@ -43,22 +34,14 @@ int		initialisation_orientation(t_param *param, t_ray *ray)
 	return (0);
 }
 
-int raycasting(t_param *param, t_ray *ray)
+int raycasting(t_data *data, t_ray *ray)
 {
 	int x = 0;
-	t_colour color;
-	t_mlx mlx;
-	int osef = 250;
 
-	mlx.mlx_ptr = mlx_init();
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, param->resolution.axe_x, param->resolution.axe_y, "allez kiki");
-	mlx.img_ptr = mlx_new_image(mlx.mlx_ptr, param->resolution.axe_x, param->resolution.axe_y);
-	mlx.img_data = mlx_get_data_addr(mlx.img_ptr, &osef, &osef, &osef);
-
-	while(x < param->resolution.axe_x)
+	while(x < data->param.resolution.axe_x)
 	{
 		// printf("resolution x = %i, resolution y = %i\n", param->resolution.axe_x, param->resolution.axe_y);
-		ray->cameraX = 2 * x / (double)param->resolution.axe_x - 1; //x-coordinate in camera space // camerax
+		ray->cameraX = 2 * x / (double)data->param.resolution.axe_x - 1; //x-coordinate in camera space // camerax
 		// printf("cameraX = %f\n", ray->cameraX);
 		ray->rayDirY = ray->dirX + ray->planX * ray->cameraX; //raydirx
 		ray->rayDirX = ray->dirY + ray->planY * ray->cameraX;//raydiry
@@ -107,7 +90,7 @@ int raycasting(t_param *param, t_ray *ray)
 				ray->mapY += ray->stepY;
 				ray->side = 1;
 			}
-			if(param->map.tab_map[ray->mapX][ray->mapY] > '0')
+			if(data->param.map.tab_map[ray->mapX][ray->mapY] > '0')
 				ray->hit = 1;
 		}
 		// printf("hit = %i\n", ray->hit);
@@ -121,54 +104,23 @@ int raycasting(t_param *param, t_ray *ray)
 			ray->perpWallDist = 0.1;
 		// if (ray->perpWallDist == 0)
 		// 	ray->perpWallDist = 10;
-		ray->lineHeight = (int)(param->resolution.axe_y / ray->perpWallDist);
-		ray->drawStart = -ray->lineHeight / 2 + param->resolution.axe_y / 2;
+		ray->lineHeight = (int)(data->param.resolution.axe_y / ray->perpWallDist);
+		ray->drawStart = -ray->lineHeight / 2 + data->param.resolution.axe_y / 2;
 		if(ray->drawStart < 0)
 			ray->drawStart = 0;
-		ray->drawEnd = ray->lineHeight / 2 + param->resolution.axe_y / 2;
-		if(ray->drawEnd >= param->resolution.axe_y)
-			ray->drawEnd = param->resolution.axe_y - 1;
+		ray->drawEnd = ray->lineHeight / 2 + data->param.resolution.axe_y / 2;
+		if(ray->drawEnd >= data->param.resolution.axe_y)
+			ray->drawEnd = data->param.resolution.axe_y - 1;
 		// printf("lineHeight = %d, drawStart = %d, drawEnd = %d\n\n", ray->lineHeight, ray->drawStart, ray->drawEnd);
 		// 	exit (0);
-		if (param->map.tab_map[(int)ray->posX][(int)ray->posY] == '1')
-		{
-			color.red = 255;
-			color.green = 0;
-			color.blue = 0;
-		}
-		else if (param->map.tab_map[(int)ray->posX][(int)ray->posY] == '2')
-		{
-			color.red = 0;
-			color.green = 255;
-			color.blue = 0;
-		}
-		else if (param->map.tab_map[(int)ray->posX][(int)ray->posY] == '3')
-		{
-			color.red = 0;
-			color.green = 0;
-			color.blue = 255;
-		}
-		else if (param->map.tab_map[(int)ray->posX][(int)ray->posY] == '4')
-		{
-			color.red = 255;
-			color.green = 255;
-			color.blue = 255;
-		}
-		else
-		{
-			color.red = 127;
-			color.green = 127;
-			color.blue = 127;
-		}
 		// print_ray(ray);
-		display(x, ray->drawEnd, ray->drawStart, color, mlx.img_data, param->resolution.axe_x);
+		draw_column(ray->drawStart, ray->drawEnd, x, data);
+		//display(x, ray->drawEnd, ray->drawStart, color, mlx.img_data, param->resolution.axe_x);
 // if (x == 200)
 // 	exit(0);
 		x++;
 	}
-	mlx_clear_window (mlx.mlx_ptr, mlx.win_ptr );
-	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.img_ptr, 0, 0);
-	mlx_loop(mlx.mlx_ptr);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	return (0);
 }
 
@@ -191,33 +143,4 @@ int print_ray(t_ray *ray)
 	printf("drawstart = %i\n", ray->drawStart);
 	printf("drawend = %i\n", ray->drawEnd);
 	return (0);
-}
-
-/*char	*ft_windowname(char *file)
-{
-	int		i;
-	char	*ret;
-
-	i = 0;
-	while (file[i + 4])
-		i++;
-	if (!(ret = malloc(sizeof(char) * i + 1)))
-		return (NULL);
-	ret[i] = '\0';
-	i = 0;
-	while (file[i + 4])
-	{
-		ret[i] = file[i];
-		i++;
-	}
-	return (ret);
-}*/
-
-void init(t_param *param)
-{
-	t_ray ray;
-	ray.posX = (double)param->perso.position_y + 0.5; // + 0.5 pour corriger position sur le bloc
-	ray.posY = (double)param->perso.position_x + 0.5;
-	initialisation_orientation(param, &ray);
-	raycasting(param, &ray);
 }

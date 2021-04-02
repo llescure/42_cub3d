@@ -39,8 +39,8 @@ int	draw_square(float i, float j, t_data *data, int color)
 		lenght = data->param.resolution.axe_y / 68;
 	rect.x = lenght * j;
 	rect.y = lenght * i;
-	rect.width = lenght - 1;
-	rect.height = lenght - 1;
+	rect.width = lenght;
+	rect.height = lenght;
 	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
