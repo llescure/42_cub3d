@@ -38,8 +38,11 @@ int raycasting(t_data *data, t_ray *ray)
 {
 	int x = 0;
 
-	ray->planY = sin(data->param.perso.angle * M_PI / 180);
-	ray->planX = cos(data->param.perso.angle * M_PI / 180);
+/*	ray->planX = sin(-data->param.perso.angle * M_PI / 180);
+	ray->planY = cos(-data->param.perso.angle * M_PI / 180);
+	ray->dirX =	data->param.perso.dirx;
+	ray->dirY =	data->param.perso.diry;
+	*/
 	printf("planx= %f\n", ray->planX);
 	printf("plany= %f\n", ray->planY);
 	while(x < data->param.resolution.axe_x)
@@ -148,3 +151,4 @@ int print_ray(t_ray *ray)
 	printf("drawend = %i\n", ray->drawEnd);
 	return (0);
 }
+

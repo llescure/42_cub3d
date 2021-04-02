@@ -20,7 +20,7 @@ int	press_key(int key, t_data *data)
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;
 	}
-	else if (key == FORWARD_W)
+	if (key == FORWARD_W)
 	{
 		data->param.perso.dirx = 1 * cos(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = 1 * sin(data->param.perso.angle * M_PI / 180);
@@ -39,6 +39,48 @@ int	press_key(int key, t_data *data)
 	{
 		data->param.perso.dirx = -1 * sin(data->param.perso.angle * M_PI / 180);
 		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
+	}
+
+	int moveSpeed = 0.1;
+	int rotSpeed = 0.15;
+	//move forward if no wall in front of you
+
+	if (key == FORWARD_W)
+	{
+		if(data->param.map.tab_map[(int)(data->ray.posX + data->ray.dirX * moveSpeed)][(int)(data->ray.posY)] == '0')
+			data->ray.posX += data->ray.dirX * moveSpeed;
+		if(data->param.map.tab_map[(int)(data->ray.posX)][(int)(data->ray.posY + data->ray.dirY * moveSpeed)] == '0')
+			data->ray.posY += data->ray.dirY * moveSpeed;
+	}
+	//move backwards if no wall behind you
+	if (key == BACK_S)
+	{
+		if(data->param.map.tab_map[(int)(data->ray.posX - data->ray.dirX * moveSpeed)][(int)(data->ray.posY)] == '0')
+			data->ray.posX -= data->ray.dirX * moveSpeed;
+		if(data->param.map.tab_map[(int)(data->ray.posX)][(int)(data->ray.posY - data->ray.dirY * moveSpeed)] == '0')
+			data->ray.posY -= data->ray.dirY * moveSpeed;
+	}
+	//rotate to the right
+	if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
+	{
+		//both camera direction and camera plane must be rotated
+		double oldDirX = data->ray.dirX;
+		data->ray.dirX = data->ray.dirX * cos(-rotSpeed) - data->ray.dirY * sin(-rotSpeed);
+		data->ray.dirY = oldDirX * sin(-rotSpeed) + data->ray.dirY * cos(-rotSpeed);
+		double oldPlanX = data->ray.planX;
+		data->ray.planX = data->ray.planX * cos(-rotSpeed) - data->ray.planY * sin(-rotSpeed);
+		data->ray.planY = oldPlanX * sin(-rotSpeed) + data->ray.planY * cos(-rotSpeed);
+	}
+	//rotate to the left
+	if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
+	{
+		//both camera direction and camera plane must be rotated
+		double oldDirX = data->ray.dirX;
+		data->ray.dirX = data->ray.dirX * cos(rotSpeed) - data->ray.dirY * sin(rotSpeed);
+		data->ray.dirY = oldDirX * sin(rotSpeed) + data->ray.dirY * cos(rotSpeed);
+		double oldPlanX = data->ray.planX;
+		data->ray.planX = data->ray.planX * cos(rotSpeed) - data->ray.planY * sin(rotSpeed);
+		data->ray.planY = oldPlanX * sin(rotSpeed) + data->ray.planY * cos(rotSpeed);
 	}
 	return (0);
 }
