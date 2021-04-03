@@ -7,6 +7,7 @@ int	press_key(int key, t_data *data)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
+		free_address_params(&data->param);
 	}
 	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
@@ -99,5 +100,6 @@ int	click_close(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
+	free_address_params(&data->param);
 	return (0);
 }
