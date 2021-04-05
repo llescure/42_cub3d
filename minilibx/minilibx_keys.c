@@ -42,7 +42,7 @@ int	press_key(int key, t_data *data)
 		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
 	}
 
-	int moveSpeed = 0.15;
+	int moveSpeed = 0.1;
 	int rotSpeed = 0.15;
 	//move forward if no wall in front of you
 

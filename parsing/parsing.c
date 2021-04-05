@@ -3,6 +3,8 @@
 
 void		free_address_params(t_param *param)
 {
+	int i;
+
 	if (param->sprite)
 		free(param->sprite);
 	if (param->north_texture)
@@ -15,6 +17,13 @@ void		free_address_params(t_param *param)
 		free(param->west_texture);
 	if (param->map.map)
 		free(param->map.map);
+	i = 0;
+	while (i < param->map.nb_lines)
+	{
+		free(param->map.tab_map[i]);
+		i++;
+	}
+	free(param->map.tab_map);
 }
 
 t_param		initialize_structure(t_param *param, char *argv)

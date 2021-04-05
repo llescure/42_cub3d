@@ -1,4 +1,4 @@
-R 1080 1000
+R 2080 2000
 NO ./textures/redbrick.xpm
 SO ./textures/wood.xpm
 WE ./textures/wood.xpm

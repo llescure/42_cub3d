@@ -89,11 +89,4 @@ void	print_params(t_param *param)
 		printf("map[%i] = %s\n", i, param->map.tab_map[i]);
 		i++;
 	}
-	i = 0;
-/*	while (i < param->map.nb_lines)
-	{
-		free(param->map.tab_map[i]);
-		i++;
-	}
-	free(param->map.tab_map); // ICI FREE EN TROP ????*/
 }
