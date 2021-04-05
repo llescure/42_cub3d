@@ -9,6 +9,7 @@ int		initialisation_orientation(t_param *param, t_ray *ray)
 		ray->dirX = 0;
 		ray->planY = 0;
 		ray->planX = 0.66;
+		param->perso.angle = 90;
 	}
 	if (param->perso.orientation == 'S')
 	{
@@ -16,6 +17,7 @@ int		initialisation_orientation(t_param *param, t_ray *ray)
 		ray->dirX = 0;
 		ray->planY = 0;
 		ray->planX = -0.66;
+		param->perso.angle = 270;
 	}
 	if (param->perso.orientation == 'W')
 	{
@@ -23,6 +25,7 @@ int		initialisation_orientation(t_param *param, t_ray *ray)
 		ray->dirX = -1;
 		ray->planY = -0.66;
 		ray->planX = 0;
+		param->perso.angle = 180;
 	}
 	if (param->perso.orientation == 'E')
 	{
@@ -30,6 +33,7 @@ int		initialisation_orientation(t_param *param, t_ray *ray)
 		ray->dirX = 1;
 		ray->planY = 0.66;
 		ray->planX = 0;
+		param->perso.angle = 0;
 	}
 	return (0);
 }

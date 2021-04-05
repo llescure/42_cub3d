@@ -11,12 +11,24 @@ int	press_key(int key, t_data *data)
 	}
 	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
+		double oldDirX = data->ray.dirX;
+		data->ray.dirX = data->ray.dirX * cos(0.1) - data->ray.dirY * sin(0.1);
+		data->ray.dirY = oldDirX * sin(0.1) + data->ray.dirY * cos(0.1);
+		double oldPlanX = data->ray.planX;
+		data->ray.planX = data->ray.planX * cos(0.1) - data->ray.planY * sin(0.1);
+		data->ray.planY = oldPlanX * sin(0.1) + data->ray.planY * cos(0.1);
 		data->param.perso.angle -= 15;
 		if (data->param.perso.angle < 0)
 			data->param.perso.angle += 360;
 	}
 	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
+		double oldDirX = data->ray.dirX;
+		data->ray.dirX = data->ray.dirX * cos(-0.1) - data->ray.dirY * sin(-0.1);
+		data->ray.dirY = oldDirX * sin(-0.1) + data->ray.dirY * cos(-0.1);
+		double oldPlanX = data->ray.planX;
+		data->ray.planX = data->ray.planX * cos(-0.1) - data->ray.planY * sin(-0.1);
+		data->ray.planY = oldPlanX * sin(-0.1) + data->ray.planY * cos(0.1);
 		data->param.perso.angle += 15;
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;
@@ -42,7 +54,7 @@ int	press_key(int key, t_data *data)
 		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
 	}
 
-	int moveSpeed = 0.1;
+/*	int moveSpeed = 0.1;
 	int rotSpeed = 0.15;
 	//move forward if no wall in front of you
 
@@ -82,7 +94,7 @@ int	press_key(int key, t_data *data)
 		double oldPlanX = data->ray.planX;
 		data->ray.planX = data->ray.planX * cos(rotSpeed) - data->ray.planY * sin(rotSpeed);
 		data->ray.planY = oldPlanX * sin(rotSpeed) + data->ray.planY * cos(rotSpeed);
-	}
+	}*/
 	return (0);
 }
 
