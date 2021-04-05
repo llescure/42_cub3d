@@ -108,9 +108,9 @@ int	draw_minimap(t_data *data)
 		{
 			if (data->param.map.tab_map[i][j] == '2')
 				draw_square(i, j, data, GREEN_PIXEL);
-			else if (data->param.map.tab_map[i][j] != '1')
+			else if (data->param.map.tab_map[i][j] == '0')
 				draw_square(i, j, data, BLUE_PIXEL);
-			else if (data->param.map.tab_map[i][j] != '0')
+			else if (data->param.map.tab_map[i][j] == '1')
 				draw_square(i, j, data, 0x808080);
 			j++;
 		}

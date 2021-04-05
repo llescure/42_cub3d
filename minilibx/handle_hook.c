@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/04/05 12:13:02 by llescure         ###   ########.fr       */
+/*   Updated: 2021/04/05 18:45:04 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@ int	move_perso(t_data *data)
 	float speed;
 
 	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
-		speed = data->param.resolution.axe_x / (15.0 *
-				data->param.resolution.axe_x);
+		speed = 0.1;
 	else
-		speed = data->param.resolution.axe_y / (15.0 *
-				data->param.resolution.axe_y);
+		speed = 0.1;
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed)][(int)
 			(data->param.perso.position_x + data->param.perso.dirx * speed)]
@@ -35,8 +33,8 @@ int	move_perso(t_data *data)
 		data->param.perso.position_x +=	data->param.perso.dirx * speed;
 		data->param.perso.position_y +=	data->param.perso.diry * speed;
 	}
-//	printf("speed1: %f\n", data->param.perso.dirx * speed);
-//	printf("speed2: %f\n", data->param.perso.diry * speed);
+//	printf("speed1: %f\n", data->param.perso.dirx);
+//	printf("speed2: %f\n", data->param.perso.diry);
 	return (0);
 }
 

@@ -71,7 +71,6 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	sorting_map(map, para);
 	check_map(para->map.tab_map, para->map.nb_lines, para->map.max_length, para);
 	free(map);
-//	free(str);
 	return (0);
 }
 
@@ -111,6 +110,7 @@ t_param		initialize(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
+	free(str);
 	print_params(&param);
 	return (param);
 }
