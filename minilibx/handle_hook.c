@@ -6,7 +6,7 @@
 /*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/04/02 17:32:55 by llescure         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:13:02 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	move_perso(t_data *data)
 		data->param.perso.position_x +=	data->param.perso.dirx * speed;
 		data->param.perso.position_y +=	data->param.perso.diry * speed;
 	}
+//	printf("speed1: %f\n", data->param.perso.dirx * speed);
+//	printf("speed2: %f\n", data->param.perso.diry * speed);
 	return (0);
 }
 

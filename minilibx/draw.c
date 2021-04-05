@@ -55,10 +55,21 @@ int	draw_column(int beginning, int end, int pos_x, t_data *data)
 	int i;
 
 	i = beginning;
-	while (i < end)
+	if (data->ray.hit == 1)
 	{
-		img_pix_put(&data->img, pos_x, i, RED_PIXEL);
-		i++;
+		while (i < end)
+		{
+			img_pix_put(&data->img, pos_x, i, 0x808080);
+			i++;
+		}
+	}
+	if (data->ray.hit == 2)
+	{
+		while (i < end)
+		{
+			img_pix_put(&data->img, pos_x, i, GREEN_PIXEL);
+			i++;
+		}
 	}
 	return (0);
 }

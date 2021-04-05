@@ -43,8 +43,8 @@ int raycasting(t_data *data, t_ray *ray)
 	ray->dirX =	data->param.perso.dirx;
 	ray->dirY =	data->param.perso.diry;
 	*/
-	printf("planx= %f\n", ray->planX);
-	printf("plany= %f\n", ray->planY);
+//	printf("planx= %f\n", ray->planX);
+//	printf("plany= %f\n", ray->planY);
 	while(x < data->param.resolution.axe_x)
 	{
 		// printf("resolution x = %i, resolution y = %i\n", param->resolution.axe_x, param->resolution.axe_y);
@@ -97,8 +97,10 @@ int raycasting(t_data *data, t_ray *ray)
 				ray->mapY += ray->stepY;
 				ray->side = 1;
 			}
-			if(data->param.map.tab_map[ray->mapX][ray->mapY] > '0')
+			if(data->param.map.tab_map[ray->mapX][ray->mapY] == '1')
 				ray->hit = 1;
+			else if(data->param.map.tab_map[ray->mapX][ray->mapY] == '2')
+				ray->hit = 2;
 		}
 		// printf("hit = %i\n", ray->hit);
 		// printf("sideDistX = %f, sideDistY = %f, mapX = %d, mapY = %d, deltaDistX = %f, deltaDistY = %f, stepX = %d, stepY = %d, side = %i, hit = %i\n", ray->sideDistX, ray->sideDistY, ray->mapX, ray->mapY, ray->deltaDistX, ray->deltaDistY, ray->stepX, ray->stepY, ray->side, ray->hit);

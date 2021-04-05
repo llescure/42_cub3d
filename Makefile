@@ -6,7 +6,7 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/04/02 14:06:22 by llescure         ###   ########.fr        #
+#    Updated: 2021/04/05 11:02:30 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ $(NAME): $(OBJS)
 	@echo "$(PURPLE)Libft compiled$(RESET)"
 	if [ MLX_EXISTS=0 ]; then make -C minilibx-linux; fi;
 	@echo "$(PURPLE)Minilibx compiled$(RESET)"
-	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS) $(SAN))
+	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS))
 	@echo "$(GREEN)Compilation OK$(RESET)"
 
 all:  $(NAME)
@@ -81,5 +81,8 @@ fclean:  clean
 	@($(RM) $(NAME))
 
 re: fclean all
+
+san :
+	@(gcc -o $(NAME) -I include -I include/minilibx-linux $(SRCS) libft/libft.a minilibx-linux/libmlx.a $(FLAGS) $(CFLAGS) $(SAN))
 
 .PHONY: all clean fclean re
