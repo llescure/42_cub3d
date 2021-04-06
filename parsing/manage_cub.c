@@ -35,7 +35,7 @@ int		manage_perso(char **map, t_param *param)
 int		manage_param(char *str, t_param *param)
 {
 	if (str[0] == 'C' && str[1] == ' ')
-		colour_params_colour(str, param);
+		colour_params_ceiling(str, param);
 	if (str[0] == 'R' && str[1] == ' ')
 		resolution_param(str, param);
 	if (str[0] == 'S' && str[1] == ' ')
@@ -60,8 +60,9 @@ int		check_all_para(t_param *param, char **tab_param)
 	i = -1;
 	while (++i < 8)
 		manage_param(tab_param[i], param);
-	if (param->colour.red == -10 || param->colour.green == -10 ||
-			param->colour.blue == -10 || param->ground_colour.green == -10 ||
+	if (param->ceiling_colour.red == -10 || param->ceiling_colour.green == -10
+			|| param->ceiling_colour.blue == -10 ||
+			param->ground_colour.green == -10 ||
 			param->ground_colour.blue == -10 || param->ground_colour.red == -10)
 		print_error(param, "Missing colour");
 	if (param->resolution.axe_x == -10 || param->resolution.axe_y == -10)

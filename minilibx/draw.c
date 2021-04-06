@@ -45,7 +45,7 @@ int	draw_square(float i, float j, t_data *data, int color)
 	if (data->win_ptr == NULL)
 		return (1);
 	draw_rect(&data->img, rect);
-	if (color == 0xFD6C9E)
+	if (color == PINK_PIXEL)
 		draw_line(data, rect);
 	return (0);
 }
@@ -59,7 +59,7 @@ int	draw_column(int beginning, int end, int pos_x, t_data *data)
 	{
 		while (i < end)
 		{
-			img_pix_put(&data->img, pos_x, i, 0x808080);
+			img_pix_put(&data->img, pos_x, i, GREY_PIXEL);
 			i++;
 		}
 	}
@@ -70,6 +70,36 @@ int	draw_column(int beginning, int end, int pos_x, t_data *data)
 			img_pix_put(&data->img, pos_x, i, GREEN_PIXEL);
 			i++;
 		}
+	}
+	return (0);
+}
+
+int	draw_floor(int beginning, int end, int pos_x, t_data *data)
+{
+	int i;
+	int color;
+
+	color = conversion_RGB_to_hexa(data->param.ground_colour);
+	i = beginning;
+	while (i < end)
+	{
+		img_pix_put(&data->img, pos_x, i, color);
+		i++;
+	}
+	return (0);
+}
+
+int	draw_ceiling(int beginning, int end, int pos_x, t_data *data)
+{
+	int i;
+	int color;
+
+	color = conversion_RGB_to_hexa(data->param.ceiling_colour);
+	i = beginning;
+	while (i < end)
+	{
+		img_pix_put(&data->img, pos_x, i, color);
+		i++;
 	}
 	return (0);
 }
@@ -111,13 +141,13 @@ int	draw_minimap(t_data *data)
 			else if (data->param.map.tab_map[i][j] == '0')
 				draw_square(i, j, data, BLUE_PIXEL);
 			else if (data->param.map.tab_map[i][j] == '1')
-				draw_square(i, j, data, 0x808080);
+				draw_square(i, j, data, GREY_PIXEL);
 			j++;
 		}
 		i++;
 	}
 	i = data->param.perso.position_y;
 	j = data->param.perso.position_x;
-	draw_square(i, j, data, 0xFD6C9E);
+	draw_square(i, j, data, PINK_PIXEL);
 	return (0);
 }

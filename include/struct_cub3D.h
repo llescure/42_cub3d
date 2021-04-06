@@ -20,6 +20,8 @@
 #define RED_PIXEL 0xFF0000
 #define GREEN_PIXEL 0x00FF00
 #define BLUE_PIXEL 0x0000FF
+#define GREY_PIXEL 0x808080
+#define PINK_PIXEL 0xFD6C9E
 
 #define ROTATE_LEFT_ARROW 65361
 #define ROTATE_LEFT_Q 101
@@ -60,7 +62,7 @@ typedef struct	s_map {
 typedef struct	s_param {
 	char			*file;
 	t_map			map;
-	t_colour		colour;
+	t_colour		ceiling_colour;
 	t_resolution	resolution;
 	char			*sprite;
 	t_colour		ground_colour;
