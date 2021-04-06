@@ -31,12 +31,12 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->map.tab_map = NULL;
 	param->map.map = NULL;
 	param->file = argv;
-	param->colour.red = -10;
-	param->colour.blue = -10;
-	param->colour.green = -10;
-	param->ground_colour.red = -10;
-	param->ground_colour.blue = -10;
-	param->ground_colour.green = -10;
+	param->ceiling_colour.red = -10;
+	param->ceiling_colour.blue = -10;
+	param->ceiling_colour.green = -10;
+	param->floor_colour.red = -10;
+	param->floor_colour.blue = -10;
+	param->floor_colour.green = -10;
 	param->resolution.axe_x = -10;
 	param->resolution.axe_y = -10;
 	param->sprite = NULL;
@@ -111,6 +111,6 @@ t_param		initialize(int argc, char **argv)
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	free(str);
-	print_params(&param);
+	//print_params(&param);
 	return (param);
 }

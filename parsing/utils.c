@@ -60,19 +60,19 @@ int		ft_is_string(char *s1, char *s2)
 	return (0);
 }
 
-void	print_params(t_param *param)
+/*void	print_params(t_param *param)
 {
 	int i;
 
 	printf("fichier = %s\n", param->file);
 	printf("map = %s\n", param->map.map);
 	printf("nb_lines = %i\n", param->map.nb_lines);
-	printf("color_red : %i\n", param->colour.red);
-	printf("color_green : %i\n", param->colour.green);
-	printf("color_blue : %i\n", param->colour.blue);
-	printf("color_ground_red : %i\n", param->ground_colour.red);
-	printf("color_ground_green : %i\n", param->ground_colour.green);
-	printf("color_ground_blue : %i\n", param->ground_colour.blue);
+	printf("ceiling_color_red : %i\n", param->ceiling_colour.red);
+	printf("ceiling_color_green : %i\n", param->ceiling_colour.green);
+	printf("ceiling_color_blue : %i\n", param->ceiling_colour.blue);
+	printf("color_floor_red : %i\n", param->floor_colour.red);
+	printf("color_floor_green : %i\n", param->floor_colour.green);
+	printf("color_floor_blue : %i\n", param->floor_colour.blue);
 	printf("resolution_x : %i\n", param->resolution.axe_x);
 	printf("resolution_y : %i\n", param->resolution.axe_y);
 	printf("addrese sprite : %s\n", param->sprite);
@@ -89,4 +89,16 @@ void	print_params(t_param *param)
 		printf("map[%i] = %s\n", i, param->map.tab_map[i]);
 		i++;
 	}
+}*/
+
+int		conversion_RGB_to_hexa(t_colour colour)
+{
+	int red;
+	int green;
+	int blue;
+
+	red = colour.red;
+	green = colour.green;
+	blue = colour.blue;
+	return ((red<<16) | (green<<8) | blue);
 }

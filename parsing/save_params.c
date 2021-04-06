@@ -1,19 +1,20 @@
 #include "../include/cub3D.h"
 #include "../include/struct_cub3D.h"
 
-int		colour_params_colour(char *str, t_param *param)
+int		colour_params_ceiling(char *str, t_param *param)
 {
 	char	**par;
 	int		i;
 
 	i = 0;
 	par = ft_split(str, ',');
-	param->colour.red = ft_atoi_cub3d(par[0], 1, param);
-	param->colour.green = ft_atoi_cub3d(par[1], 0, param);
-	param->colour.blue = ft_atoi_cub3d(par[2], 0, param);
-	if ((param->colour.red < 0 || param->colour.red > 255) ||
-			(param->colour.green < 0 || param->colour.green > 255) ||
-			(param->colour.blue < 0 || param->colour.blue > 255))
+	param->ceiling_colour.red = ft_atoi_cub3d(par[0], 1, param);
+	param->ceiling_colour.green = ft_atoi_cub3d(par[1], 0, param);
+	param->ceiling_colour.blue = ft_atoi_cub3d(par[2], 0, param);
+	if ((param->ceiling_colour.red < 0 || param->ceiling_colour.red > 255) ||
+			(param->ceiling_colour.green < 0 || param->ceiling_colour.green >
+			 255) || (param->ceiling_colour.blue < 0 ||
+				 param->ceiling_colour.blue > 255))
 		print_error(param, "Wrong format of colour in the map");
 	while (i < 3)
 	{
@@ -24,20 +25,20 @@ int		colour_params_colour(char *str, t_param *param)
 	return (0);
 }
 
-int		colour_params_ground(char *str, t_param *param)
+int		colour_params_floor(char *str, t_param *param)
 {
 	int		i;
 	char	**par;
 
 	i = 0;
 	par = ft_split(str, ',');
-	param->ground_colour.red = ft_atoi_cub3d(par[0], 1, param);
-	param->ground_colour.green = ft_atoi_cub3d(par[1], 0, param);
-	param->ground_colour.blue = ft_atoi_cub3d(par[2], 0, param);
-	if ((param->ground_colour.green < 0 || param->ground_colour.green > 255) ||
-			(param->ground_colour.red < 0 || param->ground_colour.red > 255) ||
-			(param->ground_colour.blue < 0 || param->ground_colour.blue > 255))
-		print_error(param, "Wrong format of ground colour in the map");
+	param->floor_colour.red = ft_atoi_cub3d(par[0], 1, param);
+	param->floor_colour.green = ft_atoi_cub3d(par[1], 0, param);
+	param->floor_colour.blue = ft_atoi_cub3d(par[2], 0, param);
+	if ((param->floor_colour.green < 0 || param->floor_colour.green > 255) ||
+			(param->floor_colour.red < 0 || param->floor_colour.red > 255) ||
+			(param->floor_colour.blue < 0 || param->floor_colour.blue > 255))
+		print_error(param, "Wrong format of floor colour in the map");
 	while (i < 3)
 	{
 		free(par[i]);

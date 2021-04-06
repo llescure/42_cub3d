@@ -11,6 +11,7 @@ int ft_atoi_cub3d(char *str, int i, t_param *param);
 char     **malloc_tab(t_param *param);
 int find_str_beginning(char *s1, char *s2);
 int find_str_end(char *s1, char *s2);
+int	conversion_RGB_to_hexa(t_colour colour);
 
 int ft_is_string(char *s1, char *s2);
 int manage_errors(int argc, char **argv, t_param *param);
@@ -45,10 +46,10 @@ int check_address_parameters(char *str, t_param *param);
 
 char *save_param_numbers(char *str, char *res, int i);
 int resolution_param(char *str, t_param *param);
-void print_params(t_param *param);
+//void print_params(t_param *param);
 char *save_address_param(char *str, t_param *param);
-int colour_params_colour(char *str, t_param *param);
-int colour_params_ground(char *str, t_param *param);
+int colour_params_ceiling(char *str, t_param *param);
+int colour_params_floor(char *str, t_param *param);
 void free_address_params(t_param *params);
 
 /*Raycasting*/
@@ -70,6 +71,8 @@ int draw_minimap(t_data *data);
 int draw_square(float i, float j, t_data *data, int color);
 int draw_line(t_data *data, t_rect rect);
 int draw_column(int beginning, int end, int pos_x, t_data *data);
+int draw_ceiling(int beginning, int end, int pos_x, t_data *data);
+int draw_floor(int beginning, int end, int pos_x, t_data *data);
 int draw(t_data *data);
 int draw_rect(t_img *img, t_rect rect);
 void img_pix_put(t_img *img, int x, int y, int color);

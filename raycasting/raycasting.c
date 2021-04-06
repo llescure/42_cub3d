@@ -42,13 +42,6 @@ int raycasting(t_data *data, t_ray *ray)
 {
 	int x = 0;
 
-/*	ray->planX = sin(-data->param.perso.angle * M_PI / 180);
-	ray->planY = cos(-data->param.perso.angle * M_PI / 180);
-	ray->dirX =	data->param.perso.dirx;
-	ray->dirY =	data->param.perso.diry;
-	*/
-//	printf("planx= %f\n", ray->planX);
-//	printf("plany= %f\n", ray->planY);
 	while(x < data->param.resolution.axe_x)
 	{
 		// printf("resolution x = %i, resolution y = %i\n", param->resolution.axe_x, param->resolution.axe_y);
@@ -129,6 +122,8 @@ int raycasting(t_data *data, t_ray *ray)
 		// print_ray(ray);
 		ft_textures(data);
 		draw_column(ray->drawStart, ray->drawEnd, x, data);
+		draw_floor(ray->drawEnd, data->param.resolution.axe_y, x, data);
+		draw_ceiling(0, ray->drawStart, x, data);
 		//display(x, ray->drawEnd, ray->drawStart, color, mlx.img_data, param->resolution.axe_x);
 // if (x == 200)
 // 	exit(0);
