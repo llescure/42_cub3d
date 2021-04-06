@@ -59,6 +59,7 @@ int		print_ray(t_ray *ray);
 int		initialisation_orientation(t_param *param, t_ray *ray);
 //void    display(int x, double haut, double bas, t_colour color, char *img_data, int res);
 t_param	initialize(int argc, char **argv);
+void	ft_textures(t_data *data);
 
 /*DRAW3D*/
 

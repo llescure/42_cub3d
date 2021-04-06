@@ -127,6 +127,7 @@ int raycasting(t_data *data, t_ray *ray)
 		// printf("lineHeight = %d, drawStart = %d, drawEnd = %d\n\n", ray->lineHeight, ray->drawStart, ray->drawEnd);
 		// 	exit (0);
 		// print_ray(ray);
+		ft_textures(data);
 		draw_column(ray->drawStart, ray->drawEnd, x, data);
 		//display(x, ray->drawEnd, ray->drawStart, color, mlx.img_data, param->resolution.axe_x);
 // if (x == 200)
@@ -157,4 +158,3 @@ int print_ray(t_ray *ray)
 	printf("drawend = %i\n", ray->drawEnd);
 	return (0);
 }
-

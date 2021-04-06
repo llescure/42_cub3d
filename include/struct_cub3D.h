@@ -108,6 +108,15 @@ typedef struct	s_ray
    int			x; //permet de parcourir tous les rayons
 }	t_ray ;
 
+typedef struct s_texture
+{
+	void *text_north;
+	void *text_south;
+	void *text_east;
+	void *text_west;
+	int *color;
+}		t_texture;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -115,6 +124,7 @@ typedef struct s_data
 	t_img	img;
 	t_param	param;
 	t_ray	ray;
+	t_texture texture;
 }			t_data;
 
 typedef struct s_rect
@@ -125,5 +135,6 @@ typedef struct s_rect
 	int	height;
 	int	color;
 }		t_rect;
+
 
 #endif
