@@ -1,3 +1,6 @@
+#include "../include/struct_cub3D.h"
+#include "../include/cub3D.h"
+
 void	ft_textures(t_data *data)
 {
 //	float	wdatax;
@@ -22,5 +25,5 @@ void	ft_textures(t_data *data)
 		data->texture.color = (int *)data->texture.text_east;
 	else
 		data->texture.color = (int *)data->texture.text_north;
-	data->color = (int *)data->spr.tex;
+//	data->color = (int *)data->spr.tex;
 }
