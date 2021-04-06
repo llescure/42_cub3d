@@ -6,7 +6,7 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/04/06 17:22:17 by llescure         ###   ########.fr        #
+#    Updated: 2021/04/06 18:19:06 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRCS =  ./parsing/check_map.c			\
 		./minilibx/minilibx_keys.c		\
 		./minilibx/draw.c				\
 		./minilibx/handle_hook.c		\
-		./minilibx/get_textures.c		\
 		./main.c
 
 

@@ -3,11 +3,11 @@
 
 int	press_key(int key, t_data *data)
 {
-	double oldDirX;
-	double oldPlanX;
+	double old_DirX;
+	double old_PlanX;
 
-	oldPlanX = data->ray.planX;
-	oldDirX = data->ray.dirX;
+	old_PlanX = data->ray.planX;
+	old_DirX = data->ray.dirX;
 	if (key == XK_Escape)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -17,9 +17,9 @@ int	press_key(int key, t_data *data)
 	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
 		data->ray.dirX = data->ray.dirX * cos(-15 * M_PI / 180) - data->ray.dirY * sin(-15 * M_PI / 180);
-		data->ray.dirY = oldDirX * sin(-15 * M_PI / 180) + data->ray.dirY * cos(-15 * M_PI / 180);
+		data->ray.dirY = old_DirX * sin(-15 * M_PI / 180) + data->ray.dirY * cos(-15 * M_PI / 180);
 		data->ray.planX = data->ray.planX * cos(-15 * M_PI / 180) - data->ray.planY * sin(-15 * M_PI / 180);
-		data->ray.planY = oldPlanX * sin(-15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
+		data->ray.planY = old_PlanX * sin(-15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
 		data->param.perso.angle -= 15;
 		if (data->param.perso.angle < 0)
 			data->param.perso.angle += 360;
@@ -27,9 +27,9 @@ int	press_key(int key, t_data *data)
 	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
 		data->ray.dirX = data->ray.dirX * cos(15 * M_PI / 180) - data->ray.dirY * sin(15 * M_PI / 180);
-		data->ray.dirY = oldDirX * sin(15 * M_PI / 180) + data->ray.dirY * cos(15 * M_PI / 180);
+		data->ray.dirY = old_DirX * sin(15 * M_PI / 180) + data->ray.dirY * cos(15 * M_PI / 180);
 		data->ray.planX = data->ray.planX * cos(15 * M_PI / 180) - data->ray.planY * sin(15 * M_PI / 180);
-		data->ray.planY = oldPlanX * sin(15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
+		data->ray.planY = old_PlanX * sin(15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
 		data->param.perso.angle += 15;
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;

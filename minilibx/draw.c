@@ -9,7 +9,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 	*(int *)pixel = color;
 }
 
-int	draw_rect(t_img *img, t_rect rect)
+int		draw_rect(t_img *img, t_rect rect)
 {
 	int i;
 	int j;
@@ -28,10 +28,10 @@ int	draw_rect(t_img *img, t_rect rect)
 	return (0);
 }
 
-int	draw_square(float i, float j, t_data *data, int color)
+int		draw_square(float i, float j, t_data *data, int color)
 {
-	t_rect rect;
-	int lenght;
+	t_rect	rect;
+	int		lenght;
 
 	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
 		lenght = data->param.resolution.axe_x / 68;
@@ -50,7 +50,7 @@ int	draw_square(float i, float j, t_data *data, int color)
 	return (0);
 }
 
-int	draw_column(int beginning, int end, int pos_x, t_data *data)
+int		draw_column(int beginning, int end, int pos_x, t_data *data)
 {
 	int i;
 
@@ -74,7 +74,7 @@ int	draw_column(int beginning, int end, int pos_x, t_data *data)
 	return (0);
 }
 
-int	draw_floor(int beginning, int end, int pos_x, t_data *data)
+int		draw_floor(int beginning, int end, int pos_x, t_data *data)
 {
 	int i;
 	int color;
@@ -89,7 +89,7 @@ int	draw_floor(int beginning, int end, int pos_x, t_data *data)
 	return (0);
 }
 
-int	draw_ceiling(int beginning, int end, int pos_x, t_data *data)
+int		draw_ceiling(int beginning, int end, int pos_x, t_data *data)
 {
 	int i;
 	int color;
@@ -104,7 +104,7 @@ int	draw_ceiling(int beginning, int end, int pos_x, t_data *data)
 	return (0);
 }
 
-int	draw_line(t_data *data, t_rect rect)
+int		draw_line(t_data *data, t_rect rect)
 {
 	int dist;
 	int lenght;
@@ -125,7 +125,7 @@ int	draw_line(t_data *data, t_rect rect)
 	return (0);
 }
 
-int	draw_minimap(t_data *data)
+int		draw_minimap(t_data *data)
 {
 	int		i;
 	int		j;
