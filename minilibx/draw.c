@@ -79,7 +79,7 @@ int	draw_floor(int beginning, int end, int pos_x, t_data *data)
 	int i;
 	int color;
 
-	color = conversion_RGB_to_hexa(data->param.ground_colour);
+	color = conversion_RGB_to_hexa(data->param.floor_colour);
 	i = beginning;
 	while (i < end)
 	{

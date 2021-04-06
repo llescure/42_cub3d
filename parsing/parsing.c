@@ -34,9 +34,9 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->ceiling_colour.red = -10;
 	param->ceiling_colour.blue = -10;
 	param->ceiling_colour.green = -10;
-	param->ground_colour.red = -10;
-	param->ground_colour.blue = -10;
-	param->ground_colour.green = -10;
+	param->floor_colour.red = -10;
+	param->floor_colour.blue = -10;
+	param->floor_colour.green = -10;
 	param->resolution.axe_x = -10;
 	param->resolution.axe_y = -10;
 	param->sprite = NULL;

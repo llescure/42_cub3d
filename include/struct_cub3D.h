@@ -65,7 +65,7 @@ typedef struct	s_param {
 	t_colour		ceiling_colour;
 	t_resolution	resolution;
 	char			*sprite;
-	t_colour		ground_colour;
+	t_colour		floor_colour;
 	char			*north_texture;
 	char			*south_texture;
 	char			*west_texture;

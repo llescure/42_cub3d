@@ -70,9 +70,9 @@ int		ft_is_string(char *s1, char *s2)
 	printf("ceiling_color_red : %i\n", param->ceiling_colour.red);
 	printf("ceiling_color_green : %i\n", param->ceiling_colour.green);
 	printf("ceiling_color_blue : %i\n", param->ceiling_colour.blue);
-	printf("color_ground_red : %i\n", param->ground_colour.red);
-	printf("color_ground_green : %i\n", param->ground_colour.green);
-	printf("color_ground_blue : %i\n", param->ground_colour.blue);
+	printf("color_floor_red : %i\n", param->floor_colour.red);
+	printf("color_floor_green : %i\n", param->floor_colour.green);
+	printf("color_floor_blue : %i\n", param->floor_colour.blue);
 	printf("resolution_x : %i\n", param->resolution.axe_x);
 	printf("resolution_y : %i\n", param->resolution.axe_y);
 	printf("addrese sprite : %s\n", param->sprite);

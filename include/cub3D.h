@@ -49,7 +49,7 @@ int resolution_param(char *str, t_param *param);
 //void print_params(t_param *param);
 char *save_address_param(char *str, t_param *param);
 int colour_params_ceiling(char *str, t_param *param);
-int colour_params_ground(char *str, t_param *param);
+int colour_params_floor(char *str, t_param *param);
 void free_address_params(t_param *params);
 
 /*Raycasting*/
