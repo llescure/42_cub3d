@@ -16,20 +16,20 @@ int	press_key(int key, t_data *data)
 	}
 	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
-		data->ray.dirX = data->ray.dirX * cos(-0.15) - data->ray.dirY * sin(-0.15);
-		data->ray.dirY = oldDirX * sin(-0.15) + data->ray.dirY * cos(-0.15);
-		data->ray.planX = data->ray.planX * cos(-0.15) - data->ray.planY * sin(-0.15);
-		data->ray.planY = oldPlanX * sin(-0.15) + data->ray.planY * cos(0.15);
+		data->ray.dirX = data->ray.dirX * cos(-15 * M_PI / 180) - data->ray.dirY * sin(-15 * M_PI / 180);
+		data->ray.dirY = oldDirX * sin(-15 * M_PI / 180) + data->ray.dirY * cos(-15 * M_PI / 180);
+		data->ray.planX = data->ray.planX * cos(-15 * M_PI / 180) - data->ray.planY * sin(-15 * M_PI / 180);
+		data->ray.planY = oldPlanX * sin(-15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
 		data->param.perso.angle -= 15;
 		if (data->param.perso.angle < 0)
 			data->param.perso.angle += 360;
 	}
 	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
-		data->ray.dirX = data->ray.dirX * cos(0.15) - data->ray.dirY * sin(0.15);
-		data->ray.dirY = oldDirX * sin(0.15) + data->ray.dirY * cos(0.15);
-		data->ray.planX = data->ray.planX * cos(0.15) - data->ray.planY * sin(0.15);
-		data->ray.planY = oldPlanX * sin(0.15) + data->ray.planY * cos(0.15);
+		data->ray.dirX = data->ray.dirX * cos(15 * M_PI / 180) - data->ray.dirY * sin(15 * M_PI / 180);
+		data->ray.dirY = oldDirX * sin(15 * M_PI / 180) + data->ray.dirY * cos(15 * M_PI / 180);
+		data->ray.planX = data->ray.planX * cos(15 * M_PI / 180) - data->ray.planY * sin(15 * M_PI / 180);
+		data->ray.planY = oldPlanX * sin(15 * M_PI / 180) + data->ray.planY * cos(15 * M_PI / 180);
 		data->param.perso.angle += 15;
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;
