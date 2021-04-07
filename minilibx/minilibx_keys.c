@@ -46,13 +46,13 @@ int	press_key(int key, t_data *data)
 	}
 	else if (key == RIGHT_D)
 	{
-		data->param.perso.dirx = 1 * sin(data->param.perso.angle * M_PI / 180);
-		data->param.perso.diry = 1 * cos(data->param.perso.angle * M_PI / 180);
+		data->param.perso.dirx = -1 * sin(data->param.perso.angle * M_PI / 180);
+		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
 	}
 	else if (key == LEFT_A)
 	{
-		data->param.perso.dirx = -1 * sin(data->param.perso.angle * M_PI / 180);
-		data->param.perso.diry = -1 * cos(data->param.perso.angle * M_PI / 180);
+		data->param.perso.dirx = 1 * sin(data->param.perso.angle * M_PI / 180);
+		data->param.perso.diry = 1 * cos(data->param.perso.angle * M_PI / 180);
 	}
 	return (0);
 }

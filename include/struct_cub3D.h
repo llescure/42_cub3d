@@ -17,49 +17,49 @@
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
 
-#define RED_PIXEL 0xFF0000
-#define GREEN_PIXEL 0x00FF00
-#define BLUE_PIXEL 0x0000FF
-#define GREY_PIXEL 0x808080
-#define PINK_PIXEL 0xFD6C9E
+# define RED_PIXEL 0xFF0000
+# define GREEN_PIXEL 0x00FF00
+# define BLUE_PIXEL 0x0000FF
+# define GREY_PIXEL 0x808080
+# define PINK_PIXEL 0xFD6C9E
 
-#define ROTATE_LEFT_ARROW 65361
-#define ROTATE_LEFT_Q 101
-#define ROTATE_RIGHT_ARROW 65363
-#define ROTATE_RIGHT_E 113
-#define FORWARD_W 119
-#define BACK_S 115
-#define RIGHT_D 100
-#define LEFT_A 97
+# define ROTATE_LEFT_ARROW 65361
+# define ROTATE_LEFT_Q 101
+# define ROTATE_RIGHT_ARROW 65363
+# define ROTATE_RIGHT_E 113
+# define FORWARD_W 119
+# define BACK_S 115
+# define RIGHT_D 100
+# define LEFT_A 97
 
-typedef struct	s_perso {
+typedef struct		s_perso {
 	float		position_x;
 	float		position_y;
 	float		dirx;
 	float		diry;
 	float		angle;
-	char	orientation;
-}	t_perso ;
+	char		orientation;
+}					t_perso;
 
-typedef struct	s_colour {
+typedef struct		s_colour {
 	int	red;
 	int	green;
 	int	blue;
-}	t_colour ;
+}					t_colour;
 
-typedef struct	s_resolution {
+typedef struct		s_resolution {
 	int axe_x;
 	int axe_y;
-}	t_resolution ;
+}					t_resolution;
 
-typedef struct	s_map {
-	char **tab_map;
-	char *map;
-	int	nb_lines;
-	int	max_length;
-}	t_map ;
+typedef struct		s_map {
+	char			**tab_map;
+	char			*map;
+	int				nb_lines;
+	int				max_length;
+}					t_map;
 
-typedef struct	s_param {
+typedef struct		s_param {
 	char			*file;
 	t_map			map;
 	t_colour		ceiling_colour;
@@ -71,18 +71,18 @@ typedef struct	s_param {
 	char			*west_texture;
 	char			*east_texture;
 	t_perso			perso;
-}	t_param ;
+}					t_param;
 
-typedef struct s_img
+typedef struct		s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_lenght;
 	int		endian;
-}			t_img;
+}					t_img;
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
    double		posX; //position x du joueur
    double		posY; //position y du joueur
@@ -108,18 +108,18 @@ typedef struct	s_ray
    int			drawStart; //position de debut ou il faut dessiner
    int			drawEnd; //position de fin ou il faut dessiner
    int			x; //permet de parcourir tous les rayons
-}	t_ray ;
+}					t_ray;
 
-typedef struct s_texture
+typedef struct		s_texture
 {
 	void *text_north;
 	void *text_south;
 	void *text_east;
 	void *text_west;
 	int *color;
-}		t_texture;
+}					t_texture;
 
-typedef struct s_data
+typedef struct		s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -127,16 +127,15 @@ typedef struct s_data
 	t_param	param;
 	t_ray	ray;
 	t_texture texture;
-}			t_data;
+}					t_data;
 
-typedef struct s_rect
+typedef struct		s_rect
 {
 	int	x;
 	int	y;
 	int	width;
 	int	height;
 	int	color;
-}		t_rect;
-
+}					t_rect;
 
 #endif
