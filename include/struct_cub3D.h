@@ -112,10 +112,17 @@ typedef struct	s_ray
 
 typedef struct s_texture
 {
+	int x;
+	int y;
+	double step;
+	double position;
+	int text_width;
+	int text_height;
 	void *text_north;
 	void *text_south;
 	void *text_east;
 	void *text_west;
+	void *text_sprite;
 	int *color;
 }		t_texture;
 

@@ -61,7 +61,11 @@ int		initialisation_orientation(t_param *param, t_ray *ray);
 t_param	initialize(int argc, char **argv);
 void	ft_textures(t_data *data);
 
-/*DRAW3D*/
+/*TEXTURE*/
+
+void get_textures(t_data *data);
+int ft_get_addr_textures(t_data *data);
+void	ft_textures_on_walls(t_data *data);
 
 
 /*Minilibx*/

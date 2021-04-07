@@ -120,7 +120,7 @@ int raycasting(t_data *data, t_ray *ray)
 		// printf("lineHeight = %d, drawStart = %d, drawEnd = %d\n\n", ray->lineHeight, ray->drawStart, ray->drawEnd);
 		// 	exit (0);
 		// print_ray(ray);
-		ft_textures(data);
+		ft_textures_on_walls(data);
 		draw_column(ray->drawStart, ray->drawEnd, x, data);
 		draw_floor(ray->drawEnd, data->param.resolution.axe_y, x, data);
 		draw_ceiling(0, ray->drawStart, x, data);

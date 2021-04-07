@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_hook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: llescure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 14:40:45 by llescure          #+#    #+#             */
-/*   Updated: 2021/04/06 18:16:03 by llescure         ###   ########.fr       */
+/*   Updated: 2021/04/07 15:35:05 by slescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	move_perso(t_data *data)
 				data->param.perso.dirx * speed)] ==
 			data->param.perso.orientation)
 	{
-		data->param.perso.position_x + = data->param.perso.dirx * speed;
-		data->param.perso.position_y + = data->param.perso.diry * speed;
+		data->param.perso.position_x += data->param.perso.dirx * speed;
+		data->param.perso.position_y += data->param.perso.diry * speed;
 	}
 //	printf("speed1: %f\n", data->param.perso.dirx);
 //	printf("speed2: %f\n", data->param.perso.diry);
@@ -90,10 +90,12 @@ int	create_window(t_data *data)
 int		initialize_mlx(t_data *data)
 {
 	initialisation_orientation(&data->param, &data->ray);
+
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
+	get_textures(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &press_key, data);
 	mlx_hook(data->win_ptr, 33, (1L << 17), &click_close, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &release_key, data);
