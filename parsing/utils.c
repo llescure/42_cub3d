@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 char	**malloc_tab(t_param *param)
 {
@@ -91,7 +91,7 @@ int		ft_is_string(char *s1, char *s2)
 	}
 }*/
 
-int		conversion_RGB_to_hexa(t_colour colour)
+int		conversion_rgb_to_hexa(t_colour colour)
 {
 	int red;
 	int green;
@@ -100,5 +100,5 @@ int		conversion_RGB_to_hexa(t_colour colour)
 	red = colour.red;
 	green = colour.green;
 	blue = colour.blue;
-	return ((red<<16) | (green<<8) | blue);
+	return ((red << 16) | (green << 8) | blue);
 }

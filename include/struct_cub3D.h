@@ -99,7 +99,7 @@ typedef struct		s_ray
 	double		camera_x; /* point x sur la plan camera : Gauche ecran = -1,
 							 milieu = 0, droite = 1 */
 	int			map_x; /* coordonée x du carré dans lequel est pos */
-	int			map_x; /* coordonnée y du carré dans lequel est pos */
+	int			map_y; /* coordonnée y du carré dans lequel est pos */
 	double		side_distx; /* distance que le rayon parcours jusqu'au premier
 							   point d'intersection vertical (=un coté x) */
 	double		side_disty; /* distance que le rayon parcours jusqu'au premier
@@ -135,11 +135,6 @@ typedef struct		s_texture
 	int			position;
 	int			text_width;
 	int			text_height;
-	void		*text_north;
-	void		*text_south;
-	void		*text_east;
-	void		*text_west;
-	int			*color;
 }					t_texture;
 
 typedef struct		s_data

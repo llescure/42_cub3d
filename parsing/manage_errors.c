@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 void	print_error(t_param *param, char *str)
 {
@@ -8,7 +8,6 @@ void	print_error(t_param *param, char *str)
 	free_address_params(param);
 	exit(0);
 }
-
 
 int		manage_errors(int argc, char **argv, t_param *param)
 {
@@ -25,7 +24,7 @@ int		manage_errors(int argc, char **argv, t_param *param)
 
 int		file_is_cub(char *str, t_param *param)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (str[i] != '.')

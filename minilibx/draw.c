@@ -5,7 +5,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char *pixel;
 
-	pixel = img->addr + (y * img->line_lenght +  x * (img->bits_per_pixel / 8));
+	pixel = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
 	*(int *)pixel = color;
 }
 
@@ -82,7 +82,7 @@ int		draw_floor(int beginning, int end, int pos_x, t_data *data)
 	int i;
 	int color;
 
-	color = conversion_RGB_to_hexa(data->param.floor_colour);
+	color = conversion_rgb_to_hexa(data->param.floor_colour);
 	i = beginning;
 	while (i < end)
 	{
@@ -97,7 +97,7 @@ int		draw_ceiling(int beginning, int end, int pos_x, t_data *data)
 	int i;
 	int color;
 
-	color = conversion_RGB_to_hexa(data->param.ceiling_colour);
+	color = conversion_rgb_to_hexa(data->param.ceiling_colour);
 	i = beginning;
 	while (i < end)
 	{

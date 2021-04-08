@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 int		check_void_line_map(char *str, t_param *param)
 {
