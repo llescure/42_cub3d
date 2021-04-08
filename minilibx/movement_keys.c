@@ -35,38 +35,29 @@ void	rotate_camera_right(t_ray *ray)
 	ray->plan_y = old_planx * sinus + ray->plan_y * cosi;
 }
 
-void	left_right_movement(int key, int nega, t_data *data)
+void	left_right_movement(int nega, t_data *data)
 {
-	if (key == RIGHT_D)
+	if ((data->param.perso.angle >= 0 && data->param.perso.angle < 60) ||
+			(data->param.perso.angle >= 180 && data->param.perso.angle < 240))
 	{
 		data->param.perso.dirx = nega * sin(data->param.perso.angle *
 				M_PI / 180);
 		data->param.perso.diry = nega * cos(data->param.perso.angle *
 				M_PI / 180);
 	}
-	else if (key == LEFT_A)
+	else
 	{
-		data->param.perso.dirx = nega * sin(data->param.perso.angle *
+		data->param.perso.dirx = -1 * nega * sin(data->param.perso.angle *
 				M_PI / 180);
-		data->param.perso.diry = nega * cos(data->param.perso.angle *
+		data->param.perso.diry = -1 * nega * cos(data->param.perso.angle *
 				M_PI / 180);
 	}
 }
 
-void	forward_backward_movement(int key, int nega, t_data *data)
+void	forward_backward_movement(int nega, t_data *data)
 {
-	if (key == FORWARD_W)
-	{
-		data->param.perso.dirx = nega * cos(data->param.perso.angle *
-				M_PI / 180);
-		data->param.perso.diry = nega * sin(data->param.perso.angle *
-				M_PI / 180);
-	}
-	else if (key == BACK_S)
-	{
-		data->param.perso.dirx = nega * cos(data->param.perso.angle *
-				M_PI / 180);
-		data->param.perso.diry = nega * sin(data->param.perso.angle *
-				M_PI / 180);
-	}
+	data->param.perso.dirx = nega * cos(data->param.perso.angle *
+			M_PI / 180);
+	data->param.perso.diry = nega * sin(data->param.perso.angle *
+			M_PI / 180);
 }

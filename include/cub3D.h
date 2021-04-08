@@ -99,7 +99,7 @@ int		create_window(t_data *data);
 void	rotate_camera_left(t_ray *ray);
 void	rotate_camera_right(t_ray *ray);
 void	close_game(t_data *data);
-void	forward_backward_movement(int key, int nega, t_data *data);
-void	left_right_movement(int key, int nega, t_data *data);
+void	forward_backward_movement(int nega, t_data *data);
+void	left_right_movement(int nega, t_data *data);
 
 #endif
