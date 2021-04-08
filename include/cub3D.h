@@ -96,6 +96,10 @@ int		close_window(int key, t_data *data);
 int		launch_hook(t_data *data);
 int		initialize_mlx(t_data *data);
 int		create_window(t_data *data);
-void	ft_rotate_camera(int key, t_data *data);
+void	rotate_camera_left(t_ray *ray);
+void	rotate_camera_right(t_ray *ray);
+void	close_game(t_data *data);
+void	forward_backward_movement(int key, int nega, t_data *data);
+void	left_right_movement(int key, int nega, t_data *data);
 
 #endif

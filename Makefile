@@ -6,7 +6,7 @@
 #    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/04/06 18:19:06 by llescure         ###   ########.fr        #
+#    Updated: 2021/04/08 15:15:46 by llescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,11 @@ SRCS =  ./parsing/check_map.c			\
 		./parsing/save_params.c			\
 		./parsing/utils.c				\
 		./raycasting/raycasting.c		\
-		./raycasting/textures.c		\
+		./raycasting/textures.c			\
 		./minilibx/minilibx_keys.c		\
+		./minilibx/movement_keys.c		\
 		./minilibx/draw.c				\
+		./minilibx/draw_utils.c			\
 		./minilibx/handle_hook.c		\
 		./main.c
 
