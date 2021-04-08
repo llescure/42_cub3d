@@ -12,7 +12,7 @@ int		ft_atoi_cub3d(char *str, int i, t_param *param);
 char	**malloc_tab(t_param *param);
 int		find_str_beginning(char *s1, char *s2);
 int		find_str_end(char *s1, char *s2);
-int		conversion_RGB_to_hexa(t_colour colour);
+int		conversion_rgb_to_hexa(t_colour colour);
 
 int		ft_is_string(char *s1, char *s2);
 int		manage_errors(int argc, char **argv, t_param *param);
