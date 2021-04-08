@@ -129,6 +129,17 @@ typedef struct		s_texture
 	void		*text_east;
 	void		*text_west;
 	int			*color;
+	int			x;
+	int			y;
+	int			step;
+	int			position;
+	int			text_width;
+	int			text_height;
+	void		*text_north;
+	void		*text_south;
+	void		*text_east;
+	void		*text_west;
+	int			*color;
 }					t_texture;
 
 typedef struct		s_data
