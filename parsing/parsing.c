@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 void		free_address_params(t_param *param)
 {
@@ -69,7 +69,8 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, para);
-	check_map(para->map.tab_map, para->map.nb_lines, para->map.max_length, para);
+	check_map(para->map.tab_map, para->map.nb_lines,
+			para->map.max_length, para);
 	free(map);
 	return (0);
 }

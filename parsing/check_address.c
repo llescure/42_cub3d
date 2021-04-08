@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 int		find_str_beginning(char *s1, char *s2)
 {

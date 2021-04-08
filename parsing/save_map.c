@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 int		move_to_map(char *str)
 {
@@ -68,11 +68,21 @@ char	**creation_table_map(char **str, t_param *param)
 			map[j][i++] = '5';
 		map[j++][i] = '\0';
 	}
-	i = -1;
-	while (++i < param->map.nb_lines)
-		free(str[i]);
-	free(str);
+	free_str(str, param);
 	return (map);
+}
+
+void	free_str(char **str, t_param *param)
+{
+	int i;
+
+	i = 0;
+	while (i < param->map.nb_lines)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }
 
 int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_param *param)

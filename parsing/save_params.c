@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 int		colour_params_ceiling(char *str, t_param *param)
 {
@@ -12,9 +12,9 @@ int		colour_params_ceiling(char *str, t_param *param)
 	param->ceiling_colour.green = ft_atoi_cub3d(par[1], 0, param);
 	param->ceiling_colour.blue = ft_atoi_cub3d(par[2], 0, param);
 	if ((param->ceiling_colour.red < 0 || param->ceiling_colour.red > 255) ||
-			(param->ceiling_colour.green < 0 || param->ceiling_colour.green >
-			 255) || (param->ceiling_colour.blue < 0 ||
-				 param->ceiling_colour.blue > 255))
+		(param->ceiling_colour.green < 0 || param->ceiling_colour.green >
+		255) || (param->ceiling_colour.blue < 0 ||
+		param->ceiling_colour.blue > 255))
 		print_error(param, "Wrong format of colour in the map");
 	while (i < 3)
 	{

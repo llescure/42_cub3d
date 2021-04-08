@@ -31,6 +31,7 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param);
 char	*only_map(char *str, t_param *param);
 char	**save_map(char **str, int nb_lines, int length);
 char	**creation_table_map(char **str, t_param *param);
+void	free_str(char **str, t_param *param);
 int		check_end_walls(char *str, int length, t_param *param);
 char	*check_space_in_map(char *str);
 int		check_symbols(char *str, t_param *param);
@@ -95,5 +96,6 @@ int		close_window(int key, t_data *data);
 int		launch_hook(t_data *data);
 int		initialize_mlx(t_data *data);
 int		create_window(t_data *data);
+void	ft_rotate_camera(int key, t_data *data);
 
 #endif

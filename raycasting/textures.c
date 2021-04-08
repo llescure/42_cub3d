@@ -51,21 +51,25 @@ void	ft_textures_on_walls(t_data *data)
 	float	wdatax;
 
 	if (data->ray.side == 0)
-	 	wdatax = data->ray.posY + data->ray.perpWallDist * data->ray.rayDirY;
+	 	wdatax = data->ray.pos_y + data->ray.perp_wall_dist *
+			data->ray.ray_diry;
 	 else
-	 	wdatax = data->ray.posX + data->ray.perpWallDist * data->ray.rayDirX;
+	 	wdatax = data->ray.pos_x + data->ray.perp_wall_dist *
+			data->ray.ray_dirx;
 	data->texture.x = (int)(wdatax * data->texture.text_height);
-	if (data->ray.side == 0 && data->ray.rayDirX > 0)
+	if (data->ray.side == 0 && data->ray.ray_dirx > 0)
 	 	data->texture.x = data->texture.text_width - data->texture.x - 1;
-	if (data->ray.side == 1 && data->ray.rayDirY < 0)
+	if (data->ray.side == 1 && data->ray.ray_diry < 0)
 	 	data->texture.x = data->texture.text_width - data->texture.x - 1;
-	data->texture.step = 1.0 * data->texture.text_height / data->ray.lineHeight;
-	data->texture.position = (data->ray.drawStart - data->param.resolution.axe_y / 2 + data->ray.lineHeight / 2) * data->texture.step;
-	if (data->ray.side == 0 && (data->ray.mapX > data->ray.posX))
+	data->texture.step = 1.0 * data->texture.text_height /
+		data->ray.line_height;
+	data->texture.position = (data->ray.draw_start - data->param.resolution.
+			axe_y / 2 + data->ray.line_height / 2) * data->texture.step;
+	if (data->ray.side == 0 && (data->ray.map_x > data->ray.pos_x))
 		data->texture.color = (int *)data->texture.text_south;
-	else if (data->ray.side == 1 && (data->ray.mapY < data->ray.posY))
+	else if (data->ray.side == 1 && (data->ray.map_y < data->ray.pos_y))
 		data->texture.color = (int *)data->texture.text_west;
-	else if (data->ray.side == 1 && (data->ray.mapY > data->ray.posY))
+	else if (data->ray.side == 1 && (data->ray.map_y > data->ray.pos_y))
 		data->texture.color = (int *)data->texture.text_east;
 	else
 		data->texture.color = (int *)data->texture.text_north;

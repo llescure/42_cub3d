@@ -1,7 +1,7 @@
-#include "../include/struct_cub3D.h"
-#include "../include/cub3D.h"
+#include "../include/struct_cub3d.h"
+#include "../include/cub3d.h"
 
-int	move_perso(t_data *data)
+int		move_perso(t_data *data)
 {
 	float speed;
 
@@ -27,10 +27,10 @@ int	move_perso(t_data *data)
 	return (0);
 }
 
-int	launch_hook(t_data *data)
+int		launch_hook(t_data *data)
 {
-	data->ray.posX = (double)data->param.perso.position_y;
-	data->ray.posY = (double)data->param.perso.position_x;
+	data->ray.pos_x = (double)data->param.perso.position_y;
+	data->ray.pos_y = (double)data->param.perso.position_x;
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
@@ -49,7 +49,7 @@ int	launch_hook(t_data *data)
 	return (0);
 }
 
-int	create_window(t_data *data)
+int		create_window(t_data *data)
 {
 	int lenght;
 	int width;

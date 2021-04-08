@@ -1,5 +1,5 @@
-#include "../include/cub3D.h"
-#include "../include/struct_cub3D.h"
+#include "../include/cub3d.h"
+#include "../include/struct_cub3d.h"
 
 int		manage_perso(char **map, t_param *param)
 {
@@ -27,8 +27,6 @@ int		manage_perso(char **map, t_param *param)
 	}
 	if (result != 1)
 		print_error(param, "Wrong number of characters in the map");
-	i = 0;
-	printf("CHARACTER : [OK]\n");
 	return (0);
 }
 
@@ -85,8 +83,7 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param)
 		check_symbols(map[i], param);
 	}
 	if (param->map.max_length == 2 || param->map.max_length == 3)
-	print_error(param, "Wrong format of map");
-
+		print_error(param, "Wrong format of map");
 	check_first_last_string_map(map[0], param);
 	check_first_last_string_map(map[nb_lines - 1], param);
 	check_holes_walls(map, nb_lines, max_length, param);
