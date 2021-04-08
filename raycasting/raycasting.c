@@ -91,12 +91,14 @@ int raycasting(t_data *data, t_ray *ray)
 				ray->side_distx += ray->delta_distx;
 				ray->map_x += ray->step_x;
 				ray->side = 0;
+				data->texture.shade = 0.75;
 			}
 			else
 			{
 				ray->side_disty += ray->delta_disty;
 				ray->map_y += ray->step_y;
 				ray->side = 1;
+				data->texture.shade = 1;
 			}
 			if(data->param.map.tab_map[ray->map_x][ray->map_y] == '1')
 				ray->hit = 1;

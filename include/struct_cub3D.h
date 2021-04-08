@@ -122,19 +122,28 @@ typedef struct		s_ray
 	int			x; /* permet de parcourir tous les rayons */
 }					t_ray;
 
+typedef struct		s_sprite
+{
+
+}					t_sprite;
+
 typedef struct		s_texture
 {
-	void		*text_north;
-	void		*text_south;
-	void		*text_east;
-	void		*text_west;
-	int			*color;
 	int			x;
 	int			y;
 	int			step;
 	int			position;
+	float			shade;
 	int			text_width;
 	int			text_height;
+	int			sprite_width;
+	int			sprite_height;
+	void		*text_north;
+	void		*text_south;
+	void		*text_east;
+	void		*text_west;
+	void 		*sprite;
+	int			*color;
 }					t_texture;
 
 typedef struct		s_data
