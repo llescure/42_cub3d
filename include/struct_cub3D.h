@@ -84,61 +84,53 @@ typedef struct		s_img
 
 typedef struct		s_ray
 {
-	double		pos_x; /* position x du joueur */
-	double		pos_y; /* position y du joueur */
-	double		dir_x; /* vecteur de direction (commence à -1 pour N,
-						  1 pour S, 0 sinon) */
-	double		dir_y; /* vecteur de direction (commence à -1 pour W, 1 pour E,
-						  0 sinon) */
-	double		plan_x; /* vecteur du plan (commence à 0.66 pour E, -0.66 pour
-						   W, 0 sinon) */
-	double		plan_y; /* vecteur du plan (commence à 0.66 pour N, -0.66 pour
-						   S, 0 sinon) */
-	double		ray_dirx; /* calcul de direction x du rayon */
-	double		ray_diry; /* calcul de direction y du rayon */
-	double		camera_x; /* point x sur la plan camera : Gauche ecran = -1,
-							 milieu = 0, droite = 1 */
-	int			map_x; /* coordonée x du carré dans lequel est pos */
-	int			map_x; /* coordonnée y du carré dans lequel est pos */
-	double		side_distx; /* distance que le rayon parcours jusqu'au premier
-							   point d'intersection vertical (=un coté x) */
-	double		side_disty; /* distance que le rayon parcours jusqu'au premier
-							   point d'intersection horizontal (= un coté y) */
-	double		delta_distx; /* distance que rayon parcours entre chaque point
-								d'intersection vertical */
-	double		delta_disty; /* distance que le rayon parcours entre chaque
-								point d'intersection horizontal */
-	int			step_x; /* -1 si doit sauter un carre dans direction x negative,
-						   1 dans la direction x positive */
-	int			step_y; /* -1 si doit sauter un carre dans la direction y
-						   negative, 1 dans la direction y positive */
-	int			hit; /* 1 si un mur a ete touche, 0 sinon */
-	int			side; /* 0 si c'est un cote x qui est touche (vertical),
-						 1 si un cote y (horizontal) */
-	double		perp_wall_dist; /* distance du joueur au mur */
-	int			line_height; /* hauteur de la ligne a dessiner */
-	int			draw_start; /* position de debut ou il faut dessiner */
-	int			draw_end; /* position de fin ou il faut dessiner */
-	int			x; /* permet de parcourir tous les rayons */
+	double		posX; //position x du joueur
+   double		posY; //position y du joueur
+   double		dirX; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
+   double		dirY; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
+   double		planX; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
+   double		planY; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
+   double		rayDirX; //calcul de direction x du rayon
+   double		rayDirY; //calcul de direction y du rayon
+   double		cameraX; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
+   int			mapX; // coordonée x du carré dans lequel est pos
+   int			mapY; // coordonnée y du carré dans lequel est pos
+   double		sideDistX; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
+   double		sideDistY; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
+   double		deltaDistX; //distance que rayon parcours entre chaque point d'intersection vertical
+   double		deltaDistY; //distance que le rayon parcours entre chaque point d'intersection horizontal
+   int			stepX; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
+   int			stepY; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
+   int			hit; // 1 si un mur a ete touche, 0 sinon
+   int			side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
+   double		perpWallDist; // distance du joueur au mur
+   int			lineHeight; //hauteur de la ligne a dessiner
+   int			drawStart; //position de debut ou il faut dessiner
+   int			drawEnd; //position de fin ou il faut dessiner
+   int			x; //permet de parcourir tous les rayons
 }					t_ray;
+
+typedef struct		s_sprite
+{
+
+}					t_sprite;
 
 typedef struct		s_texture
 {
-	void		*text_north;
-	void		*text_south;
-	void		*text_east;
-	void		*text_west;
-	int			*color;
 	int			x;
 	int			y;
 	int			step;
 	int			position;
+	float			shade;
 	int			text_width;
 	int			text_height;
+	int			sprite_width;
+	int			sprite_height;
 	void		*text_north;
 	void		*text_south;
 	void		*text_east;
 	void		*text_west;
+	void 		*sprite;
 	int			*color;
 }					t_texture;
 

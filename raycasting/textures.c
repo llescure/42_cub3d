@@ -1,5 +1,5 @@
-#include "../include/struct_cub3D.h"
-#include "../include/cub3D.h"
+#include "../include/struct_cub3d.h"
+#include "../include/cub3d.h"
 
 int ft_get_addr_textures(t_data *data)
 {
@@ -17,10 +17,11 @@ int ft_get_addr_textures(t_data *data)
 	if (!(data->texture.text_west = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.west_texture, &data->texture.text_width, &data->texture.text_width)))
 		exit (0);
+	if (!(data->texture.sprite = mlx_xpm_file_to_image(data->mlx_ptr,
+					data->param.sprite, &data->texture.sprite_width, &data->texture.sprite_height)))
+		exit (0);
 	return (0);
-//	if (!(data->texture.sprite = mlx_xpm_file_to_image(data->mlx.mlx_ptr,
-//					data->texture.sprite, &data->sprwidth, &data->sprheight)))
-//		return (-1);
+
 /*	if (data->tp.tpnb != 0)
 	{
 	 	if (!(data->tp.tex = mlx_xpm_file_to_image(data->mlx.mlx_ptr,
@@ -41,9 +42,8 @@ void get_textures(t_data *data)
 			&data->img.bits_per_pixel, &data->img.line_lenght, &data->img.endian);
 	data->texture.text_west = mlx_get_data_addr(data->texture.text_west,
 			&data->img.bits_per_pixel, &data->img.line_lenght, &data->img.endian);
-//	data->spr.tex = mlx_get_data_addr(data->spr.tex,
-//			&data->bits_per_pixel, &data->param.max_length, &data->endian);
-
+	data->texture.sprite = mlx_get_data_addr(data->texture.sprite,
+			&data->img.bits_per_pixel, &data->img.line_lenght, &data->img.endian);
 }
 
 void	ft_textures_on_walls(t_data *data)
@@ -69,5 +69,5 @@ void	ft_textures_on_walls(t_data *data)
 		data->texture.color = (int *)data->texture.text_east;
 	else
 		data->texture.color = (int *)data->texture.text_north;
-//	data->color = (int *)data->spr.tex;
+	data->texture.color = (int *)data->texture.sprite;
 }

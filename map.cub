@@ -1,11 +1,11 @@
 R 2000 2000
-NO ./textures/redbrick.xpm
-SO ./textures/wood.xpm
-WE ./textures/wood.xpm
-S ./textures/barrel.xpm
+NO ./textures/brick.xpm
+SO ./textures/brick.xpm
+WE ./textures/brick.xpm
+S ./textures/plant_mario.xpm
+EA ./textures/brick.xpm
 C 135,206,235
 F 179,139,109
-EA ./textures/greystone.xpm
 
 
 11111111111111111
