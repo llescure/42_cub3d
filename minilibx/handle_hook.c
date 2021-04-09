@@ -5,7 +5,7 @@ int		move_perso(t_data *data)
 {
 	float speed;
 
-	speed = 0.2;
+	speed = 0.1;
 //	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
 //	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
@@ -31,6 +31,8 @@ int		launch_hook(t_data *data)
 {
 	data->ray.pos_x = (double)data->param.perso.position_y;
 	data->ray.pos_y = (double)data->param.perso.position_x;
+	data->param.perso.dirx = 0;
+	data->param.perso.diry = 0;
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
