@@ -48,15 +48,16 @@ void get_textures(t_data *data)
 
 void	ft_textures_on_walls(t_data *data)
 {
-	float	wdatax;
+	float	wall_dist_x;
 
 	if (data->ray.side == 0)
-	 	wdatax = data->ray.pos_y + data->ray.perp_wall_dist *
+	 	wall_dist_x = data->ray.pos_y + data->ray.perp_wall_dist *
 			data->ray.ray_diry;
 	 else
-	 	wdatax = data->ray.pos_x + data->ray.perp_wall_dist *
+	 	wall_dist_x = data->ray.pos_x + data->ray.perp_wall_dist *
 			data->ray.ray_dirx;
-	data->texture.x = (int)(wdatax * data->texture.text_height);
+	wall_dist_x -= floor(wall_dist_x);
+	data->texture.x = (int)(wall_dist_x * data->texture.text_height);
 	if (data->ray.side == 0 && data->ray.ray_dirx > 0)
 	 	data->texture.x = data->texture.text_width - data->texture.x - 1;
 	if (data->ray.side == 1 && data->ray.ray_diry < 0)
@@ -73,5 +74,6 @@ void	ft_textures_on_walls(t_data *data)
 		data->texture.color = (int *)data->texture.text_east;
 	else
 		data->texture.color = (int *)data->texture.text_north;
-	data->texture.color = (int *)data->texture.sprite;
+//	data->texture.color = (int *)data->texture.sprite;
+//	printf("texture color = %d\n", *(data->texture.color));
 }

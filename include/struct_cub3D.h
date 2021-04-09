@@ -133,7 +133,7 @@ typedef struct		s_texture
 	int			y;
 	int			step;
 	int			position;
-	float			shade;
+	float		shade;
 	int			text_width;
 	int			text_height;
 	int			sprite_width;

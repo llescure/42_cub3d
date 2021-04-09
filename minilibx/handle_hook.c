@@ -9,12 +9,12 @@ int		move_perso(t_data *data)
 //	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
 //	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed - 0.2)][(int)
-			(data->param.perso.position_x + data->param.perso.dirx * speed - 0.2)]
+				data->param.perso.diry * speed)][(int)
+			(data->param.perso.position_x + data->param.perso.dirx * speed)]
 			== '0' || data->param.map.tab_map[(int)
-			(data->param.perso.position_y + data->param.perso.diry * speed - 0.2)]
+			(data->param.perso.position_y + data->param.perso.diry * speed)]
 			[(int)(data->param.perso.position_x +
-				data->param.perso.dirx * speed - 0.2)] ==
+				data->param.perso.dirx * speed)] ==
 			data->param.perso.orientation)
 	{
 		data->param.perso.position_x +=	data->param.perso.dirx * speed;
