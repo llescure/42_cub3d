@@ -39,7 +39,6 @@ typedef struct		s_perso {
 	float		diry;
 	float		angle;
 	char		orientation;
-	char		direction;
 }					t_perso;
 
 typedef struct		s_colour {

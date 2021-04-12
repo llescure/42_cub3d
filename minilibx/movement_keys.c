@@ -52,10 +52,6 @@ void	left_right_movement(int nega, t_data *data)
 		data->param.perso.diry = -1 * nega * cos(data->param.perso.angle *
 				M_PI / 180);
 	}
-	if (nega == 1)
-		data->param.perso.direction = 'R';
-	else
-		data->param.perso.direction = 'L';
 }
 
 void	forward_backward_movement(int nega, t_data *data)
@@ -64,8 +60,4 @@ void	forward_backward_movement(int nega, t_data *data)
 			M_PI / 180);
 	data->param.perso.diry = nega * sin(data->param.perso.angle *
 			M_PI / 180);
-	if (nega == 1)
-		data->param.perso.direction = 'F';
-	else
-		data->param.perso.direction = 'B';
 }
