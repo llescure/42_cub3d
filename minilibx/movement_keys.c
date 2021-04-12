@@ -37,8 +37,10 @@ void	rotate_camera_right(t_ray *ray)
 
 void	left_right_movement(int nega, t_data *data)
 {
+//	printf("angle = %f\n", data->param.perso.angle);
 	if ((data->param.perso.angle >= 0 && data->param.perso.angle < 60) ||
-			(data->param.perso.angle >= 180 && data->param.perso.angle < 240))
+			(data->param.perso.angle >= 165 && data->param.perso.angle < 240) ||
+			(data->param.perso.angle >= 330 && data->param.perso.angle < 360))
 	{
 		data->param.perso.dirx = nega * sin(data->param.perso.angle *
 				M_PI / 180);
