@@ -83,7 +83,6 @@ int		initialize_mlx(t_data *data)
 {
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
-	data->param.perso.direction = '0';
 	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
