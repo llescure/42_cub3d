@@ -6,22 +6,40 @@ int		move_perso(t_data *data)
 	float speed;
 
 	speed = 0.1;
-//	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
-//	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
-	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed)][(int)
-			(data->param.perso.position_x + data->param.perso.dirx * speed)]
-			== '0' || data->param.map.tab_map[(int)
-			(data->param.perso.position_y + data->param.perso.diry * speed)]
-			[(int)(data->param.perso.position_x +
-				data->param.perso.dirx * speed)] ==
-			data->param.perso.orientation)
+	//	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
+	//	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
+	if (data->param.perso.direction == 'R' || data->param.perso.direction == 'F')
 	{
-		data->param.perso.position_x +=	data->param.perso.dirx * speed;
-		data->param.perso.position_y +=	data->param.perso.diry * speed;
+		if (data->param.map.tab_map[(int)(data->param.perso.position_y +
+					data->param.perso.diry * speed + 0.2)][(int)
+				(data->param.perso.position_x + data->param.perso.dirx * speed + 0.2)]
+				== '0' || data->param.map.tab_map[(int)
+				(data->param.perso.position_y + data->param.perso.diry * speed + 0.2)]
+				[(int)(data->param.perso.position_x +
+					data->param.perso.dirx * speed + 0.2)] ==
+				data->param.perso.orientation)
+		{
+			data->param.perso.position_x +=	data->param.perso.dirx * speed;
+			data->param.perso.position_y +=	data->param.perso.diry * speed;
+		}
 	}
-//	printf("speed1: %f\n", data->param.perso.dirx * speed);
-//	printf("speed2: %f\n", data->param.perso.diry * speed);
+	else
+	{
+		if (data->param.map.tab_map[(int)(data->param.perso.position_y +
+					data->param.perso.diry * speed - 0.2)][(int)
+				(data->param.perso.position_x + data->param.perso.dirx * speed - 0.2)]
+				== '0' || data->param.map.tab_map[(int)
+				(data->param.perso.position_y + data->param.perso.diry * speed - 0.2)]
+				[(int)(data->param.perso.position_x +
+					data->param.perso.dirx * speed - 0.2)] ==
+				data->param.perso.orientation)
+		{
+			data->param.perso.position_x +=	data->param.perso.dirx * speed;
+			data->param.perso.position_y +=	data->param.perso.diry * speed;
+		}
+	}
+	//	printf("speed1: %f\n", data->param.perso.dirx * speed);
+	//	printf("speed2: %f\n", data->param.perso.diry * speed);
 	//printf("pos_x: %f\n", data->param.perso.position_x);
 	//printf("pos_y: %f\n", data->param.perso.position_y);
 	return (0);
@@ -31,8 +49,6 @@ int		launch_hook(t_data *data)
 {
 	data->ray.pos_x = (double)data->param.perso.position_y;
 	data->ray.pos_y = (double)data->param.perso.position_x;
-	data->param.perso.dirx = 0;
-	data->param.perso.diry = 0;
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
@@ -80,6 +96,9 @@ int		create_window(t_data *data)
 
 int		initialize_mlx(t_data *data)
 {
+	data->param.perso.dirx = 0;
+	data->param.perso.diry = 0;
+	data->param.perso.direction = '0';
 	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
