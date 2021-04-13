@@ -102,4 +102,9 @@ void	close_game(t_data *data);
 void	forward_backward_movement(int nega, t_data *data);
 void	left_right_movement(int nega, t_data *data);
 
+/*
+ ** Image
+*/
+
+int	create_image(t_data *data);
 #endif

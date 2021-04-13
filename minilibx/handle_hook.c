@@ -4,24 +4,27 @@
 int		move_perso(t_data *data)
 {
 	float speed;
+	float dist;
 
-	speed = 0.2;
-//	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
-//	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
+	speed = 0.1;
+	dist = 0.2;
+	//	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
+	//	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed - 0.2)][(int)
-			(data->param.perso.position_x + data->param.perso.dirx * speed - 0.2)]
-			== '0' || data->param.map.tab_map[(int)
-			(data->param.perso.position_y + data->param.perso.diry * speed - 0.2)]
-			[(int)(data->param.perso.position_x +
-				data->param.perso.dirx * speed - 0.2)] ==
+				data->param.perso.diry * speed + data->param.perso.diry * dist)]
+			[(int)(data->param.perso.position_x + data->param.perso.dirx *
+				speed + data->param.perso.dirx * dist)] == '0'
+			|| data->param.map.tab_map[(int)(data->param.perso.position_y +
+				data->param.perso.diry * speed + data->param.perso.diry * dist)]
+			[(int)(data->param.perso.position_x + data->param.perso.dirx *
+				speed + data->param.perso.dirx * dist)] ==
 			data->param.perso.orientation)
 	{
 		data->param.perso.position_x +=	data->param.perso.dirx * speed;
 		data->param.perso.position_y +=	data->param.perso.diry * speed;
 	}
-//	printf("speed1: %f\n", data->param.perso.dirx * speed);
-//	printf("speed2: %f\n", data->param.perso.diry * speed);
+	//	printf("speed1: %f\n", data->param.perso.dirx * speed);
+	//	printf("speed2: %f\n", data->param.perso.diry * speed);
 	//printf("pos_x: %f\n", data->param.perso.position_x);
 	//printf("pos_y: %f\n", data->param.perso.position_y);
 	return (0);
@@ -78,7 +81,8 @@ int		create_window(t_data *data)
 
 int		initialize_mlx(t_data *data)
 {
-	initialisation_orientation(&data->param, &data->ray);
+	data->param.perso.dirx = 0;
+	data->param.perso.diry = 0;
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
