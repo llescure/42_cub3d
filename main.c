@@ -10,7 +10,10 @@ int		main(int argc, char **argv)
 	if (argv[2] == "--save")
 	{
 		if (create_image(&data) == -1)
+		{
+			free_address_params(&data->param);
 			return (-1);
+		}
 		else
 			return (0);
 	}

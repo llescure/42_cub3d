@@ -83,7 +83,6 @@ int		initialize_mlx(t_data *data)
 {
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
-	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
