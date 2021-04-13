@@ -106,5 +106,7 @@ void	left_right_movement(int nega, t_data *data);
  ** Image
 */
 
-int	create_image(t_data *data);
+int		create_image(t_data *data);
+void	create_file_header(int fd, t_data *data);
+void	create_info_header(int fd, t_data *data);
 #endif
