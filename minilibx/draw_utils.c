@@ -56,18 +56,7 @@ int		draw_column(int beginning, int end, int pos_x, t_data *data)
 
 	i = beginning;
 	if (data->ray.hit == 1)
-	{
-		while (i < end)
-		{
-			data->texture.y = (int)data->texture.position & (data->texture.text_height - 1);
-			data->texture.position += data->texture.step;
-		//	printf("data->texture.y = %i data->texture.text_height = %i data->texture.x = %i\n", data->texture.y, data->texture.text_height, data->texture.x);
-//			printf("texture color = %d\n", (data->texture.y * data->texture.text_height + data->texture.x));
-	//		printf("data->texture.color = %i\n", *(data->texture.color));
-			img_pix_put(&data->img, pos_x, i, *(data->texture.color) * data->texture.shade);
-			i++;
-		}
-	}
+		draw_texture_walls(data, pos_x);
 	if (data->ray.hit == 2)
 	{
 		while (i < end)

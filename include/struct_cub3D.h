@@ -80,6 +80,8 @@ typedef struct		s_img
 	int		bits_per_pixel;
 	int		line_lenght;
 	int		endian;
+	int		width;
+	int		height;
 }					t_img;
 
 typedef struct		s_ray
@@ -129,6 +131,8 @@ typedef struct		s_sprite
 
 typedef struct		s_texture
 {
+	int			wallx;
+	int			text_dir;
 	int			x;
 	int			y;
 	int			step;
@@ -138,11 +142,6 @@ typedef struct		s_texture
 	int			text_height;
 	int			sprite_width;
 	int			sprite_height;
-	void		*text_north;
-	void		*text_south;
-	void		*text_east;
-	void		*text_west;
-	void 		*sprite;
 	int			*color;
 }					t_texture;
 
@@ -154,6 +153,7 @@ typedef struct		s_data
 	t_param		param;
 	t_ray		ray;
 	t_texture	texture;
+	t_img		tab_texture[5];
 }					t_data;
 
 typedef struct		s_rect

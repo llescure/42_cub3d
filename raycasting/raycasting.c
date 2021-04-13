@@ -129,12 +129,12 @@ int raycasting(t_data *data, t_ray *ray)
 			ray->draw_end = data->param.resolution.axe_y - 1;
 		// printf("lineHeight = %d, drawStart = %d, drawEnd = %d\n\n", ray->lineHeight, ray->drawStart, ray->drawEnd);
 		// print_ray(ray);
-		ft_textures_on_walls(data);
 		draw_column(ray->draw_start, ray->draw_end, x, data);
 		draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
 		draw_ceiling(0, ray->draw_start, x, data);
 		x++;
 	}
+	printf("COUCOU\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	return (0);
 }
