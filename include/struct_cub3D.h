@@ -24,9 +24,9 @@
 # define PINK_PIXEL 0xFD6C9E
 
 # define ROTATE_LEFT_ARROW 65361
-# define ROTATE_LEFT_Q 113
+# define ROTATE_LEFT_Q 101
 # define ROTATE_RIGHT_ARROW 65363
-# define ROTATE_RIGHT_E 101
+# define ROTATE_RIGHT_E 113
 # define FORWARD_W 119
 # define BACK_S 115
 # define RIGHT_D 100
