@@ -88,6 +88,7 @@ int		initialize_mlx(t_data *data)
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
+	get_textures(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &press_key, data);
 	mlx_hook(data->win_ptr, 33, (1L << 17), &click_close, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &release_key, data);
