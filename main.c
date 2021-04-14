@@ -4,12 +4,10 @@
 int		main(int argc, char **argv)
 {
 	t_data	data;
-	char	*s1;
 
-	s1 = "--save";
 	data.param = initialize(argc, argv);
 	initialisation_orientation(&data.param, &data.ray);
-	if (argv[2] == s1)
+	if (ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) == 0)
 	{
 		if (create_image(&data) == -1)
 		{
