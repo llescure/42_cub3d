@@ -106,9 +106,9 @@ void	left_right_movement(int nega, t_data *data);
  ** Image
 */
 
-int		create_image(t_data *data);
-void	create_file_header(int fd, t_data *data, int *nbr_bits);
-void	create_info_header(int fd, t_data *data, int *nbr_bits);
-void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits);
-int		close_bmp_file(int fd, int nbr_bits, t_data *data);
+//int		create_image(t_data *data);
+//void	create_file_header(int fd, t_data *data, int *nbr_bits);
+//void	create_info_header(int fd, t_data *data, int *nbr_bits);
+//void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits);
+//int		close_bmp_file(int fd, int nbr_bits, t_data *data);
 #endif

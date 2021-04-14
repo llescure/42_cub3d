@@ -131,17 +131,13 @@ typedef struct		s_sprite
 
 typedef struct		s_texture
 {
-	int			wallx;
-	int			text_dir;
-	int			x;
-	int			y;
-	int			step;
-	int			position;
+	float			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
+	int			text_dir; // direction NO, S, EA, WE de la texture
+	int			x; // coordonnee x de la texture
+	int			y; // coordonnee y de la texture
+	int			step; // de combien augmenter les coordonnées de la texture pour chaque pixel
+	int			position; // coordonnee de depart
 	float		shade;
-	int			text_width;
-	int			text_height;
-	int			sprite_width;
-	int			sprite_height;
 	int			*color;
 }					t_texture;
 

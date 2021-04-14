@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llescure <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: llescure <llescure@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/10 12:33:15 by llescure          #+#    #+#              #
-#    Updated: 2021/04/14 11:17:31 by llescure         ###   ########.fr        #
+#    Updated: 2021/04/14 14:51:49 by slescure         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS =  ./parsing/check_map.c			\
 		./parsing/save_params.c			\
 		./parsing/utils.c				\
 		./raycasting/raycasting.c		\
+		./raycasting/textures.c			\
 		./minilibx/minilibx_keys.c		\
 		./minilibx/movement_keys.c		\
 		./minilibx/draw.c				\
