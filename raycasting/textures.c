@@ -86,7 +86,15 @@ int draw_texture_walls(t_data *data, int pos_x)
 //		printf("data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].line_lenght / 4 + data->texture.x] = %d\n", data->tab_texture[data->texture.text_dir].line_lenght / 4 + data->texture.x);
 //		exit (0);
 //		if (y < data->param.resolution.axe_y && pos_x < data->param.resolution.axe_x)
-		data->img.addr[y * data->img.line_lenght + pos_x * 4] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].line_lenght * 4 + data->texture.x];
+	//	printf("pos_x= %d\n", pos_x);
+	//	printf("img.line_lenght= %d\n", data->img.line_lenght);
+	//	printf("y= %d\n", y);
+		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4];
+		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 1] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 1];
+		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 2] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 2];
+		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 3] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 3];
+
+
 		y++;
 	}
 	return (0);
