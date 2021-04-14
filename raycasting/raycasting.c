@@ -134,7 +134,7 @@ int raycasting(t_data *data, t_ray *ray)
 		draw_ceiling(0, ray->draw_start, x, data);
 		x++;
 	}
-	printf("COUCOU\n");
+	//printf("COUCOU\n");
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	return (0);
 }

@@ -21,12 +21,16 @@
 		printf("ERROR\nCouldn't start mlx_init");
 		return (-1);
 	}
-	raycasting(data, &data->ray);
+	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
+			data->param.resolution.axe_y);
+	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
+			&data->img.line_lenght, &data->img.endian);
+//	raycasting(data, &data->ray);
 	draw_minimap(data);
 	create_file_header(fd, data, &nbr_bits);
 	create_info_header(fd, data, &nbr_bits);
 	create_pixel_on_bmp(fd, data, &nbr_bits);
-	if (close_bmp_file(fd, nbr_bits, &data) == -1)
+	if (close_bmp_file(fd, nbr_bits, data) == -1)
 		return (-1);
 	return (0);
 }
@@ -72,15 +76,22 @@ void	create_info_header(int fd, t_data *data, int *nbr_bits)
 
 void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
 {
-	int x;
-	int	y;
+	int		x;
+	int		y;
+	char	*pixel;
 
 	y = data->param.resolution.axe_y;
+	(void)fd;
+	(void)nbr_bits;
 	while (y > 0)
 	{
 		x = 0;
 		while (x < data->param.resolution.axe_x)
 		{
+			pixel = data->img.addr + (y * data->img.line_lenght + x * (data->img.bits_per_pixel / 8));
+		//	printf("pointer %p\n", pixel);
+			*(int *)pixel = BLUE_PIXEL;
+		//	*nbr_bits = write(fd, &pixel, 1);
 			x++;
 		}
 		y--;
