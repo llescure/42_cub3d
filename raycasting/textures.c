@@ -3,8 +3,6 @@
 
 int ft_get_addr_textures(t_data *data)
 {
-//	data->texture.width = 64;
-//	data->texture.height = 64;
 	if (!(data->tab_texture[0].img = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.north_texture, &(data->tab_texture[0].width), &(data->tab_texture[0].height))))
 		exit (0);
@@ -20,7 +18,7 @@ int ft_get_addr_textures(t_data *data)
 /*	if (!(data->tab_texture[4].img = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.sprite, &data->texture.sprite_width, &data->texture.sprite_height)))
 		exit (0);
-*/printf("coucou\n");
+*/
 return (0);
 }
 
@@ -68,6 +66,8 @@ int draw_texture_walls(t_data *data, int pos_x)
 //	printf("height = %d\n", data->tab_texture[data->texture.text_dir].height);
 	data->texture.step = 1.0 * data->tab_texture[data->texture.text_dir].height / data->ray.line_height;
 //	printf("wallx = %f\n(double)data->tab_texture.width = %f\n", data->texture.wallx, (double)data->tab_texture[data->texture.text_dir].width);
+	if (data->texture.text_dir == 1 || data->texture.text_dir == 3)
+		data->texture.x = data->tab_texture[data->texture.text_dir].width - data->texture.x - 1;
 	data->texture.x = (int)(data->texture.wallx * (double)data->tab_texture[data->texture.text_dir].width);
 	if (data->ray.side == 0 && data->ray.ray_dirx > 0)
 		data->texture.x = data->tab_texture[data->texture.text_dir].width - data->texture.x - 1;
@@ -76,25 +76,13 @@ int draw_texture_walls(t_data *data, int pos_x)
 	data->texture.position = (data->ray.draw_start - data->param.resolution.axe_y / 2 + data->ray.line_height / 2) * data->texture.step;
 	while (y <= data->ray.draw_end)
 	{
-//		printf("y = %d\n", y);
-//		printf("drawend = %d\n", data->ray.draw_end);
 		data->texture.y = (int)data->texture.position &
 			(data->tab_texture[data->texture.text_dir].height - 1);
 		data->texture.position += data->texture.step;
-//		printf("texture.x = %i\ntexture.y = %i\n", data->texture.x, data->texture.y);
-
-//		printf("data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].line_lenght / 4 + data->texture.x] = %d\n", data->tab_texture[data->texture.text_dir].line_lenght / 4 + data->texture.x);
-//		exit (0);
-//		if (y < data->param.resolution.axe_y && pos_x < data->param.resolution.axe_x)
-	//	printf("pos_x= %d\n", pos_x);
-	//	printf("img.line_lenght= %d\n", data->img.line_lenght);
-	//	printf("y= %d\n", y);
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 1] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 1];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 2] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 2];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 3] = data->tab_texture[data->texture.text_dir].addr[data->texture.y * data->tab_texture[data->texture.text_dir].height * 4 + data->texture.x * 4 + 3];
-
-
 		y++;
 	}
 	return (0);
