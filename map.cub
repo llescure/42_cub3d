@@ -1,5 +1,5 @@
-R 100 100
-NO ./textures/sky.xpm
+R 2000 2000
+NO ./textures/brick.xpm
 SO ./textures/brick.xpm
 WE ./textures/brick.xpm
 EA ./textures/brick.xpm
