@@ -139,6 +139,7 @@ typedef struct		s_texture
 	double		position; // coordonnee de depart
 	double		shade;
 	int			*color;
+	t_sprite 	sprite;
 }					t_texture;
 
 typedef struct		s_data
