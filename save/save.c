@@ -1,7 +1,7 @@
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
-/*int		create_image(t_data *data)
+int		create_image(t_data *data)
 {
 	int		fd;
 	int		nbr_bits;
@@ -113,4 +113,4 @@ int		close_bmp_file(int fd, int nbr_bits, t_data *data)
 	}
 	return (0);
 }
-*/
+
