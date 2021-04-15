@@ -37,6 +37,7 @@ int		launch_hook(t_data *data)
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);

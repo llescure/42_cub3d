@@ -20,7 +20,7 @@ int ft_get_addr_textures(t_data *data)
 /*	if (!(data->tab_texture[4].img = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.sprite, &data->texture.sprite_width, &data->texture.sprite_height)))
 		exit (0);
-*/printf("coucou\n");
+*/
 return (0);
 }
 
@@ -53,9 +53,9 @@ int direction_texture(t_data *data)
 		data->texture.wallx = data->ray.pos_y + data->ray.perp_wall_dist * data->ray.ray_diry;
 	else
 		data->texture.wallx = data->ray.pos_x + data->ray.perp_wall_dist * data->ray.ray_dirx;
-	printf("wallx = %f\n", data->texture.wallx);
+	//printf("wallx = %f\n", data->texture.wallx);
 	data->texture.wallx -= floor((data->texture.wallx));
-	printf("wallx = %f\n", data->texture.wallx);
+	//printf("wallx = %f\n", data->texture.wallx);
 	return (0);
 }
 

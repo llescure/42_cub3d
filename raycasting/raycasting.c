@@ -58,6 +58,7 @@ int raycasting(t_data *data, t_ray *ray)
 				(ray->ray_diry * ray->ray_diry));
 		// printf("raydirX = %f, rayDirY = %f\n", ray->rayDirX, ray->rayDirY);
 		ray->hit = 0; //was there a wall hit?
+		//printf("ray->dir_x = %f\n", ray->dir_x);
 		if(ray->ray_dirx < 0)
 		{
 			ray->step_x = -1;
@@ -134,8 +135,6 @@ int raycasting(t_data *data, t_ray *ray)
 		draw_ceiling(0, ray->draw_start, x, data);
 		x++;
 	}
-	//printf("COUCOU\n");
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	return (0);
 }
 

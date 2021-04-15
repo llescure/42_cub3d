@@ -13,19 +13,23 @@ int		create_image(t_data *data)
 		print_error(&data->param, "Couldn't create a bmp image");
 		return (-1);
 	}
-	data->param.perso.dirx = 0;
-	data->param.perso.diry = 0;
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
 		print_error(&data->param, "Couldn't start mlx_init");
 		return (-1);
 	}
+	data->param.perso.dirx = 0;
+	data->param.perso.diry = 0;
+	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
-//	raycasting(data, &data->ray);
+	get_textures(data);
+	data->ray.pos_x = (double)data->param.perso.position_y;
+	data->ray.pos_y = (double)data->param.perso.position_x;
+	raycasting(data, &data->ray);
 	draw_minimap(data);
 	create_file_header(fd, data, &nbr_bits);
 	create_info_header(fd, data, &nbr_bits);
@@ -78,20 +82,15 @@ void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
 {
 	int		x;
 	int		y;
-	char	*pixel;
 
 	y = data->param.resolution.axe_y;
-	(void)fd;
-	(void)nbr_bits;
-	while (y > 0)
+	while (y >= 0)
 	{
 		x = 0;
 		while (x < data->param.resolution.axe_x)
 		{
-			pixel = data->img.addr + (y * data->img.line_lenght + x * (data->img.bits_per_pixel / 8));
-		//	printf("pointer %p\n", pixel);
-			*(int *)pixel = BLUE_PIXEL;
-		//	*nbr_bits = write(fd, &pixel, 1);
+			*nbr_bits += write(fd, &data->img.addr[4 * y *
+					data->param.resolution.axe_x + 4 * x], 4);
 			x++;
 		}
 		y--;
