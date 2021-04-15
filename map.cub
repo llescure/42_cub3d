@@ -1,11 +1,12 @@
 R 2000 2000
-NO ./textures/wall.xpm
-SO ./textures/wall.xpm
-WE ./textures/wall.xpm
+NO ./textures/sky.xpm
+SO ./textures/brick.xpm
+WE ./textures/brick.xpm
+EA ./textures/brick.xpm
 S ./textures/plant_mario.xpm
-EA ./textures/wall.xpm
 C 135,206,235
 F 179,139,109
+
 
 
 11111111111111111
