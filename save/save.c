@@ -95,7 +95,6 @@ void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
 		}
 		y--;
 	}
-	free_textures(data);
 }
 
 int		close_bmp_file(int fd, int nbr_bits, t_data *data)
@@ -111,6 +110,9 @@ int		close_bmp_file(int fd, int nbr_bits, t_data *data)
 		return (-1);
 	}
 	free_address_params(&data->param);
+	free_textures(data);
+	mlx_destroy_image(data->mlx_ptr, data->img.img);
+	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	printf("Image saved at ./screenshot.bmp\n");
 	return (0);
