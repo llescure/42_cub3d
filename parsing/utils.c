@@ -42,24 +42,6 @@ int		ft_atoi_cub3d(char *str, int i, t_param *param)
 	return (result * sign);
 }
 
-int		ft_is_string(char *s1, char *s2)
-{
-	int		i;
-	size_t	n;
-
-	i = 0;
-	n = 0;
-	while (s1[i] != '\0')
-	{
-		if (s1[i] == s2[i])
-			n++;
-		i++;
-	}
-	if (n == ft_strlen(s1))
-		return (1);
-	return (0);
-}
-
 /*void	print_params(t_param *param)
 {
 	int i;

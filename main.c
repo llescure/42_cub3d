@@ -7,7 +7,7 @@ int		main(int argc, char **argv)
 
 	data.param = initialize(argc, argv);
 	initialisation_orientation(&data.param, &data.ray);
-/*	if (ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) == 0)
+	if (argc == 3 && ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) == 0)
 	{
 		if (create_image(&data) == -1)
 		{
@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 		}
 		else
 			return (0);
-	}*/
+	}
 	if (create_window(&data) == -1)
 		return (-1);
 	initialize_mlx(&data);

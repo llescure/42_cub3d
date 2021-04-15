@@ -18,12 +18,15 @@ void		free_address_params(t_param *param)
 	if (param->map.map)
 		free(param->map.map);
 	i = 0;
-	while (i < param->map.nb_lines)
+	if (param->map.tab_map)
 	{
-		free(param->map.tab_map[i]);
-		i++;
+		while (i < param->map.nb_lines)
+		{
+			free(param->map.tab_map[i]);
+			i++;
+		}
+		free(param->map.tab_map);
 	}
-	free(param->map.tab_map);
 }
 
 t_param		initialize_structure(t_param *param, char *argv)
@@ -76,26 +79,26 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 }
 
 /*int			main(int argc, char **argv)
-{
-	char	*str;
-	char	*map;
-	int		fd;
-	t_param	param;
+  {
+  char	*str;
+  char	*map;
+  int		fd;
+  t_param	param;
 
-	if (!(map = malloc(sizeof(char) * 2)))
-		return (-1);
-	map[0] = 0;
-	if (!(str = malloc(sizeof(char) * 2)))
-		return (-1);
-	initialize_structure(&param, argv[1]);
-	fd = open(argv[1], O_RDONLY);
-	manage_errors(argc, argv, &param);
-	read_map(fd, str, map, &param);
-	print_params(&param);
-	init(&param);
-	free_address_params(&param);
-	return (0);
-}*/
+  if (!(map = malloc(sizeof(char) * 2)))
+  return (-1);
+  map[0] = 0;
+  if (!(str = malloc(sizeof(char) * 2)))
+  return (-1);
+  initialize_structure(&param, argv[1]);
+  fd = open(argv[1], O_RDONLY);
+  manage_errors(argc, argv, &param);
+  read_map(fd, str, map, &param);
+  print_params(&param);
+  init(&param);
+  free_address_params(&param);
+  return (0);
+  }*/
 
 t_param		initialize(int argc, char **argv)
 {
