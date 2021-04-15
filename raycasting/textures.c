@@ -80,3 +80,16 @@ int draw_texture_walls(t_data *data, int pos_x)
 	}
 	return (0);
 }
+
+void	free_textures(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (data->tab_texture[i].img)
+			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
+		i++;
+	}
+}

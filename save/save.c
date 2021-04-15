@@ -95,6 +95,7 @@ void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
 		}
 		y--;
 	}
+	free_textures(data);
 }
 
 int		close_bmp_file(int fd, int nbr_bits, t_data *data)
