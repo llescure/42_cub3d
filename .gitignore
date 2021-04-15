@@ -12,6 +12,7 @@
 #Executables
 a.out
 *.swp
+cub3d
 
 #Debug
 .dSYM/

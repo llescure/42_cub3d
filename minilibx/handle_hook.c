@@ -60,7 +60,7 @@ int		create_window(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
-		printf("ERROR\nCouldn't start mlx_init");
+		print_error(&data->param, "Couldn't start mlx_init");
 		return (-1);
 	}
 	mlx_get_screen_size(data->mlx_ptr, &lenght, &width);
@@ -73,7 +73,7 @@ int		create_window(t_data *data)
 	if (data->win_ptr == NULL)
 	{
 		free(data->win_ptr);
-		printf("ERROR\nCouldn't open a window");
+		print_error(&data->param, "Couldn't open a window");
 		return (-1);
 	}
 	return (0);

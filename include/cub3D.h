@@ -14,7 +14,6 @@ int		find_str_beginning(char *s1, char *s2);
 int		find_str_end(char *s1, char *s2);
 int		conversion_rgb_to_hexa(t_colour colour);
 
-int		ft_is_string(char *s1, char *s2);
 int		manage_errors(int argc, char **argv, t_param *param);
 void	print_error(t_param *param, char *str);
 int		file_is_cub(char *str, t_param *param);

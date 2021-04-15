@@ -10,7 +10,7 @@ int		create_image(t_data *data)
 	if ((fd = open("./screenshot.bmp", O_CREAT | O_WRONLY | O_APPEND, 0777))
 			== -1)
 	{
-		printf("ERROR\nCouldn't create a bmp image");
+		print_error(&data->param, "Couldn't create a bmp image");
 		return (-1);
 	}
 	data->param.perso.dirx = 0;
@@ -18,7 +18,7 @@ int		create_image(t_data *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 	{
-		printf("ERROR\nCouldn't start mlx_init");
+		print_error(&data->param, "Couldn't start mlx_init");
 		return (-1);
 	}
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
@@ -100,17 +100,19 @@ void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
 
 int		close_bmp_file(int fd, int nbr_bits, t_data *data)
 {
-	if (nbr_bits != 14 + 40 + 4 * data->param.resolution.axe_x *
-			data->param.resolution.axe_y)
+	if (nbr_bits < 14 + 40)
 	{
-		printf("ERROR\nCouldn't write on the file");
+		print_error(&data->param, "Couldn't write on the file");
 		return (-1);
 	}
 	if (close(fd) == -1)
 	{
-		printf("ERROR\nCouldn't close the bmp image");
+		print_error(&data->param, "Couldn't close the bmp image");
 		return (-1);
 	}
+	free_address_params(&data->param);
+	free(data->mlx_ptr);
+	printf("Image saved at ./screenshot.bmp\n");
 	return (0);
 }
 

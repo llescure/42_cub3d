@@ -11,12 +11,9 @@ void	print_error(t_param *param, char *str)
 
 int		manage_errors(int argc, char **argv, t_param *param)
 {
-	char	*s1;
-
-	s1 = "--save";
 	if (argc != 2 && argc != 3)
 		print_error(param, "Wrong number of arguments");
-	if (argc == 3 && (ft_is_string(argv[2], s1) == 0))
+	if (argc == 3 && ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) != 0)
 		print_error(param, "Wrong third argument");
 	file_is_cub(argv[1], param);
 	return (0);
