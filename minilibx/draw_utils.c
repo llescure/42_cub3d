@@ -61,10 +61,8 @@ int		draw_column(int beginning, int end, int pos_x, t_data *data)
 	{
 		while (i < end)
 		{
-//			data->texture.y = (int)data->texture.position & (data->texture.text_height - 1);
-//			data->texture.position += data->texture.step;
-//			data->img.addr[(i * (int)data->param.resolution.axe_x + i)] = data->texture.color[(data->texture.y * data->texture.text_height + data->texture.x)];
-			img_pix_put(&data->img, pos_x, i, GREEN_PIXEL * data->texture.shade);
+			img_pix_put(&data->img, pos_x, i, GREEN_PIXEL *
+					data->texture.shade);
 			i++;
 		}
 	}

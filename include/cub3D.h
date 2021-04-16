@@ -48,7 +48,6 @@ int		check_address_parameters(char *str, t_param *param);
 
 char	*save_param_numbers(char *str, char *res, int i);
 int		resolution_param(char *str, t_param *param);
-//void print_params(t_param *param);
 char	*save_address_param(char *str, t_param *param);
 int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
@@ -60,7 +59,6 @@ void	free_address_params(t_param *params);
 
 int		raycasting(t_data *data, t_ray *ray);
 void	init(t_data *data);
-int		print_ray(t_ray *ray);
 int		initialisation_orientation(t_param *param, t_ray *ray);
 t_param	initialize(int argc, char **argv);
 void	ft_textures(t_data *data);
@@ -95,12 +93,13 @@ int		move_perso(t_data *data);
 int		close_window(int key, t_data *data);
 int		launch_hook(t_data *data);
 int		initialize_mlx(t_data *data);
+void	initialize_parameters_for_mlx(t_data *data);
 int		create_window(t_data *data);
 void	rotate_camera_left(t_ray *ray);
 void	rotate_camera_right(t_ray *ray);
 void	close_game(t_data *data);
-void	forward_backward_movement(int nega, t_data *data);
-void	left_right_movement(int nega, t_data *data);
+void	forward_backward_movement(int nega, t_perso *perso);
+void	left_right_movement(int nega, t_perso *perso);
 
 /*
  ** Image

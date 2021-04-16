@@ -19,14 +19,7 @@ int		create_image(t_data *data)
 		print_error(&data->param, "Couldn't start mlx_init");
 		return (-1);
 	}
-	data->param.perso.dirx = 0;
-	data->param.perso.diry = 0;
-	initialisation_orientation(&data->param, &data->ray);
-	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
-			data->param.resolution.axe_y);
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
-			&data->img.line_lenght, &data->img.endian);
-	get_textures(data);
+	initialize_parameters_for_mlx(data);
 	data->ray.pos_x = (double)data->param.perso.position_y;
 	data->ray.pos_y = (double)data->param.perso.position_x;
 	raycasting(data, &data->ray);
@@ -34,9 +27,7 @@ int		create_image(t_data *data)
 	create_file_header(fd, data, &nbr_bits);
 	create_info_header(fd, data, &nbr_bits);
 	create_pixel_on_bmp(fd, data, &nbr_bits);
-	if (close_bmp_file(fd, nbr_bits, data) == -1)
-		return (-1);
-	return (0);
+	return (close_bmp_file(fd, nbr_bits, data));
 }
 
 void	create_file_header(int fd, t_data *data, int *nbr_bits)
@@ -64,7 +55,7 @@ void	create_info_header(int fd, t_data *data, int *nbr_bits)
 	*nbr_bits += write(fd, &bmp_integer, 4);
 	width = data->param.resolution.axe_x;
 	*nbr_bits += write(fd, &width, 4);
-	height = data ->param.resolution.axe_y;
+	height = data->param.resolution.axe_y;
 	*nbr_bits += write(fd, &height, 4);
 	bmp_integer = 1;
 	*nbr_bits += write(fd, &bmp_integer, 2);
@@ -117,4 +108,3 @@ int		close_bmp_file(int fd, int nbr_bits, t_data *data)
 	printf("Image saved at ./screenshot.bmp\n");
 	return (0);
 }
-

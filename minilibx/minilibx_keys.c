@@ -20,13 +20,13 @@ int		press_key(int key, t_data *data)
 			data->param.perso.angle -= 360;
 	}
 	if (key == FORWARD_W)
-		forward_backward_movement(1, data);
+		forward_backward_movement(1, &data->param.perso);
 	else if (key == BACK_S)
-		forward_backward_movement(-1, data);
+		forward_backward_movement(-1, &data->param.perso);
 	else if (key == RIGHT_D)
-		left_right_movement(1, data);
+		left_right_movement(1, &data->param.perso);
 	else if (key == LEFT_A)
-		left_right_movement(-1, data);
+		left_right_movement(-1, &data->param.perso);
 	return (0);
 }
 

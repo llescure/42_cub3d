@@ -8,8 +8,6 @@ int		move_perso(t_data *data)
 
 	speed = 0.1;
 	dist = 0.2;
-	//	printf("pos_x: %f\n", (int)(data->param.perso.position_x + data->param.perso.dirx * speed));
-	//	printf("pos_y: %f\n", (int)(data->param.perso.position_y + data->param.perso.diry * speed));
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
@@ -23,10 +21,6 @@ int		move_perso(t_data *data)
 		data->param.perso.position_x +=	data->param.perso.dirx * speed;
 		data->param.perso.position_y +=	data->param.perso.diry * speed;
 	}
-	//	printf("speed1: %f\n", data->param.perso.dirx * speed);
-	//	printf("speed2: %f\n", data->param.perso.diry * speed);
-	//printf("pos_x: %f\n", data->param.perso.position_x);
-	//printf("pos_y: %f\n", data->param.perso.position_y);
 	return (0);
 }
 
@@ -80,7 +74,7 @@ int		create_window(t_data *data)
 	return (0);
 }
 
-int		initialize_mlx(t_data *data)
+void	initialize_parameters_for_mlx(t_data *data)
 {
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
@@ -90,6 +84,11 @@ int		initialize_mlx(t_data *data)
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
 	get_textures(data);
+}
+
+int		initialize_mlx(t_data *data)
+{
+	initialize_parameters_for_mlx(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &press_key, data);
 	mlx_hook(data->win_ptr, 33, (1L << 17), &click_close, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &release_key, data);
