@@ -84,3 +84,29 @@ int		conversion_rgb_to_hexa(t_colour colour)
 	blue = colour.blue;
 	return ((red << 16) | (green << 8) | blue);
 }
+
+int ft_number_sprites(char *str, t_param *param)
+{
+	int i;
+	int result;
+	int x;
+	int y;
+
+	i = 0;
+	result = 0;
+	x = 0;
+	y = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '2' || str[i] == '3')
+			result++;
+		if (str[i] == '2')
+			x++;
+		if (str[i] == '3')
+			y++;
+		i++;
+	}
+	param->nb_sprite_1 = x;
+	param->nb_sprite_2 = y;
+	return (result);
+}

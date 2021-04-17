@@ -27,7 +27,7 @@ int		check_symbols(char *str, t_param *param)
 	{
 		if (str[i] != '0' && str[i] != '1' && str[i] != '2' && str[i] != 'E'
 				&& str[i] != 'S' && str[i] != 'W' && str[i] != 'N'
-				&& str[i] != '5' && str[i] != ' ')
+				&& str[i] != '5' && str[i] != ' ' && str[i] != '3')
 			print_error(param, "Wrong symbol in the map");
 		i++;
 	}

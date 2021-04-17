@@ -104,7 +104,7 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 			tab_map[j++] = strdup(*line);
 		free(*line);
 	}
-	if (i < 8)
+	if (i < 9)
 		print_error(param, "Wrong number of parameters");
 	free(*line);
 	return (ret);
@@ -120,7 +120,7 @@ int		sorting_map(char *map_map, t_param *param)
 
 	ret = 1;
 	fd = open(param->file, O_RDONLY);
-	if (!(tab_param = malloc(sizeof(char*) * 8)))
+	if (!(tab_param = malloc(sizeof(char*) * 9)))
 		return (-1);
 	if (!(tab_map = malloc(sizeof(char*) * calculate_nb_chains(map_map))))
 		return (-1);
@@ -129,7 +129,7 @@ int		sorting_map(char *map_map, t_param *param)
 	param->map.tab_map = tab_map;
 	check_all_para(param, tab_param);
 	ret = 0;
-	while (ret < 8)
+	while (ret < 9)
 	{
 		free(tab_param[ret]);
 		ret++;

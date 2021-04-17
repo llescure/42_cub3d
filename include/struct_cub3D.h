@@ -64,7 +64,11 @@ typedef struct		s_param {
 	t_map			map;
 	t_colour		ceiling_colour;
 	t_resolution	resolution;
-	char			*sprite;
+	char			*sprite_1;
+	char			*sprite_2;
+	int				nb_sprites;
+	int				nb_sprite_1;
+	int				nb_sprite_2;
 	t_colour		floor_colour;
 	char			*north_texture;
 	char			*south_texture;
@@ -126,6 +130,18 @@ typedef struct		s_ray
 
 typedef struct		s_sprite
 {
+	int		draw_start_x;
+	int		draw_start_y;
+	int		draw_end_x;
+	int		draw_end_y;
+	double	pos_x;
+	double	pos_y;
+	int		height;
+	int		width;
+	double	*distance;
+	double	*z_buffer;
+	int		*order;
+	t_img	img;
 
 }					t_sprite;
 
@@ -139,7 +155,6 @@ typedef struct		s_texture
 	double		position; // coordonnee de depart
 	double		shade;
 	int			*color;
-	t_sprite 	sprite;
 }					t_texture;
 
 typedef struct		s_data
@@ -150,7 +165,8 @@ typedef struct		s_data
 	t_param		param;
 	t_ray		ray;
 	t_texture	texture;
-	t_img		tab_texture[5];
+	t_img		tab_texture[6];
+	t_sprite 	sprite;
 }					t_data;
 
 typedef struct		s_rect

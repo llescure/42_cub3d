@@ -52,6 +52,8 @@ char	*save_address_param(char *str, t_param *param);
 int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
+int		ft_number_sprites(char *str, t_param *param);
+
 
 /*
  ** Raycasting

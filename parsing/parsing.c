@@ -5,8 +5,10 @@ void		free_address_params(t_param *param)
 {
 	int i;
 
-	if (param->sprite)
-		free(param->sprite);
+	if (param->sprite_1)
+		free(param->sprite_1);
+	if (param->sprite_2)
+		free(param->sprite_2);
 	if (param->north_texture)
 		free(param->north_texture);
 	if (param->south_texture)
@@ -42,7 +44,8 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->floor_colour.green = -10;
 	param->resolution.axe_x = -10;
 	param->resolution.axe_y = -10;
-	param->sprite = NULL;
+	param->sprite_1 = NULL;
+	param->sprite_2 = NULL;
 	param->north_texture = NULL;
 	param->south_texture = NULL;
 	param->west_texture = NULL;
@@ -69,6 +72,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	close(fd);
 	only_params(map, para);
 	str = only_map(map, para);
+	para->nb_sprites = ft_number_sprites(str, para);
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, para);
