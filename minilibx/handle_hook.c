@@ -11,6 +11,11 @@ int		move_perso(t_data *data)
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
+				speed + data->param.perso.dirx * dist)] == '2')
+		data->bonus.life =- 1;
+	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
+				data->param.perso.diry * speed + data->param.perso.diry * dist)]
+			[(int)(data->param.perso.position_x + data->param.perso.dirx *
 				speed + data->param.perso.dirx * dist)] == '0'
 			|| data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
@@ -35,6 +40,8 @@ int		launch_hook(t_data *data)
 	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
+	//if (health_management(data) == -1)
+	//	close_game(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 			data->img.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
@@ -76,6 +83,7 @@ int		create_window(t_data *data)
 
 void	initialize_parameters_for_mlx(t_data *data)
 {
+	data->bonus.life = 5;
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
 	initialisation_orientation(&data->param, &data->ray);
@@ -90,7 +98,7 @@ int		initialize_mlx(t_data *data)
 {
 	initialize_parameters_for_mlx(data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &press_key, data);
-	mlx_hook(data->win_ptr, 33, (1L << 17), &click_close, data);
+	mlx_hook(data->win_ptr, 33, (1L << 17), &close_game, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &release_key, data);
 	mlx_loop_hook(data->mlx_ptr, &launch_hook, data);
 	mlx_loop(data->mlx_ptr);

@@ -157,6 +157,11 @@ typedef struct		s_texture
 	int			*color;
 }					t_texture;
 
+typedef	struct		s_bonus
+{
+	int			life;
+}				t_bonus;
+
 typedef struct		s_data
 {
 	void		*mlx_ptr;
@@ -167,6 +172,7 @@ typedef struct		s_data
 	t_texture	texture;
 	t_img		tab_texture[6];
 	t_sprite 	sprite;
+	t_bonus		bonus;
 }					t_data;
 
 typedef struct		s_rect

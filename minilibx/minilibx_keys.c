@@ -30,12 +30,13 @@ int		press_key(int key, t_data *data)
 	return (0);
 }
 
-void	close_game(t_data *data)
+int	close_game(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
 	free_textures(data);
 	free_address_params(&data->param);
+	return (0);
 }
 
 int		release_key(int key, t_data *data)
@@ -45,14 +46,5 @@ int		release_key(int key, t_data *data)
 		data->param.perso.dirx = 0;
 		data->param.perso.diry = 0;
 	}
-	return (0);
-}
-
-int		click_close(t_data *data)
-{
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-	free_textures(data);
-	free_address_params(&data->param);
 	return (0);
 }

@@ -87,7 +87,6 @@ int		draw_floor(int beginning, int end, int pos_x, t_data *data);
 int		draw(t_data *data);
 int		draw_rect(t_img *img, t_rect rect);
 void	img_pix_put(t_img *img, int x, int y, int color);
-int		click_close(t_data *data);
 int		press_key(int key, t_data *data);
 int		release_key(int key, t_data *data);
 int		initialize_mlx(t_data *data);
@@ -99,7 +98,7 @@ void	initialize_parameters_for_mlx(t_data *data);
 int		create_window(t_data *data);
 void	rotate_camera_left(t_ray *ray);
 void	rotate_camera_right(t_ray *ray);
-void	close_game(t_data *data);
+int		close_game(t_data *data);
 void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
 
