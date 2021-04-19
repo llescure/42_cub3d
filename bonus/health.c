@@ -24,6 +24,7 @@ void	convert_health_level(t_data *data)
 void	get_health_level(t_data *data)
 {
 	convert_health_level(data);
+	data->bonus.life = 4;
 	data->bonus.tab_life[0].addr = mlx_get_data_addr(data->bonus.tab_life[0].img,
 			&data->bonus.tab_life[0].bits_per_pixel,
 			&data->bonus.tab_life[0].line_lenght,
@@ -44,19 +45,18 @@ void	get_health_level(t_data *data)
 
 int	health_management(t_data *data)
 {
-	get_health_level(data);
 	if (data->bonus.life == 4)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[3].img, 0, data->param.resolution.axe_y - 75);
+			data->bonus.tab_life[3].img, 0, data->param.resolution.axe_y - 100);
 	else if (data->bonus.life == 3)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[2].img, 0, data->param.resolution.axe_y - 75);
+			data->bonus.tab_life[2].img, 0, data->param.resolution.axe_y - 100);
 	else if (data->bonus.life == 2)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[1].img, 0, data->param.resolution.axe_y - 75);
+			data->bonus.tab_life[1].img, 0, data->param.resolution.axe_y - 100);
 	else if (data->bonus.life == 1)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[0].img, 0, data->param.resolution.axe_y - 75);
+			data->bonus.tab_life[0].img, 0, data->param.resolution.axe_y - 100);
 	if (data->bonus.life == 0)
 	{
 		print_error(&data->param, "Game over");

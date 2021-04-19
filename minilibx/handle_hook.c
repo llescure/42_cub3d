@@ -42,9 +42,6 @@ int		launch_hook(t_data *data)
 		move_perso(data);
 	if (health_management(data) == -1)
 		close_game(data);
-	printf("life = %d\n", data->bonus.life);
-//	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-//			data->img.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
@@ -84,9 +81,9 @@ int		create_window(t_data *data)
 
 void	initialize_parameters_for_mlx(t_data *data)
 {
-	data->bonus.life = 4;
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
+	get_health_level(data);
 	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
