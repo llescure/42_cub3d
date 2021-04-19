@@ -1,7 +1,7 @@
-#include "../include/struct_data3d.h"
-#include "../include/data3d.h"
+#include "../include/struct_cub3d.h"
+#include "../include/cub3d.h"
 
-void	ft_sort_sprite(t_data *data)
+void	order_sprite(t_data *data)
 {
 	int		i;
 	int		j;
@@ -12,106 +12,138 @@ void	ft_sort_sprite(t_data *data)
 	{
 		j = -1;
 		while (++j < data->param.nb_sprites - 1)
-			if (data->sprt_dist[j] < data->sprt_dist[j + 1])
+			if (data->sprite.dist[j] < data->sprite.dist[j + 1])
 			{
-				tmp = data->sprt_dist[j];
-				data->sprt_dist[j] = data->sprt_dist[j + 1];
-				data->sprt_dist[j + 1] = tmp;
-				tmp = data->sprt_order[j];
-				data->sprt_order[j] = data->sprt_order[j + 1];
-				data->sprt_order[j + 1] = (int)tmp;
+				tmp = data->sprite.dist[j];
+				data->sprite.dist[j] = data->sprite.dist[j + 1];
+				data->sprite.dist[j + 1] = tmp;
+				tmp = data->sprite.order[j];
+				data->sprite.order[j] = data->sprite.order[j + 1];
+				data->sprite.order[j + 1] = (int)tmp;
 			}
 	}
 }
 
-void	ft_sprite_sorting(t_data *data)
+void	sort_sprites(t_data *data)
 {
 	int i;
 
 	i = -1;
 	while (++i < data->param.nb_sprites)
 	{
-		data->sprt_order[i] = i;
-		data->sprt_dist[i] = ((data->pos.x - data->sprt[i].x) *
-				(data->pos.x - data->sprt[i].x) + (data->pos.y -
-					data->sprt[i].y) * (data->pos.y - data->sprt[i].y));
+		data->sprite.order[i] = i;
+		data->sprite.dist[i] = ((data->ray.pos_x - data->sprite.sprite_x[i]) *
+				(data->ray.pos_x - data->sprite.sprite_x[i]) + (data->ray.pos_y -
+					data->sprite.sprite_y[i]) * (data->ray.pos_y - data->sprite.sprite_y[i]));
 	}
-	ft_sort_sprite(data);
+	order_sprite(data);
 }
 
-void	ft_set_cal_sprite(t_data *data, int i)
+void	calculate_sprites(t_data *data, int i)
 {
-	data->spt_pos.x = data->sprt[data->sprt_order[i]].x - data->pos.x;
-	data->spt_pos.y = data->sprt[data->sprt_order[i]].y - data->pos.y;
-	data->invdet = 1.0 / (data->plane.x * data->dir.y - data->dir.x * data->plane.y);
-	data->transform.x = data->invdet * (data->dir.y * data->spt_pos.x -
-			data->dir.x * data->spt_pos.y);
-	data->transform.y = data->invdet * (-data->plane.y * data->spt_pos.x +
-			data->plane.x * data->spt_pos.y);
-	data->spritescreenx = (int)((data->param.resolution.axe_x / 2) * (1 + data->transform.x /
-				data->transform.y));
-	data->sprite.height = abs((int)(data->param.resolution.axe_y / data->transform.y));
+	data->sprite.pos_x = data->sprite.sprite_x[data->sprite.order[i]] - data->ray.pos_x;
+	data->sprite.pos_y = data->sprite.sprite_y[data->sprite.order[i]] - data->ray.pos_y;
+	data->sprite.invdet = 1.0 / (data->ray.plan_x * data->ray.dir_y - data->ray.dir_x * data->ray.plan_y);
+	data->sprite.transform_x = data->sprite.invdet * (data->ray.dir_y * data->sprite.pos_x - data->ray.dir_x * data->sprite.pos_y);
+	data->sprite.transform_y = data->sprite.invdet * (data->ray.plan_y * data->sprite.pos_x - data->ray.plan_x * data->sprite.pos_y);
+	data->sprite.screen = (int)((data->param.resolution.axe_x / 2) * (1 + data->sprite.transform_x / data->sprite.transform_y));
+	data->sprite.height = abs((int)(data->param.resolution.axe_y / data->sprite.transform_y));
 	data->sprite.draw_start_y = -data->sprite.height / 2 + data->param.resolution.axe_y / 2;
-	data->sprite.draw_start_y = (data->sprite.draw_start_y < 0) ? 0 :
-		data->sprite.draw_start_y;
+	if (data->sprite.draw_start_y < 0)
+		data->sprite.draw_start_y = 0;
 	data->sprite.draw_end_y = data->sprite.height / 2 + data->param.resolution.axe_y / 2;
-	data->sprite.draw_end_y = (data->sprite.draw_end_y >= data->param.resolution.axe_y) ?
-		data->param.resolution.axe_y - 1 : data->sprite.draw_end_y;
-	data->sprite.width = abs((int)(data->param.resolution.axe_y / data->transform.y));
-	data->sprite.draw_start_x = -data->sprite.width / 2 + data->spritescreenx;
-	data->sprite.draw_start_x = (data->sprite.draw_start_x < 0) ? 0 :
-		data->sprite.draw_start_x;
-	data->sprite.draw_end_x = data->sprite.width / 2 + data->spritescreenx;
-	data->sprite.draw_end_x = (data->sprite.draw_end_x >= data->param.resolution.axe_x) ?
-		data->param.resolution.axe_x - 1 : data->sprite.draw_end_x;
+	if (data->sprite.draw_end_y <= data->param.resolution.axe_y)
+		data->sprite.draw_end_y = data->param.resolution.axe_y - 1;
+	data->sprite.width = abs((int)(data->param.resolution.axe_y / data->sprite.transform_y));
+	data->sprite.draw_start_x = -data->sprite.width / 2 + data->sprite.screen;
+	if (data->sprite.draw_start_x < 0)
+		data->sprite.draw_start_x = 0;
+	data->sprite.draw_end_x = data->sprite.width / 2 + data->sprite.screen;
+	if (data->sprite.draw_end_x >= data->param.resolution.axe_x)
+		data->sprite.draw_end_x = data->param.resolution.axe_x - 1;
 }
 
-void	ft_draw_sprite(t_data *data, int stripe, int text_x, int text_y)
+void	draw_sprite(t_data *data, int stripe, int text_x, int text_y)
 {
 	int i;
 	int d;
-	int y;
 
 	i = data->sprite.draw_start_y - 1;
 	while (++i < data->sprite.draw_end_y)
 	{
 		d = i * 256 - data->param.resolution.axe_y * 128 + data->sprite.height * 128;
-		text_y = ((d * data->sprite.img.height) / data->sprite.height) / 256;
+		text_y = (int)((d * data->sprite.img.height) / data->sprite.height);
+		printf("textx = %i, texty = %i\n", text_x, text_y);
+		printf("d = %i\n", d);
+		printf("data->sprite.img.height = %i\n", data->sprite.img.height);
+		printf("data->sprite.height = %i\n", data->sprite.height);
+		printf("data->sprite.img.addr[4 * text_y * data->sprite.img.height + 4 * text_x] = %i\n", data->sprite.img.addr[4 * text_y * data->sprite.img.height + 4 * text_x]);
+exit (0);
 		if (data->sprite.img.addr[4 * text_y * data->sprite.img.height + 4 * text_x]) // si c'est transparent
-			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * y] =
+			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * i] =
 				data->sprite.img.addr[4 * text_y * data->sprite.img.height + 4 * text_x];
 		if (data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 1]) // si c'est rouge
-			data->img.data[4 * stripe + 4 * data->param.resolution.axe_x * y + 1] =
+			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * i + 1] =
 				data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 1];
 		if (data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 2]) // si c'est vert
-			data->img.data[4 * stripe + 4 * data->param.resolution.axe_x * y + 2] =
+			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * i + 2] =
 				data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 2];
 		if (data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 3]) // si c'est bleu
-			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * y + 3] =
-				data->sprite.img.addr[text_y * data->sprite.img.heigh * 4 + text_x * 4 + 3];
+			data->img.addr[4 * stripe + 4 * data->param.resolution.axe_x * i + 3] =
+				data->sprite.img.addr[text_y * data->sprite.img.height * 4 + text_x * 4 + 3];
 	}
 }
 
-void	ft_sprite_casting(t_data *data)
+void	ft_sprites(t_data *data)
 {
 	int	i;
 	int	stripe;
 	int	text_x;
 
 	i = -1;
-	ft_sprite_sorting(data);
+	sort_sprites(data);
 	while (++i < data->param.nb_sprites)
 	{
-		ft_set_cal_sprite(data, i);
+		calculate_sprites(data, i);
 		stripe = data->sprite.draw_start_x - 1;
 		while (++stripe < data->sprite.draw_end_x)
 		{
-			text_x = (int)(256 * (stripe - (-data->sprite.width / 2 +
-							data->spritescreenx)) * data->sprite.img.width /
-					data->sprite.width) / 256;
-			if (data->transform.y > 0 && stripe > 0 && stripe < data->param.resolution.axe_x &&
-					data->transform.y < data->z_buffer[stripe])
-				ft_draw_sprite(data, stripe, text_x, 0);
+			text_x = (256 * (stripe - (-data->sprite.width / 2 + data->sprite.screen)) * data->sprite.img.width / data->sprite.width) / 256;
+			printf("data->sprite.width = %i\n", data->sprite.width);
+			printf("transform_y = %f, stripe = %i\n", data->sprite.transform_y, stripe);
+			exit (0);
+			if (data->sprite.transform_y > 0 && stripe > 0 && stripe < data->param.resolution.axe_x && data->sprite.transform_y < data->sprite.z_buffer[stripe])
+			{
+				printf("fonctionne ??\n");
+				draw_sprite(data, stripe, text_x, 0);
+			}
 		}
 	}
+}
+
+void		get_sprites_info(t_data *data)
+{
+   int i;
+   int j;
+   int k;
+
+   k = 0;
+   if (!(data->sprite.sprite_x = (double *)malloc(sizeof(double) * data->param.nb_sprites)) ||
+   			!(data->sprite.sprite_y = (double *)malloc(sizeof(double) * data->param.nb_sprites)) ||
+			!(data->sprite.order = (int *)malloc(sizeof(int) * data->param.nb_sprites)) ||
+			!(data->sprite.dist = (double *)malloc(sizeof(double) * data->param.nb_sprites)))
+	   print_error(&data->param, "sprites failed");
+   i = 0;
+   j = 0;
+   while (!(data->param.map.tab_map[i]))
+  {
+	   while (data->param.map.tab_map[i][j] != '\0')
+	   {
+		   if (data->param.map.tab_map[i][j] == '2')
+		   {
+			   data->sprite.sprite_x[k] = (double)j + 0.5;
+			   data->sprite.sprite_y[k] = (double)i + 0.5;
+		   }
+	   }
+  }
 }
