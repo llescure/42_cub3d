@@ -17,6 +17,7 @@ SRCS =  ./parsing/check_map.c			\
 		./minilibx/draw_utils.c			\
 		./minilibx/handle_hook.c		\
 		./save/save.c					\
+		./bonus/health.c				\
 		./main.c
 
 

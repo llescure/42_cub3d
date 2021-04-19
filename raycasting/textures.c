@@ -4,26 +4,31 @@
 int ft_get_addr_textures(t_data *data)
 {
 	if (!(data->tab_texture[0].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.north_texture, &(data->tab_texture[0].width), &(data->tab_texture[0].height))))
+					data->param.north_texture, &(data->tab_texture[0].width),
+					&(data->tab_texture[0].height))))
 		exit (0);
 	if (!(data->tab_texture[1].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.south_texture, &(data->tab_texture[1].width), &(data->tab_texture[1].height))))
+					data->param.south_texture, &(data->tab_texture[1].width),
+					&(data->tab_texture[1].height))))
 		exit (0);
 	if (!(data->tab_texture[2].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.east_texture, &(data->tab_texture[2].width), &(data->tab_texture[2].height))))
+					data->param.east_texture, &(data->tab_texture[2].width),
+					&(data->tab_texture[2].height))))
 		exit (0);
 	if (!(data->tab_texture[3].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.west_texture, &(data->tab_texture[3].width), &(data->tab_texture[3].height))))
+					data->param.west_texture, &(data->tab_texture[3].width),
+					&(data->tab_texture[3].height))))
 		exit (0);
 	if (!(data->tab_texture[4].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.sprite_1, &(data->tab_texture[4].width), &(data->tab_texture[4].height))))
+					data->param.sprite_1, &(data->tab_texture[4].width),
+					&(data->tab_texture[4].height))))
 		exit (0);
 
 	if (!(data->tab_texture[5].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.sprite_2, &(data->tab_texture[5].width), &(data->tab_texture[5].height))))
+					data->param.sprite_2, &(data->tab_texture[5].width),
+					&(data->tab_texture[5].height))))
 		exit (0);
-
-return (0);
+	return (0);
 }
 
 void get_textures(t_data *data)
@@ -95,6 +100,13 @@ void	free_textures(t_data *data)
 	{
 		if (data->tab_texture[i].img)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (data->bonus.tab_life[i].img)
+			mlx_destroy_image(data->mlx_ptr, data->bonus.tab_life[i].img);
 		i++;
 	}
 }

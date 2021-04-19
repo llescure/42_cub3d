@@ -54,7 +54,6 @@ int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
 int		ft_number_sprites(char *str, t_param *param);
 
-
 /*
  ** Raycasting
 */
@@ -103,7 +102,7 @@ void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
 
 /*
- ** Image
+ ** Save_image
 */
 
 int		create_image(t_data *data);
@@ -111,4 +110,13 @@ void	create_file_header(int fd, t_data *data, int *nbr_bits);
 void	create_info_header(int fd, t_data *data, int *nbr_bits);
 void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits);
 int		close_bmp_file(int fd, int nbr_bits, t_data *data);
+
+/*
+ ** Bonus
+*/
+
+int		health_management(t_data *data);
+void	get_health_level(t_data *data);
+void	convert_health_level(t_data *data);
+
 #endif

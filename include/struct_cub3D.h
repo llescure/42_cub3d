@@ -160,6 +160,7 @@ typedef struct		s_texture
 typedef	struct		s_bonus
 {
 	int			life;
+	t_img		tab_life[4];
 }				t_bonus;
 
 typedef struct		s_data
