@@ -7,6 +7,8 @@ int		colour_params_ceiling(char *str, t_param *param)
 	int		i;
 
 	i = 0;
+	if (ft_strchr(str, ',') == NULL)
+		return (check_address_parameters(str, param));
 	par = ft_split(str, ',');
 	param->ceiling_colour.red = ft_atoi_cub3d(par[0], 1, param);
 	param->ceiling_colour.green = ft_atoi_cub3d(par[1], 0, param);
@@ -31,6 +33,8 @@ int		colour_params_floor(char *str, t_param *param)
 	char	**par;
 
 	i = 0;
+	if (ft_strchr(str, ',') == NULL)
+		return (check_address_parameters(str, param));
 	par = ft_split(str, ',');
 	param->floor_colour.red = ft_atoi_cub3d(par[0], 1, param);
 	param->floor_colour.green = ft_atoi_cub3d(par[1], 0, param);
