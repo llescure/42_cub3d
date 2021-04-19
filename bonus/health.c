@@ -47,16 +47,20 @@ int	health_management(t_data *data)
 {
 	if (data->bonus.life == 4)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[3].img, 0, data->param.resolution.axe_y - 100);
+			data->bonus.tab_life[3].img, 0, data->param.resolution.axe_y -
+			data->bonus.tab_life[3].height);
 	else if (data->bonus.life == 3)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[2].img, 0, data->param.resolution.axe_y - 100);
+			data->bonus.tab_life[2].img, 0, data->param.resolution.axe_y -
+			data->bonus.tab_life[2].height);
 	else if (data->bonus.life == 2)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[1].img, 0, data->param.resolution.axe_y - 100);
+			data->bonus.tab_life[1].img, 0, data->param.resolution.axe_y -
+			data->bonus.tab_life[1].height);
 	else if (data->bonus.life == 1)
 			mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->bonus.tab_life[0].img, 0, data->param.resolution.axe_y - 100);
+			data->bonus.tab_life[0].img, 0, data->param.resolution.axe_y -
+			data->bonus.tab_life[0].height);
 	if (data->bonus.life == 0)
 	{
 		print_error(&data->param, "Game over");
