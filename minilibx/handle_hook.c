@@ -12,7 +12,7 @@ int		move_perso(t_data *data)
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
 				speed + data->param.perso.dirx * dist)] == '2')
-		data->bonus.life =- 1;
+		data->bonus.life -= 1;
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
@@ -40,10 +40,8 @@ int		launch_hook(t_data *data)
 	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
-	//if (health_management(data) == -1)
-	//	close_game(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			data->img.img, 0, 0);
+	if (health_management(data) == -1)
+		close_game(data);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
@@ -83,9 +81,9 @@ int		create_window(t_data *data)
 
 void	initialize_parameters_for_mlx(t_data *data)
 {
-	data->bonus.life = 5;
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
+	get_health_level(data);
 	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);

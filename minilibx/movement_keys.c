@@ -37,8 +37,7 @@ void	rotate_camera_right(t_ray *ray)
 
 void	left_right_movement(int nega, t_perso *perso)
 {
-	if (perso->angle == 45 || perso->angle == 225 || perso->angle == 135 ||
-			perso->angle == 315)
+	if (perso->angle == 45 || perso->angle == 225)
 	{
 		perso->dirx = nega * sin(perso->angle * M_PI / 180 + 90) * -1;
 		perso->diry = nega * cos(perso->angle * M_PI / 180 + 90) * -1;
