@@ -1,8 +1,8 @@
-R 3000 3000
+R 1500 1500
 NO ./textures/brick.xpm
-SO ./textures/brick.xpm
+SO ./textures/sky.xpm
 WE ./textures/brick.xpm
-EA ./textures/sky.xpm
+EA ./textures/brick.xpm
 S1 ./textures/plant_mario.xpm
 S2 ./textures/plant_mario.xpm
 C 135,206,235

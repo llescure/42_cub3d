@@ -16,6 +16,11 @@ int		move_perso(t_data *data)
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
+				speed + data->param.perso.dirx * dist)] == '3')
+		data->bonus.life += 1;
+	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
+				data->param.perso.diry * speed + data->param.perso.diry * dist)]
+			[(int)(data->param.perso.position_x + data->param.perso.dirx *
 				speed + data->param.perso.dirx * dist)] == '0'
 			|| data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
@@ -36,12 +41,12 @@ int		launch_hook(t_data *data)
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
+	if (health_management(data) == -1)
+		close_game(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
-	if (health_management(data) == -1)
-		close_game(data);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
@@ -66,8 +71,8 @@ int		create_window(t_data *data)
 	mlx_get_screen_size(data->mlx_ptr, &lenght, &width);
 	if (lenght < data->param.resolution.axe_x)
 		data->param.resolution.axe_x = lenght;
-	if (width < data->param.resolution.axe_y)
-		data->param.resolution.axe_y = width;
+	if (width - 50 < data->param.resolution.axe_y)
+		data->param.resolution.axe_y = width - 50;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y, "my window");
 	if (data->win_ptr == NULL)

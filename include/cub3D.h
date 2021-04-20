@@ -53,6 +53,7 @@ int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
 int		ft_number_sprites(char *str, t_param *param);
+void	correct_param_perso(t_param *param);
 
 /*
  ** Raycasting
@@ -95,8 +96,8 @@ int		launch_hook(t_data *data);
 int		initialize_mlx(t_data *data);
 void	initialize_parameters_for_mlx(t_data *data);
 int		create_window(t_data *data);
-void	rotate_camera_left(t_ray *ray);
-void	rotate_camera_right(t_ray *ray);
+void	rotate_camera_left(t_data *data);
+void	rotate_camera_right(t_data *data);
 int		close_game(t_data *data);
 void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
@@ -117,6 +118,7 @@ int		close_bmp_file(int fd, int nbr_bits, t_data *data);
 
 int		health_management(t_data *data);
 void	get_health_level(t_data *data);
+void	draw_life_bar(t_data *data, int i);
 void	convert_health_level(t_data *data);
 
 #endif
