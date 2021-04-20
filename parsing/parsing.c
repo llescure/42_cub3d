@@ -93,7 +93,8 @@ t_param		initialize(int argc, char **argv)
 	map[0] = 0;
 	str = malloc(sizeof(char) * 2);
 	initialize_structure(&param, argv[1]);
-	fd = open(argv[1], O_RDONLY);
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		print_error(&param, "Couldn't open file.cub");
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	free(str);
