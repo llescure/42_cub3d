@@ -1,10 +1,11 @@
 C 255,20,30
 R   100 100
-NO      ./textures/wall.xpm
-SO ./textures/wall.xpm
-EA ./textures/wall.xpm
-WE ./textures/wall.xpm
-S ./textures/wall.xpm
+NO ./textures/brick.xpm
+SO ./textures/sky.xpm
+WE ./textures/brick.xpm
+EA ./textures/brick.xpm
+S1 ./textures/plant_mario.xpm
+S2 ./textures/plant_mario.xpm
 F  0, 000, 00
 
    1111111111111111111111111
