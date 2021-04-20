@@ -84,7 +84,7 @@ int raycasting(t_data *data, t_ray *ray)
 				ray->side_distx += ray->delta_distx;
 				ray->map_x += ray->step_x;
 				ray->side = 0;
-				data->texture.shade = 0.75;
+				data->texture.shade = 0.9;
 			}
 			else
 			{
@@ -95,8 +95,8 @@ int raycasting(t_data *data, t_ray *ray)
 			}
 			if(data->param.map.tab_map[ray->map_x][ray->map_y] == '1')
 				ray->hit = 1;
-			else if(data->param.map.tab_map[ray->map_x][ray->map_y] == '2')
-				ray->hit = 2;
+//			else if(data->param.map.tab_map[ray->map_x][ray->map_y] == '2')
+//				ray->hit = 2;
 		}
 		if(ray->side == 0)
 			ray->perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x)
@@ -119,12 +119,10 @@ int raycasting(t_data *data, t_ray *ray)
 			draw_texture_walls(data, x);
 		draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
 		draw_ceiling(0, ray->draw_start, x, data);
-
 		data->sprite.z_buffer[x] = data->ray.perp_wall_dist;
 		x++;
 	}
-//	ft_sprites(data);
-
+	ft_sprites(data);
 	return (0);
 }
 
