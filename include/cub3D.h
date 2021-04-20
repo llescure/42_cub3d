@@ -75,13 +75,19 @@ int		draw_texture_walls(t_data *data, int pos_x);
 void	free_textures(t_data *data);
 
 /*
+ ** Sprites
+*/
+
+void		get_sprites_info(t_data *data);
+void		ft_sprites(t_data *data);
+/*
  ** Minilibx
 */
 
 int		draw_minimap(t_data *data);
 int		draw_square(float i, float j, t_data *data, int color);
 int		draw_line(t_data *data, t_rect rect);
-int		draw_column(int beginning, int end, int pos_x, t_data *data);
+//int		draw_column(int beginning, int end, int pos_x, t_data *data);
 int		draw_ceiling(int beginning, int end, int pos_x, t_data *data);
 int		draw_floor(int beginning, int end, int pos_x, t_data *data);
 int		draw(t_data *data);

@@ -19,14 +19,11 @@ int ft_get_addr_textures(t_data *data)
 					data->param.west_texture, &(data->tab_texture[3].width),
 					&(data->tab_texture[3].height))))
 		exit (0);
-	if (!(data->tab_texture[4].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.sprite_1, &(data->tab_texture[4].width),
-					&(data->tab_texture[4].height))))
+	if (!(data->sprite.img.img = mlx_xpm_file_to_image(data->mlx_ptr,
+					data->param.sprite_1, &(data->sprite.img.width), &(data->sprite.img.height))))
 		exit (0);
-
-	if (!(data->tab_texture[5].img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.sprite_2, &(data->tab_texture[5].width),
-					&(data->tab_texture[5].height))))
+	if (!(data->tab_texture[4].img = mlx_xpm_file_to_image(data->mlx_ptr,
+					data->param.sprite_2, &(data->tab_texture[5].width), &(data->tab_texture[5].height))))
 		exit (0);
 	return (0);
 }
@@ -44,11 +41,9 @@ void get_textures(t_data *data)
 			&data->tab_texture[2].bits_per_pixel, &data->tab_texture[2].
 			line_lenght, &data->tab_texture[2].endian);	// EAST
 	data->tab_texture[3].addr = mlx_get_data_addr(data->tab_texture[3].img,
-			&data->tab_texture[3].bits_per_pixel, &data->tab_texture[3].
-			line_lenght, &data->tab_texture[3].endian); // WEST
-	data->tab_texture[4].addr = mlx_get_data_addr(data->tab_texture[4].img,
-			&data->tab_texture[4].bits_per_pixel, &data->tab_texture[4].
-			line_lenght, &data->tab_texture[4].endian); // SPRITE
+			&data->tab_texture[3].bits_per_pixel, &data->tab_texture[3].line_lenght, &data->tab_texture[3].endian); // WEST
+	data->sprite.img.addr = mlx_get_data_addr(data->sprite.img.img,
+			&data->sprite.img.bits_per_pixel, &data->sprite.img.line_lenght, &data->sprite.img.endian); // SPRITE
 }
 
 int direction_texture(t_data *data)
@@ -121,12 +116,13 @@ void	free_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 6)
+	while (i < 5)
 	{
 		if (data->tab_texture[i].img)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
 		i++;
 	}
+	// destroy l'image de sprite !!
 	i = 0;
 	while (i < 4)
 	{

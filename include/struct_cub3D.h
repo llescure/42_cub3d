@@ -130,7 +130,9 @@ typedef struct		s_ray
 
 typedef struct		s_sprite
 {
-	int		draw_start_x;
+	double	*sprite_x;
+	double	*sprite_y;
+	int		draw_start_x; // lowest and highest pixel to fill in
 	int		draw_start_y;
 	int		draw_end_x;
 	int		draw_end_y;
@@ -138,10 +140,14 @@ typedef struct		s_sprite
 	double	pos_y;
 	int		height;
 	int		width;
-	double	*distance;
+	double	transform_x; // depth inside the screen to avoid fish-eye
+	double	transform_y;
+	double	*dist;
+	int		screen;
 	double	*z_buffer;
 	int		*order;
-	t_img	img;
+	double	invdet; // determinant de la matrice ( plane_x dir_x )
+	t_img	img;    // 							 ( plane_y dir_y )
 
 }					t_sprite;
 
