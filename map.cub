@@ -1,7 +1,7 @@
 R 2000 2000
-NO ./textures/sky.xpm
-SO ./textures/grass.xpm
-WE ./textures/grass.xpm
+NO ./textures/grass.xpm
+SO ./textures/sky.xpm
+WE ./textures/sky.xpm
 EA ./textures/grass.xpm
 S1 ./textures/tom_nook.xpm
 S2 ./textures/plant_mario.xpm

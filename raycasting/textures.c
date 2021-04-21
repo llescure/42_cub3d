@@ -80,16 +80,9 @@ int draw_texture_walls(t_data *data, int pos_x)
 		/ data->ray.line_height;
 	data->texture.x = (int)(data->texture.wallx *
 			(double)data->tab_texture[data->texture.text_dir].width);
-	if (data->ray.side == 0 && data->ray.ray_dirx > 0)
-		data->texture.x = data->tab_texture[data->texture.text_dir].width -
-			data->texture.x - 1;
-	if (data->ray.side == 1 && data->ray.ray_diry < 0)
-		data->texture.x = data->tab_texture[data->texture.text_dir].width -
-			data->texture.x - 1;
-	data->texture.position = (data->ray.draw_start -
-			data->param.resolution.axe_y / 2 + data->ray.line_height / 2) *
-		data->texture.step;
-	while (y <= data->ray.draw_end)
+	data->texture.position = (data->ray.draw_start - data->param.resolution.
+			axe_y / 2 + data->ray.line_height / 2) * data->texture.step;
+	while (y < data->ray.draw_end)
 	{
 		data->texture.y = (int)data->texture.position &
 			(data->tab_texture[data->texture.text_dir].height - 1);
