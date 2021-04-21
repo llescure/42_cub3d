@@ -30,7 +30,7 @@ void	orientation_north_south(t_param *param, t_ray *ray)
 		ray->dir_y = -1;
 		ray->dir_x = 0;
 		ray->plan_y = 0;
-		ray->plan_x = -0.66;
+		ray->plan_x = 0.66;
 		param->perso.angle = 270;
 	}
 	if (param->perso.orientation == 'S')
@@ -38,7 +38,7 @@ void	orientation_north_south(t_param *param, t_ray *ray)
 		ray->dir_y = 1;
 		ray->dir_x = 0;
 		ray->plan_y = 0;
-		ray->plan_x = 0.66;
+		ray->plan_x = -0.66;
 		param->perso.angle = 90;
 	}
 }

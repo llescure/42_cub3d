@@ -55,32 +55,34 @@ void	rotate_camera_right(t_data *data)
 
 void	left_right_movement(int nega, t_perso *perso)
 {
-	if (perso->angle == 45 || perso->angle == 225)
+		perso->dirx = -1 * nega * sin(perso->angle * M_PI / 180);
+		perso->diry = -1 * nega * cos(perso->angle * M_PI / 180);
+}
+
+void	forward_backward_movement(int nega, t_perso *perso)
+{
+	if (perso->angle == 30 || perso->angle == 45 || perso->angle == 60 || perso->angle == 210
+		||	perso->angle == 225 || perso->angle == 240)
 	{
-		perso->dirx = nega * sin(perso->angle * M_PI / 180 + 90) * -1;
-		perso->diry = nega * cos(perso->angle * M_PI / 180 + 90) * -1;
+		perso->dirx = nega * cos(perso->angle * M_PI / 180 - 90) * -1;
+		perso->diry = nega * sin(perso->angle * M_PI / 180 - 90) * -1;
 	}
-	else if (perso->angle == 135 || perso->angle == 315)
+	else if (perso->angle == 120 || perso->angle == 135 || perso->angle == 150 ||
+			perso->angle == 315 || perso->angle == 330 || perso->angle == 300)
 	{
-		perso->dirx = nega * sin(perso->angle * M_PI / 180 - 90) * -1;
-		perso->diry = nega * cos(perso->angle * M_PI / 180 - 90) * -1;
+		perso->dirx = nega * cos(perso->angle * M_PI / 180 + 90) * -1;
+		perso->diry = nega * sin(perso->angle * M_PI / 180 + 90) * -1;
 	}
 	else if ((perso->angle >= 0 && perso->angle < 60) || (perso->angle >= 165 &&
 				perso->angle < 240)
 			|| (perso->angle >= 330 && perso->angle < 360))
 	{
-		perso->dirx = nega * sin(perso->angle * M_PI / 180);
-		perso->diry = nega * cos(perso->angle * M_PI / 180);
+		perso->dirx = -1 * nega * cos(perso->angle * M_PI / 180);
+		perso->diry = -1 * nega * sin(perso->angle * M_PI / 180);
 	}
 	else
 	{
-		perso->dirx = -1 * nega * sin(perso->angle * M_PI / 180);
-		perso->diry = -1 * nega * cos(perso->angle * M_PI / 180);
+		perso->dirx = nega * cos(perso->angle * M_PI / 180);
+		perso->diry = nega * sin(perso->angle * M_PI / 180);
 	}
-}
-
-void	forward_backward_movement(int nega, t_perso *perso)
-{
-	perso->dirx = nega * cos(perso->angle * M_PI / 180);
-	perso->diry = nega * sin(perso->angle * M_PI / 180);
 }
