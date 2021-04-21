@@ -1,7 +1,7 @@
 R 2000 2000
-NO ./textures/grass.xpm
+NO ./textures/sky.xpm
 SO ./textures/grass.xpm
-WE ./textures/sky.xpm
+WE ./textures/grass.xpm
 EA ./textures/grass.xpm
 S1 ./textures/tom_nook.xpm
 S2 ./textures/plant_mario.xpm
@@ -17,7 +17,7 @@ F 179,139,109
 10202000000000021
 10000100000100001
 10202020003020201
-10000000W00000001
+10000000N00000001
 10002000200200001
 10000000000000001
 10200000200002001

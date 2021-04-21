@@ -52,13 +52,13 @@ void get_textures(t_data *data)
 
 int direction_texture(t_data *data)
 {
-	if (data->ray.side == 0 && data->ray.pos_x > data->param.perso.position_x) // ON A ESSAYE CA
+	if (data->ray.side == 0 && data->ray.ray_dirx < 0)
 		data->texture.text_dir = 0;
-	if (data->ray.side == 0 && data->ray.pos_y <= data->param.perso.position_y) // CA
+	if (data->ray.side == 0 && data->ray.ray_dirx >= 0)
 		data->texture.text_dir = 1;
-	if (data->ray.side == 1 && data->ray.pos_y > data->param.perso.position_y) // CA
+	if (data->ray.side == 1 && data->ray.ray_dirx < 0)
 		data->texture.text_dir = 2;
-	if (data->ray.side == 1 && data->ray.pos_x <= data->param.perso.position_x) // CA
+	if (data->ray.side == 1 && data->ray.ray_dirx >= 0)
 		data->texture.text_dir = 3;
 	if (data->ray.side == 0)
 		data->texture.wallx = data->ray.pos_y + data->ray.perp_wall_dist *

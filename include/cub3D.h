@@ -54,21 +54,25 @@ int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
 int		ft_number_sprites(char *str, t_param *param);
 void	correct_param_perso(t_param *param);
+t_param	initialize(int argc, char **argv);
 
 /*
  ** Raycasting
 */
 
-int		raycasting(t_data *data, t_ray *ray);
+void	raycasting(t_data *data, t_ray *ray);
+void	display_raycasting(t_data *data, t_ray *ray, int x);
+void	wall_collision(t_data *data, t_ray *ray);
+void	initialize_data_for_raycasting(t_ray *ray);
 void	init(t_data *data);
-int		initialisation_orientation(t_param *param, t_ray *ray);
-t_param	initialize(int argc, char **argv);
-void	ft_textures(t_data *data);
+void	initialisation_orientation(t_param *param, t_ray *ray);
+void	orientation_north_south(t_param *param, t_ray *ray);
 
 /*
  ** Texture
 */
 
+void	ft_textures(t_data *data);
 void	get_textures(t_data *data);
 int		ft_get_addr_textures(t_data *data);
 int		draw_texture_walls(t_data *data, int pos_x);
@@ -80,6 +84,13 @@ void	free_textures(t_data *data);
 
 void		get_sprites_info(t_data *data);
 void		ft_sprites(t_data *data);
+void		order_sprite(t_data *data);
+void		sort_sprites(t_data *data);
+void		initialize_data_for_sprites(t_data *data, int i);
+void		calculate_sprites(t_data *data, int i);
+void		draw_sprites(t_data *data, int stripe, int text_x, int text_y);
+void		allocate_memory_for_sprites(t_data *data);
+
 /*
  ** Minilibx
 */

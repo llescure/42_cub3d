@@ -1,24 +1,26 @@
 NAME = cub3D
 
-SRCS =  ./parsing/check_map.c			\
-		./parsing/check_map2.c			\
-		./parsing/check_address.c		\
-		./parsing/manage_cub.c			\
-		./parsing/manage_errors.c		\
-		./parsing/parsing.c				\
-		./parsing/save_map.c			\
-		./parsing/save_params.c			\
-		./parsing/utils.c				\
-		./raycasting/raycasting.c		\
-		./raycasting/textures.c			\
-		./raycasting/sprites.c			\
-		./minilibx/minilibx_keys.c		\
-		./minilibx/movement_keys.c		\
-		./minilibx/draw.c				\
-		./minilibx/draw_utils.c			\
-		./minilibx/handle_hook.c		\
-		./save/save.c					\
-		./bonus/health.c				\
+SRCS =  ./parsing/check_map.c					\
+		./parsing/check_map2.c					\
+		./parsing/check_address.c				\
+		./parsing/manage_cub.c					\
+		./parsing/manage_errors.c				\
+		./parsing/parsing.c						\
+		./parsing/save_map.c					\
+		./parsing/save_params.c					\
+		./parsing/utils.c						\
+		./raycasting/raycasting.c				\
+		./raycasting/initialize_orientation.c	\
+		./raycasting/textures.c					\
+		./raycasting/sprites.c					\
+		./raycasting/sprites_utils.c			\
+		./minilibx/minilibx_keys.c				\
+		./minilibx/movement_keys.c				\
+		./minilibx/draw.c						\
+		./minilibx/draw_utils.c					\
+		./minilibx/handle_hook.c				\
+		./save/save.c							\
+		./bonus/health.c						\
 		./main.c
 
 

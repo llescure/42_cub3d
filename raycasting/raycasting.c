@@ -1,148 +1,102 @@
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
-int		initialisation_orientation(t_param *param, t_ray *ray)
+void	initialize_data_for_raycasting(t_ray *ray)
 {
-	if (param->perso.orientation == 'N')
+	if (ray->ray_dirx < 0)
 	{
-		ray->dir_y = -1;
-		ray->dir_x = 0;
-		ray->plan_y = 0;
-		ray->plan_x = -0.66;
-		param->perso.angle = 270;
+		ray->step_x = -1;
+		ray->side_distx = (ray->pos_x - ray->map_x) * ray->delta_distx;
 	}
-	if (param->perso.orientation == 'S')
+	else
 	{
-		ray->dir_y = 1;
-		ray->dir_x = 0;
-		ray->plan_y = 0;
-		ray->plan_x = 0.66;
-		param->perso.angle = 90;
+		ray->step_x = 1;
+		ray->side_distx = (ray->map_x + 1.0 - ray->pos_x) * ray->delta_distx;
 	}
-	if (param->perso.orientation == 'W')
+	if (ray->ray_diry < 0)
 	{
-		ray->dir_y = 0;
-		ray->dir_x = -1;
-		ray->plan_y = -0.66;
-		ray->plan_x = 0;
-		param->perso.angle = 180;
+		ray->step_y = -1;
+		ray->side_disty = (ray->pos_y - ray->map_y) * ray->delta_disty;
 	}
-	if (param->perso.orientation == 'E')
+	else
 	{
-		ray->dir_y = 0;
-		ray->dir_x = 1;
-		ray->plan_y = 0.66;
-		ray->plan_x = 0;
-		param->perso.angle = 0;
+		ray->step_y = 1;
+		ray->side_disty = (ray->map_y + 1.0 - ray->pos_y) * ray->delta_disty;
 	}
-	return (0);
 }
 
-int raycasting(t_data *data, t_ray *ray)
+void	wall_collision(t_data *data, t_ray *ray)
 {
-	int x = 0;
-
-	while(x < data->param.resolution.axe_x)
+	while (ray->hit == 0)
 	{
-		ray->camera_x = 2 * x / (double)data->param.resolution.axe_x - 1; //x-coordinate in camera space // camerax
-		ray->ray_diry = ray->dir_x + ray->plan_x * ray->camera_x; //raydirx
-		ray->ray_dirx = ray->dir_y + ray->plan_y * ray->camera_x;//raydiry
-		ray->map_x = (int)ray->pos_x;//mapx
-		ray->map_y = (int)ray->pos_y;//mapy
+		if (ray->side_distx < ray->side_disty)
+		{
+			ray->side_distx += ray->delta_distx;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
+			data->texture.shade = 0.9;
+		}
+		else
+		{
+			ray->side_disty += ray->delta_disty;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
+			data->texture.shade = 1;
+		}
+		if (data->param.map.tab_map[ray->map_x][ray->map_y] == '1')
+			ray->hit = 1;
+		//	else if(data->param.map.tab_map[ray->map_x][ray->map_y] == '2')
+		//		ray->hit = 2;
+	}
+}
+
+void	display_raycasting(t_data *data, t_ray *ray, int x)
+{
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x)
+				/ 2) / ray->ray_dirx;
+	else
+		ray->perp_wall_dist = (ray->map_y - ray->pos_y + (1 - ray->step_y)
+				/ 2) / ray->ray_diry;
+	if (ray->perp_wall_dist == 0)
+		ray->perp_wall_dist = 0.1;
+	ray->line_height = (int)(data->param.resolution.axe_y /
+			ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 +
+		data->param.resolution.axe_y / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + data->param.resolution.axe_y / 2;
+	if (ray->draw_end >= data->param.resolution.axe_y)
+		ray->draw_end = data->param.resolution.axe_y - 1;
+	if (data->ray.hit == 1)
+		draw_texture_walls(data, x);
+	draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
+	draw_ceiling(0, ray->draw_start, x, data);
+	data->sprite.z_buffer[x] = data->ray.perp_wall_dist;
+}
+
+void	raycasting(t_data *data, t_ray *ray)
+{
+	int x;
+
+	x = 0;
+	while (x < data->param.resolution.axe_x)
+	{
+		ray->camera_x = 2 * x / (double)data->param.resolution.axe_x - 1;
+		ray->ray_diry = ray->dir_x + ray->plan_x * ray->camera_x;
+		ray->ray_dirx = ray->dir_y + ray->plan_y * ray->camera_x;
+		ray->map_x = (int)ray->pos_x;
+		ray->map_y = (int)ray->pos_y;
 		ray->delta_distx = sqrt(1 + (ray->ray_diry * ray->ray_diry) /
 				(ray->ray_dirx * ray->ray_dirx));
 		ray->delta_disty = sqrt(1 + (ray->ray_dirx * ray->ray_dirx) /
 				(ray->ray_diry * ray->ray_diry));
-		ray->hit = 0; //was there a wall hit?
-		//printf("ray->dir_x = %f\n", ray->dir_x);
-		if(ray->ray_dirx < 0)
-		{
-			ray->step_x = -1;
-			ray->side_distx = (ray->pos_x - ray->map_x) * ray->delta_distx;
-		}
-		else
-		{
-			ray->step_x = 1;
-			ray->side_distx = (ray->map_x + 1.0 - ray->pos_x) *
-				ray->delta_distx;
-		}
-		if(ray->ray_diry < 0)
-		{
-			ray->step_y = -1;
-			ray->side_disty = (ray->pos_y - ray->map_y) * ray->delta_disty;
-		}
-		else
-		{
-			ray->step_y = 1;
-			ray->side_disty = (ray->map_y + 1.0 - ray->pos_y) *
-				ray->delta_disty;
-		}
-		while (ray->hit == 0)
-		{
-			if(ray->side_distx < ray->side_disty)
-			{
-				ray->side_distx += ray->delta_distx;
-				ray->map_x += ray->step_x;
-				ray->side = 0;
-				data->texture.shade = 0.9;
-			}
-			else
-			{
-				ray->side_disty += ray->delta_disty;
-				ray->map_y += ray->step_y;
-				ray->side = 1;
-				data->texture.shade = 1;
-			}
-			if(data->param.map.tab_map[ray->map_x][ray->map_y] == '1')
-				ray->hit = 1;
-//			else if(data->param.map.tab_map[ray->map_x][ray->map_y] == '2')
-//				ray->hit = 2;
-		}
-		if(ray->side == 0)
-			ray->perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x)
-					/ 2) / ray->ray_dirx;
-		else
-			ray->perp_wall_dist = (ray->map_y - ray->pos_y + (1 - ray->step_y)
-					/ 2) / ray->ray_diry;
-		if (ray->perp_wall_dist == 0)
-			ray->perp_wall_dist = 0.1;
-		ray->line_height = (int)(data->param.resolution.axe_y /
-				ray->perp_wall_dist);
-		ray->draw_start = -ray->line_height / 2 +
-			data->param.resolution.axe_y / 2;
-		if(ray->draw_start < 0)
-			ray->draw_start = 0;
-		ray->draw_end = ray->line_height / 2 + data->param.resolution.axe_y / 2;
-		if(ray->draw_end >= data->param.resolution.axe_y)
-			ray->draw_end = data->param.resolution.axe_y - 1;
-		if (data->ray.hit == 1)
-			draw_texture_walls(data, x);
-		draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
-		draw_ceiling(0, ray->draw_start, x, data);
-		data->sprite.z_buffer[x] = data->ray.perp_wall_dist;
+		ray->hit = 0;
+		initialize_data_for_raycasting(ray);
+		wall_collision(data, ray);
+		display_raycasting(data, ray, x);
 		x++;
 	}
 	ft_sprites(data);
-	return (0);
-}
-
-int print_ray(t_ray *ray)
-{
-	printf("posx = %f\n", ray->pos_y);
-	printf("posy = %f\n", ray->pos_x);
-	printf("dirx = %f\n", ray->dir_y);
-	printf("diry = %f\n", ray->dir_x);
-	printf("planx = %f\n", ray->plan_y);
-	printf("plany = %f\n", ray->plan_x);
-	printf("mapx = %i\n", ray->map_y);
-	printf("mapy = %i\n", ray->map_x);
-	printf("raydirY = %f\n", ray->ray_diry);
-	printf("raydirX = %f\n", ray->ray_dirx);
-	printf("stepY = %i\n", ray->step_x);
-	printf("stepX = %i\n", ray->step_y);
-	printf("perpwalldist = %f\n", ray->perp_wall_dist);
-	printf("lineheight= %i\n", ray->line_height);
-	printf("drawstart = %i\n", ray->draw_start);
-	printf("drawend = %i\n", ray->draw_end);
-	return (0);
 }
