@@ -63,9 +63,9 @@ void	direction_texture(t_data *data)
 	if (data->ray.side == 0 && data->ray.ray_dirx >= 0) // SOUTH
 		data->texture.text_dir = 1;
 	if (data->ray.side == 1 && data->ray.ray_diry < 0) // EAST
-		data->texture.text_dir = 2;
-	if (data->ray.side == 1 && data->ray.ray_diry >= 0) // WEST
 		data->texture.text_dir = 3;
+	if (data->ray.side == 1 && data->ray.ray_diry >= 0) // WEST
+		data->texture.text_dir = 2;
 	if (data->ray.side == 0)
 		data->texture.wallx = data->ray.pos_y + data->ray.perp_wall_dist *
 			data->ray.ray_diry;
