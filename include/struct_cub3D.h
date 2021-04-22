@@ -75,6 +75,7 @@ typedef struct		s_param {
 	char			*west_texture;
 	char			*east_texture;
 	t_perso			perso;
+	int				bonus;
 }					t_param;
 
 typedef struct		s_img

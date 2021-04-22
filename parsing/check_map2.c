@@ -78,8 +78,13 @@ int		only_params(char *str, t_param *param)
 		i++;
 	}
 	i = calculate_nb_chains(map_params);
-	if (i != 9)
+	if (i == 9 || i == 8)
+	{
+		free(map_params);
+		return (0);
+
+	}
+	else
 		print_error(param, "Wrong number of arguments");
-	free(map_params);
 	return (0);
 }

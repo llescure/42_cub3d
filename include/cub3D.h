@@ -74,8 +74,8 @@ void	orientation_north_south(t_param *param, t_ray *ray);
 
 void	ft_textures(t_data *data);
 void	get_textures(t_data *data);
-int		ft_get_addr_textures(t_data *data);
-int		draw_texture_walls(t_data *data, int pos_x);
+void	ft_get_addr_textures(t_data *data);
+void	draw_texture_walls(t_data *data, int pos_x);
 void	free_textures(t_data *data);
 
 /*

@@ -104,10 +104,14 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 			tab_map[j++] = strdup(*line);
 		free(*line);
 	}
-	if (i < 9)
+	if (i == 9 || i == 8)
+	{
+		free(*line);
+		return (ret);
+	}
+	else
 		print_error(param, "Wrong number of parameters");
-	free(*line);
-	return (ret);
+	return (0);
 }
 
 int		sorting_map(char *map_map, t_param *param)
@@ -129,12 +133,13 @@ int		sorting_map(char *map_map, t_param *param)
 	param->map.tab_map = tab_map;
 	check_all_para(param, tab_param);
 	ret = 0;
-	while (ret < 9)
+	while (ret < 8)
 	{
 		free(tab_param[ret]);
 		ret++;
 	}
+	if (param->bonus == '1')
+		free(tab_param[8]);
 	free(tab_param);
-	printf("PARAMETERS = [OK]\n");
 	return (0);
 }
