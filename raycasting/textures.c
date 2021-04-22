@@ -1,7 +1,7 @@
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
-int ft_get_addr_textures(t_data *data)
+void	ft_get_addr_textures(t_data *data)
 {
 	if (!(data->tab_texture[0].img = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.north_texture, &(data->tab_texture[0].width),
@@ -23,11 +23,13 @@ int ft_get_addr_textures(t_data *data)
 					data->param.sprite_1, &(data->sprite.img.width),
 					&(data->sprite.img.height))))
 		exit (0);
-	if (!(data->sprite2.img.img = mlx_xpm_file_to_image(data->mlx_ptr,
-					data->param.sprite_2, &(data->sprite2.img.width),
-					&(data->sprite2.img.height))))
-		exit (0);
-	return (0);
+	if (data->param.bonus == '1')
+	{
+		if (!(data->sprite2.img.img = mlx_xpm_file_to_image(data->mlx_ptr,
+						data->param.sprite_2, &(data->sprite2.img.width),
+						&(data->sprite2.img.height))))
+				exit (0);
+	}
 }
 
 void get_textures(t_data *data)
@@ -48,13 +50,13 @@ void get_textures(t_data *data)
 	data->sprite.img.addr = mlx_get_data_addr(data->sprite.img.img,
 			&data->sprite.img.bits_per_pixel, &data->sprite.img.line_lenght,
 			&data->sprite.img.endian); // SPRITE
-
-	data->sprite2.img.addr = mlx_get_data_addr(data->sprite2.img.img,
-			&data->sprite2.img.bits_per_pixel, &data->sprite2.img.line_lenght,
-			&data->sprite2.img.endian); // SPRITE
+	if (data->param.bonus == '1')
+		data->sprite2.img.addr = mlx_get_data_addr(data->sprite2.img.img,
+				&data->sprite2.img.bits_per_pixel, &data->sprite2.img.line_lenght,
+				&data->sprite2.img.endian); // SPRITE 2
 }
 
-int direction_texture(t_data *data)
+void	direction_texture(t_data *data)
 {
 	if (data->ray.side == 0 && data->ray.ray_dirx < 0) // NORTH
 		data->texture.text_dir = 0;
@@ -71,10 +73,9 @@ int direction_texture(t_data *data)
 		data->texture.wallx = data->ray.pos_x + data->ray.perp_wall_dist *
 			data->ray.ray_dirx;
 	data->texture.wallx -= floor((data->texture.wallx));
-	return (0);
 }
 
-int draw_texture_walls(t_data *data, int pos_x)
+void 	draw_texture_walls(t_data *data, int pos_x)
 {
 	int y;
 
@@ -109,7 +110,6 @@ int draw_texture_walls(t_data *data, int pos_x)
 			data->texture.x * 4 + 3] * data->texture.shade;
 		y++;
 	}
-	return (0);
 }
 
 void	free_textures(t_data *data)

@@ -80,7 +80,7 @@ void	free_sprites(t_data *data)
 {
 	if (data->sprite.img.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprite.img.img);
-	if (data->sprite2.img.img)
+	if (data->param.bonus == '1' && data->sprite2.img.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprite2.img.img);
 	if (data->sprite.z_buffer)
 		free(data->sprite.z_buffer);

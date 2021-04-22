@@ -36,10 +36,13 @@ int		manage_param(char *str, t_param *param)
 		colour_params_ceiling(str, param);
 	if (str[0] == 'R' && str[1] == ' ')
 		resolution_param(str, param);
-	if (str[0] == 'S' && str[1] == '1')
+	if (str[0] == 'S' && str[1] == ' ')
 		param->sprite_1 = save_address_param(str, param);
 	if (str[0] == 'S' && str[1] == '2')
+	{
+		param->bonus = '1';
 		param->sprite_2 = save_address_param(str, param);
+	}
 	if (str[0] == 'F')
 		colour_params_floor(str, param);
 	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ')
@@ -58,7 +61,9 @@ int		check_all_para(t_param *param, char **tab_param)
 	int i;
 
 	i = -1;
-	while (++i < 9)
+	while (++i < 8)
+		manage_param(tab_param[i], param);
+	if (param->bonus == '1')
 		manage_param(tab_param[i], param);
 	if (param->ceiling_colour.red == -10 || param->ceiling_colour.green == -10
 			|| param->ceiling_colour.blue == -10 ||
@@ -67,7 +72,7 @@ int		check_all_para(t_param *param, char **tab_param)
 		print_error(param, "Missing colour");
 	if (param->resolution.axe_x == -10 || param->resolution.axe_y == -10)
 		print_error(param, "Missing resolution");
-	if (param->sprite_1 == NULL || param->sprite_2 == NULL || param->north_texture == NULL ||
+	if (param->sprite_1 == NULL || (param->bonus == '1' && param->sprite_2 == NULL) || param->north_texture == NULL ||
 			param->south_texture == NULL || param->east_texture == NULL ||
 			param->west_texture == NULL)
 		print_error(param, "Missing texture");
@@ -93,6 +98,5 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param)
 	while (++i < nb_lines)
 		map[i] = check_space_in_map(map[i]);
 	manage_perso(map, param);
-	printf("MAP : [OK]\n");
 	return (0);
 }
