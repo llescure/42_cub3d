@@ -1,8 +1,8 @@
 R 2000 2000
 NO ./textures/grass.xpm
-SO ./textures/sky.xpm
+SO ./textures/brick.xpm
 WE ./textures/sky.xpm
-EA ./textures/grass.xpm
+EA ./textures/stone.xpm
 S1 ./textures/tom_nook.xpm
 S2 ./textures/clochettes.xpm
 C 135,206,235

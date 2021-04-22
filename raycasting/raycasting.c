@@ -45,8 +45,6 @@ void	wall_collision(t_data *data, t_ray *ray)
 		}
 		if (data->param.map.tab_map[ray->map_x][ray->map_y] == '1')
 			ray->hit = 1;
-		//	else if(data->param.map.tab_map[ray->map_x][ray->map_y] == '2')
-		//		ray->hit = 2;
 	}
 }
 
