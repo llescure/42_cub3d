@@ -8,18 +8,18 @@ void	initialisation_orientation(t_param *param, t_ray *ray)
 	if (param->perso.orientation == 'W')
 	{
 		ray->dir_y = 0;
-		ray->dir_x = -1;
-		ray->plan_y = -0.66;
-		ray->plan_x = 0;
-		param->perso.angle = 180;
-	}
-	if (param->perso.orientation == 'E')
-	{
-		ray->dir_y = 0;
 		ray->dir_x = 1;
 		ray->plan_y = 0.66;
 		ray->plan_x = 0;
 		param->perso.angle = 0;
+	}
+	if (param->perso.orientation == 'E')
+	{
+		ray->dir_y = 0;
+		ray->dir_x = -1;
+		ray->plan_y = -0.66;
+		ray->plan_x = 0;
+		param->perso.angle = 180;
 	}
 }
 

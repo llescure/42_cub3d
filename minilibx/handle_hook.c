@@ -17,7 +17,10 @@ int		move_perso(t_data *data)
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
 				speed + data->param.perso.dirx * dist)] == '3')
-		data->bonus.life += 1;
+	{
+		if (data->bonus.life < 4)
+			data->bonus.life += 1;
+	}
 	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
 				data->param.perso.diry * speed + data->param.perso.diry * dist)]
 			[(int)(data->param.perso.position_x + data->param.perso.dirx *
