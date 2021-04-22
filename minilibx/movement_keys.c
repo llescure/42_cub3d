@@ -10,17 +10,8 @@ void	rotate_camera_left(t_data *data)
 
 	old_planx = data->ray.plan_x;
 	old_dirx = data->ray.dir_x;
-	if (data->param.perso.orientation == 'N' ||
-			data->param.perso.orientation == 'S')
-	{
-		cosi = cos(15 * M_PI / 180);
-		sinus = sin(15 * M_PI / 180);
-	}
-	else
-	{
-		cosi = -cos(15 * M_PI / 180);
-		sinus = -sin(15 * M_PI / 180);
-	}
+	cosi = cos(1 * M_PI / 180);
+	sinus = sin(1 * M_PI / 180);
 	data->ray.dir_x = data->ray.dir_x * cosi - data->ray.dir_y * sinus;
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
@@ -36,17 +27,8 @@ void	rotate_camera_right(t_data *data)
 
 	old_planx = data->ray.plan_x;
 	old_dirx = data->ray.dir_x;
-	if (data->param.perso.orientation == 'N' ||
-			data->param.perso.orientation == 'S')
-	{
-		cosi = cos(-15 * M_PI / 180);
-		sinus = sin(-15 * M_PI / 180);
-	}
-	else
-	{
-		cosi = -cos(-15 * M_PI / 180);
-		sinus = -sin(-15 * M_PI / 180);
-	}
+	cosi = cos(-1 * M_PI / 180);
+	sinus = sin(-1 * M_PI / 180);
 	data->ray.dir_x = data->ray.dir_x * cosi - data->ray.dir_y * sinus;
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
