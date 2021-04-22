@@ -84,12 +84,17 @@ void	free_textures(t_data *data);
 
 void		get_sprites_info(t_data *data);
 void		ft_sprites(t_data *data);
-void		order_sprite(t_data *data);
+void		order_sprites_1(t_data *data);
 void		sort_sprites(t_data *data);
-void		initialize_data_for_sprites(t_data *data, int i);
-void		calculate_sprites(t_data *data, int i);
-void		draw_sprites(t_data *data, int stripe, int text_x, int text_y);
+void		initialize_data_for_sprites_1(t_data *data, int i);
+void		calculate_sprites_1(t_data *data, int i);
+void		draw_sprites_1(t_data *data, int stripe, int text_x, int text_y);
 void		allocate_memory_for_sprites(t_data *data);
+void		order_sprites_2(t_data *data);
+void		calculate_sprites_2(t_data *data, int i);
+void		draw_sprites_2(t_data *data, int stripe, int text_x, int text_y);
+void		initialize_data_for_sprites_2(t_data *data, int i);
+void		free_sprites(t_data *data);
 
 /*
  ** Minilibx

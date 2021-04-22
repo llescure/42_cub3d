@@ -151,6 +151,29 @@ typedef struct		s_sprite
 
 }					t_sprite;
 
+typedef struct		s_sprite2
+{
+	double	*sprite_x;
+	double	*sprite_y;
+	int		draw_start_x; // lowest and highest pixel to fill in
+	int		draw_start_y;
+	int		draw_end_x;
+	int		draw_end_y;
+	double	pos_x;
+	double	pos_y;
+	int		height;
+	int		width;
+	double	transform_x; // depth inside the screen to avoid fish-eye
+	double	transform_y;
+	double	*dist;
+	int		screen;
+	double	*z_buffer;
+	int		*order;
+	double	invdet; // determinant de la matrice ( plane_x dir_x )
+	t_img	img;    // 							 ( plane_y dir_y )
+
+}					t_sprite2;
+
 typedef struct		s_texture
 {
 	double			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
@@ -179,6 +202,7 @@ typedef struct		s_data
 	t_texture	texture;
 	t_img		tab_texture[6];
 	t_sprite 	sprite;
+	t_sprite2	sprite2;
 	t_bonus		bonus;
 }					t_data;
 

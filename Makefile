@@ -14,6 +14,7 @@ SRCS =  ./parsing/check_map.c					\
 		./raycasting/textures.c					\
 		./raycasting/sprites.c					\
 		./raycasting/sprites_utils.c			\
+		./raycasting/double_sprite.c			\
 		./minilibx/minilibx_keys.c				\
 		./minilibx/movement_keys.c				\
 		./minilibx/draw.c						\
