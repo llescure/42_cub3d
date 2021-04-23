@@ -54,6 +54,7 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->perso.orientation = 0;
 	param->perso.position_x = -10;
 	param->perso.position_y = -10;
+	param->nb_lines_params = 0;
 	return (*param);
 }
 

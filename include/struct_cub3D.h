@@ -66,6 +66,7 @@ typedef struct		s_param {
 	t_resolution	resolution;
 	char			*sprite_1;
 	char			*sprite_2;
+	int				nb_lines_params;
 	int				nb_sprites;
 	int				nb_sprite_1;
 	int				nb_sprite_2;

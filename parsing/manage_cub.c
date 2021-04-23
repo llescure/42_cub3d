@@ -45,13 +45,13 @@ int		manage_param(char *str, t_param *param)
 	}
 	if (str[0] == 'F')
 		colour_params_floor(str, param);
-	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ')
+	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ' && param->north_texture == NULL)
 		param->north_texture = save_address_param(str, param);
-	if (str[0] == 'S' && str[1] == 'O' && str[2] == ' ')
+	if (str[0] == 'S' && str[1] == 'O' && str[2] == ' ' && param->south_texture == NULL)
 		param->south_texture = save_address_param(str, param);
-	if (str[0] == 'E' && str[1] == 'A' && str[2] == ' ')
+	if (str[0] == 'E' && str[1] == 'A' && str[2] == ' ' && param->east_texture == NULL)
 		param->east_texture = save_address_param(str, param);
-	if (str[0] == 'W' && str[1] == 'E' && str[2] == ' ')
+	if (str[0] == 'W' && str[1] == 'E' && str[2] == ' ' && param->west_texture == NULL)
 		param->west_texture = save_address_param(str, param);
 	return (0);
 }
@@ -63,8 +63,10 @@ int		check_all_para(t_param *param, char **tab_param)
 	i = -1;
 	while (++i < 8)
 		manage_param(tab_param[i], param);
-	if (param->bonus == '1')
+	if (param->bonus == '1' && param->nb_lines_params == 9)
 		manage_param(tab_param[i], param);
+	if ((param->nb_lines_params == 9 && param->bonus == 0) || (param->nb_lines_params == 8 && param->bonus == 1))
+		print_error(param, "Wrong parameters");
 	if (param->ceiling_colour.red == -10 || param->ceiling_colour.green == -10
 			|| param->ceiling_colour.blue == -10 ||
 			param->floor_colour.green == -10 ||

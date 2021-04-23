@@ -104,7 +104,7 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 			tab_map[j++] = strdup(*line);
 		free(*line);
 	}
-	if (i == 9 || i == 8)
+	if (i == 8 || i == 9)
 	{
 		free(*line);
 		return (ret);
