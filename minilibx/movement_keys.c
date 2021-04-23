@@ -37,12 +37,48 @@ void	rotate_camera_right(t_data *data)
 
 void	left_right_movement(int nega, t_perso *perso)
 {
+	if (perso->angle >= 180 && perso->angle < 270)
+	{
 		perso->dirx = nega * 0;
 		perso->diry = nega * -1;
+	}
+	else if (perso->angle >= 0 && perso->angle < 90)
+	{
+		perso->dirx = nega * 0;
+		perso->diry = nega * 1;
+	}
+	else if (perso->angle >= 90 && perso->angle < 180)
+	{
+		perso->dirx = nega * -1;
+		perso->diry = nega * 0;
+	}
+	else if (perso->angle >= 270 && perso->angle < 360)
+	{
+		perso->dirx = nega * 1;
+		perso->diry = nega * 0;
+	}
 }
 
 void	forward_backward_movement(int nega, t_perso *perso)
 {
+	if (perso->angle >= 180 && perso->angle < 270)
+	{
 		perso->dirx = nega * -1;
 		perso->diry = nega * 0;
+	}
+	else if (perso->angle >= 0 && perso->angle < 90)
+	{
+		perso->dirx = nega * 1;
+		perso->diry = nega * 0;
+	}
+	else if (perso->angle >= 90 && perso->angle < 180)
+	{
+		perso->dirx = nega * 0;
+		perso->diry = nega * 1;
+	}
+	else if (perso->angle >= 270 && perso->angle < 360)
+	{
+		perso->dirx = nega * 0;
+		perso->diry = nega * -1;
+	}
 }
