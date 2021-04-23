@@ -28,7 +28,7 @@ void	ft_get_addr_textures(t_data *data)
 		if (!(data->sprite2.img.img = mlx_xpm_file_to_image(data->mlx_ptr,
 						data->param.sprite_2, &(data->sprite2.img.width),
 						&(data->sprite2.img.height))))
-				exit (0);
+			exit (0);
 	}
 }
 
@@ -117,7 +117,7 @@ void	free_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		if (data->tab_texture[i].img)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
@@ -125,7 +125,11 @@ void	free_textures(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->bonus.tab_life[i].img);
 		i++;
 	}
-	if (data->tab_texture[i].img)
-		mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
+	while (i < 5)
+	{
+		if (data->tab_texture[i].img)
+			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
+		i++;
+	}
 	free_sprites(data);
 }
