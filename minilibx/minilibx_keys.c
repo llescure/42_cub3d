@@ -9,15 +9,15 @@ int		press_key(int key, t_data *data)
 	{
 		rotate_camera_left(data);
 		data->param.perso.angle += 2.5;
-		if (data->param.perso.angle < 0)
-			data->param.perso.angle += 360;
+		if (data->param.perso.angle > 360)
+			data->param.perso.angle -= 360;
 	}
 	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
 		rotate_camera_right(data);
 		data->param.perso.angle -= 2.5;
-		if (data->param.perso.angle >= 360)
-			data->param.perso.angle -= 360;
+		if (data->param.perso.angle <= 0)
+			data->param.perso.angle += 360;
 	}
 	if (key == FORWARD_W)
 		forward_backward_movement(1, &data->param.perso);

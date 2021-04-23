@@ -92,7 +92,10 @@ void		correct_param_perso(t_param *param)
 	x = param->perso.position_x;
 	y = param->perso.position_y;
 
-	if (param->map.tab_map[x + 1][y] != '0')
+	if (param->map.tab_map[x + 1][y + 1] != '0' &&
+			param->map.tab_map[x - 1][y - 1] != '0')
+		return ;
+	else if (param->map.tab_map[x + 1][y] != '0')
 		param->perso.position_x = x - 0.3;
 	else if (param->map.tab_map[x][y + 1] != '0')
 		param->perso.position_y = y + 0.3;
@@ -100,6 +103,15 @@ void		correct_param_perso(t_param *param)
 	{
 		param->perso.position_x = x - 0.3;
 		param->perso.position_y = y + 0.3;
+	}
+	if (param->map.tab_map[x - 1][y] != '0')
+		param->perso.position_x = x + 0.3;
+	else if (param->map.tab_map[x][y - 1] != '0')
+		param->perso.position_y = y - 0.3;
+	else if (param->map.tab_map[x - 1][y - 1] != '0')
+	{
+		param->perso.position_x = x + 0.3;
+		param->perso.position_y = y - 0.3;
 	}
 }
 
@@ -119,6 +131,8 @@ t_param		initialize(int argc, char **argv)
 	manage_errors(argc, argv, &param);
 	read_map(fd, str, map, &param);
 	free(str);
+	param.perso.position_x += 0.5;
+	param.perso.position_y += 0.5;
 	correct_param_perso(&param);
 	return (param);
 }
