@@ -83,7 +83,7 @@ char	*save_address_param(char *str, t_param *param)
 
 	i = 0;
 	j = 0;
-	while (str[i] != '.')
+	while (str[i] != '.' && str[i] != '\0')
 		i++;
 	if (!(address = malloc(sizeof(char) * (ft_strlen(str) - i + 1))))
 		return (NULL);

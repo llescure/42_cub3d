@@ -36,9 +36,9 @@ int		manage_param(char *str, t_param *param)
 		colour_params_ceiling(str, param);
 	if (str[0] == 'R' && str[1] == ' ')
 		resolution_param(str, param);
-	if (str[0] == 'S' && str[1] == ' ')
+	if (str[0] == 'S' && str[1] == ' ' && param->sprite_1 == NULL)
 		param->sprite_1 = save_address_param(str, param);
-	if (str[0] == 'S' && str[1] == '2')
+	if (str[0] == 'S' && str[1] == '2' && param->sprite_2 == NULL)
 	{
 		param->bonus = '1';
 		param->sprite_2 = save_address_param(str, param);
@@ -63,9 +63,9 @@ int		check_all_para(t_param *param, char **tab_param)
 	i = -1;
 	while (++i < 8)
 		manage_param(tab_param[i], param);
-	if (param->bonus == '1' && param->nb_lines_params == 9)
+	if (param->nb_lines_params == 9)
 		manage_param(tab_param[i], param);
-	if ((param->nb_lines_params == 9 && param->bonus == 0) || (param->nb_lines_params == 8 && param->bonus == 1))
+	if ((param->nb_lines_params == 9 && param->bonus == '0') || (param->nb_lines_params == 8 && param->bonus == '1'))
 		print_error(param, "Wrong parameters");
 	if (param->ceiling_colour.red == -10 || param->ceiling_colour.green == -10
 			|| param->ceiling_colour.blue == -10 ||

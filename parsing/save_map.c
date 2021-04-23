@@ -104,15 +104,13 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 			tab_map[j++] = strdup(*line);
 		free(*line);
 	}
-	if (i == 8 || i == 9)
-	{
-		free(*line);
-		return (ret);
-	}
-	else
+	if (i != param->nb_lines_params)
+		print_error(param, "Wrong parameters");
+	if (i != 8 && i != 9)
 		print_error(param, "Wrong number of parameters");
-	return (0);
-}
+	free(*line);
+	return (ret);
+	}
 
 int		sorting_map(char *map_map, t_param *param)
 {

@@ -25,8 +25,10 @@ int		ft_atoi_cub3d(char *str, int i, t_param *param)
 
 	sign = 1;
 	result = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\f'
-			|| str[i] == '\r' || str[i] == ' ' || str[i] == '\v')
+	if (str == NULL)
+		print_error(param, "Wrong writing of color");
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\f' || str[i] == '\v'
+			|| str[i] == '\r' || str[i] == ' ')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		print_error(param, "Wrong writing of parameters");

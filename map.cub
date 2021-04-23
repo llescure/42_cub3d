@@ -1,17 +1,16 @@
-R 2000 2000
 NO ./textures/grass.xpm
 SO ./textures/brick.xpm
 WE ./textures/sky.xpm
 EA ./textures/stone.xpm
 S ./textures/tom_nook.xpm
-S2 ./textures/clochettes.xpm
+S2 ./textures/tom_nook.xpm
 C 135,206,235
 F 179,139,109
+R 2000 2000
 
 
 
-1111111
-1222221
-122N221
-1222221
-1111111
+1111
+10N1
+1001
+1111
