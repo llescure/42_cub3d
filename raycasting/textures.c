@@ -117,7 +117,7 @@ void	free_textures(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i <= 3)
 	{
 		if (data->tab_texture[i].img)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
@@ -125,7 +125,7 @@ void	free_textures(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->bonus.tab_life[i].img);
 		i++;
 	}
-	while (i < 5)
+	while (i < 4)
 	{
 		if (data->tab_texture[i].img)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);

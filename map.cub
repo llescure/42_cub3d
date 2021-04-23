@@ -1,0 +1,17 @@
+R 2000 2000
+NO ./textures/grass.xpm
+SO ./textures/brick.xpm
+WE ./textures/sky.xpm
+EA ./textures/stone.xpm
+S ./textures/tom_nook.xpm
+S2 ./textures/clochettes.xpm
+C 135,206,235
+F 179,139,109
+
+
+
+1111111
+1222221
+122N221
+1222221
+1111111

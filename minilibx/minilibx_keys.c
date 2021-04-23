@@ -8,14 +8,14 @@ int		press_key(int key, t_data *data)
 	else if (key == ROTATE_LEFT_ARROW || key == ROTATE_LEFT_Q)
 	{
 		rotate_camera_left(data);
-		data->param.perso.angle += 2;
+		data->param.perso.angle += 2.5;
 		if (data->param.perso.angle < 0)
 			data->param.perso.angle += 360;
 	}
 	else if (key == ROTATE_RIGHT_ARROW || key == ROTATE_RIGHT_E)
 	{
 		rotate_camera_right(data);
-		data->param.perso.angle -= 2;
+		data->param.perso.angle -= 2.5;
 		if (data->param.perso.angle >= 360)
 			data->param.perso.angle -= 360;
 	}

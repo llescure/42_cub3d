@@ -10,8 +10,8 @@ void	rotate_camera_left(t_data *data)
 
 	old_planx = data->ray.plan_x;
 	old_dirx = data->ray.dir_x;
-	cosi = cos(1 * M_PI / 180);
-	sinus = sin(1 * M_PI / 180);
+	cosi = cos(2.5 * M_PI / 180);
+	sinus = sin(2.5 * M_PI / 180);
 	data->ray.dir_x = data->ray.dir_x * cosi - data->ray.dir_y * sinus;
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
@@ -27,8 +27,8 @@ void	rotate_camera_right(t_data *data)
 
 	old_planx = data->ray.plan_x;
 	old_dirx = data->ray.dir_x;
-	cosi = cos(-1 * M_PI / 180);
-	sinus = sin(-1 * M_PI / 180);
+	cosi = cos(-2.5 * M_PI / 180);
+	sinus = sin(-2.5 * M_PI / 180);
 	data->ray.dir_x = data->ray.dir_x * cosi - data->ray.dir_y * sinus;
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
@@ -40,18 +40,18 @@ void	left_right_movement(int nega, t_perso *perso)
 	if ((perso->angle >= 30 && perso->angle <= 45) || perso->angle == 60 || (perso->angle >= 210
 			&& perso->angle <= 240))
 	{
-		perso->dirx = nega * sin(perso->angle * M_PI / 180 - 90) * -1;
-		perso->diry = nega * cos(perso->angle * M_PI / 180 - 90) * -1;
+		perso->dirx = nega * -sin(perso->angle * M_PI / 180 + 90);
+		perso->diry = nega * -cos(perso->angle * M_PI / 180 + 90);
 	}
 	else if ((perso->angle >= 120 && perso->angle <= 150) ||
 			(perso->angle <= 300 && perso->angle <= 330))
 	{
-		perso->dirx = nega * sin(perso->angle * M_PI / 180 + 90) * -1;
-		perso->diry = nega * cos(perso->angle * M_PI / 180 + 90) * -1;
+		perso->dirx = nega * -sin(perso->angle * M_PI / 180 - 90);
+		perso->diry = nega * -cos(perso->angle * M_PI / 180 - 90);
 	}
-	if ((perso->angle >= 0 && perso->angle < 60) || (perso->angle >= 165 &&
-				perso->angle < 240)
-			|| (perso->angle >= 330 && perso->angle < 360))
+	else if ((perso->angle >= 0 && perso->angle < 60) || (perso->angle >= 165 &&
+				perso->angle < 210)
+			|| (perso->angle > 330 && perso->angle < 360))
 	{
 		perso->dirx = nega * sin(perso->angle * M_PI / 180);
 		perso->diry = nega * cos(perso->angle * M_PI / 180);
