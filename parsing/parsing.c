@@ -50,11 +50,10 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->south_texture = NULL;
 	param->west_texture = NULL;
 	param->east_texture = NULL;
-	param->bonus = 0;
+	param->bonus = '0';
 	param->perso.orientation = 0;
 	param->perso.position_x = -10;
 	param->perso.position_y = -10;
-	param->nb_lines_params = 0;
 	return (*param);
 }
 
@@ -71,9 +70,10 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 		map = ft_strjoin(tmp, str);
 		free(tmp);
 	}
+	printf("map = %s\n", str);
 	close(fd);
-	str = only_map(map, para);
 	only_params(map, para);
+	str = only_map(map, para);
 	para->nb_sprites = ft_number_sprites(str, para);
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
