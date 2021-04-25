@@ -101,6 +101,10 @@ void	initialize_parameters_for_mlx(t_data *data)
 		print_error(&data->param, "Initialisation failed");
 	get_sprites_info(data);
 	get_textures(data);
+	if (data->param.ceiling_texture != NULL)
+		get_ceiling_textures(data);
+	if (data->param.floor_texture != NULL)
+		get_floor_textures(data);
 }
 
 int		initialize_mlx(t_data *data)

@@ -67,9 +67,9 @@ void	display_raycasting(t_data *data, t_ray *ray, int x)
 	ray->draw_end = ray->line_height / 2 + data->param.resolution.axe_y / 2;
 	if (ray->draw_end >= data->param.resolution.axe_y)
 		ray->draw_end = data->param.resolution.axe_y - 1;
-	draw_texture_walls(data, x);
 	draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
 	draw_ceiling(0, ray->draw_start, x, data);
+	draw_texture_walls(data, x);
 	data->sprite.z_buffer[x] = data->ray.perp_wall_dist;
 }
 

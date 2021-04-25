@@ -17,6 +17,10 @@ void		free_address_params(t_param *param)
 		free(param->east_texture);
 	if (param->west_texture)
 		free(param->west_texture);
+	if (param->ceiling_texture)
+		free(param->ceiling_texture);
+	if (param->floor_texture)
+		free(param->floor_texture);
 	if (param->map.map)
 		free(param->map.map);
 	i = 0;
@@ -50,6 +54,8 @@ t_param		initialize_structure(t_param *param, char *argv)
 	param->south_texture = NULL;
 	param->west_texture = NULL;
 	param->east_texture = NULL;
+	param->ceiling_texture = NULL;
+	param->floor_texture = NULL;
 	param->bonus = '0';
 	param->perso.orientation = 0;
 	param->perso.position_x = -10;
@@ -70,7 +76,6 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 		map = ft_strjoin(tmp, str);
 		free(tmp);
 	}
-	printf("map = %s\n", str);
 	close(fd);
 	only_params(map, para);
 	str = only_map(map, para);

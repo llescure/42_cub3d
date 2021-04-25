@@ -79,7 +79,6 @@ int		only_params(char *str, t_param *param)
 	}
 	i = calculate_nb_chains(map_params);
 	param->nb_lines_params = i;
-	printf("i = %i\n", i);
 	free(map_params);
 	if (i == 9 || i == 8)
 		return (0);

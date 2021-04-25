@@ -142,5 +142,10 @@ int		health_management(t_data *data);
 void	get_health_level(t_data *data);
 void	draw_life_bar(t_data *data, int i);
 void	convert_health_level(t_data *data);
+void	get_ceiling_textures(t_data *data);
+void	get_floor_textures(t_data *data);
+void	draw_texture_ceiling(t_data *data, int pos_x);
+void	draw_texture_floor(t_data *data, int pos_x);
+void	free_textures_bonus(t_data *data);
 
 #endif

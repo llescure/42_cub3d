@@ -1,12 +1,12 @@
 R 2000 2000
-NO ./textures/grass.xpm
-SO ./textures/sky.xpm
-WE ./textures/sky.xpm
-EA ./textures/grass.xpm
+NO ./textures/stone.xpm
+SO ./textures/stone.xpm
+WE ./textures/brick.xpm
+EA ./textures/brick.xpm
 S ./textures/scary_white_walker.xpm
 S2 ./textures/beer_2.xpm
-C 169,169,169
-F 58,58,58
+C ./textures/sky.xpm
+F ./textures/sky.xpm
 
 
 

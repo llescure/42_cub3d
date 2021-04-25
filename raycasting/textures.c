@@ -132,4 +132,5 @@ void	free_textures(t_data *data)
 		i++;
 	}
 	free_sprites(data);
+	free_textures_bonus(data);
 }

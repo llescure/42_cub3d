@@ -6,6 +6,11 @@ int		draw_floor(int beginning, int end, int pos_x, t_data *data)
 	int i;
 	int color;
 
+	if (data->param.floor_texture != NULL)
+	{
+		draw_texture_floor(data, pos_x);
+		return (0);
+	}
 	color = conversion_rgb_to_hexa(data->param.floor_colour);
 	i = beginning;
 	while (i < end)
@@ -21,6 +26,11 @@ int		draw_ceiling(int beginning, int end, int pos_x, t_data *data)
 	int i;
 	int color;
 
+	if (data->param.ceiling_texture != NULL)
+	{
+		draw_texture_ceiling(data, pos_x);
+		return (0);
+	}
 	color = conversion_rgb_to_hexa(data->param.ceiling_colour);
 	i = beginning;
 	while (i < end)
