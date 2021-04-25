@@ -37,48 +37,48 @@ void	rotate_camera_right(t_data *data)
 
 void	left_right_movement(int nega, t_perso *perso)
 {
-	if (perso->angle >= 180 && perso->angle < 270)
+	if ((perso->angle >= 30 && perso->angle < 60) ||
+			(perso->angle >= 210 && perso->angle <= 240))
 	{
-		perso->dirx = nega * 0;
-		perso->diry = nega * -1;
+		perso->dirx = nega * -sin(perso->angle * M_PI / 180 + 90);
+		perso->diry = nega * -cos(perso->angle * M_PI / 180 + 90);
 	}
-	else if (perso->angle >= 0 && perso->angle < 90)
+	else if ((perso->angle >= 120 && perso->angle < 165) ||
+			(perso->angle >= 300 && perso->angle <= 330))
 	{
-		perso->dirx = nega * 0;
-		perso->diry = nega * 1;
+		perso->dirx = nega * -sin(perso->angle * M_PI / 180 - 90);
+		perso->diry = nega * -cos(perso->angle * M_PI / 180 - 90);
 	}
-	else if (perso->angle >= 90 && perso->angle < 180)
+	else if ((perso->angle >= 0 && perso->angle < 30) ||
+			(perso->angle > 330 && perso->angle < 360))
 	{
-		perso->dirx = nega * -1;
-		perso->diry = nega * 0;
+		perso->dirx = nega * sin(perso->angle * M_PI / 180);
+		perso->diry = nega * cos(perso->angle * M_PI / 180);
 	}
-	else if (perso->angle >= 270 && perso->angle < 360)
+	else if ((perso->angle >= 180 && perso->angle < 210))
 	{
-		perso->dirx = nega * 1;
-		perso->diry = nega * 0;
+		perso->dirx = -1 * nega * -sin(perso->angle * M_PI / 180);
+		perso->diry = -1 * nega * -cos(perso->angle * M_PI / 180);
+	}
+	else
+	{
+		perso->dirx = -1 * nega * sin(perso->angle * M_PI / 180);
+		perso->diry = -1 * nega * cos(perso->angle * M_PI / 180);
 	}
 }
 
 void	forward_backward_movement(int nega, t_perso *perso)
 {
-	if (perso->angle >= 180 && perso->angle < 270)
+	if ((perso->angle >= 0 && perso->angle < 60) || (perso->angle >= 165 &&
+				perso->angle < 240)
+			|| (perso->angle >= 330 && perso->angle < 360))
 	{
-		perso->dirx = nega * -1;
-		perso->diry = nega * 0;
+		perso->dirx = nega * cos(perso->angle * M_PI / 180);
+		perso->diry = nega * sin(perso->angle * M_PI / 180);
 	}
-	else if (perso->angle >= 0 && perso->angle < 90)
+	else
 	{
-		perso->dirx = nega * 1;
-		perso->diry = nega * 0;
-	}
-	else if (perso->angle >= 90 && perso->angle < 180)
-	{
-		perso->dirx = nega * 0;
-		perso->diry = nega * 1;
-	}
-	else if (perso->angle >= 270 && perso->angle < 360)
-	{
-		perso->dirx = nega * 0;
-		perso->diry = nega * -1;
+		perso->dirx = nega * cos(perso->angle * M_PI / 180);
+		perso->diry = nega * sin(perso->angle * M_PI / 180);
 	}
 }

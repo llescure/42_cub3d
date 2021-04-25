@@ -50,9 +50,6 @@ int		launch_hook(t_data *data)
 	draw_minimap(data);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
-	printf("angle = %f\n", data->param.perso.angle);
-	printf("sinus = %f\n", sin(data->param.perso.angle * M_PI / 180));
-	printf("cosinus = %f\n", cos(data->param.perso.angle * M_PI / 180));
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
