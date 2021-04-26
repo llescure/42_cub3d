@@ -134,8 +134,8 @@ typedef struct		s_ray
 
 typedef struct		s_sprite
 {
-	double	*sprite_x;
-	double	*sprite_y;
+	double	sprite_x;
+	double	sprite_y;
 	int		draw_start_x; // lowest and highest pixel to fill in
 	int		draw_start_y;
 	int		draw_end_x;
@@ -184,6 +184,7 @@ typedef struct		s_data
 	t_img		tab_texture[6];
 	t_sprite	sprite;
 	t_sprite	sprite2;
+	t_sprite	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;
 
