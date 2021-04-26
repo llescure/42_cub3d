@@ -148,6 +148,7 @@ void	get_ceiling_textures(t_data *data);
 void	get_floor_textures(t_data *data);
 void	draw_texture_ceiling(t_data *data, int pos_x);
 void	draw_texture_floor(t_data *data, int pos_x);
+void	free_floor_bonus(t_data *data);
 void	free_textures_bonus(t_data *data);
 void	check_sprite2(char *str, t_param *param);
 

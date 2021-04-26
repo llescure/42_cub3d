@@ -77,8 +77,7 @@ void	draw_texture_walls(t_data *data, int pos_x)
 	initialize_before_drawing(data);
 	while (y < data->ray.draw_end)
 	{
-		data->texture.y = (int)data->texture.position &
-			(data->tab_texture[data->texture.text_dir].height - 1);
+		data->texture.y = (int)data->texture.position;
 		data->texture.position += data->texture.step;
 		img_cord = pos_x * 4 + 4 * data->param.resolution.axe_x * y;
 		text_cord = data->texture.y * data->tab_texture[data->texture.text_dir].
