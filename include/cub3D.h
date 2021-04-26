@@ -77,6 +77,9 @@ void	get_textures(t_data *data);
 void	ft_get_addr_textures(t_data *data);
 void	draw_texture_walls(t_data *data, int pos_x);
 void	free_textures(t_data *data);
+void	direction_texture(t_data *data);
+void	get_sprites2_img(t_data *data);
+void	initialize_before_drawing(t_data *data);
 
 /*
  ** Sprites
@@ -84,17 +87,15 @@ void	free_textures(t_data *data);
 
 void		get_sprites_info(t_data *data);
 void		ft_sprites(t_data *data);
-void		order_sprites_1(t_data *data);
+void		order_sprites(t_sprite *sprite, int nb_sprites);
 void		sort_sprites(t_data *data);
-void		initialize_data_for_sprites_1(t_data *data, int i);
-void		calculate_sprites_1(t_data *data, int i);
+void		initialize_data_for_sprites(t_data *data, int i, t_sprite *sprite);
+void		calculate_sprites(t_data *data, int i, t_sprite *sprite);
 void		draw_sprites_1(t_data *data, int stripe, int text_x, int text_y);
 void		allocate_memory_for_sprites(t_data *data);
-void		order_sprites_2(t_data *data);
-void		calculate_sprites_2(t_data *data, int i);
 void		draw_sprites_2(t_data *data, int stripe, int text_x, int text_y);
-void		initialize_data_for_sprites_2(t_data *data, int i);
 void		free_sprites(t_data *data);
+void		check_pos_sprite(t_data *data, int k, int l);
 
 /*
  ** Minilibx

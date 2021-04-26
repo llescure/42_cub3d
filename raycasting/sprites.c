@@ -1,26 +1,26 @@
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
-void	order_sprites_1(t_data *data)
+void	order_sprites(t_sprite *sprite, int nb_sprites)
 {
 	int		i;
 	int		j;
 	double	tmp;
 
 	i = 0;
-	while (i < data->param.nb_sprite_1)
+	while (i < nb_sprites)
 	{
 		j = 0;
-		while (j < data->param.nb_sprite_1 - 1)
+		while (j < nb_sprites - 1)
 		{
-			if (data->sprite.dist[j] < data->sprite.dist[j + 1])
+			if (sprite->dist[j] < sprite->dist[j + 1])
 			{
-				tmp = data->sprite.dist[j];
-				data->sprite.dist[j] = data->sprite.dist[j + 1];
-				data->sprite.dist[j + 1] = tmp;
-				tmp = data->sprite.order[j];
-				data->sprite.order[j] = data->sprite.order[j + 1];
-				data->sprite.order[j + 1] = (int)tmp;
+				tmp = sprite->dist[j];
+				sprite->dist[j] = sprite->dist[j + 1];
+				sprite->dist[j + 1] = tmp;
+				tmp = sprite->order[j];
+				sprite->order[j] = sprite->order[j + 1];
+				sprite->order[j + 1] = (int)tmp;
 			}
 			j++;
 		}
@@ -52,27 +52,25 @@ void	sort_sprites(t_data *data)
 						data->sprite2.sprite_x[i]));
 		i++;
 	}
-	order_sprites_1(data);
-	order_sprites_2(data);
+	order_sprites(&data->sprite, data->param.nb_sprite_1);
+	order_sprites(&data->sprite2, data->param.nb_sprite_2);
 }
 
-void	calculate_sprites_1(t_data *data, int i)
+void	calculate_sprites(t_data *data, int i, t_sprite *sprite)
 {
-	initialize_data_for_sprites_1(data, i);
-	if (data->sprite.draw_start_y < 0)
-		data->sprite.draw_start_y = 0;
-	data->sprite.draw_end_y = data->sprite.height / 2 +
-		data->param.resolution.axe_y / 2;
-	if (data->sprite.draw_end_y >= data->param.resolution.axe_y)
-		data->sprite.draw_end_y = data->param.resolution.axe_y - 1;
-	data->sprite.width = abs((int)(data->param.resolution.axe_y /
-				data->sprite.transform_y));
-	data->sprite.draw_start_x = -data->sprite.width / 2 + data->sprite.screen;
-	if (data->sprite.draw_start_x < 0)
-		data->sprite.draw_start_x = 0;
-	data->sprite.draw_end_x = data->sprite.width / 2 + data->sprite.screen;
-	if (data->sprite.draw_end_x >= data->param.resolution.axe_x)
-		data->sprite.draw_end_x = data->param.resolution.axe_x - 1;
+	initialize_data_for_sprites(data, i, sprite);
+	if (sprite->draw_start_y < 0)
+		sprite->draw_start_y = 0;
+	sprite->draw_end_y = sprite->height / 2 + data->param.resolution.axe_y / 2;
+	if (sprite->draw_end_y >= data->param.resolution.axe_y)
+		sprite->draw_end_y = data->param.resolution.axe_y - 1;
+	sprite->width = abs((int)(data->param.resolution.axe_y / sprite->transform_y));
+	sprite->draw_start_x = -sprite->width / 2 + sprite->screen;
+	if (sprite->draw_start_x < 0)
+		sprite->draw_start_x = 0;
+	sprite->draw_end_x = sprite->width / 2 + sprite->screen;
+	if (sprite->draw_end_x >= data->param.resolution.axe_x)
+		sprite->draw_end_x = data->param.resolution.axe_x - 1;
 }
 
 void	draw_sprites_1(t_data *data, int stripe, int text_x, int text_y)
@@ -90,15 +88,15 @@ void	draw_sprites_1(t_data *data, int stripe, int text_x, int text_y)
 		d = i * 256 - data->param.resolution.axe_y * 128 + data->sprite.height
 			* 128;
 		text_y = ((d * data->sprite.img.height) / data->sprite.height) / 256;
-		if (data->sprite.img.addr[sprite_cord]) // si c'est transparent
+		if (data->sprite.img.addr[sprite_cord]) 
 			data->img.addr[img_cord] = data->sprite.img.addr[sprite_cord];
-		if (data->sprite.img.addr[sprite_cord + 1]) // si c'est rouge
+		if (data->sprite.img.addr[sprite_cord + 1]) 
 			data->img.addr[img_cord + 1] =
 				data->sprite.img.addr[sprite_cord + 1];
-		if (data->sprite.img.addr[sprite_cord + 2]) // si c'est vert
+		if (data->sprite.img.addr[sprite_cord + 2]) 
 			data->img.addr[img_cord + 2] =
 				data->sprite.img.addr[sprite_cord + 2];
-		if (data->sprite.img.addr[sprite_cord + 3]) // si c'est bleu
+		if (data->sprite.img.addr[sprite_cord + 3]) 
 			data->img.addr[img_cord + 3] =
 				data->sprite.img.addr[sprite_cord + 3];
 	}
@@ -114,7 +112,7 @@ void	ft_sprites(t_data *data)
 	sort_sprites(data);
 	while (++i < data->param.nb_sprite_1)
 	{
-		calculate_sprites_1(data, i);
+		calculate_sprites(data, i, &data->sprite);
 		stripe = data->sprite.draw_start_x - 1;
 		while (++stripe < data->sprite.draw_end_x)
 		{
@@ -130,7 +128,7 @@ void	ft_sprites(t_data *data)
 	i = -1;
 	while (++i < data->param.nb_sprite_2)
 	{
-		calculate_sprites_2(data, i);
+		calculate_sprites(data, i, &data->sprite2);
 		stripe = data->sprite2.draw_start_x - 1;
 		while (++stripe < data->sprite2.draw_end_x)
 		{

@@ -6,7 +6,7 @@ EA ./textures/brick.xpm
 S ./textures/scary_white_walker.xpm
 S2 ./textures/beer_2.xpm
 C ./textures/sky.xpm
-F ./textures/sky.xpm
+F 58,58,58
 
 
 
