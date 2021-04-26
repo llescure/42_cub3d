@@ -23,7 +23,7 @@ char	*only_map(char *str, t_param *param)
 	j = 0;
 	i = move_to_map(str);
 	if (!(map = malloc(sizeof(char) * calculate_nb_chains(str)
-		* ft_biggest_line_len(str))))
+					* ft_biggest_line_len(str))))
 		return (NULL);
 	while (str[i] != '\0')
 	{
@@ -85,7 +85,7 @@ void	free_str(char **str, t_param *param)
 	free(str);
 }
 
-int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_param *param)
+int		read_next_line(char **tab_param, char **line, int fd, t_param *param)
 {
 	int i;
 	int j;
@@ -101,7 +101,7 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 				|| (*line)[0] == 'E' || (*line)[0] == 'W' || (*line)[0] == 'N')
 			tab_param[i++] = strdup(*line);
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
-			tab_map[j++] = strdup(*line);
+			param->map.tab_map[j++] = strdup(*line);
 		free(*line);
 	}
 	if (i != param->nb_lines_params)
@@ -110,32 +110,28 @@ int		read_next_line(char **tab_map, char **tab_param, char **line, int fd, t_par
 		print_error(param, "Wrong number of parameters");
 	free(*line);
 	return (ret);
-	}
+}
 
 int		sorting_map(char *map_map, t_param *param)
 {
 	int		fd;
 	int		ret;
 	char	**tab_param;
-	char	**tab_map;
 	char	*line;
 
 	ret = 1;
 	fd = open(param->file, O_RDONLY);
 	if (!(tab_param = malloc(sizeof(char*) * 9)))
 		return (-1);
-	if (!(tab_map = malloc(sizeof(char*) * calculate_nb_chains(map_map))))
+	if (!(param->map.tab_map = malloc(sizeof(char*) *
+		calculate_nb_chains(map_map))))
 		return (-1);
-	ret = read_next_line(tab_map, tab_param, &line, fd, param);
-	tab_map = creation_table_map(tab_map, param);
-	param->map.tab_map = tab_map;
+	ret = read_next_line(tab_param, &line, fd, param);
+	param->map.tab_map = creation_table_map(param->map.tab_map, param);
 	check_all_para(param, tab_param);
-	ret = 0;
-	while (ret < 8)
-	{
+	ret = -1;
+	while (++ret < 8)
 		free(tab_param[ret]);
-		ret++;
-	}
 	if (param->bonus == '1')
 		free(tab_param[8]);
 	free(tab_param);

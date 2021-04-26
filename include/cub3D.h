@@ -24,7 +24,7 @@ int		move_to_map(char *str);
 int		calculate_nb_chains(char *str);
 int		ft_biggest_line_len(char *str);
 int		read_map(int fd, char *str, char *map, t_param *param);
-int		read_next_line(char **tab_map, char **tab_param, char **line, int fd,
+int		read_next_line(char **tab_param, char **line, int fd,
 		t_param *param);
 int		check_map(char **map, int nb_lines, int max_length, t_param *param);
 char	*only_map(char *str, t_param *param);
@@ -53,7 +53,7 @@ int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
 int		ft_number_sprites(char *str, t_param *param);
-void	correct_param_perso(t_param *param);
+void	correct_param_perso(t_perso *perso, t_map *map);
 t_param	initialize(int argc, char **argv);
 
 /*
@@ -85,17 +85,17 @@ void	initialize_before_drawing(t_data *data);
  ** Sprites
 */
 
-void		get_sprites_info(t_data *data);
-void		ft_sprites(t_data *data);
-void		order_sprites(t_sprite *sprite, int nb_sprites);
-void		sort_sprites(t_data *data);
-void		initialize_data_for_sprites(t_data *data, int i, t_sprite *sprite);
-void		calculate_sprites(t_data *data, int i, t_sprite *sprite);
-void		draw_sprites_1(t_data *data, int stripe, int text_x, int text_y);
-void		allocate_memory_for_sprites(t_data *data);
-void		draw_sprites_2(t_data *data, int stripe, int text_x, int text_y);
-void		free_sprites(t_data *data);
-void		check_pos_sprite(t_data *data, int k, int l);
+void	get_sprites_info(t_data *data);
+void	ft_sprites(t_data *data);
+void	order_sprites(t_sprite *sprite, int nb_sprites);
+void	sort_sprites(t_data *data);
+void	initialize_data_for_sprites(t_data *data, int i, t_sprite *sprite);
+void	calculate_sprites(t_data *data, int i, t_sprite *sprite);
+void	draw_sprites_1(t_data *data, int stripe, int text_x, int text_y);
+void	allocate_memory_for_sprites(t_data *data);
+void	draw_sprites_2(t_data *data, int stripe, int text_x, int text_y);
+void	free_sprites(t_data *data);
+void	check_pos_sprite(t_data *data, int k, int l);
 
 /*
  ** Minilibx
@@ -104,7 +104,6 @@ void		check_pos_sprite(t_data *data, int k, int l);
 int		draw_minimap(t_data *data);
 int		draw_square(float i, float j, t_data *data, int color);
 int		draw_line(t_data *data, t_rect rect);
-//int		draw_column(int beginning, int end, int pos_x, t_data *data);
 int		draw_ceiling(int beginning, int end, int pos_x, t_data *data);
 int		draw_floor(int beginning, int end, int pos_x, t_data *data);
 int		draw(t_data *data);
@@ -124,6 +123,7 @@ void	rotate_camera_right(t_data *data);
 int		close_game(t_data *data);
 void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
+void	general_case(int nega, t_perso *perso);
 
 /*
  ** Save_image
@@ -143,10 +143,12 @@ int		health_management(t_data *data);
 void	get_health_level(t_data *data);
 void	draw_life_bar(t_data *data, int i);
 void	convert_health_level(t_data *data);
+void	put_health_bar_on_image(t_data *data, int i, int y, int z);
 void	get_ceiling_textures(t_data *data);
 void	get_floor_textures(t_data *data);
 void	draw_texture_ceiling(t_data *data, int pos_x);
 void	draw_texture_floor(t_data *data, int pos_x);
 void	free_textures_bonus(t_data *data);
+void	check_sprite2(char *str, t_param *param);
 
 #endif

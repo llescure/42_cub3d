@@ -39,19 +39,20 @@ int		manage_param(char *str, t_param *param)
 	if (str[0] == 'S' && str[1] == ' ' && param->sprite_1 == NULL)
 		param->sprite_1 = save_address_param(str, param);
 	if (str[0] == 'S' && str[1] == '2' && param->sprite_2 == NULL)
-	{
-		param->bonus = '1';
-		param->sprite_2 = save_address_param(str, param);
-	}
+		check_sprite2(str, param);
 	if (str[0] == 'F' && str[1] == ' ')
 		colour_params_floor(str, param);
-	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ' && param->north_texture == NULL)
+	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ' &&
+			param->north_texture == NULL)
 		param->north_texture = save_address_param(str, param);
-	if (str[0] == 'S' && str[1] == 'O' && str[2] == ' ' && param->south_texture == NULL)
+	if (str[0] == 'S' && str[1] == 'O' && str[2] == ' ' &&
+			param->south_texture == NULL)
 		param->south_texture = save_address_param(str, param);
-	if (str[0] == 'E' && str[1] == 'A' && str[2] == ' ' && param->east_texture == NULL)
+	if (str[0] == 'E' && str[1] == 'A' && str[2] == ' ' &&
+			param->east_texture == NULL)
 		param->east_texture = save_address_param(str, param);
-	if (str[0] == 'W' && str[1] == 'E' && str[2] == ' ' && param->west_texture == NULL)
+	if (str[0] == 'W' && str[1] == 'E' && str[2] == ' ' &&
+			param->west_texture == NULL)
 		param->west_texture = save_address_param(str, param);
 	return (0);
 }
@@ -65,19 +66,21 @@ int		check_all_para(t_param *param, char **tab_param)
 		manage_param(tab_param[i], param);
 	if (param->nb_lines_params == 9)
 		manage_param(tab_param[i], param);
-	if ((param->nb_lines_params == 9 && param->bonus == '0') || (param->nb_lines_params == 8 && param->bonus == '1'))
+	if ((param->nb_lines_params == 9 && param->bonus == '0') ||
+		(param->nb_lines_params == 8 && param->bonus == '1'))
 		print_error(param, "Wrong parameters");
 	if ((param->ceiling_colour.red == -10 || param->ceiling_colour.green == -10
-			|| param->ceiling_colour.blue == -10) && param->ceiling_texture == NULL)
+		|| param->ceiling_colour.blue == -10) &&
+			param->ceiling_texture == NULL)
 		print_error(param, "Missing colour");
-	if ((param->floor_colour.green == -10 || param->floor_colour.blue == -10
-			|| param->floor_colour.red == -10) && param->floor_texture == NULL)
+	if ((param->floor_colour.green == -10 || param->floor_colour.blue == -10 ||
+		param->floor_colour.red == -10) && param->floor_texture == NULL)
 		print_error(param, "Missing colour");
 	if (param->resolution.axe_x == -10 || param->resolution.axe_y == -10)
 		print_error(param, "Missing resolution");
-	if (param->sprite_1 == NULL || (param->bonus == '1' && param->sprite_2 == NULL) || param->north_texture == NULL ||
-			param->south_texture == NULL || param->east_texture == NULL ||
-			param->west_texture == NULL)
+	if (param->sprite_1 == NULL || (param->bonus == '1' && param->sprite_2 ==
+		NULL) || param->north_texture == NULL || param->south_texture == NULL
+		|| param->east_texture == NULL || param->west_texture == NULL)
 		print_error(param, "Missing texture");
 	return (0);
 }

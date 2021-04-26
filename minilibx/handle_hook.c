@@ -3,36 +3,29 @@
 
 int		move_perso(t_data *data)
 {
-	float speed;
-	float dist;
+	float	speed;
+	float	dist;
+	int		x;
+	int		y;
 
 	speed = 0.1;
 	dist = 0.2;
-	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed + data->param.perso.diry * dist)]
-			[(int)(data->param.perso.position_x + data->param.perso.dirx *
-				speed + data->param.perso.dirx * dist)] == '2')
+	x = data->param.perso.position_y + data->param.perso.diry * speed +
+		data->param.perso.diry * dist;
+	y = data->param.perso.position_x + data->param.perso.dirx * speed +
+		data->param.perso.dirx * dist;
+	if (data->param.map.tab_map[x][y] == '2')
 		data->bonus.life -= 1;
-	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed + data->param.perso.diry * dist)]
-			[(int)(data->param.perso.position_x + data->param.perso.dirx *
-				speed + data->param.perso.dirx * dist)] == '3')
+	if (data->param.map.tab_map[x][y] == '3')
 	{
 		if (data->bonus.life < 4)
 			data->bonus.life += 1;
 	}
-	if (data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed + data->param.perso.diry * dist)]
-			[(int)(data->param.perso.position_x + data->param.perso.dirx *
-				speed + data->param.perso.dirx * dist)] == '0'
-			|| data->param.map.tab_map[(int)(data->param.perso.position_y +
-				data->param.perso.diry * speed + data->param.perso.diry * dist)]
-			[(int)(data->param.perso.position_x + data->param.perso.dirx *
-				speed + data->param.perso.dirx * dist)] ==
-			data->param.perso.orientation)
+	if (data->param.map.tab_map[x][y] == '0' || data->param.map.tab_map[x][y]
+			== data->param.perso.orientation)
 	{
-		data->param.perso.position_x +=	data->param.perso.dirx * speed;
-		data->param.perso.position_y +=	data->param.perso.diry * speed;
+		data->param.perso.position_x += data->param.perso.dirx * speed;
+		data->param.perso.position_y += data->param.perso.diry * speed;
 	}
 	return (0);
 }
@@ -97,7 +90,8 @@ void	initialize_parameters_for_mlx(t_data *data)
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
-	if (!(data->sprite.z_buffer = (double *)malloc(sizeof(double) * data->param.resolution.axe_x)))
+	if (!(data->sprite.z_buffer = (double *)malloc(sizeof(double) *
+					data->param.resolution.axe_x)))
 		print_error(&data->param, "Initialisation failed");
 	get_sprites_info(data);
 	get_textures(data);

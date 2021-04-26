@@ -29,3 +29,9 @@ void	draw_sprites_2(t_data *data, int stripe, int text_x, int text_y)
 				data->sprite2.img.addr[sprite_cord + 3];
 	}
 }
+
+void	check_sprite2(char *str, t_param *param)
+{
+	param->bonus = '1';
+	param->sprite_2 = save_address_param(str, param);
+}

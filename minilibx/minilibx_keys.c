@@ -30,7 +30,7 @@ int		press_key(int key, t_data *data)
 	return (0);
 }
 
-int	close_game(t_data *data)
+int		close_game(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;

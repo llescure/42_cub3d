@@ -57,15 +57,16 @@ void	initialize_data_for_sprites(t_data *data, int i, t_sprite *sprite)
 {
 	sprite->pos_x = sprite->sprite_x[sprite->order[i]] - data->ray.pos_y;
 	sprite->pos_y = sprite->sprite_y[sprite->order[i]] - data->ray.pos_x;
-	sprite->invdet = 1.0 / (data->ray.plan_x * data->ray.dir_y - data->ray.dir_x *
-			data->ray.plan_y);
+	sprite->invdet = 1.0 / (data->ray.plan_x * data->ray.dir_y -
+			data->ray.dir_x * data->ray.plan_y);
 	sprite->transform_x = sprite->invdet * (data->ray.dir_y * sprite->pos_x -
 			data->ray.dir_x * sprite->pos_y);
 	sprite->transform_y = sprite->invdet * (-data->ray.plan_y * sprite->pos_x +
 			data->ray.plan_x * sprite->pos_y);
 	sprite->screen = (int)((data->param.resolution.axe_x / 2) * (1 +
 				sprite->transform_x / sprite->transform_y));
-	sprite->height = abs((int)(data->param.resolution.axe_y / sprite->transform_y));
+	sprite->height = abs((int)(data->param.resolution.axe_y /
+				sprite->transform_y));
 	sprite->draw_start_y = -sprite->height / 2 +
 		data->param.resolution.axe_y / 2;
 }

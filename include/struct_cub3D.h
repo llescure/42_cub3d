@@ -157,21 +157,21 @@ typedef struct		s_sprite
 
 typedef struct		s_texture
 {
-	double			wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
-	int			text_dir; // direction NO, S, EA, WE de la texture
-	int			x; // coordonnee x de la texture
-	int			y; // coordonnee y de la texture
-	double			step; // de combien augmenter les coordonnées de la texture pour chaque pixel
-	double		position; // coordonnee de depart
-	double		shade;
-	int			*color;
+	double	wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
+	int		text_dir; // direction NO, S, EA, WE de la texture
+	int		x; // coordonnee x de la texture
+	int		y; // coordonnee y de la texture
+	double	step; // de combien augmenter les coordonnées de la texture pour chaque pixel
+	double	position; // coordonnee de depart
+	double	shade;
+	int		*color;
 }					t_texture;
 
 typedef	struct		s_bonus
 {
 	int			life;
 	t_img		tab_life[4];
-}				t_bonus;
+}					t_bonus;
 
 typedef struct		s_data
 {
@@ -182,7 +182,7 @@ typedef struct		s_data
 	t_ray		ray;
 	t_texture	texture;
 	t_img		tab_texture[6];
-	t_sprite 	sprite;
+	t_sprite	sprite;
 	t_sprite	sprite2;
 	t_bonus		bonus;
 }					t_data;

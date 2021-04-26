@@ -56,7 +56,7 @@ int		conversion_rgb_to_hexa(t_colour colour)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-int ft_number_sprites(char *str, t_param *param)
+int		ft_number_sprites(char *str, t_param *param)
 {
 	int i;
 	int result;

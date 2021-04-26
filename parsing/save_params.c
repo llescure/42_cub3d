@@ -34,6 +34,7 @@ int		colour_params_floor(char *str, t_param *param)
 {
 	int		i;
 	char	**par;
+
 	i = 0;
 	if (ft_strchr(str, ',') == NULL)
 	{
