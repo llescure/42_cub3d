@@ -23,7 +23,6 @@ SRCS =  ./parsing/check_map.c					\
 		./save/save.c							\
 		./bonus/health.c						\
 		./bonus/textures_on_ceilling_floor.c				\
-		./bonus/double_sprite.c			\
 		./main.c
 
 

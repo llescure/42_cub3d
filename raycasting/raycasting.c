@@ -50,6 +50,9 @@ void	wall_collision(t_data *data, t_ray *ray)
 
 void	display_raycasting(t_data *data, t_ray *ray, int x)
 {
+	int i;
+
+	i = 0;
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x)
 				/ 2) / ray->ray_dirx;
@@ -70,7 +73,11 @@ void	display_raycasting(t_data *data, t_ray *ray, int x)
 	draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
 	draw_ceiling(0, ray->draw_start, x, data);
 	draw_texture_walls(data, x);
-	data->sprite.z_buffer[x] = data->ray.perp_wall_dist;
+	while (i < data->param.nb_sprites)
+	{
+		data->tab_sprite[i].z_buffer[x] = data->ray.perp_wall_dist;
+		i++;
+	}
 }
 
 void	raycasting(t_data *data, t_ray *ray)

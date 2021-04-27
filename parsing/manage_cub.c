@@ -106,3 +106,9 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param)
 	manage_perso(map, param);
 	return (0);
 }
+
+void	check_sprite2(char *str, t_param *param)
+{
+	param->bonus = '1';
+	param->sprite_2 = save_address_param(str, param);
+}

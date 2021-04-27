@@ -82,6 +82,9 @@ int		create_window(t_data *data)
 
 void	initialize_parameters_for_mlx(t_data *data)
 {
+	int i;
+
+	i = 0;
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
 	get_health_level(data);
@@ -90,10 +93,14 @@ void	initialize_parameters_for_mlx(t_data *data)
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_lenght, &data->img.endian);
-	if (!(data->sprite.z_buffer = (double *)malloc(sizeof(double) *
-					data->param.resolution.axe_x)))
-		print_error(&data->param, "Initialisation failed");
 	get_sprites_info(data);
+	while (i < data->param.nb_sprites)
+	{
+		if (!(data->tab_sprite[i].z_buffer = (double *)malloc(sizeof(double) *
+			data->param.resolution.axe_x)))
+			print_error(&data->param, "Initialisation failed");
+		i++;
+	}
 	get_textures(data);
 	if (data->param.ceiling_texture != NULL)
 		get_ceiling_textures(data);

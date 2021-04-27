@@ -146,10 +146,10 @@ typedef struct		s_sprite
 	int		width;
 	double	transform_x; // depth inside the screen to avoid fish-eye
 	double	transform_y;
-	double	*dist;
+	double	dist;
 	int		screen;
 	double	*z_buffer;
-	int		*order;
+	int		order;
 	double	invdet; // determinant de la matrice ( plane_x dir_x )
 	t_img	img;    // 							 ( plane_y dir_y )
 
@@ -182,8 +182,6 @@ typedef struct		s_data
 	t_ray		ray;
 	t_texture	texture;
 	t_img		tab_texture[6];
-	t_sprite	sprite;
-	t_sprite	sprite2;
 	t_sprite	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;
