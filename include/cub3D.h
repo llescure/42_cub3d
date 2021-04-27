@@ -150,7 +150,7 @@ void	draw_texture_floor(t_data *data, int pos_x);
 void	free_floor_bonus(t_data *data);
 void	free_textures_bonus(t_data *data);
 void	check_sprite2(char *str, t_param *param);
-void 	play_music(t_data *data);
-void 	init_music(t_data *data);
+int		play_music(t_data *data);
+int 		init_music(t_data *data);
 
 #endif

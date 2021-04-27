@@ -32,11 +32,14 @@ int		press_key(int key, t_data *data)
 
 int		close_game(t_data *data)
 {
+	int return_value;
+
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
 	free_textures(data);
 	free_address_params(&data->param);
-	return (0);
+	return_value = system("killall aplay");
+	return (return_value);
 }
 
 int		release_key(int key, t_data *data)
