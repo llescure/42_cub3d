@@ -82,28 +82,16 @@ void	initialize_data_for_sprites(t_data *data, t_sprite *sprite)
 		data->param.resolution.axe_y / 2;
 }
 
-/*void	free_sprites(t_data *data)
+void	free_sprites(t_data *data)
 {
-	if (data->sprite.img.img)
-		mlx_destroy_image(data->mlx_ptr, data->sprite.img.img);
-	if (data->param.bonus == '1' && data->sprite2.img.img)
-		mlx_destroy_image(data->mlx_ptr, data->sprite2.img.img);
-	if (data->sprite.z_buffer)
-		free(data->sprite.z_buffer);
-	if (data->sprite.sprite_x)
-		free(data->sprite.sprite_x);
-	if (data->sprite.sprite_y)
-		free(data->sprite.sprite_y);
-	if (data->sprite.order)
-		free(data->sprite.order);
-	if (data->sprite.dist)
-		free(data->sprite.dist);
-	if (data->sprite2.sprite_x)
-		free(data->sprite2.sprite_x);
-	if (data->sprite2.sprite_y)
-		free(data->sprite2.sprite_y);
-	if (data->sprite2.order)
-		free(data->sprite2.order);
-	if (data->sprite2.dist)
-		free(data->sprite2.dist);
-}*/
+	int i;
+
+	i = 0;
+	while (i < data->param.nb_sprites)
+	{
+		free(data->tab_sprite[i].z_buffer);
+		i++;
+	}
+	if (data->tab_sprite)
+		free(data->tab_sprite);
+}

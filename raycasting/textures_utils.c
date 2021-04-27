@@ -31,6 +31,6 @@ void	free_textures(t_data *data)
 			mlx_destroy_image(data->mlx_ptr, data->tab_texture[i].img);
 		i++;
 	}
-//	free_sprites(data);
+	free_sprites(data);
 	free_textures_bonus(data);
 }

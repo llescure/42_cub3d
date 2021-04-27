@@ -100,8 +100,6 @@ void	initialize_parameters_for_mlx(t_data *data)
 		if (!(data->tab_sprite[i].z_buffer = (double *)malloc(sizeof(double)
 				* data->param.resolution.axe_x)))
 			print_error(&data->param, "Initialisation failed");
-	//	printf("i = %d\n", i);
-	//	printf("nb_sprite = %d\n", data->param.nb_sprites);
 		i++;
 	}
 	init_music(data);
