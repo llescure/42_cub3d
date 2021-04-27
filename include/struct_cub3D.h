@@ -151,6 +151,7 @@ typedef struct		s_sprite
 	double	*z_buffer;
 	int		order;
 	double	invdet; // determinant de la matrice ( plane_x dir_x )
+	char	type;
 	t_img	img;    // 							 ( plane_y dir_y )
 
 }					t_sprite;
@@ -182,7 +183,7 @@ typedef struct		s_data
 	t_ray		ray;
 	t_texture	texture;
 	t_img		tab_texture[6];
-	t_sprite	*tab_sprite;
+	t_sprite 	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;
 
