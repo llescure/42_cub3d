@@ -74,13 +74,13 @@ void	draw_texture_walls(t_data *data, int pos_x)
 		text_cord = data->texture.y * data->tab_texture[data->texture.text_dir].
 			height * 4 + data->texture.x * 4;
 		data->img.addr[img_cord] = data->tab_texture[data->texture.text_dir].
-			addr[text_cord] * data->texture.shade;
+			addr[text_cord] / data->texture.shade;
 		data->img.addr[img_cord + 1] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 1] * data->texture.shade;
+			text_dir].addr[text_cord + 1] / data->texture.shade;
 		data->img.addr[img_cord + 2] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 2] * data->texture.shade;
+			text_dir].addr[text_cord + 2] / data->texture.shade;
 		data->img.addr[img_cord + 3] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 3] * data->texture.shade;
+			text_dir].addr[text_cord + 3] / data->texture.shade;
 		y++;
 	}
 }

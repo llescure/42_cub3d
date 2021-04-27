@@ -152,5 +152,7 @@ void	free_textures_bonus(t_data *data);
 void	check_sprite2(char *str, t_param *param);
 void 	play_music(t_data *data);
 void 	init_music(t_data *data);
+double	shadow_texture(double distance);
+
 
 #endif
