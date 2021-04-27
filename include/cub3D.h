@@ -85,17 +85,16 @@ void	initialize_before_drawing(t_data *data);
  ** Sprites
 */
 
-void		get_sprites_info(t_data *data);
-void		ft_sprites(t_data *data);
-void		order_sprites(t_sprite *sprite, int nb_sprites);
-void		sort_sprites(t_data *data);
-void		initialize_data_for_sprites(t_data *data, int i, t_sprite *sprite);
-void		calculate_sprites(t_data *data, int i, t_sprite *sprite);
-void		draw_sprites_1(t_data *data, int stripe, int text_x, int text_y);
-void		allocate_memory_for_sprites(t_data *data);
-void		draw_sprites_2(t_data *data, int stripe, int text_x, int text_y);
-void		free_sprites(t_data *data);
-void		check_pos_sprite(t_data *data, int k, int l);
+void	get_sprites_info(t_data *data);
+void	ft_sprites(t_data *data);
+void	order_sprites(t_data *data, int nb_sprites);
+void	sort_sprites(t_data *data);
+void	initialize_data_for_sprites(t_data *data, t_sprite *sprite);
+void	calculate_sprites(t_data *data, t_sprite *sprite);
+void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite);
+void	allocate_memory_for_sprites(t_data *data);
+void	free_sprites(t_data *data);
+void	get_image_by_sprite(t_data *data, t_sprite *sprite);
 
 /*
  ** Minilibx

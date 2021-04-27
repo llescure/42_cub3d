@@ -134,8 +134,8 @@ typedef struct		s_ray
 
 typedef struct		s_sprite
 {
-	double	*sprite_x;
-	double	*sprite_y;
+	double	sprite_x;
+	double	sprite_y;
 	int		draw_start_x; // lowest and highest pixel to fill in
 	int		draw_start_y;
 	int		draw_end_x;
@@ -146,11 +146,12 @@ typedef struct		s_sprite
 	int		width;
 	double	transform_x; // depth inside the screen to avoid fish-eye
 	double	transform_y;
-	double	*dist;
+	double	dist;
 	int		screen;
 	double	*z_buffer;
-	int		*order;
+	int		order;
 	double	invdet; // determinant de la matrice ( plane_x dir_x )
+	char	type;
 	t_img	img;    // 							 ( plane_y dir_y )
 
 }					t_sprite;
@@ -182,8 +183,7 @@ typedef struct		s_data
 	t_ray		ray;
 	t_texture	texture;
 	t_img		tab_texture[6];
-	t_sprite 	sprite;
-	t_sprite	sprite2;
+	t_sprite 	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;
 
