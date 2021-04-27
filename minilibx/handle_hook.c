@@ -39,6 +39,7 @@ int		launch_hook(t_data *data)
 	raycasting(data, &data->ray);
 	if (health_management(data) == -1)
 		close_game(data);
+	play_music(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
@@ -103,6 +104,7 @@ void	initialize_parameters_for_mlx(t_data *data)
 	//	printf("nb_sprite = %d\n", data->param.nb_sprites);
 		i++;
 	}
+	init_music(data);
 	get_textures(data);
 	if (data->param.ceiling_texture != NULL)
 		get_ceiling_textures(data);

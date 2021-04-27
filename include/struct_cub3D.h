@@ -13,6 +13,7 @@
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <math.h>
+# include <time.h>
 
 # define KRED  "\x1B[31m"
 # define KGRN  "\x1B[32m"
@@ -81,6 +82,11 @@ typedef struct		s_param {
 	int				bonus;
 }					t_param;
 
+typedef struct			s_sound
+{
+	clock_t				last_start_song;
+}						t_sound;
+
 typedef struct		s_img
 {
 	void	*img;
@@ -90,6 +96,7 @@ typedef struct		s_img
 	int		endian;
 	int		width;
 	int		height;
+	t_sound	*sound;
 }					t_img;
 
 typedef struct		s_ray
