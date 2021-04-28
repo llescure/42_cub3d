@@ -46,8 +46,11 @@ void	wall_collision(t_data *data, t_ray *ray)
 	}
 }
 
-void	calculation_for_raycasting(t_data *data, t_ray *ray)
+void	display_raycasting(t_data *data, t_ray *ray, int x)
 {
+	int i;
+
+	i = 0;
 	if (ray->side == 0)
 		ray->perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x)
 				/ 2) / ray->ray_dirx;
@@ -66,14 +69,6 @@ void	calculation_for_raycasting(t_data *data, t_ray *ray)
 	if (ray->draw_end >= data->param.resolution.axe_y)
 		ray->draw_end = data->param.resolution.axe_y - 1;
 	data->texture.shade = shadow_texture(ray->perp_wall_dist);
-}
-
-void	display_raycasting(t_data *data, t_ray *ray, int x)
-{
-	int i;
-
-	i = 0;
-	calculation_for_raycasting(data, ray);
 	draw_floor(ray->draw_end, data->param.resolution.axe_y, x, data);
 	draw_ceiling(0, ray->draw_start, x, data);
 	draw_texture_walls(data, x);

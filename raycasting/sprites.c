@@ -77,16 +77,20 @@ void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite)
 		text_y = ((d * sprite->img.height) / sprite->height) / 256;
 		img_cord = 4 * stripe + 4 * data->param.resolution.axe_x * i;
 		sprite_cord = 4 * text_y * sprite->img.height + 4 * text_x;
-		data->img.addr[img_cord] = sprite->img.addr[sprite_cord] /
-			data->texture.shade;
-		data->img.addr[img_cord + 1] =
-			sprite->img.addr[sprite_cord + 1] / data->texture.shade;
-		data->img.addr[img_cord + 2] =
-			sprite->img.addr[sprite_cord + 2] / data->texture.shade;
-		data->img.addr[img_cord + 3] =
-			sprite->img.addr[sprite_cord + 3] / data->texture.shade;
+		if (sprite->img.addr[sprite_cord])
+			data->img.addr[img_cord] = sprite->img.addr[sprite_cord] / data->texture.shade;
+		if (sprite->img.addr[sprite_cord + 1])
+			data->img.addr[img_cord + 1] =
+				sprite->img.addr[sprite_cord + 1] / data->texture.shade;
+		if (sprite->img.addr[sprite_cord + 2])
+			data->img.addr[img_cord + 2] =
+				sprite->img.addr[sprite_cord + 2] / data->texture.shade;
+		if (sprite->img.addr[sprite_cord + 3])
+			data->img.addr[img_cord + 3] =
+				sprite->img.addr[sprite_cord + 3] / data->texture.shade;
 	}
 }
+
 
 void	ft_sprites(t_data *data)
 {
