@@ -78,19 +78,22 @@ void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite)
 		img_cord = 4 * stripe + 4 * data->param.resolution.axe_x * i;
 		sprite_cord = 4 * text_y * sprite->img.height + 4 * text_x;
 		if (sprite->img.addr[sprite_cord])
-			data->img.addr[img_cord] = shadow_texture(data->ray.perp_wall_dist, sprite->img.addr[sprite_cord]);
+			data->img.addr[img_cord] = shadow_texture(data->ray.perp_wall_dist,
+			sprite->img.addr[sprite_cord]);
 		if (sprite->img.addr[sprite_cord + 1])
 			data->img.addr[img_cord + 1] =
-				shadow_texture(data->ray.perp_wall_dist, sprite->img.addr[sprite_cord + 1]);
+				shadow_texture(data->ray.perp_wall_dist,
+				sprite->img.addr[sprite_cord + 1]);
 		if (sprite->img.addr[sprite_cord + 2])
 			data->img.addr[img_cord + 2] =
-				shadow_texture(data->ray.perp_wall_dist, sprite->img.addr[sprite_cord + 2]);
+				shadow_texture(data->ray.perp_wall_dist,
+				sprite->img.addr[sprite_cord + 2]);
 		if (sprite->img.addr[sprite_cord + 3])
 			data->img.addr[img_cord + 3] =
-				shadow_texture(data->ray.perp_wall_dist, sprite->img.addr[sprite_cord + 3]);
+				shadow_texture(data->ray.perp_wall_dist,
+				sprite->img.addr[sprite_cord + 3]);
 	}
 }
-
 
 void	ft_sprites(t_data *data)
 {
