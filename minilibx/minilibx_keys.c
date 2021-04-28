@@ -38,8 +38,8 @@ int		close_game(t_data *data)
 	data->win_ptr = NULL;
 	free_textures(data);
 	free_address_params(&data->param);
-	return_value = system("killall aplay");
 	free(data->img.sound);
+	return_value = system("killall aplay");
 	return (return_value);
 }
 
