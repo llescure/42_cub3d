@@ -8,6 +8,7 @@ int		main(int argc, char **argv)
 	data.param = initialize(argc, argv);
 	if (argc == 3 && ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) == 0)
 		return (create_image(&data));
+	init_music(&data);
 	if (create_window(&data) == -1)
 		return (-1);
 	initialize_mlx(&data);

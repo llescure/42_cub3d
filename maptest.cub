@@ -1,12 +1,12 @@
 C 255,20,30
-R   100 100
+R 100 100
 NO ./textures/brick.xpm
 SO ./textures/sky.xpm
 WE ./textures/brick.xpm
 EA ./textures/brick.xpm
-S1 ./textures/plant_mario.xpm
-S2 ./textures/plant_mario.xpm
-F  0, 000, 00
+S ./textures/white_walker.xpm
+S2 ./textures/beer.xpm
+F 57,57,57
 
    1111111111111111111111111
    100W000000110000000000001

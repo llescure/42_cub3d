@@ -34,3 +34,17 @@ void	free_textures(t_data *data)
 	free_sprites(data);
 	free_textures_bonus(data);
 }
+
+void	free_sprites(t_data *data)
+{
+	int i;
+
+	i = 0;
+	while (i < data->param.nb_sprites)
+	{
+		free(data->tab_sprite[i].z_buffer);
+		i++;
+	}
+	if (data->tab_sprite)
+		free(data->tab_sprite);
+}

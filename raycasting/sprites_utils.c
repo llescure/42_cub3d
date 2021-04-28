@@ -4,7 +4,7 @@
 void	allocate_memory_for_sprites(t_data *data)
 {
 	if (!(data->tab_sprite = malloc(sizeof(t_sprite) *
-					data->param.nb_sprites))) 
+		data->param.nb_sprites)))
 		print_error(&data->param, "sprites failed");
 }
 
@@ -23,23 +23,21 @@ void	get_sprites_info(t_data *data)
 		while (j < data->param.map.max_length)
 		{
 			if (data->param.map.tab_map[i][j] == '2')
-			{
-				data->tab_sprite[k].sprite_y = (double)i + 0.5;
-				data->tab_sprite[k].sprite_x = (double)j + 0.5;
-				data->tab_sprite[k].type = '2';
-				k++;
-			}
+				k += initialize_sprite(i, j, &data->tab_sprite[k], '2');
 			else if (data->param.map.tab_map[i][j] == '3')
-			{
-				data->tab_sprite[k].sprite_y = (double)i + 0.5;
-				data->tab_sprite[k].sprite_x = (double)j + 0.5;
-				data->tab_sprite[k].type = '3';
-				k++;
-			}
+				k += initialize_sprite(i, j, &data->tab_sprite[k], '3');
 			j++;
 		}
 		i++;
 	}
+}
+
+int		initialize_sprite(int i, int j, t_sprite *sprite, char type)
+{
+	sprite->sprite_y = (double)i + 0.5;
+	sprite->sprite_x = (double)j + 0.5;
+	sprite->type = type;
+	return (1);
 }
 
 void	get_image_by_sprite(t_data *data, t_sprite *sprite)
@@ -80,18 +78,4 @@ void	initialize_data_for_sprites(t_data *data, t_sprite *sprite)
 				sprite->transform_y));
 	sprite->draw_start_y = -sprite->height / 2 +
 		data->param.resolution.axe_y / 2;
-}
-
-void	free_sprites(t_data *data)
-{
-	int i;
-
-	i = 0;
-	while (i < data->param.nb_sprites)
-	{
-		free(data->tab_sprite[i].z_buffer);
-		i++;
-	}
-	if (data->tab_sprite)
-		free(data->tab_sprite);
 }

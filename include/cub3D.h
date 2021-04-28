@@ -61,6 +61,7 @@ t_param	initialize(int argc, char **argv);
 */
 
 void	raycasting(t_data *data, t_ray *ray);
+void	calculation_for_raycasting(t_data *data, t_ray *ray);
 void	display_raycasting(t_data *data, t_ray *ray, int x);
 void	wall_collision(t_data *data, t_ray *ray);
 void	initialize_data_for_raycasting(t_ray *ray);
@@ -95,6 +96,7 @@ void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite);
 void	allocate_memory_for_sprites(t_data *data);
 void	free_sprites(t_data *data);
 void	get_image_by_sprite(t_data *data, t_sprite *sprite);
+int		initialize_sprite(int i, int j, t_sprite *sprite, char type);
 
 /*
  ** Minilibx
