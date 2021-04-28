@@ -25,7 +25,6 @@ SRCS =  ./parsing/check_map.c					\
 		./bonus/textures_on_ceiling_floor.c				\
 		./bonus/sound.c							\
 		./bonus/shadow.c						\
-		./bonus/textures_on_ceilling_floor.c				\
 		./main.c
 
 

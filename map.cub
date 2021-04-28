@@ -3,10 +3,10 @@ NO ./textures/stone.xpm
 SO ./textures/stone.xpm
 WE ./textures/brick.xpm
 EA ./textures/grass.xpm
-S ./textures/scary_white_walker.xpm
-S2 ./textures/beer_2.xpm
+S ./textures/tom_nook_beau.xpm
+S2 ./textures/clochettes.xpm
 C ./textures/sky.xpm
-F ./textures/stone.xpm
+F ./textures/floor_ac.xpm
 
 
 
