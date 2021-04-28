@@ -61,22 +61,25 @@ void	draw_life_bar(t_data *data, int i)
 void	put_health_bar_on_image(t_data *data, int i, int y, int z)
 {
 	int x;
+	int img_cord;
+	int bonus_cord;
 
 	x = 0;
 	while (x < data->bonus.tab_life[i].width)
 	{
-		data->img.addr[x * 4 + 4 * data->param.resolution.axe_x * y] =
-			data->bonus.tab_life[i].addr[x * 4 + 4 *
-			data->bonus.tab_life[i].width * z];
-		data->img.addr[x * 4 + 4 * data->param.resolution.axe_x * y + 1] =
-			data->bonus.tab_life[i].addr[x * 4 + 4 *
-			data->bonus.tab_life[i].width * z + 1];
-		data->img.addr[x * 4 + 4 * data->param.resolution.axe_x * y + 2] =
-			data->bonus.tab_life[i].addr[x * 4 + 4 *
-			data->bonus.tab_life[i].width * z + 2];
-		data->img.addr[x * 4 + 4 * data->param.resolution.axe_x * y + 3] =
-			data->bonus.tab_life[i].addr[x * 4 + 4 *
-			data->bonus.tab_life[i].width * z + 3];
+		img_cord = x * 4 + 4 * data->param.resolution.axe_x * y;
+		bonus_cord = x * 4 + 4 * data->bonus.tab_life[i].width * z;
+		if (data->bonus.tab_life[i].addr[bonus_cord])
+			data->img.addr[img_cord] = data->bonus.tab_life[i].addr[bonus_cord];
+		if (data->bonus.tab_life[i].addr[bonus_cord + 1])
+			data->img.addr[img_cord + 1] =
+			data->bonus.tab_life[i].addr[bonus_cord + 1];
+		if (data->bonus.tab_life[i].addr[bonus_cord + 2])
+			data->img.addr[img_cord + 2] =
+			data->bonus.tab_life[i].addr[bonus_cord + 2];
+		if (data->bonus.tab_life[i].addr[bonus_cord + 3])
+			data->img.addr[img_cord + 3] =
+			data->bonus.tab_life[i].addr[bonus_cord + 3];
 		x++;
 	}
 }

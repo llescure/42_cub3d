@@ -26,22 +26,26 @@ void	get_floor_textures(t_data *data)
 void	draw_texture_ceiling(t_data *data, int pos_x)
 {
 	int y;
+	int texture_x;
+	int texture_y;
 
 	y = 0;
+	texture_x = pos_x * data->tab_texture[4].width / data->param.resolution.axe_x;
 	while (y < data->ray.draw_start)
 	{
+		texture_y = y * data->tab_texture[4].height / data->param.resolution.axe_y;
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y] =
-			data->tab_texture[4].addr[pos_x * 4 + 4 *
-			data->tab_texture[4].width * y];
+			data->tab_texture[4].addr[texture_x * 4 + 4 *
+			data->tab_texture[4].height * texture_y];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 1] =
-			data->tab_texture[4].addr[pos_x * 4 + 4 *
-			data->tab_texture[4].width * y + 1];
+			data->tab_texture[4].addr[texture_x * 4 + 4 *
+			data->tab_texture[4].height * texture_y + 1];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 2] =
-			data->tab_texture[4].addr[pos_x * 4 + 4 *
-			data->tab_texture[4].width * y + 2];
+			data->tab_texture[4].addr[texture_x * 4 + 4 *
+			data->tab_texture[4].height * texture_y + 2];
 		data->img.addr[pos_x * 4 + 4 * data->param.resolution.axe_x * y + 3] =
-			data->tab_texture[4].addr[pos_x * 4 + 4 *
-			data->tab_texture[4].width * y + 3];
+			data->tab_texture[4].addr[texture_x * 4 + 4 *
+			data->tab_texture[4].height * texture_y + 3];
 		y++;
 	}
 }

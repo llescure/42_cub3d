@@ -1,7 +1,7 @@
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
-int 	init_music(t_data *data)
+int		init_music(t_data *data)
 {
 	int return_value;
 
@@ -13,7 +13,7 @@ int 	init_music(t_data *data)
 	return (return_value);
 }
 
-int	play_music(t_data *data)
+int		play_music(t_data *data)
 {
 	long	clk_tck;
 	clock_t	actual_time;

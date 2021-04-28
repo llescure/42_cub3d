@@ -43,6 +43,7 @@ void	free_sprites(t_data *data)
 	while (i < data->param.nb_sprites)
 	{
 		free(data->tab_sprite[i].z_buffer);
+		//mlx_destroy_image(data->mlx_ptr, data->tab_sprite[i].img.img);
 		i++;
 	}
 	if (data->tab_sprite)

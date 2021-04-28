@@ -37,12 +37,12 @@ int		launch_hook(t_data *data)
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
+	health_management(data);
 	play_music(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);
 	if (data->param.perso.dirx != 0 || data->param.perso.diry != 0)
 		move_perso(data);
-	health_management(data);
 	mlx_destroy_image(data->mlx_ptr, data->img.img);
 	data->img.img = mlx_new_image(data->mlx_ptr,
 			data->param.resolution.axe_x,
