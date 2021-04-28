@@ -37,7 +37,8 @@ int		launch_hook(t_data *data)
 	if (data->win_ptr == NULL)
 		return (-1);
 	raycasting(data, &data->ray);
-	health_management(data);
+	if (health_management(data) == -1)
+		close_game(data);
 	play_music(data);
 	draw_minimap(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img, 0, 0);

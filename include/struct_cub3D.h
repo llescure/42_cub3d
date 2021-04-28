@@ -190,6 +190,8 @@ typedef struct		s_data
 	t_ray		ray;
 	t_texture	texture;
 	t_img		tab_texture[6];
+	t_img		sprite1;
+	t_img		sprite2;
 	t_sprite 	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;

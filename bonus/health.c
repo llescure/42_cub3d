@@ -100,7 +100,6 @@ int		health_management(t_data *data)
 	else if (data->bonus.life == 0)
 	{
 		printf("Game over");
-		close_game(data);
 		return (-1);
 	}
 	return (0);

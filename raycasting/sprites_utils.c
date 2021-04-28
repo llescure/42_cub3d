@@ -43,23 +43,9 @@ int		initialize_sprite(int i, int j, t_sprite *sprite, char type)
 void	get_image_by_sprite(t_data *data, t_sprite *sprite)
 {
 	if (sprite->type == '2')
-	{
-		sprite->img.img = mlx_xpm_file_to_image(data->mlx_ptr,
-		data->param.sprite_1, &(sprite->img.width),
-		&(sprite->img.height));
-		sprite->img.addr = mlx_get_data_addr(sprite->img.img,
-		&sprite->img.bits_per_pixel, &sprite->img.line_lenght,
-		&sprite->img.endian);
-	}
+		sprite->img = data->sprite1;
 	else if (sprite->type == '3')
-	{
-		sprite->img.img = mlx_xpm_file_to_image(data->mlx_ptr,
-		data->param.sprite_2, &(sprite->img.width),
-		&(sprite->img.height));
-		sprite->img.addr = mlx_get_data_addr(sprite->img.img,
-		&sprite->img.bits_per_pixel, &sprite->img.line_lenght,
-		&sprite->img.endian);
-	}
+		sprite->img = data->sprite2;
 }
 
 void	initialize_data_for_sprites(t_data *data, t_sprite *sprite)
