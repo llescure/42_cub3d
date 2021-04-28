@@ -43,9 +43,24 @@ void	free_sprites(t_data *data)
 	while (i < data->param.nb_sprites)
 	{
 		free(data->tab_sprite[i].z_buffer);
-		//mlx_destroy_image(data->mlx_ptr, data->tab_sprite[i].img.img);
 		i++;
 	}
 	if (data->tab_sprite)
 		free(data->tab_sprite);
+	if (data->sprite1.img)
+		mlx_destroy_image(data->mlx_ptr, data->sprite1.img);
+	if (data->sprite1.img)
+		mlx_destroy_image(data->mlx_ptr, data->sprite2.img);
+}
+
+void	get_sprites2_img(t_data *data)
+{
+	if (!(data->sprite2.img = mlx_xpm_file_to_image(data->mlx_ptr,
+					data->param.sprite_2, &(data->sprite2.width),
+					&(data->sprite2.height))))
+		exit(0);
+	data->sprite2.addr = mlx_get_data_addr(data->sprite2.img,
+			&data->sprite2.bits_per_pixel,
+			&data->sprite2.line_lenght,
+			&data->sprite2.endian);
 }
