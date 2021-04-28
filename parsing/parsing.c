@@ -82,35 +82,6 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	return (0);
 }
 
-void		correct_param_perso(t_perso *perso, t_map *map)
-{
-	int x;
-	int y;
-
-	x = perso->position_x;
-	y = perso->position_y;
-	if (map->tab_map[x + 1][y + 1] != '0' && map->tab_map[x - 1][y - 1] != '0')
-		return ;
-	else if (map->tab_map[x + 1][y] != '0')
-		perso->position_x = x - 0.3;
-	else if (map->tab_map[x][y + 1] != '0')
-		perso->position_y = y + 0.3;
-	else if (map->tab_map[x + 1][y + 1] != '0')
-	{
-		perso->position_x = x - 0.3;
-		perso->position_y = y + 0.3;
-	}
-	if (map->tab_map[x - 1][y] != '0')
-		perso->position_x = x + 0.3;
-	else if (map->tab_map[x][y - 1] != '0')
-		perso->position_y = y - 0.3;
-	else if (map->tab_map[x - 1][y - 1] != '0')
-	{
-		perso->position_x = x + 0.3;
-		perso->position_y = y - 0.3;
-	}
-}
-
 t_param		initialize(int argc, char **argv)
 {
 	char	*str;
@@ -129,6 +100,5 @@ t_param		initialize(int argc, char **argv)
 	free(str);
 	param.perso.position_x += 0.5;
 	param.perso.position_y += 0.5;
-	correct_param_perso(&param.perso, &param.map);
 	return (param);
 }

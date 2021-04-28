@@ -73,14 +73,14 @@ void	draw_texture_walls(t_data *data, int pos_x)
 		img_cord = pos_x * 4 + 4 * data->param.resolution.axe_x * y;
 		text_cord = data->texture.y * data->tab_texture[data->texture.text_dir].
 			height * 4 + data->texture.x * 4;
-		data->img.addr[img_cord] = data->tab_texture[data->texture.text_dir].
-			addr[text_cord] / data->texture.shade;
-		data->img.addr[img_cord + 1] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 1] / data->texture.shade;
-		data->img.addr[img_cord + 2] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 2] / data->texture.shade;
-		data->img.addr[img_cord + 3] = data->tab_texture[data->texture.
-			text_dir].addr[text_cord + 3] / data->texture.shade;
+		data->img.addr[img_cord] = shadow_texture(data->ray.perp_wall_dist, data->tab_texture[data->texture.text_dir].
+			addr[text_cord]);
+		data->img.addr[img_cord + 1] = shadow_texture(data->ray.perp_wall_dist, data->tab_texture[data->texture.text_dir].
+			addr[text_cord + 1]);
+		data->img.addr[img_cord + 2] = shadow_texture(data->ray.perp_wall_dist, data->tab_texture[data->texture.text_dir].
+			addr[text_cord + 2]);
+		data->img.addr[img_cord + 3] = shadow_texture(data->ray.perp_wall_dist, data->tab_texture[data->texture.text_dir].
+			addr[text_cord + 3]);
 		y++;
 	}
 }

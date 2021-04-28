@@ -53,7 +53,6 @@ int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
 int		ft_number_sprites(char *str, t_param *param);
-void	correct_param_perso(t_perso *perso, t_map *map);
 t_param	initialize(int argc, char **argv);
 
 /*
@@ -154,7 +153,7 @@ void	free_textures_bonus(t_data *data);
 void	check_sprite2(char *str, t_param *param);
 int 	play_music(t_data *data);
 int 	init_music(t_data *data);
-double	shadow_texture(double distance);
+double	shadow_texture(double distance, char addr);
 
 
 #endif
