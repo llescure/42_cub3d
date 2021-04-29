@@ -33,10 +33,7 @@ int		draw_square(float i, float j, t_data *data, int color)
 	t_rect	rect;
 	int		lenght;
 
-	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
-		lenght = data->param.resolution.axe_x / 68;
-	else
-		lenght = data->param.resolution.axe_y / 68;
+	lenght = initialize_max_res(data);
 	rect.x = lenght * j;
 	rect.y = lenght * i;
 	rect.width = lenght;
@@ -48,6 +45,27 @@ int		draw_square(float i, float j, t_data *data, int color)
 	if (color == PINK_PIXEL)
 		draw_line(data, rect);
 	return (0);
+}
+
+int		initialize_max_res(t_data *data)
+{
+	int		max_res;
+	int		max_lines;
+	int		lenght;
+
+	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
+		max_res = data->param.resolution.axe_x;
+	else
+		max_res = data->param.resolution.axe_y;
+	if (data->param.map.nb_lines > data->param.map.max_length)
+		max_lines = data->param.map.nb_lines;
+	else
+		max_lines = data->param.map.max_length;
+	if (max_lines > max_res / (max_res / 68))
+		lenght = max_lines / (max_res / 68);
+	else
+		lenght = max_res / (max_lines * 3);
+	return (lenght);
 }
 
 int		draw_column(int beginning, int end, int pos_x, t_data *data)

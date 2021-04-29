@@ -9,7 +9,7 @@ int		move_perso(t_data *data)
 	int		y;
 
 	speed = data->param.perso.speed;
-	dist = 0.2;
+	dist = 0.6;
 	x = data->param.perso.position_y + data->param.perso.diry * speed +
 		data->param.perso.diry * dist;
 	y = data->param.perso.position_x + data->param.perso.dirx * speed +

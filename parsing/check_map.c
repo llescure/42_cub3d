@@ -78,6 +78,8 @@ int		check_first_last_string_map(char *str, t_param *param)
 	i = -1;
 	while (str[++i] != '\0')
 	{
+		if (str[i] == '0')
+			print_error(param, "Wrong format of the map : void");
 		if (str[i] != '1' && str[i] != '5' && str[1] == '\0' && str[2] == '\0')
 			print_error(param, "Wrong format of the map : void");
 		if (str[i] == '1' && str[i + 1] == '5' && str[i + 2] == '1')

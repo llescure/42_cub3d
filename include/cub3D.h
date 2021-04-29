@@ -127,6 +127,7 @@ int		close_game(t_data *data);
 void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
 void	general_case(int nega, t_perso *perso);
+int		initialize_max_res(t_data *data);
 
 /*
  ** Save_image
