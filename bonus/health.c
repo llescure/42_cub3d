@@ -104,4 +104,3 @@ int		health_management(t_data *data)
 	}
 	return (0);
 }
-

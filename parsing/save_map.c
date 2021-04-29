@@ -72,19 +72,6 @@ char	**creation_table_map(char **str, t_param *param)
 	return (map);
 }
 
-void	free_str(char **str, t_param *param)
-{
-	int i;
-
-	i = 0;
-	while (i < param->map.nb_lines)
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 int		read_next_line(char **tab_param, char **line, int fd, t_param *param)
 {
 	int i;

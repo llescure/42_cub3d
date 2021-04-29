@@ -69,8 +69,6 @@ typedef struct		s_param {
 	char			*sprite_2;
 	int				nb_lines_params;
 	int				nb_sprites;
-	int				nb_sprite_1;
-	int				nb_sprite_2;
 	t_colour		floor_colour;
 	char			*north_texture;
 	char			*south_texture;

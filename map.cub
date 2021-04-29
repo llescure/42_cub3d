@@ -5,7 +5,7 @@ WE ./textures/brick.xpm
 EA ./textures/grass.xpm
 S ./textures/tom_nook_beau.xpm
 S2 ./textures/clochettes.xpm
-C ./textures/sky.xpm
+C 225,0,00
 F ./textures/floor_ac.xpm
 
 

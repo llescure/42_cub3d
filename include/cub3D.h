@@ -52,7 +52,7 @@ char	*save_address_param(char *str, t_param *param);
 int		colour_params_ceiling(char *str, t_param *param);
 int		colour_params_floor(char *str, t_param *param);
 void	free_address_params(t_param *params);
-int		ft_number_sprites(char *str, t_param *param);
+int		ft_number_sprites(char *str);
 t_param	initialize(int argc, char **argv);
 
 /*
@@ -96,6 +96,8 @@ void	allocate_memory_for_sprites(t_data *data);
 void	free_sprites(t_data *data);
 int			initialize_sprite(int i, int j, t_sprite *sprite, char type);
 void	get_image_by_sprite(t_data *data, t_sprite *sprite);
+void 	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c);
+
 
 /*
  ** Minilibx

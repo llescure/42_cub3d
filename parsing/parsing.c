@@ -72,7 +72,7 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	close(fd);
 	only_params(map, para);
 	str = only_map(map, para);
-	para->nb_sprites = ft_number_sprites(str, para) + 1;
+	para->nb_sprites = ft_number_sprites(str) + 1;
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
 	sorting_map(map, para);
@@ -101,4 +101,17 @@ t_param		initialize(int argc, char **argv)
 	param.perso.position_x += 0.5;
 	param.perso.position_y += 0.5;
 	return (param);
+}
+
+void		free_str(char **str, t_param *param)
+{
+	int i;
+
+	i = 0;
+	while (i < param->map.nb_lines)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

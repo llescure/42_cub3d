@@ -1,20 +1,15 @@
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
-void	allocate_memory_for_sprites(t_data *data)
-{
-	if (!(data->tab_sprite = malloc(sizeof(t_sprite) *
-		data->param.nb_sprites)))
-		print_error(&data->param, "sprites failed");
-}
-
 void	get_sprites_info(t_data *data)
 {
 	int i;
 	int j;
 	int k;
 
-	allocate_memory_for_sprites(data);
+	if (!(data->tab_sprite = malloc(sizeof(t_sprite) *
+		data->param.nb_sprites)))
+		print_error(&data->param, "sprites failed");
 	k = 0;
 	i = 0;
 	while (i < data->param.map.nb_lines)
@@ -64,4 +59,22 @@ void	initialize_data_for_sprites(t_data *data, t_sprite *sprite)
 				sprite->transform_y));
 	sprite->draw_start_y = -sprite->height / 2 +
 		data->param.resolution.axe_y / 2;
+}
+
+void	calculate_sprites(t_data *data, t_sprite *sprite)
+{
+	initialize_data_for_sprites(data, sprite);
+	if (sprite->draw_start_y < 0)
+		sprite->draw_start_y = 0;
+	sprite->draw_end_y = sprite->height / 2 + data->param.resolution.axe_y / 2;
+	if (sprite->draw_end_y >= data->param.resolution.axe_y)
+		sprite->draw_end_y = data->param.resolution.axe_y - 1;
+	sprite->width = abs((int)(data->param.resolution.axe_y /
+		sprite->transform_y));
+	sprite->draw_start_x = -sprite->width / 2 + sprite->screen;
+	if (sprite->draw_start_x < 0)
+		sprite->draw_start_x = 0;
+	sprite->draw_end_x = sprite->width / 2 + sprite->screen;
+	if (sprite->draw_end_x >= data->param.resolution.axe_x)
+		sprite->draw_end_x = data->param.resolution.axe_x - 1;
 }
