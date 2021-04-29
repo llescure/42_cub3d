@@ -97,7 +97,7 @@ void	free_sprites(t_data *data);
 int			initialize_sprite(int i, int j, t_sprite *sprite, char type);
 void	get_image_by_sprite(t_data *data, t_sprite *sprite);
 void 	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c);
-
+void	set_data(t_sprite *sprite);
 
 /*
  ** Minilibx
