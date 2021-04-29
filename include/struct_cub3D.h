@@ -29,6 +29,9 @@
 # define ROTATE_RIGHT_ARROW 65361
 # define ROTATE_RIGHT_E 113
 # define FORWARD_W 119
+# define SPEED_ARROW 65364
+# define NORMAL_SPACE 32
+# define SLOW_ARROW 65362
 # define BACK_S 115
 # define RIGHT_D 100
 # define LEFT_A 97
@@ -39,6 +42,7 @@ typedef struct		s_perso {
 	float		dirx;
 	float		diry;
 	float		angle;
+	float		speed;
 	char		orientation;
 }					t_perso;
 
@@ -69,6 +73,8 @@ typedef struct		s_param {
 	char			*sprite_2;
 	int				nb_lines_params;
 	int				nb_sprites;
+	int				nb_sprite_1;
+	int				nb_sprite_2;
 	t_colour		floor_colour;
 	char			*north_texture;
 	char			*south_texture;
@@ -80,10 +86,10 @@ typedef struct		s_param {
 	int				bonus;
 }					t_param;
 
-typedef struct			s_sound
+typedef struct		s_sound
 {
-	clock_t				last_start_song;
-}						t_sound;
+	clock_t			last_start_song;
+}					t_sound;
 
 typedef struct		s_img
 {
@@ -99,49 +105,37 @@ typedef struct		s_img
 
 typedef struct		s_ray
 {
-	double		pos_x; /* position x du joueur */
-	double		pos_y; /* position y du joueur */
-	double		dir_x; /* vecteur de direction (commence à -1 pour N,
-						  1 pour S, 0 sinon) */
-	double		dir_y; /* vecteur de direction (commence à -1 pour W, 1 pour E,
-						  0 sinon) */
-	double		plan_x; /* vecteur du plan (commence à 0.66 pour E, -0.66 pour
-						   W, 0 sinon) */
-	double		plan_y; /* vecteur du plan (commence à 0.66 pour N, -0.66 pour
-						   S, 0 sinon) */
-	double		ray_dirx; /* calcul de direction x du rayon */
-	double		ray_diry; /* calcul de direction y du rayon */
-	double		camera_x; /* point x sur la plan camera : Gauche ecran = -1,
-							 milieu = 0, droite = 1 */
-	int			map_x; /* coordonée x du carré dans lequel est pos */
-	int			map_y; /* coordonnée y du carré dans lequel est pos */
-	double		side_distx; /* distance que le rayon parcours jusqu'au premier
-							   point d'intersection vertical (=un coté x) */
-	double		side_disty; /* distance que le rayon parcours jusqu'au premier
-							   point d'intersection horizontal (= un coté y) */
-	double		delta_distx; /* distance que rayon parcours entre chaque point
-								d'intersection vertical */
-	double		delta_disty; /* distance que le rayon parcours entre chaque
-								point d'intersection horizontal */
-	int			step_x; /* -1 si doit sauter un carre dans direction x negative,
-						   1 dans la direction x positive */
-	int			step_y; /* -1 si doit sauter un carre dans la direction y
-						   negative, 1 dans la direction y positive */
-	int			hit; /* 1 si un mur a ete touche, 0 sinon */
-	int			side; /* 0 si c'est un cote x qui est touche (vertical),
-						 1 si un cote y (horizontal) */
-	double		perp_wall_dist; /* distance du joueur au mur */
-	int			line_height; /* hauteur de la ligne a dessiner */
-	int			draw_start; /* position de debut ou il faut dessiner */
-	int			draw_end; /* position de fin ou il faut dessiner */
-	int			x; /* permet de parcourir tous les rayons */
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plan_x;
+	double		plan_y;
+	double		ray_dirx;
+	double		ray_diry;
+	double		camera_x;
+	int			map_x;
+	int			map_y;
+	double		side_distx;
+	double		side_disty;
+	double		delta_distx;
+	double		delta_disty;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	double		perp_wall_dist;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			x;
 }					t_ray;
 
 typedef struct		s_sprite
 {
 	double	sprite_x;
 	double	sprite_y;
-	int		draw_start_x; // lowest and highest pixel to fill in
+	int		draw_start_x;
 	int		draw_start_y;
 	int		draw_end_x;
 	int		draw_end_y;
@@ -149,26 +143,26 @@ typedef struct		s_sprite
 	double	pos_y;
 	int		height;
 	int		width;
-	double	transform_x; // depth inside the screen to avoid fish-eye
+	double	transform_x;
 	double	transform_y;
 	double	dist;
 	int		screen;
 	double	*z_buffer;
 	int		order;
-	double	invdet; // determinant de la matrice ( plane_x dir_x )
+	double	invdet;
 	char	type;
-	t_img	img;    // 							 ( plane_y dir_y )
+	t_img	img;
 
 }					t_sprite;
 
 typedef struct		s_texture
 {
-	double	wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
-	int		text_dir; // direction NO, S, EA, WE de la texture
-	int		x; // coordonnee x de la texture
-	int		y; // coordonnee y de la texture
-	double	step; // de combien augmenter les coordonnées de la texture pour chaque pixel
-	double	position; // coordonnee de depart
+	double	wallx;
+	int		text_dir;
+	int		x;
+	int		y;
+	double	step;
+	double	position;
 	double	shade;
 	int		*color;
 }					t_texture;
@@ -190,7 +184,7 @@ typedef struct		s_data
 	t_img		tab_texture[6];
 	t_img		sprite1;
 	t_img		sprite2;
-	t_sprite 	*tab_sprite;
+	t_sprite	*tab_sprite;
 	t_bonus		bonus;
 }					t_data;
 

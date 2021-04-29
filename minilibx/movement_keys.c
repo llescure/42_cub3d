@@ -16,6 +16,9 @@ void	rotate_camera_left(t_data *data)
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
 	data->ray.plan_y = old_planx * sinus + data->ray.plan_y * cosi;
+	data->param.perso.angle += 2.5;
+	if (data->param.perso.angle > 360)
+		data->param.perso.angle -= 360;
 }
 
 void	rotate_camera_right(t_data *data)
@@ -33,6 +36,9 @@ void	rotate_camera_right(t_data *data)
 	data->ray.dir_y = old_dirx * sinus + data->ray.dir_y * cosi;
 	data->ray.plan_x = data->ray.plan_x * cosi - data->ray.plan_y * sinus;
 	data->ray.plan_y = old_planx * sinus + data->ray.plan_y * cosi;
+	data->param.perso.angle -= 2.5;
+	if (data->param.perso.angle <= 0)
+		data->param.perso.angle += 360;
 }
 
 void	left_right_movement(int nega, t_perso *perso)

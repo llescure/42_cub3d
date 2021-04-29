@@ -8,7 +8,7 @@ int		move_perso(t_data *data)
 	int		x;
 	int		y;
 
-	speed = 0.1;
+	speed = data->param.perso.speed;
 	dist = 0.2;
 	x = data->param.perso.position_y + data->param.perso.diry * speed +
 		data->param.perso.diry * dist;
@@ -91,6 +91,7 @@ void	initialize_parameters_for_mlx(t_data *data)
 	i = 0;
 	data->param.perso.dirx = 0;
 	data->param.perso.diry = 0;
+	data->param.perso.speed = 0.1;
 	get_health_level(data);
 	initialisation_orientation(&data->param, &data->ray);
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,

@@ -94,9 +94,9 @@ void	calculate_sprites(t_data *data, t_sprite *sprite);
 void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite);
 void	allocate_memory_for_sprites(t_data *data);
 void	free_sprites(t_data *data);
-int			initialize_sprite(int i, int j, t_sprite *sprite, char type);
+int		initialize_sprite(int i, int j, t_sprite *sprite, char type);
 void	get_image_by_sprite(t_data *data, t_sprite *sprite);
-void 	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c);
+void	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c);
 void	set_data(t_sprite *sprite);
 
 /*
@@ -153,9 +153,8 @@ void	draw_texture_floor(t_data *data, int pos_x);
 void	free_floor_bonus(t_data *data);
 void	free_textures_bonus(t_data *data);
 void	check_sprite2(char *str, t_param *param);
-int 	play_music(t_data *data);
-int 	init_music(t_data *data);
+int		play_music(t_data *data);
+int		init_music(t_data *data);
 double	shadow_texture(double distance, char addr);
-
 
 #endif
