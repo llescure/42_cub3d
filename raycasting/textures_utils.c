@@ -49,7 +49,7 @@ void	free_sprites(t_data *data)
 		free(data->tab_sprite);
 	if (data->sprite1.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprite1.img);
-	if (data->sprite1.img)
+	if (data->sprite2.img)
 		mlx_destroy_image(data->mlx_ptr, data->sprite2.img);
 }
 
