@@ -25,6 +25,8 @@ void	ft_get_addr_textures(t_data *data)
 		print_error_2(&data->param, "Error with texture");
 	if (data->param.bonus == '1')
 		get_sprites2_img(data);
+	else
+		data->sprite2.img = NULL;
 }
 
 void	get_textures(t_data *data)

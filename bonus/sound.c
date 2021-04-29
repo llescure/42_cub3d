@@ -9,7 +9,7 @@ int		init_music(t_data *data)
 		print_error(&data->param, "No music");
 	ft_bzero(data->img.sound, sizeof(t_sound));
 	data->img.sound->last_start_song = clock();
-	return_value = system("aplay -q bonus/sound/maintheme.wav &>/dev/null &");
+	return_value = system("aplay -q bonus/sound/white_walkers.wav &>/dev/null &");
 	return (return_value);
 }
 
@@ -25,8 +25,8 @@ int		play_music(t_data *data)
 	if ((double)(actual_time - data->img.sound->last_start_song)
 		/ (double)clk_tck >= 129.5)
 	{
-		return_value = system("killall aplay");
-		return_value = system("aplay -q bonus/sound/maintheme.wav &>/dev/null &");
+//		return_value = system("killall aplay");
+		return_value = system("aplay -q bonus/sound/white_walkers.wav &>/dev/null &");
 		data->img.sound->last_start_song = actual_time;
 	}
 	return (return_value);

@@ -128,7 +128,7 @@ void	forward_backward_movement(int nega, t_perso *perso);
 void	left_right_movement(int nega, t_perso *perso);
 void	general_case(int nega, t_perso *perso);
 int		initialize_max_res(t_data *data);
-int		check_speed(t_data *data);
+int		check_for_lonely_walls(t_map map, int x, int y);
 
 /*
  ** Save_image

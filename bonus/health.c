@@ -99,7 +99,7 @@ int		health_management(t_data *data)
 		draw_life_bar(data, data->bonus.life - 1);
 	else if (data->bonus.life == 0)
 	{
-		printf("Game over");
+		printf("Game over\n");
 		return (-1);
 	}
 	return (0);

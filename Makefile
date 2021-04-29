@@ -21,6 +21,7 @@ SRCS =  ./parsing/check_map.c					\
 		./minilibx/draw.c						\
 		./minilibx/draw_utils.c					\
 		./minilibx/handle_hook.c				\
+		./minilibx/verif_initialize_param.c				\
 		./save/save.c							\
 		./bonus/health.c						\
 		./bonus/textures_on_ceiling_floor.c				\
