@@ -23,7 +23,7 @@ char	*only_map(char *str, t_param *param)
 	j = 0;
 	i = move_to_map(str);
 	if (!(map = malloc(sizeof(char) * calculate_nb_chains(str)
-					* ft_biggest_line_len(str))))
+					* ft_biggest_line_len(str) + 1)))
 		return (NULL);
 	while (str[i] != '\0')
 	{
