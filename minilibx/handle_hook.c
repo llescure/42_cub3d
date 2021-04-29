@@ -9,7 +9,7 @@ int		move_perso(t_data *data)
 	int		y;
 
 	speed = data->param.perso.speed;
-	dist = 0.6;
+	dist = 0.5;
 	x = data->param.perso.position_y + data->param.perso.diry * speed +
 		data->param.perso.diry * dist;
 	y = data->param.perso.position_x + data->param.perso.dirx * speed +
@@ -21,12 +21,26 @@ int		move_perso(t_data *data)
 		if (data->bonus.life < 4)
 			data->bonus.life += 1;
 	}
-	if (data->param.map.tab_map[x][y] == '0' || data->param.map.tab_map[x][y]
-			== data->param.perso.orientation)
+	if ((data->param.map.tab_map[x][y] == '0' || data->param.map.tab_map[x][y]
+			== data->param.perso.orientation))
 	{
 		data->param.perso.position_x += data->param.perso.dirx * speed;
 		data->param.perso.position_y += data->param.perso.diry * speed;
 	}
+	return (0);
+}
+
+int		check_speed(float dist, t_data *data)
+{
+	int		x;
+	int		y;
+
+	x = data->param.perso.position_y + data->param.perso.diry * 0.01 +
+		data->param.perso.diry * dist;
+	y = data->param.perso.position_x + data->param.perso.dirx * 0.01 +
+		data->param.perso.dirx * dist;
+	if (data->param.map.tab_map[x][y] == '1')
+			return (-1);
 	return (0);
 }
 

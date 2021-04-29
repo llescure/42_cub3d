@@ -20,7 +20,7 @@ int		press_key(int key, t_data *data)
 	if (key == SPEED_ARROW)
 		data->param.perso.speed = 0.01;
 	else if (key == SLOW_ARROW)
-		data->param.perso.speed = 0.5;
+		data->param.perso.speed = 0.3;
 	else if (key == NORMAL_SPACE)
 		data->param.perso.speed = 0.1;
 	return (0);

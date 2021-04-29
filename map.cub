@@ -1,12 +1,13 @@
+
+C 255,20,30
 R 2000 2000
-NO ./textures/grass.xpm
-SO ./textures/grass.xpm
-WE ./textures/grass.xpm
-EA ./textures/grass.xpm
-S ./textures/tom_nook_beau.xpm
-S2 ./textures/clochettes.xpm
-C ./textures/sky.xpm
-F ./textures/floor_ac.xpm
+NO ./textures/brick.xpm
+SO ./textures/sky.xpm
+WE ./textures/brick.xpm
+EA ./textures/brick.xpm
+S ./textures/scary_white_walker.xpm
+S2 ./textures/beer.xpm
+F ./textures/icelake.xpm
 
 11111111111111111
 100000000000000W1
