@@ -3,10 +3,22 @@
 
 void	print_error(t_param *param, char *str)
 {
-	printf("ERROR\n");
+	printf("Error\n");
 	printf("%s\n", str);
 	free_address_params(param);
 	exit(0);
+}
+
+int		print_error_2(t_param *param, char *str)
+{
+	int return_value;
+
+	printf("Error\n");
+	printf("%s\n", str);
+	free_address_params(param);
+	return_value = system("killall aplay");
+	exit(0);
+	return (return_value);
 }
 
 int		manage_errors(int argc, char **argv, t_param *param)

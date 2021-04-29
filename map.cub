@@ -1,7 +1,7 @@
 R 2000 2000
-NO ./textures/stone.xpm
-SO ./textures/stone.xpm
-WE ./textures/brick.xpm
+NO ./textures/grass.xpm
+SO ./textures/grass.xpm
+WE ./textures/grass.xpm
 EA ./textures/grass.xpm
 S ./textures/tom_nook_beau.xpm
 S2 ./textures/clochettes.xpm

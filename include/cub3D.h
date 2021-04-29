@@ -16,6 +16,7 @@ int		conversion_rgb_to_hexa(t_colour colour);
 
 int		manage_errors(int argc, char **argv, t_param *param);
 void	print_error(t_param *param, char *str);
+int		print_error_2(t_param *param, char *str);
 int		file_is_cub(char *str, t_param *param);
 t_param	initialize_structure(t_param *param, char *argv);
 int		parsing_map(char *str, t_param *param);

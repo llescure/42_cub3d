@@ -22,6 +22,8 @@ int		calculate_nb_chains(char *str)
 
 	i = 0;
 	result = 0;
+	if (str[0] == '\0')
+		return (0);
 	while (str[i] == '\n')
 		i++;
 	while (str[i] != '\0')
@@ -64,7 +66,7 @@ int		only_params(char *str, t_param *param)
 	char	*map_params;
 
 	i = 0;
-	if (!(map_params = malloc(sizeof(char) * ft_strlen(str))))
+	if (!(map_params = malloc(sizeof(char) * ft_strlen(str) + 1)))
 		return (-1);
 	while (str[i] != '\0')
 	{
@@ -77,6 +79,7 @@ int		only_params(char *str, t_param *param)
 			map_params[i] = str[i];
 		i++;
 	}
+	map_params[i] = '\0';
 	i = calculate_nb_chains(map_params);
 	param->nb_lines_params = i;
 	free(map_params);
