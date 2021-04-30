@@ -37,7 +37,7 @@ int		ft_atoi_cub3d(char *str, int i, t_param *param)
 		result = (result * 10) + (str[i] - 48);
 		i++;
 	}
-	if (str[i] == ' ' && ft_isdigit(str[i + 1]) == 1)
+	if ((str[i] == ' ' || str[i] == '.') && ft_isdigit(str[i + 1]) == 1)
 		print_error(param, "Wrong writing of parameters");
 	if (str == NULL || ft_isalpha(str[i]) == 1 || result > 9999)
 		print_error(param, "Wrong writing of parameters");

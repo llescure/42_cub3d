@@ -1,4 +1,4 @@
-C 255,0,30
+C ./textures/sky_ac.xpm
 R 2000 2005
 NO ./textures/brick.xpm
 SO ./textures/sky.xpm
