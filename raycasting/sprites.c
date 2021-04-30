@@ -65,17 +65,14 @@ void	draw_sprites(t_data *data, int stripe, int text_x, t_sprite *sprite)
 void	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c)
 {
 	if (sprite->img.addr[sprite_c])
-		data->img.addr[img_c] = shadow_texture(data->ray.perp_wall_dist,
+		data->img.addr[img_c] = shadow_texture(sprite->dist,
 		sprite->img.addr[sprite_c]);
 	if (sprite->img.addr[sprite_c + 1])
-		data->img.addr[img_c + 1] = shadow_texture(data->ray.
-			perp_wall_dist, sprite->img.addr[sprite_c + 1]);
+		data->img.addr[img_c + 1] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 1]);
 	if (sprite->img.addr[sprite_c + 2])
-		data->img.addr[img_c + 2] = shadow_texture(data->ray.
-			perp_wall_dist, sprite->img.addr[sprite_c + 2]);
+		data->img.addr[img_c + 2] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 2]);
 	if (sprite->img.addr[sprite_c + 3])
-		data->img.addr[img_c + 3] = shadow_texture(data->ray.
-			perp_wall_dist, sprite->img.addr[sprite_c + 3]);
+		data->img.addr[img_c + 3] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 3]);
 }
 
 void	ft_sprites(t_data *data)

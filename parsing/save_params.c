@@ -74,6 +74,8 @@ int		resolution_param(char *str, t_param *param)
 		print_error(param, "Wrong writing of resolution");
 	param->resolution.axe_x = ft_atoi_cub3d(par[1], 0, param);
 	param->resolution.axe_y = ft_atoi_cub3d(par[2], 0, param);
+	if (param->resolution.axe_x < 100 || param->resolution.axe_y < 100)
+		print_error(param, "Resolution too low");
 	i = -1;
 	while (++i < 3)
 		free(par[i]);
