@@ -139,6 +139,8 @@ void	create_file_header(int fd, t_data *data, int *nbr_bits);
 void	create_info_header(int fd, t_data *data, int *nbr_bits);
 void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits);
 int		close_bmp_file(int fd, int nbr_bits, t_data *data);
+int		check_resolution(t_param *param);
+int		launch_mlx(t_data *data);
 
 /*
  ** Bonus

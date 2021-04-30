@@ -3,10 +3,12 @@
 
 int		check_for_lonely_walls(t_map map, int x, int y)
 {
+	if (x == map.nb_lines - 1 || y == map.max_length - 1 || x == 0 || y == 0)
+		return (0);
 	if ((map.tab_map[x + 1][y] == '1' && map.tab_map[x][y - 1] == '1') &&
 		(map.tab_map[x + 1][y] == '1' && map.tab_map[x][y + 1] == '1') &&
-		(map.tab_map[x - 1][y] == '1' && map.tab_map[x][y + 1] == '1') &&
-		(map.tab_map[x - 1][y] == '1' && map.tab_map[x][y - 1] == '1'))
+		(map.tab_map[x - 1][y] == '1' && map.tab_map[x][y - 1] == '1') &&
+		(map.tab_map[x - 1][y] == '1' && map.tab_map[x][y + 1] == '1'))
 		return (-1);
 	return (0);
 }

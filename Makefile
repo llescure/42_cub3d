@@ -15,16 +15,17 @@ SRCS =  ./parsing/check_map.c					\
 		./raycasting/sprites.c					\
 		./raycasting/sprites_utils.c			\
 		./raycasting/sprites_utils_2.c			\
-		./raycasting/textures_utils.c				\
+		./raycasting/textures_utils.c			\
 		./minilibx/minilibx_keys.c				\
 		./minilibx/movement_keys.c				\
 		./minilibx/draw.c						\
 		./minilibx/draw_utils.c					\
 		./minilibx/handle_hook.c				\
-		./minilibx/verif_initialize_param.c				\
+		./minilibx/verif_initialize_param.c		\
 		./save/save.c							\
+		./save/save_utils.c						\
 		./bonus/health.c						\
-		./bonus/textures_on_ceiling_floor.c				\
+		./bonus/textures_on_ceiling_floor.c		\
 		./bonus/sound.c							\
 		./bonus/shadow.c						\
 		./main.c

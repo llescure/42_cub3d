@@ -7,18 +7,15 @@ int		create_image(t_data *data)
 	int		nbr_bits;
 
 	nbr_bits = 0;
-	if ((fd = open("./screenshot.bmp", O_CREAT | O_WRONLY | O_APPEND, 0777))
-			== -1)
+	if (check_resolution(&data->param) == -1)
+		return (-1);
+	if ((fd = open("./screenshot.bmp", O_CREAT | O_WRONLY, 0777)) == -1)
 	{
 		print_error(&data->param, "Couldn't create a bmp image");
 		return (-1);
 	}
-	data->mlx_ptr = mlx_init();
-	if (data->mlx_ptr == NULL)
-	{
-		print_error(&data->param, "Couldn't start mlx_init");
+	if (launch_mlx(data) == -1)
 		return (-1);
-	}
 	initialize_parameters_for_mlx(data);
 	data->ray.pos_x = (double)data->param.perso.position_y;
 	data->ray.pos_y = (double)data->param.perso.position_x;
@@ -30,62 +27,25 @@ int		create_image(t_data *data)
 	return (close_bmp_file(fd, nbr_bits, data));
 }
 
-void	create_file_header(int fd, t_data *data, int *nbr_bits)
+int		launch_mlx(t_data *data)
 {
-	int bmp_integer;
-
-	*nbr_bits += write(fd, "BM", 2);
-	bmp_integer = 14 + 40 + 4 * data->param.resolution.axe_x *
-		data->param.resolution.axe_y;
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	bmp_integer = 0;
-	*nbr_bits += write(fd, &bmp_integer, 2);
-	*nbr_bits += write(fd, &bmp_integer, 2);
-	bmp_integer = 54;
-	*nbr_bits += write(fd, &bmp_integer, 4);
-}
-
-void	create_info_header(int fd, t_data *data, int *nbr_bits)
-{
-	int bmp_integer;
-	int width;
-	int height;
-
-	bmp_integer = 40;
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	width = data->param.resolution.axe_x;
-	*nbr_bits += write(fd, &width, 4);
-	height = data->param.resolution.axe_y;
-	*nbr_bits += write(fd, &height, 4);
-	bmp_integer = 1;
-	*nbr_bits += write(fd, &bmp_integer, 2);
-	*nbr_bits += write(fd, &data->img.bits_per_pixel, 2);
-	bmp_integer = 0;
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	*nbr_bits += write(fd, &bmp_integer, 4);
-	*nbr_bits += write(fd, &bmp_integer, 4);
-}
-
-void	create_pixel_on_bmp(int fd, t_data *data, int *nbr_bits)
-{
-	int		x;
-	int		y;
-
-	y = data->param.resolution.axe_y;
-	while (y >= 0)
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
 	{
-		x = 0;
-		while (x < data->param.resolution.axe_x)
-		{
-			*nbr_bits += write(fd, &data->img.addr[4 * y *
-					data->param.resolution.axe_x + 4 * x], 4);
-			x++;
-		}
-		y--;
+		print_error(&data->param, "Couldn't start mlx_init");
+		return (-1);
 	}
+	return (0);
+}
+
+int		check_resolution(t_param *param)
+{
+	if (param->resolution.axe_x > 2000 || param->resolution.axe_y > 2000)
+	{
+		print_error(param, "Resolution too high to be saved");
+		return (-1);
+	}
+	return (0);
 }
 
 int		close_bmp_file(int fd, int nbr_bits, t_data *data)

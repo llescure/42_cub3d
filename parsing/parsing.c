@@ -75,6 +75,8 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	para->nb_sprites = ft_number_sprites(str) + 1;
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);
+	if (para->map.max_length > 300)
+		print_error(para, "Line too big");
 	sorting_map(map, para);
 	check_map(para->map.tab_map, para->map.nb_lines,
 			para->map.max_length, para);
