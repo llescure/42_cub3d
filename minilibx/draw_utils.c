@@ -34,8 +34,6 @@ int		draw_square(float i, float j, t_data *data, int color)
 	int		lenght;
 
 	lenght = initialize_max_res(data);
-	printf("lenght = %d\n", lenght);
-//	printf("calcul = %d\n", data->param.resolution.axe_x / lenght);
 	if (lenght == -1)
 		return (-1);
 	rect.x = lenght * j;
@@ -69,7 +67,7 @@ int		initialize_max_res(t_data *data)
 		lenght = max_lines / (max_res / 68);
 	else
 		lenght = max_res / (max_lines * 3);
-	if (max_res / lenght == 0)
+	if (max_res / lenght == 0 || max_res / lenght < max_lines)
 		return (-1);
 	return (lenght);
 }

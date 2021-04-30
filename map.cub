@@ -1,11 +1,11 @@
 C ./textures/sky.xpm
 R                    525 1028
-NO ./textures/brick.xpm
-SO ./textures/sky.xpm
-WE ./textures/brick.xpm
-EA ./textures/brick.xpm
+NO ./textures/water.xpm
+SO ./textures/snow.xpm
+WE ./textures/Iceberg.xpm
+EA ./textures/snow2.xpm
 S ./textures/scary_white_walker.xpm
-S2                       ./textures/beer.xpm
+S2                       ./textures/beer2.xpm
 F ./textures/icelake.xpm
 
 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111

@@ -58,7 +58,7 @@ void	get_sprites2_img(t_data *data)
 	if (!(data->sprite2.img = mlx_xpm_file_to_image(data->mlx_ptr,
 					data->param.sprite_2, &(data->sprite2.width),
 					&(data->sprite2.height))))
-		exit(0);
+		print_error_2(&data->param, "Error with texture");
 	data->sprite2.addr = mlx_get_data_addr(data->sprite2.img,
 			&data->sprite2.bits_per_pixel,
 			&data->sprite2.line_lenght,
