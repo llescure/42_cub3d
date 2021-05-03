@@ -7,7 +7,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include "../Libft/libft.h"
+# include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -73,8 +73,6 @@ typedef struct		s_param {
 	char			*sprite_2;
 	int				nb_lines_params;
 	int				nb_sprites;
-	int				nb_sprite_1;
-	int				nb_sprite_2;
 	t_colour		floor_colour;
 	char			*north_texture;
 	char			*south_texture;
@@ -96,7 +94,7 @@ typedef struct		s_img
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
-	int		line_lenght;
+	int		line_length;
 	int		endian;
 	int		width;
 	int		height;

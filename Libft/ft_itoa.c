@@ -3,54 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 16:00:14 by slescure          #+#    #+#             */
-/*   Updated: 2019/10/20 19:35:53 by slescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:15:29 by llescure          #+#    #+#             */
+/*   Updated: 2020/12/05 20:20:27 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_longueur(int n)
+int		ft_find_size(int n)
 {
-	int			l;
+	int compt;
 
-	if (n <= 0)
-		l = 1;
-	else
-		l = 0;
-	while (n != 0)
+	compt = 0;
+	if (n < 0)
+		compt++;
+	while (n / 10 != 0)
 	{
 		n = n / 10;
-		l++;
+		compt++;
 	}
-	return (l);
+	return (compt);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	long				sign;
-	long				len;
-	long				nb;
-	char				*str;
+	char		*rslt;
+	long		store;
+	int			i;
+	int			j;
 
-	sign = (n < 0 ? 1 : 0);
-	str = NULL;
-	len = ft_longueur(n);
-	nb = (long)n;
-	if (sign == 1)
-		nb = -nb;
-	if (!(str = (char *)malloc(sizeof(char) * len + 1)))
+	store = n;
+	if (!(rslt = malloc(sizeof(char) * ft_find_size(n) + 1)))
 		return (NULL);
-	str[len--] = '\0';
-	while (len >= 0)
+	i = ft_find_size(n);
+	j = 0;
+	if (store < 0)
 	{
-		str[len] = nb % 10 + '0';
-		nb = nb / 10;
-		len--;
+		rslt[j] = '-';
+		store = store * -1;
+		j++;
 	}
-	if (sign == 1)
-		str[0] = '-';
-	return (str);
+	while (i >= j)
+	{
+		rslt[i] = '0' + store % 10;
+		store = store / 10;
+		i--;
+	}
+	rslt[ft_find_size(n) + 1] = '\0';
+	return (rslt);
 }

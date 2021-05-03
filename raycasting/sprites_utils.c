@@ -8,7 +8,7 @@ void	allocate_memory_for_sprites(t_data *data)
 	i = 0;
 	if (!(data->tab_sprite = malloc(sizeof(t_sprite) *
 		data->param.nb_sprites)))
-		print_error(&data->param, "sprites failed");
+		print_error_2(&data->param, "sprites failed");
 	while (i < data->param.nb_sprites)
 	{
 		set_data(&data->tab_sprite[i]);
@@ -38,7 +38,7 @@ void	set_data(t_sprite *sprite)
 	sprite->img.img = NULL;
 	sprite->img.addr = NULL;
 	sprite->img.bits_per_pixel = 0;
-	sprite->img.line_lenght = 0;
+	sprite->img.line_length = 0;
 	sprite->img.endian = 0;
 	sprite->img.width = 0;
 	sprite->img.height = 0;

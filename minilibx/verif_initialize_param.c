@@ -26,7 +26,7 @@ void	initialize_parameters_for_mlx(t_data *data)
 	data->img.img = mlx_new_image(data->mlx_ptr, data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
-			&data->img.line_lenght, &data->img.endian);
+			&data->img.line_length, &data->img.endian);
 	get_sprites_info(data);
 	while (i < data->param.nb_sprites)
 	{

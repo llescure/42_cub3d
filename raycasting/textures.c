@@ -34,19 +34,19 @@ void	get_textures(t_data *data)
 	ft_get_addr_textures(data);
 	data->tab_texture[0].addr = mlx_get_data_addr(data->tab_texture[0].img,
 			&data->tab_texture[0].bits_per_pixel, &data->tab_texture[0].
-			line_lenght, &data->tab_texture[0].endian);
+			line_length, &data->tab_texture[0].endian);
 	data->tab_texture[1].addr = mlx_get_data_addr(data->tab_texture[1].img,
 			&data->tab_texture[1].bits_per_pixel, &data->tab_texture[1].
-			line_lenght, &data->tab_texture[1].endian);
+			line_length, &data->tab_texture[1].endian);
 	data->tab_texture[2].addr = mlx_get_data_addr(data->tab_texture[2].img,
 			&data->tab_texture[2].bits_per_pixel, &data->tab_texture[2].
-			line_lenght, &data->tab_texture[2].endian);
+			line_length, &data->tab_texture[2].endian);
 	data->tab_texture[3].addr = mlx_get_data_addr(data->tab_texture[3].img,
 			&data->tab_texture[3].bits_per_pixel,
-			&data->tab_texture[3].line_lenght,
+			&data->tab_texture[3].line_length,
 			&data->tab_texture[3].endian);
 	data->sprite1.addr = mlx_get_data_addr(data->sprite1.img,
-			&data->sprite1.bits_per_pixel, &data->sprite1.line_lenght,
+			&data->sprite1.bits_per_pixel, &data->sprite1.line_length,
 			&data->sprite1.endian);
 }
 

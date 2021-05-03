@@ -27,19 +27,19 @@ void	get_health_level(t_data *data)
 	data->bonus.life = 4;
 	data->bonus.tab_life[0].addr = mlx_get_data_addr(data->bonus.tab_life[0].
 			img, &data->bonus.tab_life[0].bits_per_pixel,
-			&data->bonus.tab_life[0].line_lenght,
+			&data->bonus.tab_life[0].line_length,
 			&data->bonus.tab_life[0].endian);
 	data->bonus.tab_life[1].addr = mlx_get_data_addr(data->bonus.tab_life[1].
 			img, &data->bonus.tab_life[1].bits_per_pixel,
-			&data->bonus.tab_life[1].line_lenght,
+			&data->bonus.tab_life[1].line_length,
 			&data->bonus.tab_life[1].endian);
 	data->bonus.tab_life[2].addr = mlx_get_data_addr(data->bonus.tab_life[2].
 			img, &data->bonus.tab_life[2].bits_per_pixel,
-			&data->bonus.tab_life[2].line_lenght,
+			&data->bonus.tab_life[2].line_length,
 			&data->bonus.tab_life[2].endian);
 	data->bonus.tab_life[3].addr = mlx_get_data_addr(data->bonus.tab_life[3].
 			img, &data->bonus.tab_life[3].bits_per_pixel,
-			&data->bonus.tab_life[3].line_lenght,
+			&data->bonus.tab_life[3].line_length,
 			&data->bonus.tab_life[3].endian);
 }
 

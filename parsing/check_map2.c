@@ -60,7 +60,7 @@ int		ft_biggest_line_len(char *str)
 	return (result);
 }
 
-int		only_params(char *str, t_param *param)
+int		store_params(char *str, t_param *param)
 {
 	int		i;
 	char	*map_params;

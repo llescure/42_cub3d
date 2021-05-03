@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 17:30:30 by slescure          #+#    #+#             */
-/*   Updated: 2019/10/14 18:50:47 by slescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:12:25 by llescure          #+#    #+#             */
+/*   Updated: 2020/10/25 22:14:58 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int a)
+int	ft_isalnum(int c)
 {
-	if ((a > 64 && a < 91) || (a > 96 && a < 123) || (a >= '0' && a <= '9'))
+	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') ||
+		(c >= 'A' && c <= 'Z'))
 		return (1);
 	return (0);
 }

@@ -28,7 +28,7 @@ int		read_map(int fd, char *str, char *map, t_param *param);
 int		read_next_line(char **tab_param, char **line, int fd,
 		t_param *param);
 int		check_map(char **map, int nb_lines, int max_length, t_param *param);
-char	*only_map(char *str, t_param *param);
+char	*store_map(char *str, t_param *param);
 char	**save_map(char **str, int nb_lines, int length);
 char	**creation_table_map(char **str, t_param *param);
 void	free_str(char **str, t_param *param);
@@ -44,7 +44,7 @@ int		p_orientation_position(char *map, t_param *param, int position, int i);
 int		manage_perso(char **map, t_param *param);
 int		manage_param(char *str, t_param *param);
 int		parameters_map(char *str, t_param *param);
-int		only_params(char *str, t_param *param);
+int		store_params(char *str, t_param *param);
 int		check_address_parameters(char *str, t_param *param);
 
 char	*save_param_numbers(char *str, char *res, int i);

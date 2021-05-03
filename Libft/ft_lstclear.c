@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 14:44:29 by slescure          #+#    #+#             */
-/*   Updated: 2019/11/12 09:39:07 by slescure         ###   ########.fr       */
+/*   Created: 2020/12/18 19:46:44 by llescure          #+#    #+#             */
+/*   Updated: 2020/12/20 19:41:10 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*tmp;
+	t_list	*temp;
 
-	while (*lst)
+	if ((lst == NULL) || !(*del))
+		return ;
+	while (*lst != NULL)
 	{
-		tmp = *lst;
-		*lst = (*lst)->next;
-		ft_lstdelone(tmp, del);
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, *del);
+		*lst = temp;
 	}
 }

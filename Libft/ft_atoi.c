@@ -3,39 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 13:45:04 by slescure          #+#    #+#             */
-/*   Updated: 2019/10/21 11:43:25 by slescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:10:04 by llescure          #+#    #+#             */
+/*   Updated: 2020/11/02 20:41:37 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int		ft_is_white_space(char c)
 {
-	unsigned int	i;
-	int				signe;
-	unsigned int	resultat;
+	if (c == ' ' || c == '\t' || c == '\n' ||
+		c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
+}
 
+long	ft_check_sign(const char *str)
+{
+	long						sign;
+	long						i;
+
+	sign = 1;
 	i = 0;
-	signe = 1;
-	resultat = 0;
-	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\f'
-			|| str[i] == '\r' || str[i] == ' ' || str[i] == '\v')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
+	while (str[i] == '-' || str[i] == '+' || ft_is_white_space(str[i]) == 1)
 	{
 		if (str[i] == '-')
-			signe = -signe;
+		{
+			if (str[i + 1] == '+' || sign == -1 ||
+				ft_is_white_space(str[i + 1]) == 1)
+				return (0);
+			sign = sign * -1;
+		}
+		if (str[i] == '+')
+		{
+			if (sign == -1 || str[i + 1] == '-' || str[i + 1] == '+' ||
+				ft_is_white_space(str[i + 1]) == 1)
+				return (0);
+		}
 		i++;
-		if (str[i] == '+' || str[i] == '-')
-			return (0);
 	}
+	return (sign);
+}
+
+int		ft_atoi(const char *str)
+{
+	int						i;
+	long					rslt;
+	long					sign;
+
+	i = 0;
+	rslt = 0;
+	sign = ft_check_sign(str);
+	if (sign == 0)
+		return (0);
+	while (str[i] == '-' || str[i] == '+' || ft_is_white_space(str[i]) == 1)
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		resultat = (resultat * 10) + (str[i] - 48);
+		rslt = rslt * 10 + str[i] - '0';
 		i++;
 	}
-	return (resultat * signe);
+	return (sign * rslt);
 }

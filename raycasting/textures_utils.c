@@ -61,6 +61,6 @@ void	get_sprites2_img(t_data *data)
 		print_error_2(&data->param, "Error with texture");
 	data->sprite2.addr = mlx_get_data_addr(data->sprite2.img,
 			&data->sprite2.bits_per_pixel,
-			&data->sprite2.line_lenght,
+			&data->sprite2.line_length,
 			&data->sprite2.endian);
 }

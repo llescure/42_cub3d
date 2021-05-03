@@ -70,8 +70,8 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 		free(tmp);
 	}
 	close(fd);
-	only_params(map, para);
-	str = only_map(map, para);
+	store_params(map, para);
+	str = store_map(map, para);
 	para->nb_sprites = ft_number_sprites(str) + 1;
 	check_void_line_map(str, para);
 	para->map.max_length = ft_biggest_line_len(str);

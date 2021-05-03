@@ -5,7 +5,7 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char *pixel;
 
-	pixel = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
+	pixel = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(int *)pixel = color;
 }
 
@@ -31,15 +31,15 @@ int		draw_rect(t_img *img, t_rect rect)
 int		draw_square(float i, float j, t_data *data, int color)
 {
 	t_rect	rect;
-	int		lenght;
+	int		length;
 
-	lenght = initialize_max_res(data);
-	if (lenght == -1)
+	length = initialize_max_res(data);
+	if (length == -1)
 		return (-1);
-	rect.x = lenght * j;
-	rect.y = lenght * i;
-	rect.width = lenght;
-	rect.height = lenght;
+	rect.x = length * j;
+	rect.y = length * i;
+	rect.width = length;
+	rect.height = length;
 	rect.color = color;
 	if (data->win_ptr == NULL)
 		return (1);
@@ -53,7 +53,7 @@ int		initialize_max_res(t_data *data)
 {
 	int		max_res;
 	int		max_lines;
-	int		lenght;
+	int		length;
 
 	if (data->param.resolution.axe_y > data->param.resolution.axe_x)
 		max_res = data->param.resolution.axe_x;
@@ -64,12 +64,12 @@ int		initialize_max_res(t_data *data)
 	else
 		max_lines = data->param.map.max_length;
 	if (max_lines > max_res / (max_res / 68))
-		lenght = max_lines / (max_res / 68);
+		length = max_lines / (max_res / 68);
 	else
-		lenght = max_res / (max_lines * 3);
-	if (max_res / lenght == 0 || max_res / lenght < max_lines)
+		length = max_res / (max_lines * 3);
+	if (max_res / length == 0 || max_res / length < max_lines)
 		return (-1);
-	return (lenght);
+	return (length);
 }
 
 int		draw_column(int beginning, int end, int pos_x, t_data *data)

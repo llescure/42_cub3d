@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 15:38:30 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/04 16:07:03 by slescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:30:50 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 15:15:26 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#include "libft.h"
-
-char		*ft_strjoin(char *s1, char *s2)
+char			*ft_strjoin(char *s1, char *s2)
 {
-	size_t		i;
-	size_t		j;
-	char		*dest;
+	unsigned int						i;
+	unsigned int						j;
+	char								*rslt;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!(rslt = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
 		return (NULL);
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (dest == NULL)
-		return (NULL);
-	dest[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	i = -1;
-	while (s1[++i] != '\0')
-		dest[i] = s1[i];
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		rslt[i] = s1[i];
+		i++;
+	}
 	j = 0;
 	while (s2[j] != '\0')
-		dest[i++] = s2[j++];
-	dest[i] = '\0';
-	return (dest);
+	{
+		rslt[i] = s2[j];
+		i++;
+		j++;
+	}
+	rslt[i] = '\0';
+	return (rslt);
 }

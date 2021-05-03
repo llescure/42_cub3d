@@ -9,7 +9,7 @@ void	get_ceiling_textures(t_data *data)
 		exit(0);
 	data->tab_texture[4].addr = mlx_get_data_addr(data->tab_texture[4].img,
 			&data->tab_texture[4].bits_per_pixel, &data->tab_texture[4].
-			line_lenght, &data->tab_texture[4].endian);
+			line_length, &data->tab_texture[4].endian);
 }
 
 void	get_floor_textures(t_data *data)
@@ -20,7 +20,7 @@ void	get_floor_textures(t_data *data)
 		exit(0);
 	data->tab_texture[5].addr = mlx_get_data_addr(data->tab_texture[5].img,
 			&data->tab_texture[5].bits_per_pixel, &data->tab_texture[5].
-			line_lenght, &data->tab_texture[5].endian);
+			line_length, &data->tab_texture[5].endian);
 }
 
 void	draw_texture_ceiling(t_data *data, int pos_x)

@@ -14,7 +14,7 @@ int		move_to_map(char *str)
 	return (i);
 }
 
-char	*only_map(char *str, t_param *param)
+char	*store_map(char *str, t_param *param)
 {
 	int		i;
 	int		j;
@@ -86,9 +86,9 @@ int		read_next_line(char **tab_param, char **line, int fd, t_param *param)
 		if ((*line)[0] == 'C' || (*line)[0] == 'R' || (*line)[0] == 'S'
 				|| (*line)[0] == 'F'
 				|| (*line)[0] == 'E' || (*line)[0] == 'W' || (*line)[0] == 'N')
-			tab_param[i++] = strdup(*line);
+			tab_param[i++] = ft_strdup(*line);
 		if ((*line)[0] == ' ' || (*line)[0] == '1')
-			param->map.tab_map[j++] = strdup(*line);
+			param->map.tab_map[j++] = ft_strdup(*line);
 		free(*line);
 	}
 	if (i != param->nb_lines_params)

@@ -49,13 +49,13 @@ void	left_right_movement(int nega, t_perso *perso)
 		perso->dirx = nega * -sin(perso->angle * M_PI / 180 + 90);
 		perso->diry = nega * -cos(perso->angle * M_PI / 180 + 90);
 	}
-	else if ((perso->angle >= 120 && perso->angle < 165) ||
+	else if ((perso->angle >= 120 && perso->angle < 178) ||
 			(perso->angle >= 300 && perso->angle <= 330))
 	{
 		perso->dirx = nega * -sin(perso->angle * M_PI / 180 - 90);
 		perso->diry = nega * -cos(perso->angle * M_PI / 180 - 90);
 	}
-	else if ((perso->angle > 0 && perso->angle < 30) ||
+	else if ((perso->angle >= 0 && perso->angle < 30) ||
 			(perso->angle > 330 && perso->angle <= 360))
 	{
 		perso->dirx = nega * sin(perso->angle * M_PI / 180);

@@ -3,90 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/13 15:51:35 by slescure          #+#    #+#             */
-/*   Updated: 2019/11/11 19:48:59 by slescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:20:35 by llescure          #+#    #+#             */
+/*   Updated: 2021/01/06 10:08:55 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		nb_of_parts(char const *s, char c)
+void				ft_free(char **s, unsigned long pos)
 {
-	int i;
-	int t;
+	while (pos > 0)
+	{
+		pos--;
+		free(s[pos]);
+	}
+	free(s);
+}
+
+unsigned long		ft_count_words(char const *s, char sep)
+{
+	unsigned long i;
+	unsigned long compt;
 
 	i = 0;
-	t = 0;
-	while (s[i] != 0)
+	compt = 0;
+	while (s[i] != '\0')
 	{
-		if ((i == 0 || s[i - 1] == c) && s[i] != c)
-			t++;
+		if (s[i] != sep && (s[i + 1] == sep || (s[i + 1] == '\0')))
+			compt++;
+		if (s[i + 1] == '\0')
+			break ;
 		i++;
 	}
-	return (t);
+	return (compt);
 }
 
-static	int		fill_str(char **ptr, int t, char const *s, int *tab)
+unsigned long		ft_cara(char const *s, char sep, int pos)
 {
-	int x;
+	unsigned long i;
+	unsigned long compt;
 
-	ptr[t] = malloc(sizeof(char) * (tab[1] + 1));
-	x = 0;
-	while (x < tab[1])
+	i = pos;
+	compt = 0;
+	while (s[i] == sep)
+		i++;
+	while (s[i] != sep && s[i] != '\0')
 	{
-		ptr[t][x] = s[tab[0] - tab[1] + x];
-		x++;
+		compt++;
+		i++;
 	}
-	ptr[t][tab[1]] = 0;
-	t++;
-	return (t);
+	return (compt);
 }
 
-static	int		fill_tab(char const *s, char c, char **ptr)
+char				**ft_split(char const *s, char c)
 {
-	int m;
-	int i;
-	int t;
-	int tab[2];
+	char						**tab;
+	unsigned long				i;
+	unsigned long				pos;
 
-	t = 0;
 	i = 0;
-	while (s[i])
-	{
-		m = 0;
-		while (s[i] == c && s[i])
-			i++;
-		while (s[i] != c && s[i])
-		{
-			i++;
-			m++;
-		}
-		if (m)
-		{
-			tab[0] = i;
-			tab[1] = m;
-			t = fill_str(ptr, t, s, tab);
-		}
-	}
-	return (t);
-}
-
-char			**ft_split(char const *s, char c)
-{
-	int		t;
-	char	**ptr;
-
-	t = nb_of_parts(s, c);
-	if (t > 3)
-	{
-		perror("ERROR : wrong writing of colour");
-		exit(0);
-	}
-	if (!(ptr = (char **)malloc((t + 1) * sizeof(char *))))
+	pos = 0;
+	if (!(tab = malloc(sizeof(char *) * (ft_count_words(s, c) + 1))))
 		return (NULL);
-	t = fill_tab(s, c, ptr);
-	ptr[t] = NULL;
-	return (ptr);
+	while (i < ft_count_words(s, c))
+	{
+		if (!(tab[i] = (char *)malloc(sizeof(char) * (ft_cara(s, c, pos) + 1))))
+		{
+			ft_free(tab, i);
+			return (NULL);
+		}
+		while (s[pos] == c)
+			pos++;
+		ft_memcpy(tab[i], s + pos, ft_cara(s, c, pos));
+		tab[i][ft_cara(s, c, pos)] = '\0';
+		pos += ft_cara(s, c, pos);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

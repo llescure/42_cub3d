@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slescure <slescure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 15:06:13 by slescure          #+#    #+#             */
-/*   Updated: 2021/03/18 12:04:12 by llescure         ###   ########.fr       */
+/*   Created: 2020/10/17 23:35:11 by llescure          #+#    #+#             */
+/*   Updated: 2020/12/20 20:49:04 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	char			*fstr;
-	unsigned int	i;
+	unsigned int				i;
+	char						*final;
 
-	if (s && f)
+	if (!(final = malloc(sizeof(char) * ft_strlen(s) + 1)))
+		return (NULL);
+	ft_strlcpy(final, s, ft_strlen(s));
+	i = 0;
+	while (s[i] != '\0')
 	{
-		i = 0;
-		if (!(fstr = malloc((ft_strlen(s) + 1) * sizeof(char))))
-			return (NULL);
-		while (s[i] != 0)
-		{
-			fstr[i] = f(i, s[i]);
-			i++;
-		}
-		fstr[i] = '\0';
-		return (fstr);
+		final[i] = f(i, s[i]);
+		i++;
 	}
-	return (NULL);
+	final[i] = '\0';
+	return (final);
 }

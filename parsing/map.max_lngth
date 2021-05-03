@@ -1,4 +1,0 @@
-parsing.c:	para->nb_sprites = ft_number_sprites(str) + 1;
-parsing.c:	para->map.max_length = ft_biggest_line_len(str);
-parsing.c:	check_map(para->map.tab_map, para->map.nb_lines,
-parsing.c:			para->map.max_length, para);

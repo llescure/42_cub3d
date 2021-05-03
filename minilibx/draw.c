@@ -44,13 +44,13 @@ int		draw_ceiling(int beginning, int end, int pos_x, t_data *data)
 int		draw_line(t_data *data, t_rect rect)
 {
 	int dist;
-	int lenght;
+	int length;
 	int	x;
 	int y;
 
-	lenght = rect.width;
+	length = rect.width;
 	dist = 0;
-	while (dist < lenght)
+	while (dist < length)
 	{
 		x = rect.x + rect.width / 2 + dist * cos(data->param.perso.angle *
 				M_PI / 180);

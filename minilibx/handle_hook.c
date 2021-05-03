@@ -51,14 +51,14 @@ int		launch_hook(t_data *data)
 			data->param.resolution.axe_x,
 			data->param.resolution.axe_y);
 	data->img.addr = mlx_get_data_addr(data->img.img,
-			&data->img.bits_per_pixel, &data->img.line_lenght,
+			&data->img.bits_per_pixel, &data->img.line_length,
 			&data->img.endian);
 	return (0);
 }
 
 int		create_window(t_data *data)
 {
-	int lenght;
+	int length;
 	int width;
 
 	data->mlx_ptr = mlx_init();
@@ -67,9 +67,9 @@ int		create_window(t_data *data)
 		print_error_2(&data->param, "Couldn't start mlx_init");
 		return (-1);
 	}
-	mlx_get_screen_size(data->mlx_ptr, &lenght, &width);
-	if (lenght < data->param.resolution.axe_x)
-		data->param.resolution.axe_x = lenght;
+	mlx_get_screen_size(data->mlx_ptr, &length, &width);
+	if (length < data->param.resolution.axe_x)
+		data->param.resolution.axe_x = length;
 	if (width - 50 < data->param.resolution.axe_y)
 		data->param.resolution.axe_y = width - 50;
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->param.resolution.axe_x,
