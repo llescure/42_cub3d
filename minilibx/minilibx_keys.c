@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minilibx_keys.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:22:12 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 22:31:19 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
@@ -34,7 +46,7 @@ int		close_game(t_data *data)
 	data->win_ptr = NULL;
 	free_textures(data);
 	free_address_params(&data->param);
-	return_value = system("killall aplay");
+	return_value = system("killall -9 aplay");
 	free(data->img.sound);
 	return (return_value);
 }

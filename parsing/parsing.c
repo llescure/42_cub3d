@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:32 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:34 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
@@ -56,7 +68,7 @@ t_param		initialize_structure(t_param *param, char *argv)
 	return (*param);
 }
 
-int			read_map(int fd, char *str, char *map, t_param *para)
+void		read_map(int fd, char *str, char *map, t_param *para)
 {
 	int		reader;
 	char	*tmp;
@@ -81,7 +93,6 @@ int			read_map(int fd, char *str, char *map, t_param *para)
 	check_map(para->map.tab_map, para->map.nb_lines,
 			para->map.max_length, para);
 	free(map);
-	return (0);
 }
 
 t_param		initialize(int argc, char **argv)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage_errors.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:22 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:25 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
@@ -21,17 +33,16 @@ int		print_error_2(t_param *param, char *str)
 	return (return_value);
 }
 
-int		manage_errors(int argc, char **argv, t_param *param)
+void	manage_errors(int argc, char **argv, t_param *param)
 {
 	if (argc != 2 && argc != 3)
 		print_error(param, "Wrong number of arguments");
 	if (argc == 3 && ft_strncmp(argv[2], "--save", ft_strlen(argv[2])) != 0)
 		print_error(param, "Wrong third argument");
 	file_is_cub(argv[1], param);
-	return (0);
 }
 
-int		file_is_cub(char *str, t_param *param)
+void	file_is_cub(char *str, t_param *param)
 {
 	int		i;
 
@@ -41,8 +52,8 @@ int		file_is_cub(char *str, t_param *param)
 	i++;
 	if (str[i] == 'c' && str[i + 1] == 'u' && str[i + 2] == 'b'
 			&& str[i + 3] == '\0')
-		return (1);
+		return ;
 	else
 		print_error(param, "Wrong format of file");
-	return (0);
+	return ;
 }

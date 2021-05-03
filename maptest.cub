@@ -2,14 +2,14 @@ C ./textures/night_sky.xpm
 R 2000 2000
 NO ./textures/water.xpm
 SO ./textures/Iceberg.xpm
-WE ./textures/snow.xpm
+WE ./textures/snow2.xpm
 EA ./textures/snow2.xpm
 S ./textures/scary_white_walker.xpm
 S2 ./textures/beer.xpm
 F ./textures/icelake.xpm
 
    1111111111111111111111111
-   12000000201100000000N0001
+   12000000201100000000E0001
    1011000200110000002000001
 111111111111000000000000011111111111
 111111111011000001110000000000001

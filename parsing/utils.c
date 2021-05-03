@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:24:01 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:24:04 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
@@ -70,4 +82,20 @@ int		ft_number_sprites(char *str)
 		i++;
 	}
 	return (result);
+}
+
+int		ft_number_occurence(char *str, char c)
+{
+	int i;
+	int rslt;
+
+	i = 0;
+	rslt = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			rslt++;
+		i++;
+	}
+	return (rslt);
 }

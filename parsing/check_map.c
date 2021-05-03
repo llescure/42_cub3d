@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:22:57 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:00 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
-int		check_end_walls(char *str, int length, t_param *param)
+void	check_end_walls(char *str, int length, t_param *param)
 {
 	int i;
 
@@ -15,10 +27,9 @@ int		check_end_walls(char *str, int length, t_param *param)
 		length--;
 	if (str[length] != '1')
 		print_error(param, "Wrong format of the map : no walls at the end");
-	return (0);
 }
 
-int		check_symbols(char *str, t_param *param)
+void	check_symbols(char *str, t_param *param)
 {
 	int i;
 
@@ -33,7 +44,6 @@ int		check_symbols(char *str, t_param *param)
 			print_error(param, "Wrong symbol in the map");
 		i++;
 	}
-	return (0);
 }
 
 char	*check_space_in_map(char *str)
@@ -50,7 +60,7 @@ char	*check_space_in_map(char *str)
 	return (str);
 }
 
-int		check_holes_walls(char **map, int nb_lines, int length, t_param *param)
+void	check_holes_walls(char **map, int nb_lines, int length, t_param *param)
 {
 	int i;
 	int j;
@@ -68,10 +78,9 @@ int		check_holes_walls(char **map, int nb_lines, int length, t_param *param)
 		j = 0;
 		i++;
 	}
-	return (0);
 }
 
-int		check_first_last_string_map(char *str, t_param *param)
+void	check_first_last_string_map(char *str, t_param *param)
 {
 	int i;
 
@@ -85,5 +94,4 @@ int		check_first_last_string_map(char *str, t_param *param)
 		if (str[i] == '1' && str[i + 1] == '5' && str[i + 2] == '1')
 			print_error(param, "Wrong format of the map : void");
 	}
-	return (0);
 }

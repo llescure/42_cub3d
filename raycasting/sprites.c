@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:26:40 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 22:04:20 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
@@ -68,11 +80,14 @@ void	draw_sprites_2(t_data *data, t_sprite *sprite, int img_c, int sprite_c)
 		data->img.addr[img_c] = shadow_texture(sprite->dist,
 		sprite->img.addr[sprite_c]);
 	if (sprite->img.addr[sprite_c + 1])
-		data->img.addr[img_c + 1] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 1]);
+		data->img.addr[img_c + 1] = shadow_texture(sprite->dist,
+				sprite->img.addr[sprite_c + 1]);
 	if (sprite->img.addr[sprite_c + 2])
-		data->img.addr[img_c + 2] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 2]);
+		data->img.addr[img_c + 2] = shadow_texture(sprite->dist,
+				sprite->img.addr[sprite_c + 2]);
 	if (sprite->img.addr[sprite_c + 3])
-		data->img.addr[img_c + 3] = shadow_texture(sprite->dist, sprite->img.addr[sprite_c + 3]);
+		data->img.addr[img_c + 3] = shadow_texture(sprite->dist,
+				sprite->img.addr[sprite_c + 3]);
 }
 
 void	ft_sprites(t_data *data)

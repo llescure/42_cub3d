@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:21:54 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:21:56 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/struct_cub3d.h"
 #include "../include/cub3d.h"
 
@@ -67,7 +79,7 @@ int		initialize_max_res(t_data *data)
 		length = max_lines / (max_res / 68);
 	else
 		length = max_res / (max_lines * 3);
-	if (max_res / length == 0 || max_res / length < max_lines)
+	if (length == 0 || max_res / length == 0 || max_res / length < max_lines)
 		return (-1);
 	return (length);
 }

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   manage_cub.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:14 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:16 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
-int		manage_perso(char **map, t_param *param)
+void	manage_perso(char **map, t_param *param)
 {
 	int i;
 	int j;
@@ -27,13 +39,13 @@ int		manage_perso(char **map, t_param *param)
 	}
 	if (result != 1)
 		print_error(param, "Wrong number of characters in the map");
-	return (0);
 }
 
-int		manage_param(char *str, t_param *param)
+void	manage_param(char *str, t_param *param)
 {
 	if (str[0] == 'C' && str[1] == ' ')
-		colour_params_ceiling(str, param);
+		colour_params(str, param, &param->ceiling_colour,
+			&param->ceiling_texture);
 	if (str[0] == 'R' && str[1] == ' ')
 		resolution_param(str, param);
 	if (str[0] == 'S' && str[1] == ' ' && param->sprite_1 == NULL)
@@ -41,7 +53,7 @@ int		manage_param(char *str, t_param *param)
 	if (str[0] == 'S' && str[1] == '2' && param->sprite_2 == NULL)
 		check_sprite2(str, param);
 	if (str[0] == 'F' && str[1] == ' ')
-		colour_params_floor(str, param);
+		colour_params(str, param, &param->floor_colour, &param->floor_texture);
 	if (str[0] == 'N' && str[1] == 'O' && str[2] == ' ' &&
 			param->north_texture == NULL)
 		param->north_texture = save_address_param(str, param);
@@ -54,10 +66,9 @@ int		manage_param(char *str, t_param *param)
 	if (str[0] == 'W' && str[1] == 'E' && str[2] == ' ' &&
 			param->west_texture == NULL)
 		param->west_texture = save_address_param(str, param);
-	return (0);
 }
 
-int		check_all_para(t_param *param, char **tab_param)
+void	check_all_para(t_param *param, char **tab_param)
 {
 	int i;
 
@@ -82,10 +93,9 @@ int		check_all_para(t_param *param, char **tab_param)
 		NULL) || param->north_texture == NULL || param->south_texture == NULL
 		|| param->east_texture == NULL || param->west_texture == NULL)
 		print_error(param, "Missing texture");
-	return (0);
 }
 
-int		check_map(char **map, int nb_lines, int max_length, t_param *param)
+void	check_map(char **map, int nb_lines, int max_length, t_param *param)
 {
 	int i;
 
@@ -104,7 +114,6 @@ int		check_map(char **map, int nb_lines, int max_length, t_param *param)
 	while (++i < nb_lines)
 		map[i] = check_space_in_map(map[i]);
 	manage_perso(map, param);
-	return (0);
 }
 
 void	check_sprite2(char *str, t_param *param)

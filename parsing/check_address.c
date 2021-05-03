@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_address.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:22:49 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:22:51 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
@@ -32,7 +44,7 @@ int		find_str_end(char *s1, char *s2)
 	return (1);
 }
 
-int		check_address_parameters(char *str, t_param *param)
+void	check_address_parameters(char *str, t_param *param)
 {
 	char	*comp;
 
@@ -42,5 +54,4 @@ int		check_address_parameters(char *str, t_param *param)
 	comp = ".xpm";
 	if (find_str_end(str, comp) == 0)
 		print_error(param, "Wrong address");
-	return (0);
 }

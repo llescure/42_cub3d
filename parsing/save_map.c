@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:42 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:44 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
@@ -99,7 +111,7 @@ int		read_next_line(char **tab_param, char **line, int fd, t_param *param)
 	return (ret);
 }
 
-int		sorting_map(char *map_map, t_param *param)
+void	sorting_map(char *map_map, t_param *param)
 {
 	int		fd;
 	int		ret;
@@ -109,10 +121,10 @@ int		sorting_map(char *map_map, t_param *param)
 	ret = 1;
 	fd = open(param->file, O_RDONLY);
 	if (!(tab_param = malloc(sizeof(char*) * 9)))
-		return (-1);
+		print_error(param, "Couldn't allocate memory");
 	if (!(param->map.tab_map = malloc(sizeof(char*) *
 		calculate_nb_chains(map_map))))
-		return (-1);
+		print_error(param, "Couldn't allocate memory");
 	ret = read_next_line(tab_param, &line, fd, param);
 	param->map.tab_map = creation_table_map(param->map.tab_map, param);
 	check_all_para(param, tab_param);
@@ -122,5 +134,4 @@ int		sorting_map(char *map_map, t_param *param)
 	if (param->bonus == '1')
 		free(tab_param[8]);
 	free(tab_param);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: llescure <llescure@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 20:02:11 by llescure          #+#    #+#             */
-/*   Updated: 2021/05/03 15:17:17 by llescure         ###   ########.fr       */
+/*   Updated: 2021/05/03 22:06:10 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 		void (*del)(void *));
 
-int			get_next_line(int fd, char **line);
-int			return_value(int char_read, char **temp);
-int			error_case(int fd, char **line, char **temp, char **buf);
-char		*copy_to_join(char *temp, char *buf);
-char		*copy_to_get_temp(char *temp);
-char		*ft_trim(char *str, int c);
-char		*get_temp(char *str, int c);
+int				get_next_line(int fd, char **line);
+int				return_value(int char_read, char **temp);
+int				error_case(int fd, char **line, char **temp, char **buf);
+char			*copy_to_join(char *temp, char *buf);
+char			*copy_to_get_temp(char *temp);
+char			*ft_trim(char *str, int c);
+char			*get_temp(char *str, int c);
 
 #endif

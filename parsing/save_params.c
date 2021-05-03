@@ -1,64 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   save_params.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:52 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:23:54 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
-int		colour_params_ceiling(char *str, t_param *param)
+void	colour_params(char *str, t_param *param, t_colour *up_down,
+		char **texture)
 {
-	char	**par;
-	int		i;
+	char	**colour;
 
-	i = 0;
 	if (ft_strchr(str, ',') == NULL)
 	{
-		param->ceiling_texture = save_address_param(str, param);
-		return (0);
+		*texture = save_address_param(str, param);
+		return ;
 	}
-	par = ft_split(str, ',');
-	param->ceiling_colour.red = ft_atoi_cub3d(par[0], 1, param);
-	param->ceiling_colour.green = ft_atoi_cub3d(par[1], 0, param);
-	param->ceiling_colour.blue = ft_atoi_cub3d(par[2], 0, param);
-	if ((param->ceiling_colour.red < 0 || param->ceiling_colour.red > 255) ||
-		(param->ceiling_colour.green < 0 || param->ceiling_colour.green >
-		255) || (param->ceiling_colour.blue < 0 ||
-		param->ceiling_colour.blue > 255))
+	if (ft_number_occurence(str, ',') != 2)
 		print_error(param, "Wrong format of colour in the map");
-	while (i < 3)
-	{
-		free(par[i]);
-		i++;
-	}
-	free(par);
-	return (0);
+	colour = ft_split(str, ',');
+	up_down->red = ft_atoi_cub3d(colour[0], 1, param);
+	up_down->green = ft_atoi_cub3d(colour[1], 0, param);
+	up_down->blue = ft_atoi_cub3d(colour[2], 0, param);
+	if ((up_down->red < 0 || up_down->red > 255) ||
+		(up_down->green < 0 || up_down->green > 255)
+		|| (up_down->blue < 0 || up_down->blue > 255))
+		print_error(param, "Wrong format of colour in the map");
+	free_param_colour(colour);
+	return ;
 }
 
-int		colour_params_floor(char *str, t_param *param)
+void	free_param_colour(char **colour)
 {
-	int		i;
-	char	**par;
+	int i;
 
 	i = 0;
-	if (ft_strchr(str, ',') == NULL)
-	{
-		param->floor_texture = save_address_param(str, param);
-		return (0);
-	}
-	par = ft_split(str, ',');
-	param->floor_colour.red = ft_atoi_cub3d(par[0], 1, param);
-	param->floor_colour.green = ft_atoi_cub3d(par[1], 0, param);
-	param->floor_colour.blue = ft_atoi_cub3d(par[2], 0, param);
-	if ((param->floor_colour.green < 0 || param->floor_colour.green > 255) ||
-			(param->floor_colour.red < 0 || param->floor_colour.red > 255) ||
-			(param->floor_colour.blue < 0 || param->floor_colour.blue > 255))
-		print_error(param, "Wrong format of floor colour in the map");
 	while (i < 3)
 	{
-		free(par[i]);
+		free(colour[i]);
 		i++;
 	}
-	free(par);
-	return (0);
+	free(colour);
 }
 
-int		resolution_param(char *str, t_param *param)
+void	resolution_param(char *str, t_param *param)
 {
 	int		i;
 	char	**par;
@@ -80,7 +72,6 @@ int		resolution_param(char *str, t_param *param)
 	while (++i < 3)
 		free(par[i]);
 	free(par);
-	return (0);
 }
 
 char	*save_address_param(char *str, t_param *param)
@@ -89,9 +80,9 @@ char	*save_address_param(char *str, t_param *param)
 	int		j;
 	char	*address;
 
-	i = 0;
+	i = 2;
 	j = 0;
-	while (str[i] != '.' && str[i] != '\0')
+	while (str[i] == ' ' && str[i] != '\0')
 		i++;
 	if (!(address = malloc(sizeof(char) * (ft_strlen(str) - i + 1))))
 		return (NULL);

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/03 20:23:06 by llescure          #+#    #+#             */
+/*   Updated: 2021/05/03 20:24:54 by llescure         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 #include "../include/struct_cub3d.h"
 
-int		check_void_line_map(char *str, t_param *param)
+void	check_void_line_map(char *str, t_param *param)
 {
 	int i;
 
@@ -12,7 +24,6 @@ int		check_void_line_map(char *str, t_param *param)
 			print_error(param, "Void line in the map");
 		i++;
 	}
-	return (0);
 }
 
 int		calculate_nb_chains(char *str)
@@ -60,15 +71,15 @@ int		ft_biggest_line_len(char *str)
 	return (result);
 }
 
-int		store_params(char *str, t_param *param)
+void	store_params(char *str, t_param *param)
 {
 	int		i;
 	char	*map_params;
 
-	i = 0;
+	i = -1;
 	if (!(map_params = malloc(sizeof(char) * ft_strlen(str) + 1)))
-		return (-1);
-	while (str[i] != '\0')
+		print_error(param, "Couldn't allocate memory");
+	while (str[++i] != '\0')
 	{
 		if (str[i] == '\n' && (str[i + 1] == '1' || str[i + 1] == ' '))
 		{
@@ -77,15 +88,14 @@ int		store_params(char *str, t_param *param)
 		}
 		else
 			map_params[i] = str[i];
-		i++;
 	}
 	map_params[i] = '\0';
 	i = calculate_nb_chains(map_params);
 	param->nb_lines_params = i;
 	free(map_params);
 	if (i == 9 || i == 8)
-		return (0);
+		return ;
 	else
 		print_error(param, "Wrong number of arguments");
-	return (0);
+	return ;
 }
