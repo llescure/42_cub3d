@@ -1,5 +1,5 @@
 C ./textures/night_sky.xpm
-R 2000 2000
+R 1000 1000
 NO ./textures/water.xpm
 SO ./textures/Iceberg.xpm
 WE ./textures/snow2.xpm
