@@ -6,7 +6,7 @@
 /*   By: llescure <llescure@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 20:23:22 by llescure          #+#    #+#             */
-/*   Updated: 2021/05/03 20:23:25 by llescure         ###   ########.fr       */
+/*   Updated: 2021/05/04 08:47:39 by llescure         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		print_error_2(t_param *param, char *str)
 	printf("Error\n");
 	printf("%s\n", str);
 	free_address_params(param);
-	return_value = system("killall aplay");
+	return_value = system("killall -9 aplay");
 	exit(0);
 	return (return_value);
 }
