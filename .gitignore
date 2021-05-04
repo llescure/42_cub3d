@@ -13,7 +13,6 @@
 a.out
 *.swp
 cub3d
-screenshot.bmp
 
 #Debug
 .dSYM/
