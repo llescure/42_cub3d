@@ -2,6 +2,8 @@
 
 First graphical project using raycasting method to simulate a maze
 
+![Image cub3d](https://github.com/llescure/cub3d/blob/master/textures/image.png)
+
 Main ressources:
 * https://github.com/iciamyplant/Cub3d-Linux for the overhaul organization
 * https://aurelienbrabant.fr/ for minilibx
