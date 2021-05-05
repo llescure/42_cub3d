@@ -21,5 +21,6 @@ Main ressources:
 * https://harm-smits.github.io/42docs/libs/minilibx/prototypes.html#mlx_destroy_image for minilibx
 * https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/key-names.html for keycode
 * https://lodev.org/cgtutor/raycasting.html for raycasting
+* https://opengameart.org/art-search-advanced?field_art_tags_tid=beer for textures
 
 Final result : 114% :100: 
