@@ -22,7 +22,7 @@ int		init_music(t_data *data)
 	ft_bzero(data->img.sound, sizeof(t_sound));
 	data->img.sound->last_start_song = clock();
 	return_value =
-	system("aplay -q bonus/sound/white_walkers.wav &>/dev/null &");
+	system("play bonus/sound/white_walkers.wav &>/dev/null &");
 	return (return_value);
 }
 
@@ -40,7 +40,7 @@ int		play_music(t_data *data)
 	{
 		return_value = system("killall -9 aplay");
 		return_value =
-		system("aplay -q bonus/sound/white_walkers.wav &>/dev/null &");
+		system("play bonus/sound/white_walkers.wav &>/dev/null &");
 		data->img.sound->last_start_song = actual_time;
 	}
 	return (return_value);
